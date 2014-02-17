@@ -17,6 +17,9 @@ module.exports = {
     // app.post( '/api/posts',     postsController.create);
     // app.put(  '/api/posts/:id', postsController.update);
     // app.del(  '/api/posts/:id', postsController.destroy);
+    app.get('/api', function(req, res){
+      res.send("working")
+    });
 
 
     
