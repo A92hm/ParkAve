@@ -21,9 +21,10 @@ module.exports = {
       res.send("working")
     });
 
-
-    
-    app.get(  '/posts*', function(req, res) {
+    app.get(  '/landing*', function(req, res) {
+      res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
+    });
+    app.get(  '/getstarted*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
   }

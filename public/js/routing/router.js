@@ -4,48 +4,37 @@ define(['underscore', 'require', 'backbone'],
 
   var Router = Backbone.Router.extend({
     routes: {
-      'posts':      'posts',
-      'posts/:id':  'post',
-
-      'posts/:pid/comments':      'comments',
-      'posts/:pid/comments/:cid':  'comment',
+      'landing': 'landing',
+      'getstarted': 'getStarted',
+      'getstarted/:email': 'getStarted',
+      'login': 'login',
 
       '': 'main'
     },
 
     main: function() {
-      this.navigate('posts', {trigger: true});
+      this.navigate('landing', {trigger: true});
     },
 
-    posts: function() {
+    landing: function(){
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showPosts();
-      });
-
-      // we can require the main view dynamically when needed. if not we encouter a circularity:
-      // router -> main -> post list -> post list item -> router
-    }, 
-
-    post: function(id) {
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showPost(id);
+        MainAppView.sharedInstance().showLanding();
       });
     },
 
-    comments: function(pid) {
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showComments(pid);
+    getStarted: function(email){
+      require(['views/application/main'], function(MainAppView){
+        MainAppView.sharedInstance().showGetStarted(email);
       });
     },
 
-    comment: function(pid, cid) {
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showComment(pid, cid);
+    login: function(){
+      require(['views/application/main'], function(MainAppView){
+        MainAppView.sharedInstance().showLogin();
       });
     },
 
     // call start when the application is ready to begin routing
-
     start: function() {
       var router = this;
 

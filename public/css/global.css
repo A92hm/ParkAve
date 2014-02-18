@@ -1,1 +1,20 @@
-/* post styling */
+.landing-page-banner {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.landing-page-header {
+  color: #F3F7F2;
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  background-color: #42BA32;
+  background-image: -webkit-linear-gradient(top,#3DAB2E 0,#42BA32 100%);
+  background-image: linear-gradient(to bottom,#3DAB2E 0,#42BA32 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3DAB2E', endColorstr='#42BA32', GradientType=0);
+}
+
+.landing-page-thumbnail-text {
+  height: 300px;
+  display: table-cell;
+  vertical-align: middle;
+}
