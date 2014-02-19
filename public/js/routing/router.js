@@ -8,6 +8,7 @@ define(['underscore', 'require', 'backbone'],
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
       'login': 'login',
+      'users': '',
 
       '': 'main'
     },
@@ -17,6 +18,7 @@ define(['underscore', 'require', 'backbone'],
     },
 
     landing: function(){
+      console.log('landing');
       require(['views/application/main'], function(MainAppView) {
         MainAppView.sharedInstance().showLanding();
       });

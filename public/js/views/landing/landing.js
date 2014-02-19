@@ -42,6 +42,37 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
         "margin-left": "0px",
         "margin-right": "0px"
       }, 800 );
+
+      // Animate WOW text!
+      this.$el.find( "#desc-text-box-1" ).css({
+        "margin-left": "2800px",
+        "margin-right": "-2800px"
+      });
+      this.$el.find( "#desc-text-box-1" ).animate({
+        "margin-left": "0px",
+        "margin-right": "0px"
+      }, 1600 );
+
+      // Animate WOW text!
+      this.$el.find( "#desc-text-box-2" ).css({
+        "margin-left": "4200px",
+        "margin-right": "-4200px"
+      });
+      this.$el.find( "#desc-text-box-2" ).animate({
+        "margin-left": "0px",
+        "margin-right": "0px"
+      }, 2400 );
+
+      // Animate WOW text!
+      this.$el.find( "#desc-text-box-3" ).css({
+        "margin-left": "5600px",
+        "margin-right": "-5600px"
+      });
+      this.$el.find( "#desc-text-box-3" ).animate({
+        "margin-left": "0px",
+        "margin-right": "0px"
+      }, 3200 );
+
       return this;
     },
 
