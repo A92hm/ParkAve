@@ -1,7 +1,8 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
-        'views/landing/landing', 'views/landing/getstarted', 'views/landing/login'
+        'views/landing/landing', 'views/landing/getstarted', 'views/landing/login', 
+        'views/reviews/userFeedback', 'views/reviews/userReviews'
          ], 
-  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView) {
+  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, UserFeedbackView, UserReviewsView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -26,6 +27,16 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     showLogin: function(){
       var loginView = new LoginView();
       this.$el.append( loginView.render().el );
+
+    },
+    showUserFeedback: function(uid){
+      var userFeedbackView = new UserFeedbackView();
+      this.$el.html(userFeedbackView.render().el);
+    },
+    showUserReviews:  function(uid){
+      console.log('show user reviews');
+      var userReviewsView = new UserReviewsView();
+      this.$el.html(userReviewsView.render().el);
     }
   });
 

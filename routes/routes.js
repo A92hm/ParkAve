@@ -39,5 +39,8 @@ module.exports = {
     app.get(  '/getstarted*', function(req, res) {
       sendIndexFile(res);
     });
+    app.get(  '/user*', function(req, res) {
+      res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
+    });
   }
 };
