@@ -18,12 +18,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showGetStarted: function(email){
-      var getStartedView = new GetStartedView();
+      var getStartedModel = new Backbone.Model( {email: email} );
+      var getStartedView = new GetStartedView( {model: getStartedModel} );
       this.$el.html( getStartedView.render().el );
     },
 
     showLogin: function(){
-      //TODO
+      var loginView = new LoginView();
+      this.$el.append( loginView.render().el );
     }
   });
 

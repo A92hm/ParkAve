@@ -14,7 +14,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
     },
 
     render: function() {
-      this.$el.html( this.template( ) );
+      this.$el.html( this.template( this.model.toJSON() ) );
       return this;
     },
 
@@ -87,8 +87,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       // Save the new user
       newUser.save({error: function(err){
         console.log(err);
-      }, success: function(stuff){
-        console.log(stuff);
       }});
 
       Router.sharedInstance().navigate(newUser.clienturl(), {trigger: true});

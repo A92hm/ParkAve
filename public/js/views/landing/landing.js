@@ -7,12 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
     template: _.template( Template ),
 
     events: {
-      'keypress #get-started-email-input': function(evt){
-        if(evt.keyCode == 13){
-          this.openGetStartedPage();
-          return false;
-        }
-      },
+      'keypress #get-started-email-input': 'checkEmailInputForEnterKey',
       'click #get-started-button': 'openGetStartedPage',
       'click #login-button': 'openLoginModal'
     },
@@ -22,6 +17,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
 
     render: function() {
       this.$el.html( this.template( ) );
+
+      // Fixes login modal backdrop not fading away on back button press
+      $('.modal-backdrop').remove();
 
       // Animate WOW text!
       this.$el.find( "#wow-text" ).css({
@@ -85,8 +83,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
     },
 
     openLoginModal: function(){
-      //TODO
+      Router.sharedInstance().navigate('landing/login', {trigger: true});
       return false;
+    },
+
+    checkEmailInputForEnterKey: function(evt){
+      if(evt.keyCode == 13){
+        this.openGetStartedPage();
+        return false;
+      }
     }
   });
 
