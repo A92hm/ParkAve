@@ -9,6 +9,10 @@ define(['underscore', 'require', 'backbone'],
       'getstarted/:email': 'getStarted',
       'login': 'login',
 
+
+      'user/:uid/feedback' : 'userFeedback', 
+      'user/:uid/reviews' : 'userReviews',
+
       '': 'main'
     },
 
@@ -31,6 +35,16 @@ define(['underscore', 'require', 'backbone'],
     login: function(){
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showLogin();
+      });
+    },
+    userFeedback: function(uid) {
+      require(['views/application/main'], function(MainAppView){
+        MainAppView.sharedInstance().showUserFeedback(uid);
+      });
+    },
+    userReviews : function(uid){
+      require(['views/application/main'], function(MainAppView){
+        MainAppView.sharedInstance().showUserReviews(uid);
       });
     },
 

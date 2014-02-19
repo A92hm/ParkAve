@@ -27,5 +27,8 @@ module.exports = {
     app.get(  '/getstarted*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
+    app.get(  '/user*', function(req, res) {
+      res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
+    });
   }
 };
