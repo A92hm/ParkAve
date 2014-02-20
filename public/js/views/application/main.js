@@ -37,6 +37,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       console.log('show user reviews');
       var userReviewsView = new UserReviewsView();
       this.$el.html(userReviewsView.render().el);
+    },
+    showAccountSetting : function(uid){
+      console.log('show user account setting');
+      var accountSettingView = new AccountSettingView();
+      this.$el.html(accountSettingView.render().el);
     }
   });
 

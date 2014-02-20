@@ -13,6 +13,7 @@ define(['underscore', 'require', 'backbone'],
 
       'user/:uid/feedback' : 'userFeedback', 
       'user/:uid/reviews' : 'userReviews',
+      'user/:uid/setting' : 'accountSetting',
 
       '': 'main'
     },
@@ -46,6 +47,11 @@ define(['underscore', 'require', 'backbone'],
     userReviews : function(uid){
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showUserReviews(uid);
+      });
+    },
+    accountSetting : function(uid){
+      require(['views/application/main'],function(MainAppView){
+        MainAppView.sharedInstance().showAccountSetting(uid);
       });
     },
 
