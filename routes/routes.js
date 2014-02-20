@@ -2,7 +2,7 @@ var path = require('path');
 
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
-
+var lotsController = require('./../controllers/lots.js');
 
 module.exports = {
   init: function(app) {
@@ -27,5 +27,16 @@ module.exports = {
     app.get(  '/getstarted*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
+
+    app.get(  '/api/lots',     lotsController.index);
+    app.get(  '/api/lots/:id', lotsController.show);
+    app.post( '/api/lots',     lotsController.create);
+    app.put(  '/api/lots/:id', lotsController.update);
+    app.del(  '/api/lots/:id', lotsController.destroy);
+
+    app.get(  '/lots*', function(req, res) {
+      res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
+    });
+
   }
 };

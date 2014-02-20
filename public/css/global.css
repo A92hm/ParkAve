@@ -18,3 +18,29 @@
   display: table-cell;
   vertical-align: middle;
 }
+
+
+.lot-list .lot {
+  padding: 4px;
+  margin: 8px 0;
+}
+
+.lot-list .lot:nth-child(even) {
+  background-color: #eee;
+}
+
+.lot-list .lot a.title {
+  color: inherit;
+  font-size: 1.5em;
+}
+
+.lot-list .lot a.title:hover {
+  text-decoration: none;
+  color: #428bca;
+}
+
+/* form styling */
+
+#new-form-modal textarea {
+  height: 100px;
+}
