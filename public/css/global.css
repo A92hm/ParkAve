@@ -2,6 +2,12 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.filter-bar{
+  background-color: rgba(26,26,26,.9);
+  border-radius: 10px;
+}
+.filter-form-input{
+}
 
 .landing-page-header {
   color: #F3F7F2;

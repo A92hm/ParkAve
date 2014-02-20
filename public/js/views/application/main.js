@@ -1,9 +1,16 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
+<<<<<<< HEAD
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login', 'models/lot',  'collections/lots',
          'views/lot/lot-list', 'views/lot/lot'
          ], 
   function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, Lot, LotsCollection, 
           LotsListView, LotView) {
+=======
+        'views/landing/landing', 'views/landing/getstarted', 'views/landing/login', 
+        'views/reviews/userFeedback', 'views/reviews/userReviews'
+         ], 
+  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, UserFeedbackView, UserReviewsView) {
+>>>>>>> 55e6fb34dfe0dcb6871178b76fc58e815c3dac3f
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -20,11 +27,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showGetStarted: function(email){
-      var getStartedView = new GetStartedView();
+      var getStartedModel = new Backbone.Model( {email: email} );
+      var getStartedView = new GetStartedView( {model: getStartedModel} );
       this.$el.html( getStartedView.render().el );
     },
 
     showLogin: function(){
+<<<<<<< HEAD
       //TODO
     },
 
@@ -42,6 +51,20 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var lotView = new LotView({model: lot});
       $('#content').html( lotView.el );
       lot.fetch();
+=======
+      var loginView = new LoginView();
+      this.$el.append( loginView.render().el );
+
+    },
+    showUserFeedback: function(uid){
+      var userFeedbackView = new UserFeedbackView();
+      this.$el.html(userFeedbackView.render().el);
+    },
+    showUserReviews:  function(uid){
+      console.log('show user reviews');
+      var userReviewsView = new UserReviewsView();
+      this.$el.html(userReviewsView.render().el);
+>>>>>>> 55e6fb34dfe0dcb6871178b76fc58e815c3dac3f
     }
   });
 

@@ -1,8 +1,16 @@
-var path = require('path');
+var path = require('path'),
+    usersController = require('./../controllers/users');
 
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
+<<<<<<< HEAD
 var lotsController = require('./../controllers/lots.js');
+=======
+
+function sendIndexFile(res){
+  res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
+}
+>>>>>>> 55e6fb34dfe0dcb6871178b76fc58e815c3dac3f
 
 module.exports = {
   init: function(app) {
@@ -17,14 +25,25 @@ module.exports = {
     // app.post( '/api/posts',     postsController.create);
     // app.put(  '/api/posts/:id', postsController.update);
     // app.del(  '/api/posts/:id', postsController.destroy);
-    app.get('/api', function(req, res){
-      res.send("working")
-    });
+    app.get(  '/api', function(req, res){ res.send("working"); });
+    app.get(  '/api/users',     usersController.index);
+    app.get(  '/api/users/:uid', usersController.show);
+    app.post( '/api/users',     usersController.create);
+    app.put(  '/api/users/:uid', usersController.update);
+    app.del(  '/api/users/:uid', usersController.destroy);
+
+    // Non-API routes
 
     app.get(  '/landing*', function(req, res) {
-      res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
+      sendIndexFile(res);
+    });
+    app.get(  '/users*', function(req, res) {
+      sendIndexFile(res);
     });
     app.get(  '/getstarted*', function(req, res) {
+      sendIndexFile(res);
+    });
+    app.get(  '/user*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
 
