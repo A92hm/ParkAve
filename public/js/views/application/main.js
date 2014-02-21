@@ -43,8 +43,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var lotView = new LotView({model: lot});
       $('#content').html( lotView.el );
       lot.fetch();
-      var loginView = new LoginView();
-      this.$el.append( loginView.render().el );
 
     },
     showUserFeedback: function(uid){
