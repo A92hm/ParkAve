@@ -1,8 +1,8 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login', 
-        'views/reviews/userFeedback', 'views/reviews/userReviews'
+        'views/reviews/feedback-page', 'views/reviews/review-list'
          ], 
-  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, UserFeedbackView, UserReviewsView) {
+  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, FeedbackView, ReviewList) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -27,13 +27,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       //TODO
     },
     showUserFeedback: function(uid){
-      var userFeedbackView = new UserFeedbackView();
+      var userFeedbackView = new FeedbackView();
       this.$el.html(userFeedbackView.render().el);
     },
     showUserReviews:  function(uid){
       console.log('show user reviews');
-      var userReviewsView = new UserReviewsView();
-      this.$el.html(userReviewsView.render().el);
+      var lotsReviewList = new ReviewList();
+      this.$el.html(lotsReviewList.render().el);
     }
   });
 
