@@ -1,13 +1,8 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
         'models/user', 'models/lot', 'collections/users', 'collections/lots',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
-<<<<<<< HEAD
         'views/lot/lot-list', 'views/lot/lot', 'views/user/home',
-        'views/reviews/userFeedback', 'views/reviews/userReviews', 'views/user/settings'
-=======
-        'views/lot/lot-list', 'views/lot/lot', 'views/user/userpage',
         'views/reviews/feedback-page', 'views/reviews/sellerReview-list', 'views/user/settings'
->>>>>>> 75ad975832421a4bc6f8cab5e9886b904b440e00
         ], 
   function($, _, Backbone, Template, User, Lot, UsersCollection, LotsCollection, LandingView, GetStartedView, LoginView, 
           LotsListView, LotView, UserPageView, FeedbackView, ReviewList, AccountSettingsView) {
