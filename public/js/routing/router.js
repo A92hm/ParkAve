@@ -17,9 +17,11 @@ define(['underscore', 'require', 'backbone'],
       'lots/:pid/spots/:cid':      'spot',
       
       'users': '',
-      'users/:uid/feedback' : 'userFeedback', 
+
+      'users/:uid': 'userPage',
+      'users/:uid/feedback' : 'userFeedback',
       'users/:uid/reviews' : 'userReviews',
-      'account-setting' : 'accountSetting',
+      'users/:uid/settings' : 'accountSettings',
 
       '': 'main'
     },
@@ -58,8 +60,6 @@ define(['underscore', 'require', 'backbone'],
       });
     },
 
-    
-
     landing: function(){
       require(['views/application/main'], function(MainAppView) {
         MainAppView.sharedInstance().showLanding();
@@ -77,6 +77,13 @@ define(['underscore', 'require', 'backbone'],
         MainAppView.sharedInstance().showLogin();
       });
     },
+
+    userPage: function(uid){
+      require(['views/application/main'], function(MainAppView){
+        MainAppView.sharedInstance().showUserPage(uid);
+      })
+    },
+
     userFeedback: function(uid) {
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showUserFeedback(uid);
@@ -88,9 +95,9 @@ define(['underscore', 'require', 'backbone'],
       });
     },
     
-    accountSetting: function(){
+    accountSettings: function(){
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showAccountSetting();
+        MainAppView.sharedInstance().showAccountSettings();
       });
     },
 

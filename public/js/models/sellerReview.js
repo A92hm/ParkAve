@@ -1,17 +1,14 @@
 define(['underscore','backbone'], function(_, Backbone) {
 
-  var User = Backbone.Model.extend({
+  var SellerReview = Backbone.Model.extend({
     idAttribute: '_id',
 
     defaults: {
-      name: '',
-      email: '',
-      password: '',
-      birthdate: '',
-      phone: ''
+      title: 'Untitled'
     },
 
     initialize: function() {
+      
     },
 
     clienturl: function() {
@@ -19,5 +16,5 @@ define(['underscore','backbone'], function(_, Backbone) {
     }
   });
 
-  return User;
+  return SellerReview;
 });

@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
-  'routing/router'],
-  function($, _, Backbone, Template, Router) {
+  'routing/router', 'collections/users'],
+  function($, _, Backbone, Template, Router, UsersCollection) {
 
   var LoginView = Backbone.View.extend({
     tagName: 'div',
@@ -30,8 +30,20 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
       var password = this.$el.find('#input-login-password').val();
       //TODO encrypt password
 
-      //TODO log the user in
-      console.log("login");
+      var usersCollection = new UsersCollection();
+      var theLoginModal = this.$el.find('#login-modal');
+      usersCollection.fetch({error: function(err){
+        console.log(err);
+      }, success: function(collection, response){
+        var user = collection.findWhere({email: email, password: password});
+        if(!user){
+          console.log("user not found");
+          return;
+        }
+        usersCollection.add(user);
+        theLoginModal.modal('hide');
+        Router.sharedInstance().navigate(user.clienturl(), {trigger: true});
+      }});
 
       return false;
     },

@@ -24,6 +24,7 @@
 *.zip
 node_modules
 bower_components
+db
 
 # Logs and databases #
 ######################

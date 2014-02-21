@@ -1,5 +1,5 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.html',
-  'text!templates/landing/widgets/inputerror.html', 'routing/router','models/user', 'collections/users',],
+  'text!templates/widgets/inputerror.html', 'routing/router','models/user', 'collections/users',],
   function($, _, Backbone, Template, InputErrorTemplate, Router, User, UsersCollection) {
 
   var GetStartedView = Backbone.View.extend({
@@ -85,11 +85,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       });
 
       // Save the new user
-      newUser.save({error: function(err){
+      newUser.save({}, {error: function(err){
         console.log(err);
+      }, success: function(model, response){
+        Router.sharedInstance().navigate(newUser.clienturl(), {trigger: true});
       }});
 
-      Router.sharedInstance().navigate(newUser.clienturl(), {trigger: true});
       return false;
     }
   });

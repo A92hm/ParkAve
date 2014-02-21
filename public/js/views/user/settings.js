@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 
   'text!templates/navigation/navigation.html',
-  'text!templates/profile/account-setting.html',
+  'text!templates/user/settings.html',
   'routing/router','holder/holder'],
   function($, _, Backbone, showNav,Template, Router, Holder) {
 
