@@ -1,10 +1,11 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
         'models/user', 'models/lot', 'collections/users', 'collections/lots',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
-         'views/lot/lot-list', 'views/lot/lot', 'views/user/userpage', 'views/reviews/userFeedback', 'views/reviews/userReviews'
-         ], 
+        'views/lot/lot-list', 'views/lot/lot', 'views/user/userpage',
+        'views/reviews/userFeedback', 'views/reviews/userReviews', 'views/user/settings'
+        ], 
   function($, _, Backbone, Template, User, Lot, UsersCollection, LotsCollection, LandingView, GetStartedView, LoginView, 
-          LotsListView, LotView, UserPageView, UserFeedbackView, UserReviewsView) {
+          LotsListView, LotView, UserPageView, UserFeedbackView, UserReviewsView, AccountSettingsView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -69,6 +70,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     showUserReviews:  function(uid){
       var userReviewsView = new UserReviewsView();
       this.$el.html(userReviewsView.render().el);
+    },
+    showAccountSettings: function(){
+      var accountSettingsView = new AccountSettingsView();
+      this.$el.html(accountSettingsView.render().el);
     }
   });
 
