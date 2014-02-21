@@ -1,9 +1,13 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
+
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login', 
-        'views/reviews/userFeedback', 'views/reviews/userReviews',
+        'views/reviews/userFeedback', 'models/lot', 'collections/lots',
+         'views/lot/lot-list', 'views/lot/lot', 'views/reviews/userReviews',
         'views/profile/account-setting'
          ], 
-  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, UserFeedbackView, UserReviewsView, AccountSettingView) {
+  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, UserFeedbackView,
+   Lot,LotsCollection, LotsListView, LotView, UserReviewsView, AccountSettingView) {
+
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -26,8 +30,23 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showLogin: function(){
-      var loginView = new LoginView();
-      this.$el.append( loginView.render().el );
+      //TODO
+    },
+
+    showLots: function() {
+      var lots = new LotsCollection();
+      var lotsView = new LotsListView({collection: lots})
+      $('#content').html( lotsView.render().el );
+      lots.fetch();
+    },
+
+    showLot: function(id) {
+      var lot = new Lot({_id: id});
+      var lots = new LotsCollection([lot]);
+      
+      var lotView = new LotView({model: lot});
+      $('#content').html( lotView.el );
+      lot.fetch();
 
     },
     showUserFeedback: function(uid){

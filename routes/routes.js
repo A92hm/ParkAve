@@ -3,6 +3,7 @@ var path = require('path'),
 
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
+var lotsController = require('./../controllers/lots.js');
 
 function sendIndexFile(res){
   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
@@ -43,5 +44,16 @@ module.exports = {
       //res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
       sendIndexFile(res);
     });
+
+    app.get(  '/api/lots',     lotsController.index);
+    app.get(  '/api/lots/:id', lotsController.show);
+    app.post( '/api/lots',     lotsController.create);
+    app.put(  '/api/lots/:id', lotsController.update);
+    app.del(  '/api/lots/:id', lotsController.destroy);
+
+    app.get(  '/lots*', function(req, res) {
+      res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
+    });
+
   }
 };
