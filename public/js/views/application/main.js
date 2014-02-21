@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login', 
         'views/reviews/feedback-page', 'models/lot', 'collections/lots',
-         'views/lot/lot-list', 'views/lot/lot', 'views/reviews/review-list',
+         'views/lot/lot-list', 'views/lot/lot', 'views/reviews/sellerReview-list',
         'views/profile/account-setting'
          ], 
   function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, FeedbackView,

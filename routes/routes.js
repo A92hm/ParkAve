@@ -4,7 +4,7 @@ var path = require('path'),
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
 var lotsController = require('./../controllers/lots.js');
-
+var sellerReviewsController = require('./../controllers/sellerReviews.js');
 function sendIndexFile(res){
   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
 }
@@ -29,8 +29,11 @@ module.exports = {
     app.put(  '/api/users/:uid', usersController.update);
     app.del(  '/api/users/:uid', usersController.destroy);
 
-    app.get(  '/api/users/:uid/reviews', usersController.index);
-    app.get(  '/api/users/:uid/reviews/:rid', usersController.show);
+    app.get(  '/api/users/:uid/reviews', sellerReviewsController.index);
+    app.get(  '/api/users/:uid/reviews/:rid', sellerReviewsController.show);
+    app.post(  '/api/users/:uid/reviews', sellerReviewsController.create);
+    app.put(  '/api/users/:uid.reviews/:rid', sellerReviewsController.update);
+
     
     app.get(  '/api/lots',     lotsController.index);
     app.get(  '/api/lots/:id', lotsController.show);
