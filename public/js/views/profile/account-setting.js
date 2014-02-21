@@ -1,8 +1,8 @@
 define(['jquery', 'underscore', 'backbone', 
   'text!templates/navigation/navigation.html',
   'text!templates/profile/account-setting.html',
-  'routing/router'],
-  function($, _, Backbone, showNav,Template, Router) {
+  'routing/router','holder/holder'],
+  function($, _, Backbone, showNav,Template, Router, Holder) {
 
   var AccountSettingView = Backbone.View.extend({
     tagName: 'div',
