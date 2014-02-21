@@ -4,8 +4,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     routes = require('./routes/routes.js');
 
-
-mongoose.connect('mongodb://54.84.154.254/parking');
+mongoose.connect('mongodb://54.84.154.254/parking');  // Production
+//mongoose.connect('mongodb://localhost/dummydb');
 var db = mongoose.connection;
 
 db.on('error', function(msg) {
@@ -19,7 +19,6 @@ db.once('open', function() {
 // set up the app
 
 var app = express();
-
 
 app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 app.use(express.json());
