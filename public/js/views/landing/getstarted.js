@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.html',
-  'text!templates/widgets/inputerror.html', 'routing/router','models/user', 'collections/users',],
-  function($, _, Backbone, Template, InputErrorTemplate, Router, User, UsersCollection) {
+  'text!templates/widgets/inputerror.html', 'routing/router','models/user', 'collections/users', 'views/navigation/navigation'],
+  function($, _, Backbone, Template, InputErrorTemplate, Router, User, UsersCollection, NavigationView) {
 
   var GetStartedView = Backbone.View.extend({
     tagName: 'div',
@@ -15,6 +15,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
 
     render: function() {
       this.$el.html( this.template( this.model.toJSON() ) );
+      var navigationView = new NavigationView( {model: this.model} );
+      this.$el.find('#navbar').html( navigationView.render().el );
       return this;
     },
 

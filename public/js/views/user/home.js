@@ -1,14 +1,13 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/user/home.html',
-        'text!templates/navigation/navigation.html', 'routing/router'],
-  function($, _, Backbone, Template, NavigationTemplate, Router) {
+        'views/navigation/navigation', 'routing/router'],
+  function($, _, Backbone, Template, NavigationView, Router) {
 
     var UserPageView = Backbone.View.extend({
       tagName: 'div',
       template: _.template( Template ),
 
       events: {
-        'click #see-feedback-button': 'showUserFeedbackPage',
-        'click a[href="usersettings"]': 'showUserSettingsPage'
+        'click #see-feedback-button': 'showUserFeedbackPage'
       },
 
       initialize: function() {
@@ -18,17 +17,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/home.html',
 
       render: function() {
         this.$el.html( this.template( this.model.toJSON() ) );
-        this.$el.find('#navbar').html( NavigationTemplate );
+        var navigationView = new NavigationView( {model: this.model} );
+        this.$el.find('#navbar').html( navigationView.render().el );
         return this;
       },
 
       showUserFeedbackPage: function(){
         Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/feedback', {trigger: true});
-        return false;
-      },
-
-      showUserSettingsPage: function(){
-        Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/settings', {trigger: true});
         return false;
       }
     });
