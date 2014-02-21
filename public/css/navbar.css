@@ -4,17 +4,24 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 
 .navbar{
-	background-color: #45ba96;
+	background-color: #3DAB2E;
 	padding-top: 1px;
 	padding-bottom: 1px
 }
 
 .navbar .nav > li > a{
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.navbar .nav > li > a:hover{
+  background-color: #ffffff;
+  color: #3DAB2E;
+  text-shadow: none;
+}
+
+.navbar-header > a{
 	color: #ffffff;
 	text-shadow: none;
-}
-.navbar-header > a{
-	color: #8d8d8d;
-	text-shadow: none;	
 }
 

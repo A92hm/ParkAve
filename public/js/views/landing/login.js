@@ -37,7 +37,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
       }, success: function(collection, response){
         var user = collection.findWhere({email: email, password: password});
         if(!user){
-          console.log("user not found");
+          alert("Username/Password invalid");
           return;
         }
         usersCollection.add(user);

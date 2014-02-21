@@ -21,7 +21,7 @@ define(['underscore', 'require', 'backbone'],
       'users/:uid': 'userPage',
       'users/:uid/feedback' : 'userFeedback',
       'users/:uid/reviews' : 'userReviews',
-      'users/:uid/settings' : 'accountSettings',
+      'users/:uid/settings' : 'userSettings',
 
       '': 'main'
     },
@@ -96,9 +96,9 @@ define(['underscore', 'require', 'backbone'],
       });
     },
     
-    accountSettings: function(){
+    userSettings: function(uid){
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showAccountSettings();
+        MainAppView.sharedInstance().showUserSettings(uid);
       });
     },
 

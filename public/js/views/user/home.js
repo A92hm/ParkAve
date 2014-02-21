@@ -1,6 +1,6 @@
-define(['jquery', 'underscore', 'backbone', 'text!templates/user/userpage.html',
-  'routing/router'],
-  function($, _, Backbone, Template, Router) {
+define(['jquery', 'underscore', 'backbone', 'text!templates/user/home.html',
+        'views/navigation/navigation', 'routing/router'],
+  function($, _, Backbone, Template, NavigationView, Router) {
 
     var UserPageView = Backbone.View.extend({
       tagName: 'div',
@@ -17,11 +17,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/userpage.html',
 
       render: function() {
         this.$el.html( this.template( this.model.toJSON() ) );
+        var navigationView = new NavigationView( {model: this.model} );
+        this.$el.find('#navbar').html( navigationView.render().el );
         return this;
       },
 
       showUserFeedbackPage: function(){
-        Router.sharedInstance().navigate('users/' + this.model.get('_uid') + '/feedback', {trigger: true});
+        Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/feedback', {trigger: true});
+        return false;
       }
     });
     return UserPageView;

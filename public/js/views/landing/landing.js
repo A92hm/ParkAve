@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html',
-  'routing/router'],
-  function($, _, Backbone, Template, Router) {
+        'views/navigation/navigation', 'routing/router'],
+  function($, _, Backbone, Template, NavigationView, Router) {
 
   var LandingView = Backbone.View.extend({
     tagName: 'div',
@@ -18,6 +18,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
 
     render: function() {
       this.$el.html( this.template( ) );
+      var navigationView = new NavigationView();
+      //this.$el.find('#navbar').html( navigationView.render().el );
 
       // Fixes login modal backdrop not fading away on back button press
       $('.modal-backdrop').remove();

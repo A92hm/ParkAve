@@ -1,4 +1,5 @@
-var User = require('./../models/user').User;
+var User = require('./../models/user').User,
+    _ = require('underscore');
 
 module.exports = {
   index: function(req, res) {
@@ -33,7 +34,19 @@ module.exports = {
   },
   update: function(req, res) {
     console.log('users update', req.params, req.body);
-    res.status(500).json({err: 'unimplemented'});
+    var newUser = {};
+    _.each(req.body, function(value, key){
+      if(key != "__v" && key != "_id"){
+        newUser[key] = value;
+      }
+    });
+    User.findByIdAndUpdate(req.params.uid, newUser, {}, function(err){
+      if(err){
+        res.status(500).json({err: 'internal error'});
+      } else {
+        res.json({msg:'success'});
+      }
+    });
   },
   destroy: function(req, res) {
     console.log('users destroy', req.params, req.body);

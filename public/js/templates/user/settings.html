@@ -14,50 +14,46 @@
         <div class = "form-group">
           <label for="edit-first-name">First Name</label>
           <br>
-          <input type="text" class="form-control" id="edit-first-name" placeholder="">
+          <input type="text" class="form-control" id="edit-first-name" value=<%= name.split(' ')[0] %>>
         </div>
         <div class = "form-group">
           <label for="edit-last-name">Last Name</label>
           <br>
-          <input type="text" class="form-control" id="edit-last-name" placeholder="">
+          <input type="text" class="form-control" id="edit-last-name" value=<%= name.split(' ')[1] %>>
         </div>
         <div class = "form-group">
           <label for="edit-date-of-birth">Date of Birth</label>
           <br>
-          <input type="date" class="form-control" id="edit-date-of-birth" placeholder="">
-          </div>
-          <div class = "form-group">
-          <label for="edit-address">Address</label>      
-          <br>
-          <input type="text" class="form-control" id="edit-address" placeholder="">
-        </div>
-        <div class = "form-group">
-          <label for="edit-city">City</label>
-          <br>
-          <input type="text" class="form-control" id="edit-city" placeholder="">
-        </div>
-        <div class = "form-group">
-          <label for="edit-state">State</label>
-          <br>
-          <input type="text" class="form-control" id="edit-state" placeholder="">
-        </div>
-        <div class = "form-group">
-          <label for="edit-zipcode">Zipcode</label>
-          <br>
-          <input type="text" class="form-control" id="edit-zipcode" placeholder="">
+          <input type="date" class="form-control" id="edit-date-of-birth" value=<%= birthdate %>>
         </div>
         <div class = "form-group">
           <label for="edit-phone">Phone number</label>
           <br>
-          <input type="tel" class="form-control" id="edit-phone" placeholder="">
+          <input type="tel" class="form-control" id="edit-phone" value=<%= phone %>>
         </div>
         <div class = "form-group">
           <label for="edit-email">Email</label>
           <br>
-          <input type="email" class="form-control" id="edit-email" placeholder="">
+          <input type="email" class="form-control" id="edit-email" value=<%= email %>>
         </div>
+        <div class = "form-group">
+          <label for="input-old-password">Current Password</label>
+          <br>
+          <input type="password" class="form-control" id="input-old-password" placeholder="Enter current password">
+        </div>
+        <div class = "form-group">
+          <label for="input-new-password">New Password</label>
+          <br>
+          <input type="password" class="form-control" id="input-new-password" placeholder="Enter new password">
+        </div>
+        <div class = "form-group">
+          <label for="confirm-new-password">Confirm New Password</label>
+          <br>
+          <input type="password" class="form-control" id="confirm-new-password" placeholder="Confirm new password">
+        </div>
+        <button id="update-account-button" type="button" class="btn btn-primary">Update Profile</button>
       </form>
-      <p><input id="update-account-button" class="btn btn-primary" type="submit" value="Update Profile"></p>
+      &nbsp
     </div>
   </div>
 </div>

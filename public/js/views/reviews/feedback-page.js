@@ -1,4 +1,3 @@
-
 define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-page.html',
   'routing/router', 'views/reviews/sellerReview-list'],
   function($, _, Backbone, Template, Router, ReviewList) {
@@ -8,11 +7,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
     template: _.template( Template ),
 
     events: {
-      
     },
 
     initialize: function(options) {
-      this.seller = options.seller;
+      //this.seller = options.seller;
     },
 
     render: function() {
