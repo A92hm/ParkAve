@@ -3,14 +3,11 @@ var path = require('path'),
 
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
-<<<<<<< HEAD
 var lotsController = require('./../controllers/lots.js');
-=======
 
 function sendIndexFile(res){
   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
 }
->>>>>>> 55e6fb34dfe0dcb6871178b76fc58e815c3dac3f
 
 module.exports = {
   init: function(app) {

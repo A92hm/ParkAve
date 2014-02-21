@@ -8,20 +8,17 @@ define(['underscore', 'require', 'backbone'],
       'landing/login': 'login',
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
-<<<<<<< HEAD
+
       'login': 'login',
       'createlot': 'createLot',
       'lots':      'lots',
       'lots/:id':  'lot',
       'lots/:pid/spots':      'spots',
       'lots/:pid/spots/:cid':      'spot',
-=======
+      
       'users': '',
-
-
       'user/:uid/feedback' : 'userFeedback', 
       'user/:uid/reviews' : 'userReviews',
->>>>>>> 55e6fb34dfe0dcb6871178b76fc58e815c3dac3f
 
       '': 'main'
     },
