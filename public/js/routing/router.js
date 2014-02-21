@@ -17,6 +17,7 @@ define(['underscore', 'require', 'backbone'],
       'lots/:pid/spots/:cid':      'spot',
       
       'users': '',
+
       'users/:uid': 'userPage',
       'users/:uid/feedback' : 'userFeedback',
       'users/:uid/reviews' : 'userReviews',
@@ -90,7 +91,7 @@ define(['underscore', 'require', 'backbone'],
     },
     userReviews : function(uid){
       require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showUserReviews(uid);
+        MainAppView.sharedInstance().showReviewList(uid);
       });
     },
     

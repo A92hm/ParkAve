@@ -4,19 +4,20 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
 
   	var ReviewView = Backbone.View.extend({
 	  tagName: 'div',
-    className: 'review',
     template: _.template( Template ),
 
     events: {
       
     },
 
-    initialize: function() {
-
+    initialize: function(options) {
+      this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'destroy', this.remove);
+      this.seller = options.seller;
     },
 
     render: function() {
-      this.$el.html( this.template() );
+      this.$el.html( this.template( this.model.toJSON() ) );
       return this; 
     },
 
