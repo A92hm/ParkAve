@@ -1,12 +1,19 @@
 define(['underscore','backbone'], function(_, Backbone) {
 
-  var Comment = Backbone.Model.extend({
+  var User = Backbone.Model.extend({
     idAttribute: '_id',
+
+    defaults: {
+      name: 'John Smith'
+    },
+
+    initialize: function() {
+    },
 
     clienturl: function() {
       return this.url().slice(4);
     }
   });
 
-  return Comment;
+  return User;
 });

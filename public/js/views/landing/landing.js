@@ -7,12 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
     template: _.template( Template ),
 
     events: {
-      'keypress #get-started-email-input': function(evt){
-        if(evt.keyCode == 13){
-          this.openGetStartedPage();
-          return false;
-        }
-      },
+      'keypress #get-started-email-input': 'checkEmailInputForEnterKey',
       'click #get-started-button': 'openGetStartedPage',
       'click #login-button': 'openLoginModal'
     },
@@ -22,6 +17,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
 
     render: function() {
       this.$el.html( this.template( ) );
+
+      // Fixes login modal backdrop not fading away on back button press
+      $('.modal-backdrop').remove();
 
       // Animate WOW text!
       this.$el.find( "#wow-text" ).css({
@@ -42,6 +40,37 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
         "margin-left": "0px",
         "margin-right": "0px"
       }, 800 );
+
+      // Animate WOW text!
+      this.$el.find( "#desc-text-box-1" ).css({
+        "margin-left": "2800px",
+        "margin-right": "-2800px"
+      });
+      this.$el.find( "#desc-text-box-1" ).animate({
+        "margin-left": "0px",
+        "margin-right": "0px"
+      }, 1600 );
+
+      // Animate WOW text!
+      this.$el.find( "#desc-text-box-2" ).css({
+        "margin-left": "4200px",
+        "margin-right": "-4200px"
+      });
+      this.$el.find( "#desc-text-box-2" ).animate({
+        "margin-left": "0px",
+        "margin-right": "0px"
+      }, 2400 );
+
+      // Animate WOW text!
+      this.$el.find( "#desc-text-box-3" ).css({
+        "margin-left": "5600px",
+        "margin-right": "-5600px"
+      });
+      this.$el.find( "#desc-text-box-3" ).animate({
+        "margin-left": "0px",
+        "margin-right": "0px"
+      }, 3200 );
+
       return this;
     },
 
@@ -54,8 +83,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
     },
 
     openLoginModal: function(){
-      //TODO
+      Router.sharedInstance().navigate('landing/login', {trigger: true});
       return false;
+    },
+
+    checkEmailInputForEnterKey: function(evt){
+      if(evt.keyCode == 13){
+        this.openGetStartedPage();
+        return false;
+      }
     }
   });
 

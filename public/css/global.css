@@ -2,7 +2,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.filter-bar{
+#filter-bar{
   background-color: rgba(26,26,26,.9);
   border-radius: 10px;
 }
@@ -23,4 +23,30 @@
   height: 300px;
   display: table-cell;
   vertical-align: middle;
+}
+
+
+.lot-list .lot {
+  padding: 4px;
+  margin: 8px 0;
+}
+
+.lot-list .lot:nth-child(even) {
+  background-color: #eee;
+}
+
+.lot-list .lot a.title {
+  color: inherit;
+  font-size: 1.5em;
+}
+
+.lot-list .lot a.title:hover {
+  text-decoration: none;
+  color: #428bca;
+}
+
+/* form styling */
+
+#new-form-modal textarea {
+  height: 100px;
 }

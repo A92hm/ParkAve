@@ -1,6 +1,6 @@
 define(['underscore','backbone'], function(_, Backbone) {
 
-  var Post = Backbone.Model.extend({
+  var Lot = Backbone.Model.extend({
     idAttribute: '_id',
 
     defaults: {
@@ -16,5 +16,5 @@ define(['underscore','backbone'], function(_, Backbone) {
     }
   });
 
-  return Post;
+  return Lot;
 });

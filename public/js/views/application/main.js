@@ -1,8 +1,12 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login', 
-        'views/reviews/feedback-page', 'views/reviews/review-list'
+        'views/reviews/feedback-page', 'models/lot', 'collections/lots',
+         'views/lot/lot-list', 'views/lot/lot', 'views/reviews/review-list',
+        'views/profile/account-setting'
          ], 
-  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, FeedbackView, ReviewList) {
+  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, FeedbackView,
+   Lot,LotsCollection, LotsListView, LotView, ReviewList, AccountSettingView) {
+
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -19,21 +23,46 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showGetStarted: function(email){
-      var getStartedView = new GetStartedView();
+      var getStartedModel = new Backbone.Model( {email: email} );
+      var getStartedView = new GetStartedView( {model: getStartedModel} );
       this.$el.html( getStartedView.render().el );
     },
 
     showLogin: function(){
       //TODO
     },
+
+    showLots: function() {
+      var lots = new LotsCollection();
+      var lotsView = new LotsListView({collection: lots})
+      $('#content').html( lotsView.render().el );
+      lots.fetch();
+    },
+
+    showLot: function(id) {
+      var lot = new Lot({_id: id});
+      var lots = new LotsCollection([lot]);
+      
+      var lotView = new LotView({model: lot});
+      $('#content').html( lotView.el );
+      lot.fetch();
+
+    },
     showUserFeedback: function(uid){
       var userFeedbackView = new FeedbackView();
       this.$el.html(userFeedbackView.render().el);
     },
-    showUserReviews:  function(uid){
+    showReviewList:  function(uid){
       console.log('show user reviews');
       var lotsReviewList = new ReviewList();
       this.$el.html(lotsReviewList.render().el);
+
+    },
+    showAccountSetting : function(){
+      console.log('show user account setting');
+      var accountSettingView = new AccountSettingView();
+      this.$el.html(accountSettingView.render().el);
+
     }
   });
 
