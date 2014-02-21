@@ -1,8 +1,7 @@
-define(['jquery', 'underscore', 'backbone', 
-  'text!templates/user/settings.html',
-  'views/navigation/navigation',
-  'routing/router'],
-  function($, _, Backbone, Template, NavigationView, Router) {
+define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
+  'views/navigation/navigation', 'models/user', 'models/session', 'collections/users',
+  'collections/sessions', 'routing/router'],
+  function($, _, Backbone, Template, NavigationView, User, Session, UsersCollection, SessionsCollection, Router) {
 
   var UserSettingsView = Backbone.View.extend({
     tagName: 'div',
@@ -45,17 +44,39 @@ define(['jquery', 'underscore', 'backbone',
       if(email){
         this.model.set('email', email);
       }
-      var passwordError = false;
-      if(this.model.get('password') == oldPassword && newPassword && newPassword == confirmNewPassword){
-        this.model.set('password', newPassword);
-      }else if(oldPassword && this.model.get('password') != oldPassword){
-        passwordError = true;
-        alert('Incorrect password');
-      }else if(newPassword != confirmNewPassword){
-        passwordError = true;
+      
+      var passwordIsCorrect = false;
+      var newPasswordsMatch = true;
+      if(newPassword != confirmNewPassword){
+        newPasswordsMatch = false;
         alert("New passwords don't match!");
       }
-      if(!passwordError){
+
+      // Check password on the server, save if it is correct
+      if(oldPassword && newPassword && confirmNewPassword){
+        var theModel = this.model;
+        var session = new Session({email: this.model.get('email'), password: oldPassword});
+        var sessionsCollection = new SessionsCollection([session]);
+        session.save({}, {error: function(err){
+          console.log('err', err);
+        }, success: function(model, response){
+          if(!response._id){
+            if(response.err == 'nomatch'){
+              alert("Incorrect Password");
+            }else if(response.err == 'notfound'){
+              alert("Incorrect User Name");
+            }
+            return;
+          }
+          // Save if the new passwords match
+          if(newPasswordsMatch){
+            theModel.set('password', newPassword);
+            theModel.save();
+            Router.sharedInstance().navigate('/users/' + theModel.get('_id'), {trigger: true});
+          }
+        }});
+      } else{
+        this.model.unset('password');
         this.model.save();
         Router.sharedInstance().navigate('/users/' + this.model.get('_id'), {trigger: true});
       }

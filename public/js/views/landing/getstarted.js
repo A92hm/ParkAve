@@ -75,8 +75,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
 
       // Make the user model and set their data
       var newUser = new User();
-      var usersCollection = new UsersCollection();
-      usersCollection.add(newUser);
+      var usersCollection = new UsersCollection([newUser]);
 
       newUser.set({
         name: firstName + ' ' + lastName,
@@ -90,7 +89,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       newUser.save({}, {error: function(err){
         console.log(err);
       }, success: function(model, response){
-        Router.sharedInstance().navigate(newUser.clienturl(), {trigger: true});
+        if(!response.err){
+          Router.sharedInstance().navigate(newUser.clienturl(), {trigger: true});
+        }else if(response.err == 'emailexists'){
+          alert('This email has already been used to create an account');
+        }
       }});
 
       return false;

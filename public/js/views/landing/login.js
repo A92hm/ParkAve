@@ -43,11 +43,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
           }
           return;
         }
-        var newUser = new User(response);
-        var usersCollection = new UsersCollection([newUser]);
-        console.log(newUser);
+        var user = new User(response);
+        var usersCollection = new UsersCollection([user]);
         theLoginModal.modal('hide');
-        Router.sharedInstance().navigate(newUser.clienturl(), {trigger: true});
+        Router.sharedInstance().navigate(user.clienturl(), {trigger: true});
       }});
 
       return false;

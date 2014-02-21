@@ -30,7 +30,7 @@ module.exports = {
     app.put(  '/api/users/:uid', usersController.update);
     app.del(  '/api/users/:uid', usersController.destroy);
 
-    app.post( '/api/users/session', usersController.session);
+    app.post( '/api/users/session', usersController.session);  // Used to validate email/password combinations
 
     app.get(  '/api/users/:uid/reviews', sellerReviewsController.index);
     app.get(  '/api/users/:uid/reviews/:rid', sellerReviewsController.show);
