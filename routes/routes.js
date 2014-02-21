@@ -23,15 +23,18 @@ module.exports = {
     // app.put(  '/api/posts/:id', postsController.update);
     // app.del(  '/api/posts/:id', postsController.destroy);
     app.get(  '/api', function(req, res){ res.send("working"); });
+    
     app.get(  '/api/users',     usersController.index);
     app.get(  '/api/users/:uid', usersController.show);
     app.post( '/api/users',     usersController.create);
     app.put(  '/api/users/:uid', usersController.update);
     app.del(  '/api/users/:uid', usersController.destroy);
 
+    app.post( '/api/users/session', usersController.session);
+
     app.get(  '/api/users/:uid/reviews', sellerReviewsController.index);
     app.get(  '/api/users/:uid/reviews/:rid', sellerReviewsController.show);
-    app.post(  '/api/users/:uid/reviews', sellerReviewsController.create);
+    app.post( '/api/users/:uid/reviews', sellerReviewsController.create);
     app.put(  '/api/users/:uid.reviews/:rid', sellerReviewsController.update);
 
     
@@ -52,12 +55,6 @@ module.exports = {
     app.get(  '/getstarted*', function(req, res) {
       sendIndexFile(res);
     });
-    app.get(  '/account-setting*', function(req, res) {
-      //res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
-      sendIndexFile(res);
-    });
-
-    
     app.get(  '/lots*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });

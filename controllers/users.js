@@ -1,5 +1,14 @@
 var User = require('./../models/user').User,
-    _ = require('underscore');
+    _ = require('underscore'),
+    bcrypt = require('bcrypt');
+
+function getEncryptedPassword(password, callback){
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password, salt, function(err, hash) {
+      callback(hash);
+    });
+  });
+}
 
 module.exports = {
   index: function(req, res) {
@@ -34,18 +43,24 @@ module.exports = {
   },
   update: function(req, res) {
     console.log('users update', req.params, req.body);
+
     var newUser = {};
     _.each(req.body, function(value, key){
-      if(key != "__v" && key != "_id"){
+      if(key != "__v" && key != "_id" && key != "password"){
         newUser[key] = value;
       }
     });
-    User.findByIdAndUpdate(req.params.uid, newUser, {}, function(err){
-      if(err){
-        res.status(500).json({err: 'internal error'});
-      } else {
-        res.json({msg:'success'});
-      }
+    getEncryptedPassword(req.body.password, function(encryptedPassword){
+      newUser.password = encryptedPassword;
+      console.log('newUser.password', newUser.password);
+
+      User.findByIdAndUpdate(req.params.uid, newUser, {}, function(err){
+        if(err){
+          res.status(500).json({err: 'internal error'});
+        } else {
+          res.json({msg:'success'});
+        }
+      });
     });
   },
   destroy: function(req, res) {
@@ -57,5 +72,26 @@ module.exports = {
         res.json({msg:'success'});
       }
     });
+  },
+  session: function(req, res) {
+    User.findOne({email: req.body.email}, function(err, user){
+      if(err){
+        res.status(500).json({err: 'internal error'});
+      }else if(user){
+        if(bcrypt.compareSync(req.body.password, user.password)){
+          res.json(user);
+        }
+        res.json({attrs: ['email', 'password'], err: 'nomatch'});
+      }else{
+        res.json({attrs: ['email'], err: 'notfound'});
+      }
+    });
   }
 };
+
+
+
+
+
+
+
