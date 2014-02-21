@@ -4,7 +4,11 @@ define(['underscore','backbone'], function(_, Backbone) {
     idAttribute: '_id',
 
     defaults: {
-      name: 'John Smith'
+      name: '',
+      email: '',
+      password: '',
+      birthdate: '',
+      phone: ''
     },
 
     initialize: function() {

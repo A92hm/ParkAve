@@ -1,9 +1,10 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
-        'views/landing/landing', 'views/landing/getstarted', 'views/landing/login', 'models/lot',  'collections/lots',
-         'views/lot/lot-list', 'views/lot/lot', 'views/reviews/userFeedback', 'views/reviews/userReviews'
+        'models/user', 'models/lot', 'collections/users', 'collections/lots',
+        'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
+         'views/lot/lot-list', 'views/lot/lot', 'views/user/userpage', 'views/reviews/userFeedback', 'views/reviews/userReviews'
          ], 
-  function($, _, Backbone, Template, LandingView, GetStartedView, LoginView, Lot, LotsCollection, 
-          LotsListView, LotView, UserFeedbackView, UserReviewsView) {
+  function($, _, Backbone, Template, User, Lot, UsersCollection, LotsCollection, LandingView, GetStartedView, LoginView, 
+          LotsListView, LotView, UserPageView, UserFeedbackView, UserReviewsView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -26,7 +27,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showLogin: function(){
-      //TODO
+      if(this.$el.find('.landing-view-div').length == 0){
+        var landingView = new LandingView();
+        this.$el.html( landingView.render().el );
+      }
+
+      var loginView = new LoginView();
+      this.$el.append( loginView.render().el );
     },
 
     showLots: function() {
@@ -43,14 +50,23 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var lotView = new LotView({model: lot});
       $('#content').html( lotView.el );
       lot.fetch();
-
     },
+
+    showUserPage: function(uid){
+      var user = new User( {_id: uid});
+      var usersCollection = new UsersCollection([user]);
+
+      var userPageView = new UserPageView( {model: user} );
+      this.$el.html( userPageView.el );
+      user.fetch();
+    },
+
     showUserFeedback: function(uid){
       var userFeedbackView = new UserFeedbackView();
       this.$el.html(userFeedbackView.render().el);
     },
+
     showUserReviews:  function(uid){
-      console.log('show user reviews');
       var userReviewsView = new UserReviewsView();
       this.$el.html(userReviewsView.render().el);
     }

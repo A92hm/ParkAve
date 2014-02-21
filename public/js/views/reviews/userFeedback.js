@@ -19,7 +19,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/userFeedback
     render: function() {
       this.$el.html( this.template() );
       return this; 
-    },
+    }
 
 
   	});
