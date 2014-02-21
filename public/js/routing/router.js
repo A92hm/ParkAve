@@ -91,6 +91,7 @@ define(['underscore', 'require', 'backbone'],
     },
     userReviews : function(uid){
       require(['views/application/main'], function(MainAppView){
+        console.log("userReviews");
         MainAppView.sharedInstance().showReviewList(uid);
       });
     },

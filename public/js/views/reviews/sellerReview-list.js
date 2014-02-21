@@ -14,18 +14,23 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
     },
 
     render: function() {
+      console.log('render list');
       this.$el.html( this.template( ) );
       this.$reviewList = this.$el.find('#review-list');
+      this.addAll();
       return this;
     },
     addAll: function(){
+      console.log('add reviews');
       this.$reviewList.empty();
+       console.log(this.collection);
       this.collection.each(this.addOne, this);
     },
 
     addOne: function(review){
-      var review = new Review({model: review, post: this.seller});
-      this.$reviewList.append( review.render().el );
+      console.log("add a review");
+      var reviewView = new Review({model: review, seller: this.seller});
+      this.$reviewList.append( reviewView.render().el );
     }
 
   });
