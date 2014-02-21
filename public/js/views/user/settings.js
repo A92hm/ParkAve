@@ -1,8 +1,8 @@
 define(['jquery', 'underscore', 'backbone', 
-  'text!templates/navigation/navigation.html',
   'text!templates/user/settings.html',
+  'text!templates/navigation/navigation.html',
   'routing/router','holder/holder'],
-  function($, _, Backbone, showNav,Template, Router, Holder) {
+  function($, _, Backbone, Template, NavigationTemplate, Router, Holder) {
 
   var AccountSettingView = Backbone.View.extend({
     tagName: 'div',
@@ -16,7 +16,7 @@ define(['jquery', 'underscore', 'backbone',
 
     render: function() {
       this.$el.html(this.template);
-      this.$el.find('#navbar').html(showNav);
+      this.$el.find('#navbar').html( NavigationTemplate );
       return this; 
     },
 
