@@ -2,12 +2,11 @@ define(['jquery', 'underscore', 'backbone',
   'text!templates/navigation/navigation.html',
   'text!templates/profile/account-setting.html',
   'routing/router'],
-  function($, _, Backbone, Template, InputErrorTemplate, Router, User, UsersCollection) {
+  function($, _, Backbone, showNav,Template, Router) {
 
   var AccountSettingView = Backbone.View.extend({
     tagName: 'div',
     template: _.template( Template ),
-
     events: {
       'click #update-account-button': 'updateUserAccount'
     },
@@ -16,8 +15,9 @@ define(['jquery', 'underscore', 'backbone',
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.toJSON() ) );
-      return this;
+      this.$el.html(this.template);
+      this.$el.find('#navbar').html(showNav);
+      return this; 
     },
 
     updateUserAccount: function(){
