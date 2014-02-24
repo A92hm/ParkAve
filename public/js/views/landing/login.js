@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
-  'routing/router', 'collections/users'],
-  function($, _, Backbone, Template, Router, UsersCollection) {
+  'routing/router', 'models/user', 'models/session', 'collections/users', 'collections/sessions'],
+  function($, _, Backbone, Template, Router, User, Session, UsersCollection, SessionsCollection) {
 
   var LoginView = Backbone.View.extend({
     tagName: 'div',
@@ -28,19 +28,23 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
     login: function(){
       var email = this.$el.find('#input-login-email').val();
       var password = this.$el.find('#input-login-password').val();
-      //TODO encrypt password
 
-      var usersCollection = new UsersCollection();
       var theLoginModal = this.$el.find('#login-modal');
-      usersCollection.fetch({error: function(err){
-        console.log(err);
-      }, success: function(collection, response){
-        var user = collection.findWhere({email: email, password: password});
-        if(!user){
-          alert("Username/Password invalid");
+      var session = new Session({email: email, password: password});
+      var sessionsCollection = new SessionsCollection([session]);
+      session.save({}, {error: function(err){
+        console.log('err', err);
+      }, success: function(model, response){
+        if(!response._id){
+          if(response.err == 'nomatch'){
+            alert("Incorrect Password");
+          }else if(response.err == 'notfound'){
+            alert("Incorrect User Name");
+          }
           return;
         }
-        usersCollection.add(user);
+        var user = new User(response);
+        var usersCollection = new UsersCollection([user]);
         theLoginModal.modal('hide');
         Router.sharedInstance().navigate(user.clienturl(), {trigger: true});
       }});
