@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.html',
-  'routing/router', 'views/reviews/sellerReview'],
-  function($, _, Backbone, Template, Router, Review) {
+  'routing/router', 'views/reviews/sellerReview', 'collections/sellerReviews'],
+  function($, _, Backbone, Template, Router, Review, SellerReviewCollection) {
 
   var ReviewList = Backbone.View.extend({
     tagName: 'div',
@@ -11,28 +11,51 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
 
     initialize: function(options) {
       this.seller = options.seller;
+      //create collection
+      this.collection = new SellerReviewCollection([],{seller: this.seller});
+      this.collection.fetch();
+
+      this.listenTo(this.collection, 'reset', this.addAll);
+      this.listenTo(this.collection, 'add', this.addOne);
     },
 
     render: function() {
-      console.log('render list');
       this.$el.html( this.template( ) );
       this.$reviewList = this.$el.find('#review-list');
       this.addAll();
+      /*
+      for (var i = 0; i < (this.getAverage()); i++) {
+        this.$el.find('#stars').append("<span class=\"glyphicon glyphicon-star\"></span>");
+      };
+      */
       return this;
     },
     addAll: function(){
-      console.log('add reviews');
       this.$reviewList.empty();
-       console.log(this.collection);
       this.collection.each(this.addOne, this);
+      
     },
+    addOne: function(sellerReview){
+      //slowly add reviews
 
-    addOne: function(review){
-      console.log("add a review");
-      var reviewView = new Review({model: review, seller: this.seller});
-      this.$reviewList.append( reviewView.render().el );
+      var reviewView = new Review({model: sellerReview, seller: this.seller});
+      var $review = reviewView.render().$el;
+      this.$reviewList.delay(400).queue(function (next) {
+        $(this).append($review.fadeIn(400));
+        next();
+      });
+    },
+    getAverage: function(){
+      var total = 0;
+      var count = 0;
+      this.collection.each(function(review){
+        count++;
+        total = total + review.get("stars");
+        console.log("strs"+ review.get("stars"));
+      },this);
+      console.log('total: '+total);
+      return total/count;
     }
-
   });
 
   return ReviewList;

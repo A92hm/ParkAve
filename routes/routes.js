@@ -5,6 +5,7 @@ var path = require('path'),
 // Example: var postsController = require('./../controllers/posts.js');  
 var lotsController = require('./../controllers/lots.js');
 var sellerReviewsController = require('./../controllers/sellerReviews.js');
+var carsController = require('./../controllers/cars.js');
 function sendIndexFile(res){
   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
 }
@@ -35,7 +36,16 @@ module.exports = {
     app.get(  '/api/users/:uid/reviews', sellerReviewsController.index);
     app.get(  '/api/users/:uid/reviews/:rid', sellerReviewsController.show);
     app.post( '/api/users/:uid/reviews', sellerReviewsController.create);
-    app.put(  '/api/users/:uid.reviews/:rid', sellerReviewsController.update);
+    app.put(  '/api/users/:uid/reviews/:rid', sellerReviewsController.update);
+    app.del(  '/api/users/:uid/reviews/:rid', sellerReviewsController.destroy);
+
+
+    //cars
+    app.get(  '/api/users/:uid/cars', carsController.index);
+    app.get(  '/api/users/:uid/cars/:cid', carsController.show);
+    app.post( '/api/users/:uid/cars', carsController.create);
+    app.put(  '/api/users/:uid/cars/:cid', carsController.update);
+    app.del(  '/api/users/:uid/cars/:cid', carsController.destroy);
 
     
     app.get(  '/api/lots',     lotsController.index);

@@ -7,7 +7,7 @@ define(['underscore','backbone', 'models/sellerReview'], function(_, Backbone, S
     },
 
     initialize: function(models, options){
-    	console.log("options", options);
+    	//console.log("options", options);
     	this.seller = options.seller;
     },
 
