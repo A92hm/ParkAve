@@ -1,0 +1,13 @@
+/*
+	css for the reviews
+*/
+
+#goodAverage{
+	background-color: rgba(216,238,207,1);
+}
+#okAverage{
+	background-color: rgba(251,247,220,1);
+}
+#badAverage{
+	background-color: rgba(238,214,214,1);
+}
