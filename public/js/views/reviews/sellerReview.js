@@ -43,7 +43,16 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
       this.$el.html( this.template( this.model.toJSON() ) );
       var stars = this.model.get("stars");
       for (var i = 0; i < stars; i++) {
-        this.$el.find('#stars').append("<span class=\"glyphicon glyphicon-star\"></span>")
+        this.$el.find('#stars').delay(300).queue(function(next){
+            $(this).append( $("<span class=\"glyphicon glyphicon-star\"></span>").fadeIn(600));//animate in
+            next();
+          });
+      };
+      for (var i = 0; i < (5 - stars); i++) {
+        this.$el.find('#stars').delay(200).queue(function(next){
+            $(this).append( $("<span class=\"glyphicon glyphicon-star-empty\"></span>").fadeIn(600));//animate in
+            next();
+          });
       };
       //change type of panel based on stars
       if(stars == 0){

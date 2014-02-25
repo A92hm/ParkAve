@@ -37,15 +37,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
       return false;
     },
     sortDate: function(){
-      console.log("sort date clicked");
-      this.collection.comparator = 'date';
-      this.collection.sort({});
+      this.feedbackList.sortDate();
       return false;
     },
     sortStars: function(){
-      console.log("sort stars clicked");
-      this.collection.comparator = 'stars';
-      this.collection.sort({});
+      this.feedbackList.sortStars();
       return false;
     },
     sortLength: function(){
