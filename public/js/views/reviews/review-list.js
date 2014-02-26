@@ -48,7 +48,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       }
       console.log("adding one");
       //slowly add reviews
-      var reviewView = new Review({model: sellerReview, user: this.user});
+      var reviewView = new Review({model: review, user: this.user});
       var $review = reviewView.render().$el;
       this.$reviewList.delay(400).queue(function (next) {
         $(this).append($review.fadeIn(400));

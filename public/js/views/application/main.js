@@ -65,7 +65,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showUserFeedback: function(uid){
       var theUser = new User( {_id: uid});
-      //var usersCollection = new UsersCollection([theUser]);
+      var usersCollection = new UsersCollection([theUser]);
       var userFeedbackView = new FeedbackView({user: theUser});
       this.$el.html(userFeedbackView.render().el);
     },
