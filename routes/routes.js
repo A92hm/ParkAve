@@ -4,7 +4,7 @@ var path = require('path'),
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
 var lotsController = require('./../controllers/lots.js');
-var sellerReviewsController = require('./../controllers/sellerReviews.js');
+var reviewsController = require('./../controllers/reviews.js');
 var carsController = require('./../controllers/cars.js');
 function sendIndexFile(res){
   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
@@ -33,11 +33,12 @@ module.exports = {
 
     app.post( '/api/users/session', usersController.session);  // used to validate email/password combinations -- give it an email and password
 
-    app.get(  '/api/users/:uid/reviews', sellerReviewsController.index);          // get all reviews for the user the given id
-    app.get(  '/api/users/:uid/reviews/:rid', sellerReviewsController.show);      // get a specific review for the given user and review ids 
-    app.post( '/api/users/:uid/reviews', sellerReviewsController.create);         // create a review in the database for the user with the given uid
-    app.put(  '/api/users/:uid/reviews/:rid', sellerReviewsController.update);    // update the specific review for the given user and review ids
-    app.del(  '/api/users/:uid/reviews/:rid', sellerReviewsController.destroy);   // delete the specific review for the given user and review ids
+    //reviews
+    app.get(  '/api/users/:uid/reviews', reviewsController.index);           // get all reviews for the user the given id
+    app.get(  '/api/users/:uid/reviews/:rid', reviewsController.show);       // get a specific review for the given user and review ids 
+    app.post( '/api/users/:uid/reviews', reviewsController.create);          // create a review in the database for the user with the given uid
+    app.put(  '/api/users/:uid/reviews/:rid', reviewsController.update);     // update the specific review for the given user and review ids
+    app.del(  '/api/users/:uid/reviews/:rid', reviewsController.destroy);    // delete the specific review for the given user and review ids
 
     //cars
     app.get(  '/api/users/:uid/cars', carsController.index);          // get all cars for a given user id
