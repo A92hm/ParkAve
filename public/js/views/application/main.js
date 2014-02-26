@@ -28,16 +28,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.$el.html( getStartedView.render().el );
     },
 
-    showLogin: function(){
-      if(this.$el.find('.landing-view-div').length == 0){
-        var landingView = new LandingView();
-        this.$el.html( landingView.render().el );
-      }
-
-      var loginView = new LoginView();
-      this.$el.append( loginView.render().el );
-    },
-
     showLots: function() {
       var lots = new LotsCollection();
       var lotsView = new LotsListView({collection: lots})

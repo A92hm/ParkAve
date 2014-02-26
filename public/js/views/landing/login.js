@@ -16,7 +16,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
     },
 
     render: function() {
-      this.$el.html( this.template( ) );
+      this.$el.html( this.template( {email: this.email} ) );
       this.$el.find('#login-modal').modal('show');
       return this;
     },
