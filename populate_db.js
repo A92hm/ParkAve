@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     _ = require('underscore'),
     User = require('./models/user').User,
-    Review = require('./models/review').Review;
+    Review = require('./models/review').Review,
+    Car = require('./models/car').Car;
 
 //mongoose.connect('mongodb://54.84.154.254/parking');  // Production
 mongoose.connect('mongodb://localhost/dummydb');
@@ -119,6 +120,63 @@ function populateDB() {
       body: "left a bad review on my profile",
     },
   ];
+  var cars = [
+    {
+      make: 'ford',
+      model: 'f150',
+      year: '2004',
+      plate: '6T772H9',
+      state: 'OK',
+      color: 'blue',
+      ownerID: '530d6db9614f81a34047f5f5'
+    },
+    {
+      make: 'ford',
+      model: 'fusion',
+      year: '2008',
+      plate: '976H2H7',
+      state: 'OK',
+      color: 'blue',
+      ownerID: '530d6db9614f81a34047f5f4'
+    },
+    {
+      make: 'toyoda',
+      model: 'prius',
+      year: '2011',
+      plate: '6TFU02H9',
+      state: 'TX',
+      color: 'green',
+      ownerID: '530d6db9614f81a34047f5f3'
+    },
+    {
+      make: 'dodge',
+      model: '',
+      year: '2014',
+      plate: '6T0H5S',
+      state: 'CA',
+      color: 'red',
+      ownerID: '530d6db9614f81a34047f5f2'
+    },
+    {
+      make: 'acura',
+      model: 'rl',
+      year: '2013',
+      plate: '6G58JT9',
+      state: 'NY',
+      color: 'black',
+      ownerID: '530d6db9614f81a34047f5f1'
+    },
+    {
+      make: 'honda',
+      model: 'civic',
+      year: '2009',
+      plate: '76HHE2Y',
+      state: 'AK',
+      color: 'grey',
+      ownerID: '530d6db9614f81a34047f5f0'
+    },
+  ];
+
   /*
   _.each(users, function(user, index) {
     User.create(user, function(err, user) {
@@ -129,12 +187,23 @@ function populateDB() {
       }
     });
   });*/
+/*
    _.each(reviews, function(review, index) {
     Review.create(review, function(err, review) {
       if (err) {
         console.log('unable to create review');
       } else {
         console.log('created review');
+      }
+    });
+  });
+*/
+   _.each(cars, function(car, index) {
+    Car.create(car, function(err, car) {
+      if (err) {
+        console.log('unable to create car');
+      } else {
+        console.log('created car');
       }
     });
   });
