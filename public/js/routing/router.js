@@ -10,11 +10,8 @@ define(['underscore', 'require', 'backbone'],
       'getstarted/:email': 'getStarted',
 
       'login': 'login',
-      'createlot': 'createLot',
-      'lots':      'lots',
-      'lots/:id':  'lot',
-      'lots/:pid/spots':      'spots',
-      'lots/:pid/spots/:cid':      'spot',
+      'users/:uid/lots':      'lots',
+      'users/:uid/lots/:lid/':  'lot',
       
       'users': '',
 
@@ -22,6 +19,8 @@ define(['underscore', 'require', 'backbone'],
       'users/:uid/feedback' : 'userFeedback',
       'users/:uid/reviews' : 'userReviews',
       'users/:uid/settings' : 'userSettings',
+      'users/:uid/lots/:lid/spots' : 'spots',
+      'users/:uid/lots/:lid/spots/:sid':      'spot',
 
       '': 'main'
     },
@@ -98,12 +97,6 @@ define(['underscore', 'require', 'backbone'],
     userSettings: function(uid){
       require(['views/application/main'], function(MainAppView) {
         MainAppView.sharedInstance().showUserSettings(uid);
-      });
-    },
-
-    createLot: function(email) {
-      require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showCreateLot(email);
       });
     },
 

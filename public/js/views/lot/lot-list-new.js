@@ -1,6 +1,6 @@
 
-define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html'],
-  function($, _, Backbone, Template) {
+define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', 'text!templates/widgets/inputerror.html',],
+  function($, _, Backbone, Template, InputErrorTemplate) {
 
   var NewLotView = Backbone.View.extend({
     tagName: 'div',
@@ -40,12 +40,24 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html'],
         city: inputCity.val(),
         zip: inputZip.val(),
         state: inputState.val(),
-        parkingSurface: inputParkingSurface.val()
+        parkingSurface: inputParkingSurface.val(),
+        latitude: 120,
+        longitude: 120
       };
+
+      var inputErrorTemplate = _.template( InputErrorTemplate );
+      var valid = true;
+
+      if (!inputTitle) {
+        this.$el.find('#input-title').prev().children('i').html( inputErrorTemplate() );
+        valid = false;
+      } else {
+        this.$el.find('#input-title').prev().children('i').html( '' );
+      }
 
 
       // Some input validation
-      if (this.lotAttributes.title == '') {
+      if (inputTitle.val() == '') {
         inputTitle.focus();
         return;
       } else if (this.lotAttributes.address1 == '') {
@@ -61,6 +73,32 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html'],
         inputState.focus();
         return;
       }
+
+      // Geocoding time!!
+      var API_KEY = 'AIzaSyB1sgyCCyjydPDo6rFweWMbrDyU6uRxPGM';
+
+      // The url for the geocoding.  The spaces need to be replaced with '+' for the url to work
+      // Should do some error checking first.
+      var geocodingAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + inputAddress1.val().split(' ').join('+') + ',+' + inputCity.val().split(' ').join('+')
+        + ',+' + inputState.val().split(' ').join('+') + ',+' + inputZip.val().split(' ').join('+') + '&sensor=false&key=' + API_KEY;
+
+      $.getJSON(geocodingAPI, function (json) {
+
+        // Address
+        var address = json.results[0].formatted_address;
+        console.log('Address: ', address);
+       
+        // Latitude
+        var lat = json.results[0].geometry.location.lat;
+        console.log('Latitude: ', lat);
+        // Method scope problems
+        // this.lotAttributes.latitude = lat;
+       
+        // Longitude
+        var lon = json.results[0].geometry.location.lng;
+        console.log('Longitude: ', lon);
+        // this.lotAttributes.longitude = lon;
+      });
 
       this.trigger('dialog:save');
     }

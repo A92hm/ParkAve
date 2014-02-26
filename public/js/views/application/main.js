@@ -1,11 +1,11 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
-        'models/user', 'models/lot', 'collections/users', 'collections/lots',
+        'models/user', 'models/lot', 'models/spot', 'collections/users', 'collections/lots', 'collections/spots',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
-        'views/lot/lot-list', 'views/lot/lot', 'views/user/home',
+        'views/lot/lot-list', 'views/lot/lot', 'views/spot/spot-list', 'views/spot/spot', 'views/user/home',
         'views/reviews/feedback-page', 'views/reviews/sellerReview-list', 'views/user/settings'
         ], 
-  function($, _, Backbone, Template, User, Lot, UsersCollection, LotsCollection, LandingView, GetStartedView, LoginView, 
-          LotsListView, LotView, UserPageView, FeedbackView, ReviewList, UserSettingsView) {
+  function($, _, Backbone, Template, User, Lot, Spot, UsersCollection, LotsCollection, SpotsCollection, LandingView, GetStartedView, LoginView, 
+          LotsListView, LotView, SpotsListView, SpotView, UserPageView, FeedbackView, ReviewList, UserSettingsView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -51,6 +51,22 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var lotView = new LotView({model: lot});
       $('#content').html( lotView.el );
       lot.fetch();
+    },
+
+    showSpots: function() {
+      var spots = new SpotsCollection();
+      var spotsView = new SpotsListView({collection: spots})
+      $('#content').html( spotsView.render().el );
+      spots.fetch();
+    },
+
+    showSpot: function(id) {
+      var spot = new Spot({_id: id});
+      var spots = new SpotsCollection([spot]);
+      
+      var spotView = new SpotView({model: lot});
+      $('#content').html( spotView.el );
+      spot.fetch();
     },
 
     showUserPage: function(uid){

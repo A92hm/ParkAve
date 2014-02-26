@@ -2,9 +2,10 @@
 var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
+  spot_id: String,
   title: {type: String, require: true, trim: true},
   date: Date,
-  buyerId: [String],
+  buyer_id: [String],
   numSpots: String,
   price: Number,
   event_id: String
