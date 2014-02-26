@@ -1,6 +1,6 @@
 define(['underscore','backbone'], function(_, Backbone) {
 
-  var SellerReview = Backbone.Model.extend({
+  var Review = Backbone.Model.extend({
     idAttribute: '_id',
 
     defaults: {
@@ -16,5 +16,5 @@ define(['underscore','backbone'], function(_, Backbone) {
     }
   });
 
-  return SellerReview;
+  return Review;
 });

@@ -4,7 +4,7 @@ var path = require('path'),
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
 var lotsController = require('./../controllers/lots.js');
-var sellerReviewsController = require('./../controllers/sellerReviews.js');
+var reviewsController = require('./../controllers/reviews.js');
 var carsController = require('./../controllers/cars.js');
 function sendIndexFile(res){
   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
@@ -33,11 +33,11 @@ module.exports = {
 
     app.post( '/api/users/session', usersController.session);  // Used to validate email/password combinations
 
-    app.get(  '/api/users/:uid/reviews', sellerReviewsController.index);
-    app.get(  '/api/users/:uid/reviews/:rid', sellerReviewsController.show);
-    app.post( '/api/users/:uid/reviews', sellerReviewsController.create);
-    app.put(  '/api/users/:uid/reviews/:rid', sellerReviewsController.update);
-    app.del(  '/api/users/:uid/reviews/:rid', sellerReviewsController.destroy);
+    app.get(  '/api/users/:uid/reviews', reviewsController.index);
+    app.get(  '/api/users/:uid/reviews/:rid', reviewsController.show);
+    app.post( '/api/users/:uid/reviews', reviewsController.create);
+    app.put(  '/api/users/:uid/reviews/:rid', reviewsController.update);
+    app.del(  '/api/users/:uid/reviews/:rid', reviewsController.destroy);
 
 
     //cars
