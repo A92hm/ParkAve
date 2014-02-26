@@ -2,10 +2,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'models/user', 'models/lot', 'models/spot', 'collections/users', 'collections/lots', 'collections/spots',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
         'views/lot/lot-list', 'views/lot/lot', 'views/spot/spot-list', 'views/spot/spot', 'views/user/home',
-        'views/reviews/feedback-page', 'views/reviews/sellerReview-list', 'views/user/settings'
+        'views/reviews/feedback-page', 'views/reviews/sellerReview-list', 'views/user/settings',
+        'collections/reviews'
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection, LotsCollection, SpotsCollection, LandingView, GetStartedView, LoginView, 
-          LotsListView, LotView, SpotsListView, SpotView, UserPageView, FeedbackView, ReviewList, UserSettingsView) {
+          LotsListView, LotView, SpotsListView, SpotView, UserPageView, FeedbackView, ReviewList, UserSettingsView, ReviewCollection) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -41,10 +42,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var tempUser = new User( {_id: uid});
       var usersCollection = new UsersCollection([tempUser]);
       var lots = new LotsCollection([], {user: tempUser});
-      var lotsView = new LotsListView({collection: lots})
-      $('#content').html( lotsView.render().el );
-      lots.fetch();
-    },
 
     showLot: function(uid, lid) {
       var tempUser = new User( {_id: uid});
@@ -85,17 +82,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showUserFeedback: function(uid){
-      var user = new User( {_id: uid});
-      var usersCollection = new UsersCollection([user]);
-      var userFeedbackView = new FeedbackView({seller: user});
+      var theUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([theUser]);
+      var userFeedbackView = new FeedbackView({user: theUser});
       this.$el.html(userFeedbackView.render().el);
     },
     showReviewList:  function(uid){
-      var user = new User( {_id: uid});
-      var usersCollection = new UsersCollection([user]);
-      var reviewCollection = new SellerReviewCollection([],{seller: user});
+      var theUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([theUser]);
+      var reviewCollection = new ReviewCollection([],{user: theUser});
       console.log(reviewCollection);
-      var userReviewList = new ReviewList({collection: reviewCollection, seller: user});
+      var userReviewList = new ReviewList({collection: reviewCollection, user: theUser});
       this.$el.html(userReviewList.render().el);
       reviewCollection.fetch();
     },

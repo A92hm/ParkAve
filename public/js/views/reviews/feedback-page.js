@@ -1,5 +1,5 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-page.html',
-  'routing/router', 'views/reviews/sellerReview-list', 'views/navigation/navigation'],
+  'routing/router', 'views/reviews/review-list', 'views/navigation/navigation'],
   function($, _, Backbone, Template, Router, ReviewList, NavBar) {
 
   	var UserFeedbackView = Backbone.View.extend({
@@ -14,9 +14,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
     },
 
     initialize: function(options) {
-      this.seller = options.seller;
-      this.feedbackList = new ReviewList({collection: this.collection,seller: this.seller});
-      this.nav = new NavBar({model: this.seller});
+      this.user = options.user;
+      this.feedbackList = new ReviewList({collection: this.collection,user: this.user});
+      this.nav = new NavBar({model: this.user});
       //this.listenTo(this.collection, 'reset', this.renderReviews);
       //this.listenTo(this.collection, 'add', this.renderReviews);
     },
@@ -46,8 +46,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
     },
     sortLength: function(){
       console.log("sort length clicked");
-      this.collection.comparator = 'body';
-      this.collection.sort({});
+      
       return false;
     }
 

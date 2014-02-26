@@ -11,34 +11,30 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
     },
 
     initialize: function(options) {
-       var buyerID = this.model.get("buyerID");
-      this.buyer = new User({_id: buyerID});
-      var usersCollection = new UsersCollection([this.buyer]);
+      this.user = options.user;
+      this.reviewerID = this.model.get("reviewerID");
+      this.reviewer = new User({_id: this.reviewerID});
+      var usersCollection = new UsersCollection([this.reviewer]);
       usersCollection.fetch();
 
-      this.listenTo(this.buyer, 'change', this.render);
+      this.listenTo(this.reviewer, 'change', this.render);
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);
-      this.seller = options.seller;
-
-     
-
     },
 
     render: function() {
       
-      //set the buyer name and id
-      var buyerID = this.buyer.get("_id");
-      var name = this.buyer.get("name");
+      //set the buyer name
+      var name = this.reviewer.get("name");
 
       //format the date
       var date = this.model.get("date");
        // console.log('date: ');
       //console.log(date);
       var formattedDate = date.substring(0,10);
-    
+      console.log(this.reviewer);
       //set the model
-      this.model.set({reviewerID: buyerID, reviewerName: name, reviewDate: formattedDate});
+      this.model.set({reviewerID: this.reviewerID, reviewerName: name, reviewDate: formattedDate});
 
       this.$el.html( this.template( this.model.toJSON() ) );
       var stars = this.model.get("stars");
@@ -59,7 +55,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
         //no star value added
         this.$el.find(".review").addClass("panel-default");
       }
-      else if(stars < 3 ){
+      else if(stars < 2 ){
         //bad rating
         this.$el.find(".review").addClass("panel-danger");
 

@@ -5,7 +5,6 @@ define(['underscore', 'require', 'backbone'],
   var Router = Backbone.Router.extend({
     routes: {
       'landing': 'landing',
-      'landing/login': 'login',
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
 
@@ -68,12 +67,6 @@ define(['underscore', 'require', 'backbone'],
     getStarted: function(email){
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showGetStarted(email);
-      });
-    },
-
-    login: function(){
-      require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showLogin();
       });
     },
 

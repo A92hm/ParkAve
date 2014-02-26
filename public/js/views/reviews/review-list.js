@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.html',
-  'routing/router', 'views/reviews/sellerReview', 'collections/sellerReviews'],
-  function($, _, Backbone, Template, Router, Review, SellerReviewCollection) {
+  'routing/router', 'views/reviews/review', 'collections/reviews'],
+  function($, _, Backbone, Template, Router, Review, ReviewCollection) {
 
   var ReviewList = Backbone.View.extend({
     tagName: 'div',
@@ -10,9 +10,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
     },
 
     initialize: function(options) {
-      this.seller = options.seller;
+      this.user = options.user;
       //create collection
-      this.collection = new SellerReviewCollection([],{seller: this.seller});
+      this.collection = new ReviewCollection([],{user: this.user});
       this.collection.fetch();
 
       //stuff for the average rating
@@ -38,16 +38,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       this.$reviewList.empty();
       this.collection.each(this.addOne, this);
     },
-    addOne: function(sellerReview){
+    addOne: function(review){
       //calculate star average
       this.count++;
-      this.starTot += sellerReview.get("stars");
+      this.starTot += review.get("stars");
       if(this.count == this.collection.length){
         this.averageStars = (this.starTot/this.collection.length);
         this.addAverageStars();
       }
+      console.log("adding one");
       //slowly add reviews
-      var reviewView = new Review({model: sellerReview, seller: this.seller});
+      var reviewView = new Review({model: review, user: this.user});
       var $review = reviewView.render().$el;
       this.$reviewList.delay(400).queue(function (next) {
         $(this).append($review.fadeIn(400));
@@ -82,10 +83,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
           retNum = 0;
         }
         else if(r1.get("stars") > r2.get("stars")){
-          retNum = 1;
+          retNum = -1;
         }
         else{
-          retNum = -1;
+          retNum = 1;
         }
         console.log(retNum);
         return retNum;
@@ -95,9 +96,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       //console.log(this.collection.length);
       console.log(this);
       this.collection.each(function(r){
-        console.log(r);
-       // this.addOne(r);
+        console.log(r.get("stars"));
+        //this.addOne(r);
       }, this);
+      this.addAll();
       //this.collection.reset();
       //this.collection.fetch();
       return false;

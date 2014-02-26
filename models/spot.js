@@ -10,6 +10,7 @@ var schema = mongoose.Schema({
   price: Number,
   parkingSurface: String,
   event_id: String
+  lot_id: String
 });
 
 var Spot = mongoose.model('spots', schema);
