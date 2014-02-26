@@ -26,7 +26,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     },
 
     returnToLots: function() {
-      var lots = new LotsCollection([], {lots: this.model});
+      var lots = new LotsCollection();
       Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});
       return false;
     },

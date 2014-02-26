@@ -4,15 +4,12 @@ define(['underscore','backbone', 'models/lot'], function(_, Backbone, Lot) {
     model: Lot,
 
     url: function() {
-      return '/api/lots'
-      // return this.lots.url() + '/comments';
+      return this.user.url() + '/lots';
     },
 
     initialize: function(models, options) {
-      // this.lots = options.lots;
+      this.user = options.user;
     },
-    // url: this.seller.url()+'/lots',
-    // url: '/lots',
 
     clienturl: function() {
       return this.url.slice(4);

@@ -9,7 +9,6 @@ var schema = mongoose.Schema({
   city: String,
   zip: String,
   state: String,
-  parkingSurface: String,
   latitude: String,
   longitude: String
 });

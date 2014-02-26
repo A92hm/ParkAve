@@ -13,8 +13,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/comment/listitem.htm
     },
 
     initialize: function(options) {
-      this.listenTo(this.model, 'change', this.render);
-      this.listenTo(this.model, 'destroy', this.remove);
+      this.listenTo(this.collection, 'reset', this.addAll);
+      this.listenTo(this.collection, 'add', this.addOne);
       this.post = options.post;
     },
 

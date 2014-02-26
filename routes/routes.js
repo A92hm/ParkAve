@@ -6,6 +6,7 @@ var path = require('path'),
 var lotsController = require('./../controllers/lots.js');
 var sellerReviewsController = require('./../controllers/sellerReviews.js');
 var spotsController = require('./../controllers/spots.js');
+var carsController = require('./../controllers/cars.js');
 function sendIndexFile(res){
   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
 }
@@ -30,15 +31,25 @@ module.exports = {
     app.get(  '/api/users/:uid/reviews', sellerReviewsController.index);
     app.get(  '/api/users/:uid/reviews/:rid', sellerReviewsController.show);
     app.post( '/api/users/:uid/reviews', sellerReviewsController.create);
-    app.put(  '/api/users/:uid.reviews/:rid', sellerReviewsController.update);
+    app.put(  '/api/users/:uid/reviews/:rid', sellerReviewsController.update);
+    app.del(  '/api/users/:uid/reviews/:rid', sellerReviewsController.destroy);
 
+
+    //cars
+    app.get(  '/api/users/:uid/cars', carsController.index);
+    app.get(  '/api/users/:uid/cars/:cid', carsController.show);
+    app.post( '/api/users/:uid/cars', carsController.create);
+    app.put(  '/api/users/:uid/cars/:cid', carsController.update);
+    app.del(  '/api/users/:uid/cars/:cid', carsController.destroy);
+
+    // Spots
     app.get(  '/api/users/:uid/lot/:lid/spots', spotsController.index);
     app.get(  '/api/users/:uid/lot/:lid/spots/:sid', spotsController.show);
     app.post( '/api/users/:uid/lot/:lid/spots', spotsController.create);
     app.put(  '/api/users/:uid/lot/:lid/spots/:rid', spotsController.update);
     app.put(  '/api/users/:uid/lot/:lid/spots/:rid', spotsController.destroy);
 
-    
+    // Lots
     app.get(  '/api/users/:uid/lots',     lotsController.index);
     app.get(  '/api/users/:uid/lots/:lid', lotsController.show);
     app.post( '/api/users/:uid/lots',     lotsController.create);

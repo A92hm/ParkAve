@@ -30,7 +30,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       var inputCity = this.$el.find('[name="input-city"]');
       var inputZip = this.$el.find('[name="input-zip"]');
       var inputState = this.$el.find('[name="input-state"]');
-      var inputParkingSurface = this.$el.find('[name="input-parking-surface"]');
 
 
       this.lotAttributes = {
@@ -40,21 +39,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
         city: inputCity.val(),
         zip: inputZip.val(),
         state: inputState.val(),
-        parkingSurface: inputParkingSurface.val(),
         latitude: 120,
         longitude: 120
       };
-
-      var inputErrorTemplate = _.template( InputErrorTemplate );
-      var valid = true;
-
-      if (!inputTitle) {
-        this.$el.find('#input-title').prev().children('i').html( inputErrorTemplate() );
-        valid = false;
-      } else {
-        this.$el.find('#input-title').prev().children('i').html( '' );
-      }
-
 
       // Some input validation
       if (inputTitle.val() == '') {
@@ -76,29 +63,31 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
 
       // Geocoding time!!
       var API_KEY = 'AIzaSyB1sgyCCyjydPDo6rFweWMbrDyU6uRxPGM';
-
       // The url for the geocoding.  The spaces need to be replaced with '+' for the url to work
       // Should do some error checking first.
       var geocodingAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + inputAddress1.val().split(' ').join('+') + ',+' + inputCity.val().split(' ').join('+')
         + ',+' + inputState.val().split(' ').join('+') + ',+' + inputZip.val().split(' ').join('+') + '&sensor=false&key=' + API_KEY;
 
       $.getJSON(geocodingAPI, function (json) {
-
-        // Address
-        var address = json.results[0].formatted_address;
-        console.log('Address: ', address);
+        globalJson = json;
+        // // Address
+        // var address = json.results[0].formatted_address;
+        // console.log('Address: ', address);
        
-        // Latitude
-        var lat = json.results[0].geometry.location.lat;
-        console.log('Latitude: ', lat);
-        // Method scope problems
-        // this.lotAttributes.latitude = lat;
+        // // Latitude
+        // var lat = json.results[0].geometry.location.lat;
+        // console.log('Latitude: ', lat);
+        // // this.lotAttributes.latitude = lat;
        
-        // Longitude
-        var lon = json.results[0].geometry.location.lng;
-        console.log('Longitude: ', lon);
-        // this.lotAttributes.longitude = lon;
+        // // Longitude
+        // var lon = json.results[0].geometry.location.lng;
+        // console.log('Longitude: ', lon);
+        // // this.lotAttributes.longitude = lon;
       });
+
+      // asynchronous call issue
+      // this.lotAttributes.latitude = globalJson.results[0].geometry.location.lat;
+      // this.lotAttributes.longitude = globalJson.results[0].geometry.location.lon;
 
       this.trigger('dialog:save');
     }

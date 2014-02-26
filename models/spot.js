@@ -8,6 +8,7 @@ var schema = mongoose.Schema({
   buyer_id: [String],
   numSpots: String,
   price: Number,
+  parkingSurface: String,
   event_id: String
 });
 

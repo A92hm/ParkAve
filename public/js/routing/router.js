@@ -11,7 +11,7 @@ define(['underscore', 'require', 'backbone'],
 
       'login': 'login',
       'users/:uid/lots':      'lots',
-      'users/:uid/lots/:lid/':  'lot',
+      'users/:uid/lots/:lid':  'lot',
       
       'users': '',
 
@@ -29,25 +29,25 @@ define(['underscore', 'require', 'backbone'],
       this.navigate('landing', {trigger: true});
     },
 
-    lots: function() {
+    lots: function(uid) {
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showLots();
+        MainAppView.sharedInstance().showLots(uid);
       });
 
       // we can require the main view dynamically when needed. if not we encouter a circularity:
       // router -> main -> lot list -> lot list item -> router
     }, 
 
-    lot: function(id) {
+    lot: function(uid, lid) {
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showLot(id);
+        MainAppView.sharedInstance().showLot(uid, lid);
       });
     },
 
     spots: function() {
       require(['views/application/main'], function(MainAppView) {
         MainAppView.sharedInstance().showSpots();
-      });
+    });
 
       // we can require the main view dynamically when needed. if not we encouter a circularity:
       // router -> main -> lot list -> lot list item -> router
@@ -90,6 +90,7 @@ define(['underscore', 'require', 'backbone'],
     },
     userReviews : function(uid){
       require(['views/application/main'], function(MainAppView){
+        console.log("userReviews");
         MainAppView.sharedInstance().showReviewList(uid);
       });
     },

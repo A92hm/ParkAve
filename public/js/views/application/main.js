@@ -37,20 +37,26 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.$el.append( loginView.render().el );
     },
 
-    showLots: function() {
-      var lots = new LotsCollection();
+    showLots: function(uid) {
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+      var lots = new LotsCollection([], {user: tempUser});
       var lotsView = new LotsListView({collection: lots})
       $('#content').html( lotsView.render().el );
       lots.fetch();
     },
 
-    showLot: function(id) {
-      var lot = new Lot({_id: id});
-      var lots = new LotsCollection([lot]);
+    showLot: function(uid, lid) {
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+
+      var lot = new Lot({_id: lid});
+      var lots = new LotsCollection([lot], {user: tempUser});
       
       var lotView = new LotView({model: lot});
       $('#content').html( lotView.el );
       lot.fetch();
+      console.log('showing lot');
     },
 
     showSpots: function() {
@@ -64,7 +70,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var spot = new Spot({_id: id});
       var spots = new SpotsCollection([spot]);
       
-      var spotView = new SpotView({model: lot});
+      var spotView = new SpotView({model: spot});
       $('#content').html( spotView.el );
       spot.fetch();
     },
@@ -79,14 +85,19 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showUserFeedback: function(uid){
-      var userFeedbackView = new FeedbackView();
+      var user = new User( {_id: uid});
+      var usersCollection = new UsersCollection([user]);
+      var userFeedbackView = new FeedbackView({seller: user});
       this.$el.html(userFeedbackView.render().el);
     },
     showReviewList:  function(uid){
-      console.log('show user reviews');
-      var lotsReviewList = new ReviewList();
-      this.$el.html(lotsReviewList.render().el);
-
+      var user = new User( {_id: uid});
+      var usersCollection = new UsersCollection([user]);
+      var reviewCollection = new SellerReviewCollection([],{seller: user});
+      console.log(reviewCollection);
+      var userReviewList = new ReviewList({collection: reviewCollection, seller: user});
+      this.$el.html(userReviewList.render().el);
+      reviewCollection.fetch();
     },
     showUserSettings: function(uid){
       var user = new User( {_id: uid});

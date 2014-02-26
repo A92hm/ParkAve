@@ -2,11 +2,14 @@ define(['underscore','backbone', 'models/sellerReview'], function(_, Backbone, S
 
   var SellerReviewsCollection = Backbone.Collection.extend({
     model: SellerReview,
-    url: this.seller.url()+'/reviews',
+    url: function(){
+    	return this.seller.url()+'/reviews'
+    },
 
     initialize: function(models, options){
+    	//console.log("options", options);
     	this.seller = options.seller;
-    }
+    },
 
 
     clienturl: function() {
