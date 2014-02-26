@@ -7,7 +7,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       template: _.template( Template ),
 
       events: {
-        'click a[href="usersettings"]': 'showUserSettingsPage'
+        'click a[href="usersettings"]': 'showUserSettingsPage',
+        'click a[href="find-parking"]': 'showParkingLotPage',
+        'click a[href="sell-parking"]': 'sellParkingLotPage',
+        'click a[href="parking-history"]': 'showParkingHistoryPage',
+        'click a[href="parking-review"]': 'showReviewPage'
       },
 
       initialize: function() {
@@ -24,6 +28,28 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       },
 
       showUserSettingsPage: function(){
+        if(this.model.get('_id')){
+          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/settings', {trigger: true});
+        }
+        return false;
+      },
+
+      showParkingLotPage: function(){
+        Router.sharedInstance().navigate('lots', {trigger: true});
+        return false;
+      },
+
+      sellParkingLotPage: function(){
+        Router.sharedInstance().navigate('lots', {trigger: true});
+        return false;
+      },
+
+      showParkingHistoryPage: function(){
+        Router.sharedInstance().navigate('lot/lot-list', {trigger: true});
+        return false;
+      },
+
+      showReviewPage: function(){
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/settings', {trigger: true});
         }
