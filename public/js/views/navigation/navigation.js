@@ -35,23 +35,25 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       },
 
       showParkingLotPage: function(){
-        Router.sharedInstance().navigate('lots', {trigger: true});
+        Router.sharedInstance().navigate('lots/lot-list', {trigger: true});
         return false;
       },
 
       sellParkingLotPage: function(){
-        Router.sharedInstance().navigate('lots', {trigger: true});
+        Router.sharedInstance().navigate('lots/lot-list', {trigger: true});
         return false;
       },
 
       showParkingHistoryPage: function(){
-        Router.sharedInstance().navigate('lot/lot-list', {trigger: true});
+        if(this.model.get('_id')){
+          Router.sharedInstance().navigate('parking/' + this.model.get('_id') + '/parking-history', {trigger: true});
+        }
         return false;
       },
 
       showReviewPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/settings', {trigger: true});
+          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/review', {trigger: true});
         }
         return false;
       }
