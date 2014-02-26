@@ -15,7 +15,6 @@
   background-image: url('../images/background.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  color: #FFFFFF;
 }
 #landing-page-title {
   font-size: 100px;
@@ -79,18 +78,18 @@ input.landing-page-main-input {
   outline: 0;
   -webkit-appearance: none;
 }
-::-webkit-input-placeholder { /* WebKit browsers */
+.landing-page-main-input::-webkit-input-placeholder { /* WebKit browsers */
   color: #FFF !important;
   font-weight: 100 !important;
   letter-spacing: 1.5px;
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+landing-page-main-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
   color:    #FFF !important;
 }
-::-moz-placeholder { /* Mozilla Firefox 19+ */
+landing-page-main-input::-moz-placeholder { /* Mozilla Firefox 19+ */
   color:    #FFF !important;
 }
-:-ms-input-placeholder { /* Internet Explorer 10+ */
+landing-page-main-input:-ms-input-placeholder { /* Internet Explorer 10+ */
   color:    #FFF !important;
 }
 

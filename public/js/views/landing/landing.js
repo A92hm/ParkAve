@@ -20,16 +20,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
       var navigationView = new NavigationView();
       //this.$el.find('#navbar').html( navigationView.render().el );
 
-      // Fixes login modal backdrop not fading away on back button press
-      $('.modal-backdrop').remove();
-
       return this;
     },
 
     submitEmail: function(){
-      var email = this.$el.find('#get-started-email-input').val();
-      //TODO check database for email key
-      this.openLoginModal(email);
+      var email = this.$el.find('#email-input').val();
+
+      //TODO check database for email key. Branch out accordingly to either login or get started
+      if(confirm('Press OK to Login. Press Cancel to Sign Up.')){
+        this.openLoginModal(email);        
+      } else{
+        this.openGetStartedPage(email);
+      }
     },
 
     openGetStartedPage: function(email){
@@ -40,7 +42,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
     },
 
     openLoginModal: function(email){
-      var loginView = new LoginView( {email: email} );
+      var emailModel = new Backbone.Model( {email: email} );
+      console.log(emailModel.get('email'));
+      var loginView = new LoginView( {model: emailModel} );
       this.$el.append( loginView.render().el );
       return false;
     },
