@@ -35,18 +35,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       },
 
       showParkingLotPage: function(){
-        Router.sharedInstance().navigate('lots/lot-list', {trigger: true});
+        Router.sharedInstance().navigate('lots', {trigger: true});
         return false;
       },
 
       sellParkingLotPage: function(){
-        Router.sharedInstance().navigate('lots/lot-list', {trigger: true});
+        Router.sharedInstance().navigate('lots', {trigger: true});
         return false;
       },
 
       showParkingHistoryPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('parking/' + this.model.get('_id') + '/parking-history', {trigger: true});
+          Router.sharedInstance().navigate('lots', {trigger: true});
         }
         return false;
       },
