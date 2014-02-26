@@ -43,7 +43,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
 
     openLoginModal: function(email){
       var emailModel = new Backbone.Model( {email: email} );
-      console.log(emailModel.get('email'));
       var loginView = new LoginView( {model: emailModel} );
       this.$el.append( loginView.render().el );
       return false;
