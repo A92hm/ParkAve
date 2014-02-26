@@ -5,6 +5,7 @@ define(['underscore', 'require', 'backbone'],
   var Router = Backbone.Router.extend({
     routes: {
       'landing': 'landing',
+      'landing/login': 'login',
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
 
@@ -12,8 +13,8 @@ define(['underscore', 'require', 'backbone'],
       'createlot': 'createLot',
       'lots':      'lots',
       'lots/:id':  'lot',
-      'lots/:lid/spots':      'spots',
-      'lots/:lid/spots/:sid':      'spot',
+      'lots/:pid/spots':      'spots',
+      'lots/:pid/spots/:cid':      'spot',
       
       'users': '',
 
@@ -44,18 +45,18 @@ define(['underscore', 'require', 'backbone'],
       });
     },
 
-    spots: function(lid) {
+    spots: function() {
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showSpots(lid);
+        MainAppView.sharedInstance().showSpots();
       });
 
       // we can require the main view dynamically when needed. if not we encouter a circularity:
       // router -> main -> lot list -> lot list item -> router
     }, 
 
-    spot: function(lid, sid) {
+    spot: function(id) {
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showSpot(lid, sid);
+        MainAppView.sharedInstance().showSpot(id);
       });
     },
 
@@ -68,6 +69,12 @@ define(['underscore', 'require', 'backbone'],
     getStarted: function(email){
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showGetStarted(email);
+      });
+    },
+
+    login: function(){
+      require(['views/application/main'], function(MainAppView){
+        MainAppView.sharedInstance().showLogin();
       });
     },
 
@@ -84,7 +91,6 @@ define(['underscore', 'require', 'backbone'],
     },
     userReviews : function(uid){
       require(['views/application/main'], function(MainAppView){
-        console.log("userReviews");
         MainAppView.sharedInstance().showReviewList(uid);
       });
     },

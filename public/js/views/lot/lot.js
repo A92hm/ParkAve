@@ -1,7 +1,7 @@
 
 define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
-  'routing/router', 'collections/lots'],
-  function($, _, Backbone, Template, Router, LotsCollection) {
+  'routing/router', 'collections/lots', 'views/lot/lot-list-new'],
+  function($, _, Backbone, Template, Router, LotsCollection, NewLotView) {
 
 
   var LotView = Backbone.View.extend({
@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     events: {
       'click a[href="#delete"]': 'deleteLot',
       'click a[href="#lots"]': 'returnToLots',
-      'click a[href="#create-spot"]': 'createLot'
+      'click a[href="#create-spot"]': 'createSpot'
     },
 
     initialize: function() {
@@ -45,7 +45,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
       return false;
     },
 
-    createLot: function() {
+    createSpot: function() {
+      this.newLotView = new NewLotView();
+      this.newLotView.render().$el.modal(); // .modal() is bootstrap
+      this.listenTo(this.newLotView, 'dialog:save', this.saveNewLot);
       return false;
     }
   });
