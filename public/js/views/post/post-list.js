@@ -13,8 +13,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/post/list.html',
     },
 
     initialize: function() {
-      this.listenTo(this.collection, 'reset', this.addAll);
-      this.listenTo(this.collection, 'add', this.addOne);
     },
 
     render: function() {
