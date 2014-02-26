@@ -7,7 +7,8 @@ var schema = mongoose.Schema({
   buyerId: [String],
   numSpots: String,
   price: Number,
-  event_id: String
+  event_id: String,
+  lot_id: String
 });
 
 var Spot = mongoose.model('spots', schema);

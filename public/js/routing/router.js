@@ -5,7 +5,6 @@ define(['underscore', 'require', 'backbone'],
   var Router = Backbone.Router.extend({
     routes: {
       'landing': 'landing',
-      'landing/login': 'login',
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
 
@@ -72,12 +71,6 @@ define(['underscore', 'require', 'backbone'],
       });
     },
 
-    login: function(){
-      require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showLogin();
-      });
-    },
-
     userPage: function(uid){
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showUserPage(uid);
@@ -91,6 +84,7 @@ define(['underscore', 'require', 'backbone'],
     },
     userReviews : function(uid){
       require(['views/application/main'], function(MainAppView){
+        console.log("userReviews");
         MainAppView.sharedInstance().showReviewList(uid);
       });
     },

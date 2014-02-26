@@ -1,9 +1,9 @@
-var Review = require('./../models/buyerReview').BuyerReview;
+var Car = require('./../models/car').Car;
 
 module.exports = {
   index: function(req, res) {
-    console.log('buyer review index');
-    Review.find({}, function(err, reviews) {
+    console.log('car index');
+    Car.find({ownerID: req.params.uid}, function(err, reviews) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
@@ -12,8 +12,8 @@ module.exports = {
     });
   },
   show: function(req, res) {
-    console.log('buyer review index');
-    Review.findById(req.params.rid, function(err, review) {
+    console.log('car show');
+    Car.findById(req.params.cid, function(err, review) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
@@ -22,8 +22,8 @@ module.exports = {
     });
   },
   create: function(req, res) {
-    console.log('buyer review create', req.params, req.body);
-    Review.create(req.body, function(err, review) {
+    console.log('car create', req.params, req.body);
+    Car.create(req.body, function(err, review) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
@@ -32,12 +32,12 @@ module.exports = {
     });
   },
   update: function(req, res) {
-    console.log('buyer review update', req.params, req.body);
+    console.log('car update', req.params, req.body);
     res.status(500).json({err: 'unimplemented'});
   },
   destroy: function(req, res) {
-    console.log('buyer review destroy', req.params, req.body);
-    Review.remove( {_id: req.params.rid}, function(err) {
+    console.log('car destroy', req.params, req.body);
+    Car.remove( {_id: req.params.cid}, function(err) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {

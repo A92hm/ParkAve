@@ -24,4 +24,8 @@
 	color: #ffffff;
 	text-shadow: none;
 }
-
+/* the filter bar on the feedback page */
+#filter-bar{
+  background-color: rgba(26,26,26,.9);
+  border-radius: 10px;
+}
