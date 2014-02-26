@@ -4,7 +4,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
 
   var LandingView = Backbone.View.extend({
     tagName: 'div',
-    className: 'landing-view-div',
+    className: 'landing-body-div',
     template: _.template( Template ),
 
     events: {
