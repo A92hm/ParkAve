@@ -11,7 +11,7 @@ var schema = mongoose.Schema({
   lotID: {type: String, default: "noid"}
 });
 
-var Review = mongoose.model('SellerReview', schema);
+var Review = mongoose.model('Review', schema);
 
 module.exports = {
   Review: Review
