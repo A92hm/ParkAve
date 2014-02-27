@@ -10,7 +10,7 @@ var carSchema = mongoose.Schema({
 	user_id: {type: String, require: true}
 });
 
-var Car = mongoose.model('Cars', carSchema);
+var Car = mongoose.model('Car', carSchema);
 
 module.exports = {
   Car: Car
