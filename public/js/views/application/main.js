@@ -85,7 +85,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var lots = new LotsCollection([lot], {user: tempUser});
 
       var spot = new Spot({_id: sid});
-      var spots = new SpotsCollection([spot]);
+      var spots = new SpotsCollection([spot], {lot: lot});
       
       var spotView = new SpotView({model: spot});
       $('#content').html( spotView.el );
