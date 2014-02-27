@@ -46,9 +46,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     },
 
     createSpot: function() {
-      this.newLotView = new NewLotView();
-      this.newLotView.render().$el.modal(); // .modal() is bootstrap
-      this.listenTo(this.newLotView, 'dialog:save', this.saveNewLot);
+      Router.sharedInstance().navigate(this.model.clienturl() + '/spots', {trigger: true});
       return false;
     }
   });

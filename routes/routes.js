@@ -4,7 +4,6 @@ var path = require('path'),
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
 var lotsController = require('./../controllers/lots.js');
-var sellerReviewsController = require('./../controllers/sellerReviews.js');
 var spotsController = require('./../controllers/spots.js');
 var reviewsController = require('./../controllers/reviews.js');
 var carsController = require('./../controllers/cars.js');

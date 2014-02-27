@@ -2,7 +2,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'models/user', 'models/lot', 'models/spot', 'collections/users', 'collections/lots', 'collections/spots',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
         'views/lot/lot-list', 'views/lot/lot', 'views/spot/spot-list', 'views/spot/spot', 'views/user/home',
-        'views/reviews/feedback-page', 'views/reviews/sellerReview-list', 'views/user/settings',
+        'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
         'collections/reviews'
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection, LotsCollection, SpotsCollection, LandingView, GetStartedView, LoginView, 
@@ -43,27 +43,44 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var usersCollection = new UsersCollection([tempUser]);
       var lots = new LotsCollection([], {user: tempUser});
 
+      var lotsView = new LotsListView({collection: lots})
+      $('#content').html( lotsView.render().el );
+      lots.fetch();
+    },
+
     showLot: function(uid, lid) {
       var tempUser = new User( {_id: uid});
       var usersCollection = new UsersCollection([tempUser]);
 
       var lot = new Lot({_id: lid});
       var lots = new LotsCollection([lot], {user: tempUser});
-      
+
       var lotView = new LotView({model: lot});
       $('#content').html( lotView.el );
       lot.fetch();
       console.log('showing lot');
     },
 
-    showSpots: function() {
-      var spots = new SpotsCollection();
+    showSpots: function(uid, lid) {
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+
+      var lot = new Lot({_id: lid});
+      var lots = new LotsCollection([lot], {user: tempUser});
+
+      var lotView = new LotView({model: lot});
+
+
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+
+      var spots = new SpotsCollection([], {lot: lot});
       var spotsView = new SpotsListView({collection: spots})
       $('#content').html( spotsView.render().el );
       spots.fetch();
     },
 
-    showSpot: function(id) {
+    showSpot: function(uid, lid, sid) {
       var spot = new Spot({_id: id});
       var spots = new SpotsCollection([spot]);
       

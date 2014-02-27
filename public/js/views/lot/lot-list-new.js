@@ -70,19 +70,19 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
 
       $.getJSON(geocodingAPI, function (json) {
         globalJson = json;
-        // // Address
-        // var address = json.results[0].formatted_address;
-        // console.log('Address: ', address);
+        // Address
+        var address = json.results[0].formatted_address;
+        console.log('Address: ', address);
        
-        // // Latitude
-        // var lat = json.results[0].geometry.location.lat;
-        // console.log('Latitude: ', lat);
-        // // this.lotAttributes.latitude = lat;
+        // Latitude
+        var lat = json.results[0].geometry.location.lat;
+        console.log('Latitude: ', lat);
+        // this.lotAttributes.latitude = lat;
        
-        // // Longitude
-        // var lon = json.results[0].geometry.location.lng;
-        // console.log('Longitude: ', lon);
-        // // this.lotAttributes.longitude = lon;
+        // Longitude
+        var lon = json.results[0].geometry.location.lng;
+        console.log('Longitude: ', lon);
+        // this.lotAttributes.longitude = lon;
       });
 
       // asynchronous call issue
