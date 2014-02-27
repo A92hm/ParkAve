@@ -7,7 +7,7 @@ var carSchema = mongoose.Schema({
 	plate: {type: String, require: true},
 	state: {type: String, require: true},
 	color: String,
-	ownerID: {type: String, require: true}
+	user_id: {type: String, require: true}
 });
 
 var Car = mongoose.model('Car', carSchema);
