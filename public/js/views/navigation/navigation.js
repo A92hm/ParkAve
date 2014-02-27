@@ -12,10 +12,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         'click a[href="find-parking"]': 'showParkingLotPage',
         'click a[href="sell-parking"]': 'sellParkingLotPage',
         'click a[href="parking-history"]': 'showParkingHistoryPage',
-        'click a[href="review"]': 'showReviewPage'
+        'click a[href="review"]': 'showReviewPage',
         'click a[href="home"]': 'showUserPage'
-        'click a[href="#Sell"]':        'sellParking'
-
       },
 
       initialize: function() {
@@ -67,6 +65,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/home', {trigger: true});
         }
+      },
 
       // Reroute to the lots page
       sellParking: function() {
