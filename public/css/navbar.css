@@ -1,5 +1,11 @@
+@font-face
+{
+font-family: navbarFont;
+src: local("Lucida Console");
+}
+
 .navbar{
-	background-color: #3DAB2E;
+	background-color: #44201f;
 	padding-top: 1px;
 	padding-bottom: 1px
 }
@@ -7,20 +13,25 @@
 .navbar .nav > li > a{
   color: #ffffff;
   text-shadow: none;
+  font-family: navbarFont;
 }
 
 .navbar .nav > li > a:hover{
-  background-color: #ffffff;
-  color: #3DAB2E;
-  text-shadow: none;
+  background-color:  #44201f;
+  color: #ffffff;
 }
 
 .navbar-header > a{
 	color: #ffffff;
 	text-shadow: none;
 }
+
+
 /* the filter bar on the feedback page */
 #filter-bar{
   background-color: rgba(26,26,26,.9);
   border-radius: 10px;
 }
+
+
+

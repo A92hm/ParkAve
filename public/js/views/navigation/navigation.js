@@ -11,7 +11,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         'click a[href="find-parking"]': 'showParkingLotPage',
         'click a[href="sell-parking"]': 'sellParkingLotPage',
         'click a[href="parking-history"]': 'showParkingHistoryPage',
-        'click a[href="parking-review"]': 'showReviewPage'
+        'click a[href="review"]': 'showReviewPage'
+        'click a[href="home"]': 'showUserPage'
       },
 
       initialize: function() {
@@ -53,10 +54,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
 
       showReviewPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/review', {trigger: true});
+          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/reviews', {trigger: true});
+        }
+        return false;
+      },
+
+      showUserPage: function(){
+        if(this.model.get('_id')){
+          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/home', {trigger: true});
         }
         return false;
       }
+      
     });
     return NavigationView;
 });
