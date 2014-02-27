@@ -13,7 +13,7 @@ module.exports = {
   },
   show: function(req, res) {
     console.log('lots index');
-    Lot.findById(req.params.id, function(err, lot) {
+    Lot.findById(req.params.lid, function(err, lot) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
@@ -37,7 +37,7 @@ module.exports = {
   },
   destroy: function(req, res) {
     console.log('lots destroy', req.params, req.body);
-    Lot.remove( {_id: req.params.id}, function(err) {
+    Lot.remove( {_id: req.params.lid}, function(err) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {

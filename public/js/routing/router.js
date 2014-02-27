@@ -10,11 +10,11 @@ define(['underscore', 'require', 'backbone'],
       'getstarted/:email': 'getStarted',
 
       'login': 'login',
-      'createlot': 'createLot',
-      'lots':      'lots',
-      'lots/:id':  'lot',
-      'lots/:pid/spots':      'spots',
-      'lots/:pid/spots/:cid':      'spot',
+      
+      'users/:uid/lots':      'lots',
+      'users/:uid/lots/:lid':  'lot',
+      'users/:uid/lots/:lid/spots' : 'spots',
+      'users/:uid/lots/:lid/spots/:sid':      'spot',
       
       'users': '',
 
@@ -30,33 +30,33 @@ define(['underscore', 'require', 'backbone'],
       this.navigate('landing', {trigger: true});
     },
 
-    lots: function() {
+    lots: function(uid) {
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showLots();
+        MainAppView.sharedInstance().showLots(uid);
       });
 
       // we can require the main view dynamically when needed. if not we encouter a circularity:
       // router -> main -> lot list -> lot list item -> router
     }, 
 
-    lot: function(id) {
+    lot: function(uid, lid) {
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showLot(id);
+        MainAppView.sharedInstance().showLot(uid, lid);
       });
     },
 
-    spots: function() {
+    spots: function(uid, lid) {
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showSpots();
-      });
+        MainAppView.sharedInstance().showSpots(uid, lid);
+    });
 
       // we can require the main view dynamically when needed. if not we encouter a circularity:
       // router -> main -> lot list -> lot list item -> router
     }, 
 
-    spot: function(id) {
+    spot: function(uid, lid, sid) {
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showSpot(id);
+        MainAppView.sharedInstance().showSpot(uid, lid, sid);
       });
     },
 
@@ -91,7 +91,6 @@ define(['underscore', 'require', 'backbone'],
     },
     userReviews : function(uid){
       require(['views/application/main'], function(MainAppView){
-        console.log("userReviews");
         MainAppView.sharedInstance().showReviewList(uid);
       });
     },
@@ -99,12 +98,6 @@ define(['underscore', 'require', 'backbone'],
     userSettings: function(uid){
       require(['views/application/main'], function(MainAppView) {
         MainAppView.sharedInstance().showUserSettings(uid);
-      });
-    },
-
-    createLot: function(email) {
-      require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showCreateLot(email);
       });
     },
 

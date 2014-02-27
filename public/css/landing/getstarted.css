@@ -1,0 +1,40 @@
+.get-started-div {
+  position: absolute;
+  top: 90px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url('../../images/background.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.get-started-page-title {
+  margin-top: 60px;
+  font-size: 60px;
+  margin-
+}
+.get-started-content-panel {
+  border: none;
+  margin-top: 30px;
+  height: 480px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+.get-started-content-panel > div.panel-body > div.row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.get-started-input-panel {
+  background-color: rgba(84, 169, 103, 0.5);
+}
+.get-started-info-panel {
+  background-color: rgba(255, 255, 255, 0.68);
+}
+.get-started-main-input {
+  height: 40px;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+

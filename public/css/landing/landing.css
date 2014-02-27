@@ -1,0 +1,36 @@
+@font-face{
+  font-family: vitesse-sans-light;
+  src: url('../../fonts/VitesseSans-Light.otf');
+}
+@font-face{
+  font-family: vitesse-sans-thin;
+  src: url('../../fonts/VitesseSans-Thin.otf');
+}
+.landing-body-div {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url('../../images/background.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+#landing-page-title {
+  font-size: 100px;
+  font-family: vitesse-sans-light; /*TODO bodoni*/
+}
+#landing-page-content-block {
+  margin-top: 140px;
+  height: 280px;
+  margin-right: 0px;
+  margin-left: 0px;
+  background-color: rgba(80, 46, 144, 0.5);
+}
+.landing-page-input-container {
+  margin-top: 50px;
+}
+.landing-page-main-input {
+  height: 44px;
+}
+

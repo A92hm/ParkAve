@@ -102,6 +102,7 @@ module.exports = {
       if(err){
         res.status(500).json({err: 'internal error'});
       }else if(user){
+        console.log(user);
         if(bcrypt.compareSync(req.body.password, user.password)){
           res.json(user);
         }
