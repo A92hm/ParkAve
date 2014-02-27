@@ -25,3 +25,87 @@
 #new-form-modal textarea {
   height: 100px;
 }
+
+/* text style */
+.light-text {
+  color: #FFFFFF !important;
+}
+
+/* text input styling */
+.modern-input {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+}
+button.modern-input > i {
+  font-size: 28px;
+  vertical-align: middle;
+}
+button.modern-input {
+  margin-left: 0px !important;
+  border: none;
+  box-shadow: none;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 4px 7px;
+  outline: 0;
+  -webkit-appearance: none;
+}
+div .modern-input-group:hover > input, div .modern-input-group:hover > span > button  {
+  background-color: rgba(255, 255, 255, 0.38);
+}
+input.modern-input:focus, button.modern-input:focus, button.modern-input:active {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none !important;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+input.modern-input:hover, button.modern-input:hover {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none !important;
+  background-color: rgba(255, 255, 255, 0.38);
+}
+input.modern-input {
+  padding-left: 18px !important;
+  font-weight: 100 !important;
+  letter-spacing: 1.5px;
+  border: none;
+  box-shadow: none;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 4px 7px;
+  outline: 0;
+  -webkit-appearance: none;
+}
+.modern-input::-webkit-input-placeholder { /* WebKit browsers */
+  color: #EEE !important;
+  font-weight: 10 !important;
+  letter-spacing: 1.5px;
+}
+landing-page-main-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    #EEE !important;
+}
+landing-page-main-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    #EEE !important;
+}
+landing-page-main-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:    #EEE !important;
+}
+
+/* miscellaneous styling */
+.no-side-padding {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.no-side-margins {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+

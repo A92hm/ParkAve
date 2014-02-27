@@ -1,6 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html',
-        'views/navigation/navigation', 'views/landing/login', 'routing/router'],
-  function($, _, Backbone, Template, NavigationView, LoginView, Router) {
+        'views/navigation/navigation', 'views/landing/login', 'models/session',
+        'collections/sessions', 'routing/router'],
+  function($, _, Backbone, Template, NavigationView, LoginView, Session, SessionsCollection, Router) {
 
   var LandingView = Backbone.View.extend({
     tagName: 'div',
@@ -26,12 +27,28 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
     submitEmail: function(){
       var email = this.$el.find('#email-input').val();
 
-      //TODO check database for email key. Branch out accordingly to either login or get started
-      if(confirm('Press OK to Login. Press Cancel to Sign Up.')){
-        this.openLoginModal(email);        
-      } else{
-        this.openGetStartedPage(email);
-      }
+      var session = new Session({email: email, password: "N/A"});
+      var sessionsCollection = new SessionsCollection([session]);
+      var openLoginModal = this.openLoginModal;
+      var openGetStartedPage = this.openGetStartedPage;
+      session.save({}, {error: function(err){
+        console.log('err', err);
+      }, success: function(model, response){
+        if(!response._id){
+          if(response.err == 'nomatch'){
+            openLoginModal(email);
+          } else{
+            openGetStartedPage(email);
+          }
+        }
+      }});
+
+      // //TODO check database for email key. Branch out accordingly to either login or get started
+      // if(confirm('Press OK to Login. Press Cancel to Sign Up.')){
+      //   this.openLoginModal(email);        
+      // } else{
+      //   this.openGetStartedPage(email);
+      // }
     },
 
     openGetStartedPage: function(email){
@@ -42,9 +59,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
     },
 
     openLoginModal: function(email){
-      var emailModel = new Backbone.Model( {email: email} );
-      var loginView = new LoginView( {model: emailModel} );
-      this.$el.append( loginView.render().el );
+      var animateTime = 1200;
+      $('#landing-page-content-block').animate({
+          'margin-right': '-700px',
+          'margin-left': '1310px'
+        }, animateTime);
+      var loginModel = new Backbone.Model( {email: email, animateTime: animateTime} );
+      var loginView = new LoginView( {model: loginModel} );
+      $('.landing-body-div').append( loginView.render().el );
       return false;
     },
 
