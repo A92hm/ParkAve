@@ -27,10 +27,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listitem.html',
       this.model.destroy({wait: true})
         .done(function(data) {
           // good to go
+          console.log('deleting now...');
         })
         .fail(function(xhr, data) {
           console.log('there was a problem deleting the model');
         });
+      this.remove();
+      this.model.collection.remove(this.model);
       return false; 
     },
 

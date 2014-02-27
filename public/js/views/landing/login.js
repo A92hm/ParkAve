@@ -17,12 +17,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
 
     render: function() {
       this.$el.html( this.template( this.model.toJSON() ) );
-      this.$el.find('#login-modal').modal('show');
+      this.$el.find('#login-modal').modal({show: true, backdrop: false});
       return this;
     },
 
     modalHidden: function(){
-      Router.sharedInstance().navigate('/landing', {trigger: false});
+      $('#landing-page-content-block').animate({
+          'margin-right': '-30px',
+          'margin-left': '-30px'
+        }, this.model.get('animateTime'));
     },
 
     login: function(){

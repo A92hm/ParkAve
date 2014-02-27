@@ -7,7 +7,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       template: _.template( Template ),
 
       events: {
-        'click a[href="usersettings"]': 'showUserSettingsPage'
+        'click a[href="usersettings"]': 'showUserSettingsPage',
+        'click a[href="#Sell"]':        'sellParking'
       },
 
       initialize: function() {
@@ -27,6 +28,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/settings', {trigger: true});
         }
+        return false;
+      },
+
+      // Reroute to the lots page
+      sellParking: function() {
+        Router.sharedInstance().navigate(this.model.clienturl() + '/lots', {trigger: true});
         return false;
       }
     });
