@@ -28,7 +28,7 @@ def makeUser(n):
 			'phone': fake.phone_number()
 		}
 		user_id = db_users.insert(user)
-		print 'Added user: ', user_i
+		print 'Added user: ', user_id
 		users.append(user)
 	return users
 
@@ -97,7 +97,7 @@ def makeVehicle(n):
 			'state' : fake.state(),
 			'user_id': choice(users)['_id']
 		}
-		vehicle_id = db_vehicles.insert(vehicle)
+		vehicle_id = db_cars.insert(vehicle)
 		print 'Added vehicle: ', vehicle_id
 		vehicles.append(vehicle)
 	return vehicles
@@ -122,11 +122,11 @@ def makeReviews(n):
 	return reviews
 
 def main():
-	# makeUser(1)
-	# makeLot(10)
-	# makeSpot(20)
-	# makeVehicle(10)
-	# makeReviews(50)
+	makeUser(10)
+	makeLot(10)
+	makeSpot(20)
+	makeVehicle(10)
+	makeReviews(50)
 
 
 
