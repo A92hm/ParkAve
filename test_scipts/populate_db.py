@@ -9,11 +9,11 @@ fake = Factory.create()
 # client = MongoClient('mongodb://54.84.154.254')
 client = MongoClient('mongodb://localhost')
 db = client.parking
-db_users = db.users
-db_lots = db.lots
-db_spots = db.spots
-db_vehicles = db.vehicles
-db_reviews = db.reviews
+db_users = db.Users
+db_lots = db.Lots
+db_spots = db.Spots
+db_cars = db.Cars
+db_reviews = db.Reviews
 
 
 def makeUser(n):
@@ -90,6 +90,8 @@ def makeVehicle(n):
 		vehicle = {
 			'make' : choice(['BMW','Honda','Toyota','Kia','Nissan','Hyundai', 'Jeep','Ford','Chevrolet']),
 			'model': fake.word(),
+			'year' : fake.date(pattern="%y"),
+			'color': fake.word(),
 			'type' : choice(['Sedan', 'Truck', 'SUV', 'Minivan', 'Van', 'Compact']),
 			'license' : fake.bothify(text="???###"),
 			'state' : fake.state(),
