@@ -38,9 +38,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
         address2: inputAddress2.val(),
         city: inputCity.val(),
         zip: inputZip.val(),
-        state: inputState.val(),
-        latitude: 120,
-        longitude: 120
+        state: inputState.val()
       };
 
       // Some input validation
@@ -68,7 +66,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       var geocodingAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + inputAddress1.val().split(' ').join('+') + ',+' + inputCity.val().split(' ').join('+')
         + ',+' + inputState.val().split(' ').join('+') + ',+' + inputZip.val().split(' ').join('+') + '&sensor=false&key=' + API_KEY;
 
-      $.getJSON(geocodingAPI, function (json) {
+      var globalJson;
+      var x = $.getJSON(geocodingAPI, function (json) {
         globalJson = json;
         // Address
         var address = json.results[0].formatted_address;

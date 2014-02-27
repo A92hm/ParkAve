@@ -42,19 +42,19 @@ module.exports = {
     app.put(  '/api/users/:uid/cars/:cid', carsController.update);    // update the specific car for the given user and car ids
     app.del(  '/api/users/:uid/cars/:cid', carsController.destroy);   // delete the specific car for the given user and car ids
 
-    // Spots
-    app.get(  '/api/users/:uid/lot/:lid/spots', spotsController.index);
-    app.get(  '/api/users/:uid/lot/:lid/spots/:sid', spotsController.show);
-    app.post( '/api/users/:uid/lot/:lid/spots', spotsController.create);
-    app.put(  '/api/users/:uid/lot/:lid/spots/:rid', spotsController.update);
-    app.put(  '/api/users/:uid/lot/:lid/spots/:rid', spotsController.destroy);
-
     // Lots
-    app.get(  '/api/users/:uid/lots',     lotsController.index);
-    app.get(  '/api/users/:uid/lots/:lid', lotsController.show);
-    app.post( '/api/users/:uid/lots',     lotsController.create);
-    app.put(  '/api/users/:uid/lots/:lid', lotsController.update);
-    app.del(  '/api/users/:uid/lots/:lid', lotsController.destroy);
+    app.get(  '/api/users/:uid/lots',     lotsController.index);        // Get all of the lots for a specified user id
+    app.get(  '/api/users/:uid/lots/:lid', lotsController.show);        // Get a specific lot for a specified user id
+    app.post( '/api/users/:uid/lots',     lotsController.create);       // create a lot in the databasefor a specified user id
+    app.put(  '/api/users/:uid/lots/:lid', lotsController.update);      // Update the specific lot for a specified user id and lot id
+    app.del(  '/api/users/:uid/lots/:lid', lotsController.destroy);     // Delete the specific lot for a specified user id and lot id
+
+    // Spots
+    app.get(  '/api/users/:uid/lots/:lid/spots', spotsController.index);
+    app.get(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.show);
+    app.post( '/api/users/:uid/lots/:lid/spots', spotsController.create);
+    app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);
+    app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy);
 
     // Non-API routes
 

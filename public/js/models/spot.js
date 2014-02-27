@@ -4,7 +4,13 @@ define(['underscore','backbone'], function(_, Backbone) {
     idAttribute: '_id',
 
     defaults: {
-      title: 'Untitled'
+      title: 'Untitled',
+      spot_id: this.idAttribute,
+      parkingSurface: "Grass",
+      price: 0,
+      buyer_id: [],
+      event_id: "",
+      lot_id: ""
     },
 
     initialize: function() {

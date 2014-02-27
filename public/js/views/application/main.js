@@ -49,6 +49,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showLot: function(uid, lid) {
+
+      // need to make user and user collection for lot to load
       var tempUser = new User( {_id: uid});
       var usersCollection = new UsersCollection([tempUser]);
 
@@ -68,20 +70,21 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var lot = new Lot({_id: lid});
       var lots = new LotsCollection([lot], {user: tempUser});
 
-      var lotView = new LotView({model: lot});
+      var spots = new SpotsCollection([], {lot: lot, user: tempUser});
 
-
-      var tempUser = new User( {_id: uid});
-      var usersCollection = new UsersCollection([tempUser]);
-
-      var spots = new SpotsCollection([], {lot: lot});
       var spotsView = new SpotsListView({collection: spots})
       $('#content').html( spotsView.render().el );
       spots.fetch();
     },
 
     showSpot: function(uid, lid, sid) {
-      var spot = new Spot({_id: id});
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+
+      var lot = new Lot({_id: lid});
+      var lots = new LotsCollection([lot], {user: tempUser});
+
+      var spot = new Spot({_id: sid});
       var spots = new SpotsCollection([spot]);
       
       var spotView = new SpotView({model: spot});
