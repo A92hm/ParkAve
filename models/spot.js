@@ -2,16 +2,19 @@
 var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
-  spot_id: String,
+  user_id: String,
   title: {type: String, require: true, trim: true},
   date: Date,
-  buyer_id: [String],
-  numSpots: String,
+  buyer_list: [String],
+  numSpots: Number,
+  blocked: Boolean,
+  size: String,
   price: Number,
-  parkingSurface: String,
+  surface: String,
   event_id: String,
   lot_id: String
 });
+
 
 var Spot = mongoose.model('spots', schema);
 

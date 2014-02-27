@@ -35,7 +35,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/listnew.html', 
         date: inputDate.val(),
         numSpots: inputNumSpots.val(),
         price: inputPrice.val(),
-        // parkingSurface = inputParkingSurface.val();
+        parkingSurface: inputParkingSurface.val(),
         event_id: "1"
       };
 

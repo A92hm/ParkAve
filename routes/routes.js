@@ -45,16 +45,16 @@ module.exports = {
     // Lots
     app.get(  '/api/users/:uid/lots',     lotsController.index);        // Get all of the lots for a specified user id
     app.get(  '/api/users/:uid/lots/:lid', lotsController.show);        // Get a specific lot for a specified user id
-    app.post( '/api/users/:uid/lots',     lotsController.create);       // create a lot in the databasefor a specified user id
+    app.post( '/api/users/:uid/lots',     lotsController.create);       // Create a lot in the database for a specified user id
     app.put(  '/api/users/:uid/lots/:lid', lotsController.update);      // Update the specific lot for a specified user id and lot id
     app.del(  '/api/users/:uid/lots/:lid', lotsController.destroy);     // Delete the specific lot for a specified user id and lot id
 
     // Spots
-    app.get(  '/api/users/:uid/lots/:lid/spots', spotsController.index);
-    app.get(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.show);
-    app.post( '/api/users/:uid/lots/:lid/spots', spotsController.create);
-    app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);
-    app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy);
+    app.get(  '/api/users/:uid/lots/:lid/spots', spotsController.index);        // Get all of the spots for a specific lot id and user id
+    app.get(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.show);    // Get a specific spot for a specific lot and user id
+    app.post( '/api/users/:uid/lots/:lid/spots', spotsController.create);       // Create a spot in the database for a specific lot id
+    app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);  // Update a specific spot give a specified spot, lot, and user id
+    app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy); // Delete the speceific spot from the database
 
     // Non-API routes
 
