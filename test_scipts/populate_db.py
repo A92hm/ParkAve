@@ -122,11 +122,11 @@ def makeReviews(n):
 	return reviews
 
 def main():
-	# makeUser(1)
-	# makeLot(10)
-	# makeSpot(20)
-	# makeVehicle(10)
-	# makeReviews(50)
+	 makeUser(10)
+	 makeLot(10)
+	 makeSpot(20)
+	 makeVehicle(10)
+	 makeReviews(50)
 
 
 

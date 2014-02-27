@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
 
     initialize: function(options) {
       this.user = options.user;
-      this.reviewerID = this.model.get("reviewerID");
+      this.reviewerID = this.model.get("reviewer_id");
       this.reviewer = new User({_id: this.reviewerID});
       var usersCollection = new UsersCollection([this.reviewer]);
       usersCollection.fetch();
