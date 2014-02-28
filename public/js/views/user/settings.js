@@ -5,6 +5,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
 
   var UserSettingsView = Backbone.View.extend({
     tagName: 'div',
+    className: 'user-settings-div',
     template: _.template( Template ),
     events: {
       'click #update-account-button': 'updateUserSettings'
