@@ -1,7 +1,6 @@
-
 define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
-  'views/lot/lot-list-item', 'views/lot/lot-list-new'],
-  function($, _, Backbone, Template, LotListItemView, NewLotView) {
+  'views/lot/lot-list-item', 'views/lot/lot-list-new','views/navigation/navigation'],
+  function($, _, Backbone, Template, LotListItemView, NewLotView, NavigationView) {
 
   var LotListView = Backbone.View.extend({
     tagName: 'div',
@@ -20,6 +19,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
     render: function() {
       this.$el.html( this.template() );
       this.$lots = this.$el.find('#lots');
+      var navigationView = new NavigationView( {model: this.model} );
+      this.$el.find('#navbar').html( navigationView.render().el );
       return this;
     },
 
