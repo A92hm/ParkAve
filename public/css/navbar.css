@@ -5,20 +5,39 @@ src: local("Lucida Console");
 }
 
 .navbar{
-	background-color: #44201f;
-	padding-top: 1px;
-	padding-bottom: 1px
+  z-index: 1;
+  background-color: rgba(80, 46, 144, 0.5);
+  height: 90px;
+  border: none;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.navbar .nav > li{
+  width: 150px;
+  height: 90px;
+  line-height: 90px;
+  text-align: center;
+  font-family: vitesse-sans-light;
 }
 
 .navbar .nav > li > a{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  vertical-align: middle;
   color: #ffffff;
   text-shadow: none;
-  font-family: navbarFont;
 }
 
-.navbar .nav > li > a:hover{
-  background-color:  #44201f;
+.navbar .nav > li:hover{
+  background-color: rgba(109, 188, 128, 0.65);
   color: #ffffff;
+}
+
+.navbar .nav > li > a:hover, .navbar .nav > li > a:active, .navbar .nav > li > a:focus{
+  background-color: rgba(255, 255, 255, 0.0);
 }
 
 .navbar-header > a{
