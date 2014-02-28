@@ -28,7 +28,7 @@ def makeUser(n):
 			'phone': fake.phone_number()
 		}
 		user_id = db_users.insert(user)
-		print 'Added user: ', user_i
+		print 'Added user: ', user_id
 		users.append(user)
 	return users
 
@@ -120,11 +120,11 @@ def makeReviews(n):
 	return reviews
 
 def main():
-	# makeUser(1)
-	# makeLot(10)
-	# makeSpot(20)
-	# makeVehicle(10)
-	# makeReviews(50)
+	makeUser(1)
+	makeLot(10)
+	makeSpot(20)
+	makeVehicle(10)
+	makeReviews(50)
 
 
 

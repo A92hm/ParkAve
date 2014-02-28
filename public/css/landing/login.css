@@ -1,21 +1,16 @@
 #login-modal > div > div  {
-  background-color: rgb(45, 66, 51);
+  background-color: rgba(109, 188, 128, 0.5);
   color: #FFFFFF !important;
 }
 
-#login-modal > div > div > .modal-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.38);
+#login-modal > div > div > div.modal-body > div.row > div > div.row {
+  margin-top: 30px !important;
+  margin-bottom: 30px;
 }
 
-#login-modal > div > div > .modal-body {
-}
-
-#login-modal > div > div > .modal-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.38);
-}
-
-
-.login-text-input {
+.login-main-input {
   height: 40px;
 }
+
+
 
