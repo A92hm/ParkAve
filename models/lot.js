@@ -15,7 +15,7 @@ var schema = mongoose.Schema({
   lon: Number
 });
 
-var Lot = mongoose.model('Lot', schema);
+var Lot = mongoose.model('lots', schema);
 
 module.exports = {
   Lot: Lot

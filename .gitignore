@@ -25,7 +25,6 @@
 node_modules
 bower_components
 db
-test_scripts/populate_db.py
 
 # Logs and databases #
 ######################
