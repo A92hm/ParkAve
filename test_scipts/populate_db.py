@@ -25,7 +25,9 @@ def makeUser(n):
 			'email': fake.free_email(),
 			'password': '$2a$10$r88KhLXgoIIZcvtXAJjsG.3mACfSkOkuRv1TynF0fmrTn5c7ThTpS', #soba
 			'birthdate': fake.date(pattern="%m-%d-%y"),
-			'phone': fake.phone_number()
+			'phone': fake.phone_number(),
+			'reservedSpots': [],
+			'spotHistory': []
 		}
 		user_id = db_users.insert(user)
 		print 'Added user: ', user_id

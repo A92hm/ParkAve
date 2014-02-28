@@ -18,7 +18,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
     render: function() {
       this.$el.html( this.template( this.model.toJSON() ) );
       this.$el.find('#login-modal').modal({show: true, backdrop: false});
-      this.$el.find('#input-login-password').focus();
+      this.$el.find('#input-login-password').get(0).focus(); // TODO not working
       return this;
     },
 
