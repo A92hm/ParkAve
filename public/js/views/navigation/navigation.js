@@ -72,11 +72,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       },
 
       // Reroute to the lots page
-      sellParking: function() {
+      sellParking: function(){
         Router.sharedInstance().navigate(this.model.clienturl() + '/lots', {trigger: true});
         return false;
       }
-      
     });
     return NavigationView;
 });
+
+

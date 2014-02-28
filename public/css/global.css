@@ -185,4 +185,9 @@ input.modern-input-inverse {
   margin-left: 0px;
 }
 
+.vertical-align-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 

@@ -23,7 +23,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showGetStarted: function(email){
-      var getStartedModel = new Backbone.Model( {email: email} );
+      var getStartedModel = new Backbone.Model( {firstName: '', lastName: '', email: email} );
       var getStartedView = new GetStartedView( {model: getStartedModel} );
       this.$el.html( getStartedView.render().el );
     },

@@ -1,7 +1,7 @@
-<nav class="navbar" role="navigation">
+<nav class="navbar soba-navbar" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Parkley</a>
+      <a class="navbar-brand" href="/"><span class="vertical-align-center">Parkley</span></a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
@@ -15,7 +15,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">user profile <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= firstName || 'Logged out'  + ' ' + lastName || '' %><b class="caret"></b></a>
           <ul class="dropdown-menu navbar-dropdown">
             <li><a href="settings">my account</a></li>
             <li><a href="parking-history">parking history</a></li>
