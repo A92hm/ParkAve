@@ -59,10 +59,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
     },
 
     openLoginModal: function(email){
-      var animateTime = 1200;
+      var animateTime = 800;
       $('#landing-page-content-block').animate({
-          'margin-right': '-700px',
-          'margin-left': '1310px'
+          'width': '0',
+          'margin-left': '100%'
         }, animateTime);
       var loginModel = new Backbone.Model( {email: email, animateTime: animateTime} );
       var loginView = new LoginView( {model: loginModel} );

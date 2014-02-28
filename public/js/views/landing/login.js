@@ -18,13 +18,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
     render: function() {
       this.$el.html( this.template( this.model.toJSON() ) );
       this.$el.find('#login-modal').modal({show: true, backdrop: false});
+      this.$el.find('#input-login-password').focus();
       return this;
     },
 
     modalHidden: function(){
       $('#landing-page-content-block').animate({
-          'margin-right': '-30px',
-          'margin-left': '-30px'
+          'width': 'inherit',
+          'margin-left': '0px'
         }, this.model.get('animateTime'));
     },
 

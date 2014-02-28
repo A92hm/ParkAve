@@ -9,11 +9,11 @@ fake = Factory.create()
 # client = MongoClient('mongodb://54.84.154.254')
 client = MongoClient('mongodb://localhost')
 db = client.parking
-db_users = db.User
-db_lots = db.Lot
-db_spots = db.Spot
-db_cars = db.Car
-db_reviews = db.Review
+db_users = db.users
+db_lots = db.lots
+db_spots = db.spots
+db_cars = db.cars
+db_reviews = db.reviews
 
 
 def makeUser(n):

@@ -78,7 +78,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       var usersCollection = new UsersCollection([newUser]);
 
       newUser.set({
-        name: firstName + ' ' + lastName,
+        firstName: firstName,
+        lastName: lastName,
         birthdate: dateOfBirth,
         phone: phone,
         email: email,

@@ -3,6 +3,11 @@
   color: #FFFFFF !important;
 }
 
+#login-modal > div > div  {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
 #login-modal > div > div > div.modal-body > div.row > div > div.row {
   margin-top: 30px !important;
   margin-bottom: 30px;
@@ -10,6 +15,23 @@
 
 .login-main-input {
   height: 40px;
+}
+
+button.login-main-input {
+  background-color: rgba(84, 169, 103, 1);
+}
+
+button.login-main-input:hover, button.login-main-input:focus, button.login-main-input:active {
+  background-color: rgba(84, 169, 103, 0.82);
+}
+
+.login-modal-close-button {
+  box-shadow: none;
+  color: #FFF;
+}
+
+.login-modal-close-button:hover, .login-modal-close-button:focus, .login-modal-close-button:active {
+  color: #EEE;
 }
 
 
