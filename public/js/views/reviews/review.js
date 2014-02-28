@@ -32,7 +32,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
        // console.log('date: ');
       //console.log(date);
       var formattedDate = date.substring(0,10);
-      console.log(this.reviewer);
       //set the model
       this.model.set({reviewerID: this.reviewerID, reviewerName: name, reviewDate: formattedDate});
 

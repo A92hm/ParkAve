@@ -32,8 +32,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
       this.$reviewBody.html( this.feedbackList.render().el );
     },
     submitClick: function(){
-      console.log("submit clicked");
-
+      this.feedbackList.filter(this.$el.find('#filter-input').val());
       return false;
     },
     sortDate: function(){

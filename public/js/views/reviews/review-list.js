@@ -8,17 +8,26 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
 
     events: {
     },
+    createCollection:function(){
+      //create a new collection
+      this.collection = null;
+      this.collection = new ReviewCollection([],{user: this.user});
+      this.collection.fetch();
+    },
 
     initialize: function(options) {
       this.user = options.user;
-      //create collection
-      this.collection = new ReviewCollection([],{user: this.user});
-      this.collection.fetch();
+      this.createCollection();
 
       //stuff for the average rating
       this.count = 0;
       this.starTot = 0;
       this.averageStars = -1;//no average calculated
+
+      //filters
+      this.dateSortTick = 1;
+      this.starSortTick = 1;
+      this.lengthAccend= true;
 
       //listeners
       this.listenTo(this.collection, 'reset', this.addAll);
@@ -35,73 +44,50 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       return this;
     },
     addAll: function(){
+      console.log('add all');
       this.$reviewList.empty();
       this.collection.each(this.addOne, this);
     },
-    addOne: function(review){
+    addOne: function(review){// methond
       //calculate star average
       this.count++;
+      console.log('add: '+this.collection.models.length);
       this.starTot += review.get("stars");
-      if(this.count == this.collection.length){
-        this.averageStars = (this.starTot/this.collection.length);
+      if(this.count == this.collection.models.length){
+        this.averageStars = (this.starTot/this.collection.models.length);
         this.addAverageStars();
       }
-      console.log("adding one");
       //slowly add reviews
       var reviewView = new Review({model: review, user: this.user});
       var $review = reviewView.render().$el;
-      this.$reviewList.delay(400).queue(function (next) {
-        $(this).append($review.fadeIn(400));
+      this.$reviewList.delay(200).queue(function (next) {
+        $(this).append($review.fadeIn(00));
         next();
       });
-    },
-    getAverage: function(){
-      var total = 0;
-      var count = 0;
-      this.collection.each(function(review){
-        count++;
-        total = total + review.get("stars");
-        console.log("strs"+ review.get("stars"));
-      },this);
-      console.log('total: '+total);
-      return total/count;
     },
     sortDate: function(){
       console.log("sort date clicked");
       this.collection.comparator = 'date';
+      
       this.collection.sort({});
-      //this.collection.reset(this.collection);
-      //this.addAll();
+      this.dateSortTick*=-1;
+      this.addAll();
       return false;
     },
     sortStars: function(){
-      console.log("sort stars clicked");
-      this.collection.comparator = function(r1,r2){
-        console.log("inside comparator");
-        var retNum = 0;
-        if(r1.get("stars") == r2.get("stars")){
-          retNum = 0;
-        }
-        else if(r1.get("stars") > r2.get("stars")){
-          retNum = -1;
-        }
-        else{
-          retNum = 1;
-        }
-        console.log(retNum);
-        return retNum;
-      };
+      console.log("star acc: " +this.starSortTick);
+      this.collection.comparator = 'stars';
+      if(this.starSortTick > 0){
+        this.collection.comparator = function(review){
+          return -review.get('stars');
+        };
+      }
       this.collection.sort();
       this.$reviewList.empty();
-      //console.log(this.collection.length);
-      console.log(this);
-      this.collection.each(function(r){
-        console.log(r.get("stars"));
-        //this.addOne(r);
-      }, this);
+   
+      this.starSortTick*=-1;
+
       this.addAll();
-      //this.collection.reset();
-      //this.collection.fetch();
       return false;
     },
     sortLength: function(){
@@ -110,14 +96,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       this.collection.sort({});
       return false;
     },
-
-
-
-
-
     addAverageStars: function(){
       this.$el.find('#stars').empty();
       var starCount = 0;//count stars so we can add empty stars
+        console.log('star average');
         for (var i = 0; i < this.averageStars; i++) {//add each star
           starCount++;
           this.$el.find('#stars').delay(500).queue(function(next){
@@ -126,19 +108,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
           });
         };
         //add empty stars
-        for (var i = 0; i <= (5-starCount); i++) {//add each star
-          starCount++;
+        for (var i = 0; i < (5-starCount); i++) {//add each star
           this.$el.find('#stars').delay(500).queue(function(next){
             $(this).append( $("<span class=\"glyphicon glyphicon-star-empty\"></span>").fadeIn(600));//animate in
             next();
           });
         };
         //based on average stars change the color
-        if(this.averageStars < 3 ){
+        if(starCount < 2 ){
         //bad rating
           this.$el.find(".average-stars").attr("id", "badAverage");
         }
-        else if(this.averageStars < 4){
+        else if(starCount < 4){
           //ok rating
           this.$el.find(".average-stars").attr("id", "okAverage");
         }
@@ -146,8 +127,37 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
           //good rating
           this.$el.find(".average-stars").attr("id", "goodAverage");
         }
+        //reset counters
+        this.count =0;
+        this.starTot = 0;
+    },
+    filter: function(term){
+            console.log(term);
+
+      if(term == ""){
+        term = " ";
+      }
+      var found = this.collection.filter(function(review){
+        var split = term.split(" ");
+        var count = 0;
+        for(var s in split){
+          if(review.get('body').indexOf(split[s]) != -1)
+            count++;
+        }
+        if(count != split.length-1) 
+          return true;
+        else
+          return false;
+      });
+      //clear review list and add items
+      
+      this.collection.models = found;
+      this.addAll();
+      /*
+      this.$reviewList.empty();
+      _.each(found, this.addOne);
+      */
     }
-    
 
 
 
