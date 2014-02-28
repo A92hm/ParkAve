@@ -9,19 +9,19 @@ fake = Factory.create()
 # client = MongoClient('mongodb://54.84.154.254')
 client = MongoClient('mongodb://localhost')
 db = client.parking
-db_users = db.User
-db_lots = db.Lot
-db_spots = db.Spot
-db_cars = db.Car
-db_reviews = db.Review
+db_users = db.users
+db_lots = db.lots
+db_spots = db.spots
+db_cars = db.cars
+db_reviews = db.reviews
 
 
 def makeUser(n):
 	users = []
 	for i in xrange(0, n):
 		user = {
-			'first_name': fake.first_name(),
-			'last_name': fake.last_name(),
+			'firstName': fake.first_name(),
+			'lastName': fake.last_name(),
 			'email': fake.free_email(),
 			'password': '$2a$10$r88KhLXgoIIZcvtXAJjsG.3mACfSkOkuRv1TynF0fmrTn5c7ThTpS', #soba
 			'birthdate': fake.date(pattern="%m-%d-%y"),
@@ -127,7 +127,6 @@ def main():
 	 makeSpot(20)
 	 makeVehicle(10)
 	 makeReviews(50)
-
 
 
 

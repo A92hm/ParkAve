@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     Car = require('./models/car').Car;
 
 //mongoose.connect('mongodb://54.84.154.254/parking');  // Production
-mongoose.connect('mongodb://localhost/dummydb');
+mongoose.connect('mongodb://localhost/parking');
 var db = mongoose.connection;
 
 db.on('error', function(msg) {
@@ -14,9 +14,22 @@ db.on('error', function(msg) {
 
 db.once('open', function() {
   console.log('Mongoose connection established');
-  populateDB();
+  // populateDB();
+  getDB();
 });
 
+
+function getDB()
+{
+  console.log('Inside getDB');
+  User.find({}, function(err, users) {
+
+    _.each(users, function(user){
+      console.log(user)
+    });
+
+  });
+}
 // in case the above does not work:
 /*
 mongoose.connect('mongodb://localhost/blog', function(server, err) {
@@ -32,7 +45,8 @@ function populateDB() {
   
   var users = [
     {
-      name: "Joe Plumber",
+      firstName: "Joe Plumber",
+      lastName: "Joe Plumber",
       email: "joeplumber@america.com",
       password: "password",
       birthdate: "1981-01-20",
@@ -40,7 +54,8 @@ function populateDB() {
       //id: 530d6db9614f81a34047f5f0
     },
     {
-      name: "Jack Footballfan",
+      firstName: "Jack Footballfan",
+      lastName: "Joe Plumber",
       email: "jackfb@america.com",
       password: "password",
       birthdate: "1990-11-20",
@@ -48,7 +63,8 @@ function populateDB() {
       //id: 530d6db9614f81a34047f5f1
     },
     {
-      name: "Marge Wellington",
+      firstName: "Marge Wellington",
+      lastName: "Marge Wellington",
       email: "marWell@america.com",
       password: "password",
       birthdate: "1990-11-20",
@@ -56,7 +72,8 @@ function populateDB() {
       //id: 530d6db9614f81a34047f5f2
     },
     {
-      name: "Kate Smith",
+      firstName: "Kate Smith",
+      lastName: "Kate Smith",
       email: "ksmith@america.com",
       password: "password",
       birthdate: "1990-11-20",
@@ -64,7 +81,8 @@ function populateDB() {
       //id: 530d6db9614f81a34047f5f3
     },
     {
-      name: "Barb Johnson",
+      firstName: "Joe Plumber",
+      lastName: "Barb Johnson",
       email: "bjohn@america.com",
       password: "password",
       birthdate: "1990-11-20",
@@ -72,7 +90,8 @@ function populateDB() {
       //id: 530d6db9614f81a34047f5f4
     },
     {
-      name: "Jason Carder",
+      firstName: "Joe Plumber",
+      lastName: "Jason Carder",
       email: "jcarter@america.com",
       password: "password",
       birthdate: "1990-11-20",

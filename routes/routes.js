@@ -29,6 +29,7 @@ module.exports = {
     app.post( '/api/users/session', usersController.session);  // used to validate email/password combinations -- give it an email and password
 
     //reviews
+    app.get(  '/api/reviews', reviewsController.showAll);                    //show all of the reviews
     app.get(  '/api/users/:uid/reviews', reviewsController.index);           // get all reviews for the user the given id
     app.get(  '/api/users/:uid/reviews/:rid', reviewsController.show);       // get a specific review for the given user and review ids 
     app.post( '/api/users/:uid/reviews', reviewsController.create);          // create a review in the database for the user with the given uid
