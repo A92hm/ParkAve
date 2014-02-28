@@ -10,9 +10,9 @@ var schema = mongoose.Schema({
   address: {
     address1: {type: String, require: true, trim: true},
     address2: {type: String, require: false, trim: true},
-    city: String,
-    zip: String,
-    state: String
+    city: {type: String, require: true, trim: true},
+    zip: {type: String, require: true, trim: true},
+    state: {type: String, require: true, trim: true},
   },
   lat: Number,
   lon: Number

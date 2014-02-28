@@ -8,7 +8,7 @@ var schema = mongoose.Schema({
   user_id: {type: ObjectId, require:true},
   title: {type: String, require: true, trim: true},
   date: Date,
-  buyer_list: [String],
+  buyer_list: [Schema.ObjectId],
   numSpots: Number,
   blocked: Boolean,
   size: String,
