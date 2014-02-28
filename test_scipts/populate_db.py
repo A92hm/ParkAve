@@ -9,11 +9,11 @@ fake = Factory.create()
 # client = MongoClient('mongodb://54.84.154.254')
 client = MongoClient('mongodb://localhost')
 db = client.parking
-db_users = db.users
-db_lots = db.lots
-db_spots = db.spots
-db_vehicles = db.vehicles
-db_reviews = db.reviews
+db_users = db.User
+db_lots = db.Lot
+db_spots = db.Spot
+db_cars = db.Car
+db_reviews = db.Review
 
 
 def makeUser(n):
@@ -28,7 +28,7 @@ def makeUser(n):
 			'phone': fake.phone_number()
 		}
 		user_id = db_users.insert(user)
-		print 'Added user: ', user_i
+		print 'Added user: ', user_id
 		users.append(user)
 	return users
 
@@ -90,12 +90,14 @@ def makeVehicle(n):
 		vehicle = {
 			'make' : choice(['BMW','Honda','Toyota','Kia','Nissan','Hyundai', 'Jeep','Ford','Chevrolet']),
 			'model': fake.word(),
+			'year' : fake.date(pattern="%y"),
+			'color': fake.word(),
 			'type' : choice(['Sedan', 'Truck', 'SUV', 'Minivan', 'Van', 'Compact']),
 			'license' : fake.bothify(text="???###"),
 			'state' : fake.state(),
 			'user_id': choice(users)['_id']
 		}
-		vehicle_id = db_vehicles.insert(vehicle)
+		vehicle_id = db_cars.insert(vehicle)
 		print 'Added vehicle: ', vehicle_id
 		vehicles.append(vehicle)
 	return vehicles
@@ -120,11 +122,19 @@ def makeReviews(n):
 	return reviews
 
 def main():
-	# makeUser(1)
-	# makeLot(10)
-	# makeSpot(20)
-	# makeVehicle(10)
-	# makeReviews(50)
+<<<<<<< HEAD
+	 makeUser(10)
+	 makeLot(10)
+	 makeSpot(20)
+	 makeVehicle(10)
+	 makeReviews(50)
+=======
+	makeUser(10)
+	makeLot(10)
+	makeSpot(20)
+	makeVehicle(10)
+	makeReviews(50)
+>>>>>>> dc65e94d041fe06eb2cf59696359b09a2d97245b
 
 
 
