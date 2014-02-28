@@ -1,8 +1,11 @@
 
 var mongoose = require('mongoose');
 
+var Schema = mongoose.Schema,
+  ObjectId = Schema.ObjectId;
+
 var schema = mongoose.Schema({
-  user_id: String,
+  user_id: {type: ObjectId, require:true},
   title: {type: String, require: true, trim: true},
   date: Date,
   buyer_list: [String],
@@ -11,8 +14,8 @@ var schema = mongoose.Schema({
   size: String,
   price: Number,
   surface: String,
-  event_id: String,
-  lot_id: String
+  event_id: ObjectId,
+  lot_id: {type: ObjectId, require:true}
 });
 
 
