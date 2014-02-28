@@ -83,11 +83,21 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
         };
       }
       this.collection.sort();
-      this.$reviewList.empty();
+      this.$reviewList.html('');
    
       this.starSortTick*=-1;
 
-      this.addAll();
+      this.collection.each(function(review){
+        var reviewView = new Review({model: review, user: this.user});
+        var $theReview = reviewView.render().$el;
+        
+        this.$reviewList.delay(200).queue(function (next) {
+          $(this).append($theReview.fadeIn(00));
+            next();
+          });
+
+      },this);
+
       return false;
     },
     sortLength: function(){
