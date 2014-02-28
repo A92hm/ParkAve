@@ -38,8 +38,8 @@
 
 /* modern-input (used in get started page) */
 .modern-input {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.68);
+  color: #000 !important;
 }
 button.modern-input > i {
   font-size: 28px;
@@ -58,21 +58,23 @@ button.modern-input {
   -webkit-appearance: none;
 }
 div .modern-input-group:hover > input, div .modern-input-group:hover > span > button  {
-  background-color: rgba(255, 255, 255, 0.38);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 input.modern-input:focus, button.modern-input:focus, button.modern-input:active {
   border-color: inherit;
   -webkit-box-shadow: none;
   box-shadow: none;
   outline: none !important;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.68);
+  color: #000;
 }
 input.modern-input:hover, button.modern-input:hover {
   border-color: inherit;
   -webkit-box-shadow: none;
   box-shadow: none;
   outline: none !important;
-  background-color: rgba(255, 255, 255, 0.38);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
 }
 input.modern-input {
   padding-left: 18px !important;
@@ -89,25 +91,25 @@ input.modern-input {
   -webkit-appearance: none;
 }
 .modern-input::-webkit-input-placeholder { /* WebKit browsers */
-  color: #CCC !important;
-  font-weight: 10 !important;
+  color: #000 !important;
+  font-weight: 100 !important;
   letter-spacing: 1.5px;
 }
 .modern-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color:    #CCC !important;
+  color:    #000 !important;
 }
 .modern-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color:    #CCC !important;
+  color:    #000 !important;
 }
 .modern-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-  color:    #CCC !important;
+  color:    #000 !important;
 }
 
 
 /* moder-input-inverse (used in landing page) */
 .modern-input-inverse {
   background-color: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.5);
+  color: #FFF;
 }
 button.modern-input-inverse > i {
   font-size: 28px;
@@ -134,6 +136,7 @@ input.modern-input-inverse:focus, button.modern-input-inverse:focus, button.mode
   box-shadow: none;
   outline: none !important;
   background-color: rgba(255, 255, 255, 0.5);
+  color: #FFF;
 }
 input.modern-input-inverse:hover, button.modern-input-inverse:hover {
   border-color: inherit;
@@ -141,6 +144,7 @@ input.modern-input-inverse:hover, button.modern-input-inverse:hover {
   box-shadow: none;
   outline: none !important;
   background-color: rgba(255, 255, 255, 0.38);
+  color: #FFF;
 }
 input.modern-input-inverse {
   padding-left: 18px !important;

@@ -1,11 +1,14 @@
 .get-started-div {
   position: absolute;
-  top: 90px;
+  top: 0px;
   right: 0px;
   left: 0px;
   background-image: url('../../images/background.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
+}
+.get-started-div > div.container {
+  margin-top: 90px;
 }
 .get-started-page-title {
   margin-top: 60px;
