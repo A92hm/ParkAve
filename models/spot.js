@@ -16,7 +16,7 @@ var schema = mongoose.Schema({
 });
 
 
-var Spot = mongoose.model('Spot', schema);
+var Spot = mongoose.model('spots', schema);
 
 module.exports = {
   Spot: Spot

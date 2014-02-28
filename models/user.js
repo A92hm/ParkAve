@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
   phone: {type: String, require: true, trim: true}
 });
 
-var User = mongoose.model('User', userSchema);
+var User = mongoose.model('users', userSchema);
 
 module.exports = {
   User: User

@@ -20,8 +20,8 @@ def makeUser(n):
 	users = []
 	for i in xrange(0, n):
 		user = {
-			'first_name': fake.first_name(),
-			'last_name': fake.last_name(),
+			'firstName': fake.first_name(),
+			'lastName': fake.last_name(),
 			'email': fake.free_email(),
 			'password': '$2a$10$r88KhLXgoIIZcvtXAJjsG.3mACfSkOkuRv1TynF0fmrTn5c7ThTpS', #soba
 			'birthdate': fake.date(pattern="%m-%d-%y"),
@@ -126,8 +126,7 @@ def main():
 	makeLot(10)
 	makeSpot(20)
 	makeVehicle(10)
-	makeReviews(50)
-
+	makeReviews(100)
 
 
 if __name__ == '__main__':
