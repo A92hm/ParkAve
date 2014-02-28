@@ -25,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
     render: function() {
       
       //set the buyer name
-      var name = this.reviewer.get("name");
+      var name = this.reviewer.get("firstName") + this.reviewer.get("lastName");
 
       //format the date
       var date = this.model.get("date");

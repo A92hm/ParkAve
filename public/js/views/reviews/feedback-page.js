@@ -10,7 +10,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
       'click #submit-button' : 'submitClick',
       'click a[href="#sortdate"]' : 'sortDate',
       'click a[href="#sortlength"]' : 'sortLength',
-      'click a[href="#sortstars"]' : 'sortStars'
+      'click a[href="#sortstars"]' : 'sortStars',
     },
 
     initialize: function(options) {
@@ -32,7 +32,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
       this.$reviewBody.html( this.feedbackList.render().el );
     },
     submitClick: function(){
-      this.feedbackList.filter(this.$el.find('#filter-input').val());
+      console.log('test');
+      //this.input = $('#filter-input').val();
+      console.log(this.input);
+      var input = " ";
+      this.feedbackList.filter(input);
       return false;
     },
     sortDate: function(){
@@ -46,6 +50,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
     sortLength: function(){
       console.log("sort length clicked");
       
+      return false;
+    },
+    test: function(){
+      console.log('test');
+      //this.input = $('#filter-input').val();
+      console.log(this.input);
+      //this.feedbackList.filter(this.$el.find('#filter-input').val());
+     // this.submitClick();
       return false;
     }
 

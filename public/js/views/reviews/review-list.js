@@ -132,7 +132,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
         this.starTot = 0;
     },
     filter: function(term){
-            console.log(term);
+      console.log(term);
 
       if(term == ""){
         term = " ";
