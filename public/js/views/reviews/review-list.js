@@ -59,9 +59,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       }
       //slowly add reviews
       var reviewView = new Review({model: review, user: this.user});
-      var $review = reviewView.render().$el;
+      var $theReview = reviewView.render().$el;
       this.$reviewList.delay(200).queue(function (next) {
-        $(this).append($review.fadeIn(00));
+        $(this).append($theReview.fadeIn(00));
         next();
       });
     },
@@ -133,16 +133,20 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
     },
     filter: function(term){
       console.log(term);
-
+      
       if(term == ""){
         term = " ";
       }
+      
       var found = this.collection.filter(function(review){
         var split = term.split(" ");
         var count = 0;
         for(var s in split){
-          if(review.get('body').indexOf(split[s]) != -1)
+          //console.log(review.get('body'))
+          if(review.get('body').indexOf(split[s]) != -1){
             count++;
+          }
+          
         }
         if(count != split.length-1) 
           return true;
@@ -150,9 +154,26 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
           return false;
       });
       //clear review list and add items
-      
+      console.log(found);
       this.collection.models = found;
-      this.addAll();
+      //this.addAll();
+      console.log('add all');
+      //this.$reviewList.empty();
+      this.$reviewList.html('');
+      this.collection.each(function(review){
+        var reviewView = new Review({model: review, user: this.user});
+        var $theReview = reviewView.render().$el;
+        this.$reviewList.html($theReview);
+        /*
+        this.$reviewList.delay(200).queue(function (next) {
+          $(this).append($theReview.fadeIn(00));
+          next();
+        });
+      */
+      }, this);
+      
+
+
       /*
       this.$reviewList.empty();
       _.each(found, this.addOne);

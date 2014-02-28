@@ -32,11 +32,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
       this.$reviewBody.html( this.feedbackList.render().el );
     },
     submitClick: function(){
-      console.log('test');
+      //console.log('test');
       //this.input = $('#filter-input').val();
-      console.log(this.input);
+      //console.log(this.input);
       var input = " ";
-      this.feedbackList.filter(input);
+      this.feedbackList.filter($('#filter-input').val());
       return false;
     },
     sortDate: function(){
