@@ -89,18 +89,18 @@ input.modern-input {
   -webkit-appearance: none;
 }
 .modern-input::-webkit-input-placeholder { /* WebKit browsers */
-  color: #EEE !important;
+  color: #CCC !important;
   font-weight: 10 !important;
   letter-spacing: 1.5px;
 }
 .modern-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color:    #EEE !important;
+  color:    #CCC !important;
 }
 .modern-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color:    #EEE !important;
+  color:    #CCC !important;
 }
 .modern-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-  color:    #EEE !important;
+  color:    #CCC !important;
 }
 
 

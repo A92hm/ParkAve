@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
-  name: {type: String, require: true, trim: true},
+  firstName: {type: String, require: true, trim: true},
+  lastName: {type: String, require: true, trim: true},
   email: {type: String, require: true, trim: true},
   password: {type: String, require: true, trim: true},
-  birthdate: {type: String, require: true, trim: true},
+  birthdate: {type: Date, require: true, trim: true},
   phone: {type: String, require: true, trim: true}
 });
 
