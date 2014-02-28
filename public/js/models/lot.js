@@ -4,7 +4,9 @@ define(['underscore','backbone'], function(_, Backbone) {
     idAttribute: '_id',
 
     defaults: {
-      title: 'Untitled'
+      title: 'Untitled',
+      latitude: 120,
+      longitude: 120
     },
 
     initialize: function() {

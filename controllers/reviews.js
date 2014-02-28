@@ -3,7 +3,7 @@ var Review = require('./../models/review').Review;
 module.exports = {
   index: function(req, res) {
     console.log('review index');
-    Review.find({revieweeID: req.params.uid}, function(err, reviews) {
+    Review.find({reviewee_id: req.params.uid}, function(err, reviews) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {

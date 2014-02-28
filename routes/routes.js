@@ -4,6 +4,7 @@ var path = require('path'),
 // Require your controllers here
 // Example: var postsController = require('./../controllers/posts.js');  
 var lotsController = require('./../controllers/lots.js');
+var spotsController = require('./../controllers/spots.js');
 var reviewsController = require('./../controllers/reviews.js');
 var carsController = require('./../controllers/cars.js');
 function sendIndexFile(res){
@@ -17,12 +18,6 @@ module.exports = {
     });
 
     // API Routes go here
-    // Example
-    // app.get(  '/api/posts',     postsController.index);
-    // app.get(  '/api/posts/:id', postsController.show);
-    // app.post( '/api/posts',     postsController.create);
-    // app.put(  '/api/posts/:id', postsController.update);
-    // app.del(  '/api/posts/:id', postsController.destroy);
     app.get(  '/api', function(req, res){ res.send("working"); });
     
     app.get(  '/api/users',     usersController.index);     // get all users
@@ -47,12 +42,19 @@ module.exports = {
     app.put(  '/api/users/:uid/cars/:cid', carsController.update);    // update the specific car for the given user and car ids
     app.del(  '/api/users/:uid/cars/:cid', carsController.destroy);   // delete the specific car for the given user and car ids
 
-    // lots
-    app.get(  '/api/lots',     lotsController.index);
-    app.get(  '/api/lots/:uid', lotsController.show);
-    app.post( '/api/lots',     lotsController.create);
-    app.put(  '/api/lots/:uid', lotsController.update);
-    app.del(  '/api/lots/:uid', lotsController.destroy);
+    // Lots
+    app.get(  '/api/users/:uid/lots',     lotsController.index);        // Get all of the lots for a specified user id
+    app.get(  '/api/users/:uid/lots/:lid', lotsController.show);        // Get a specific lot for a specified user id
+    app.post( '/api/users/:uid/lots',     lotsController.create);       // Create a lot in the database for a specified user id
+    app.put(  '/api/users/:uid/lots/:lid', lotsController.update);      // Update the specific lot for a specified user id and lot id
+    app.del(  '/api/users/:uid/lots/:lid', lotsController.destroy);     // Delete the specific lot for a specified user id and lot id
+
+    // Spots
+    app.get(  '/api/users/:uid/lots/:lid/spots', spotsController.index);        // Get all of the spots for a specific lot id and user id
+    app.get(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.show);    // Get a specific spot for a specific lot and user id
+    app.post( '/api/users/:uid/lots/:lid/spots', spotsController.create);       // Create a spot in the database for a specific lot id
+    app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);  // Update a specific spot give a specified spot, lot, and user id
+    app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy); // Delete the speceific spot from the database
 
     // Non-API routes
 

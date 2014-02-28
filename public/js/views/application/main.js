@@ -1,12 +1,12 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
-        'models/user', 'models/lot', 'collections/users', 'collections/lots',
+        'models/user', 'models/lot', 'models/spot', 'collections/users', 'collections/lots', 'collections/spots',
         'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
-        'views/lot/lot-list', 'views/lot/lot', 'views/user/home',
+        'views/lot/lot-list', 'views/lot/lot', 'views/spot/spot-list', 'views/spot/spot', 'views/user/home',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
         'collections/reviews'
         ], 
-  function($, _, Backbone, Template, User, Lot, UsersCollection, LotsCollection, LandingView, GetStartedView, LoginView, 
-          LotsListView, LotView, UserPageView, FeedbackView, ReviewList, UserSettingsView, ReviewCollection) {
+  function($, _, Backbone, Template, User, Lot, Spot, UsersCollection, LotsCollection, SpotsCollection, LandingView, GetStartedView, LoginView, 
+          LotsListView, LotView, SpotsListView, SpotView, UserPageView, FeedbackView, ReviewList, UserSettingsView, ReviewCollection) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -28,20 +28,68 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.$el.html( getStartedView.render().el );
     },
 
-    showLots: function() {
-      var lots = new LotsCollection();
+    showLogin: function(){
+      if(this.$el.find('.landing-view-div').length == 0){
+        var landingView = new LandingView();
+        this.$el.html( landingView.render().el );
+      }
+
+      var loginView = new LoginView();
+      this.$el.append( loginView.render().el );
+    },
+
+    showLots: function(uid) {
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+      var lots = new LotsCollection([], {user: tempUser});
+
       var lotsView = new LotsListView({collection: lots})
       $('#content').html( lotsView.render().el );
       lots.fetch();
     },
 
-    showLot: function(id) {
-      var lot = new Lot({_id: id});
-      var lots = new LotsCollection([lot]);
-      
+    showLot: function(uid, lid) {
+
+      // need to make user and user collection for lot to load
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+
+      var lot = new Lot({_id: lid});
+      var lots = new LotsCollection([lot], {user: tempUser});
+
       var lotView = new LotView({model: lot});
       $('#content').html( lotView.el );
       lot.fetch();
+      console.log('showing lot');
+    },
+
+    showSpots: function(uid, lid) {
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+
+      var lot = new Lot({_id: lid});
+      var lots = new LotsCollection([lot], {user: tempUser});
+
+      var spots = new SpotsCollection([], {lot: lot, user: tempUser});
+
+      var spotsView = new SpotsListView({collection: spots})
+      $('#content').html( spotsView.render().el );
+      spots.fetch();
+    },
+
+    showSpot: function(uid, lid, sid) {
+      var tempUser = new User( {_id: uid});
+      var usersCollection = new UsersCollection([tempUser]);
+
+      var lot = new Lot({_id: lid});
+      var lots = new LotsCollection([lot], {user: tempUser});
+
+      var spot = new Spot({_id: sid});
+      var spots = new SpotsCollection([spot], {lot: lot});
+      
+      var spotView = new SpotView({model: spot});
+      $('#content').html( spotView.el );
+      spot.fetch();
     },
 
     showUserPage: function(uid){

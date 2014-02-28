@@ -3,7 +3,7 @@ var Car = require('./../models/car').Car;
 module.exports = {
   index: function(req, res) {
     console.log('car index');
-    Car.find({ownerID: req.params.uid}, function(err, reviews) {
+    Car.find({user_id: req.params.uid}, function(err, reviews) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {

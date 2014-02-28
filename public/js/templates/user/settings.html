@@ -1,14 +1,14 @@
 <div id = "navbar">
 </div>
 <div class="user-profile-container">
-  <div class = "row">
+  <div class = "row" id = "rowGeneralUserData">
     <div class = "col-md-4">
       <img src="http://wallpaper.pickywallpapers.com/1920x1080/splashy-abstract.jpg" alt="Responsive image"class="img-rounded" height = 200; width = 200>
       <br>
       <span class="text-muted">@username</span>  
     </div>
     <div class = "col-md-8">
-      <h2>My Account</h2>
+      <h2><i class="fa fa-user"></i>My Account</h2>
       <hr>
       <form role = "form">
         <div class = "form-group">
@@ -36,7 +36,18 @@
           <br>
           <input type="email" class="form-control" id="edit-email" value=<%= email %>>
         </div>
-        <div class = "form-group">
+        
+        <button id="update-account-button" type="button" class="btn btn-primary">Update Profile</button>
+      </form>
+      &nbsp
+    </div>
+  </div> <!-- end of rowGeneralUserData--> 
+  <div class = "row" id = "rowUserPassword">
+    <div class = "flex-module" >
+      <hr>
+    <h2>Change Password</h2>
+    <form role="form">
+      <div class = "form-group">
           <label for="input-old-password">Current Password (optional)</label>
           <br>
           <input type="password" class="form-control" id="input-old-password" placeholder="Enter current password">
@@ -51,9 +62,8 @@
           <br>
           <input type="password" class="form-control" id="confirm-new-password" placeholder="Confirm new password">
         </div>
-        <button id="update-account-button" type="button" class="btn btn-primary">Update Profile</button>
-      </form>
-      &nbsp
+    </form>
     </div>
+    
   </div>
 </div>
