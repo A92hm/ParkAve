@@ -1,8 +1,11 @@
 
 var mongoose = require('mongoose');
 
+var Schema = mongoose.Schema,
+  ObjectId = Schema.ObjectId;
+
 var schema = mongoose.Schema({
-  user_id: String,
+  user_id: {type: ObjectId, require:true},
   title: {type: String, require: true, trim: true},
   address: {
     address1: {type: String, require: true, trim: true},

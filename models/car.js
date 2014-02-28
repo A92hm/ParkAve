@@ -1,4 +1,7 @@
-var mongoose = require('mongoose');
+gvar mongoose = require('mongoose');
+
+var Schema = mongoose.Schema,
+	ObjectId = Schema.ObjectId;
 
 var carSchema = mongoose.Schema({
 	make: String,
@@ -7,7 +10,7 @@ var carSchema = mongoose.Schema({
 	plate: {type: String, require: true},
 	state: {type: String, require: true},
 	color: String,
-	user_id: {type: String, require: true}
+	user_id: {type: ObjectId, require:true},
 });
 
 var Car = mongoose.model('cars', carSchema);
