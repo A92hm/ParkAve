@@ -2,12 +2,13 @@ var Review = require('./../models/review').Review;
 
 module.exports = {
   index: function(req, res) {
-    console.log('review index');
-    Review.find({reviewee_id: req.params.uid}, function(err, reviews) {
+    console.log('review index: '+req.params.uid);
+    Review.find({reviewee_id: req.params.uid}, function(err, review) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
-        res.json(reviews);
+        console.log('Review: ' +review);
+        res.json(review);
       }
     });
   },
@@ -28,6 +29,16 @@ module.exports = {
         res.status(500).json({err: 'internal error'});
       } else {
         res.json(review);
+      }
+    });
+  },
+  showAll: function(req, res) {
+    console.log('review show all');
+    Review.find({}, function(err, reviews) {
+      if (err) {
+        res.status(500).json({err: 'internal error'});
+      } else {
+        res.json(reviews);
       }
     });
   },
