@@ -122,19 +122,12 @@ def makeReviews(n):
 	return reviews
 
 def main():
-<<<<<<< HEAD
 	 makeUser(10)
 	 makeLot(10)
 	 makeSpot(20)
 	 makeVehicle(10)
 	 makeReviews(50)
-=======
-	makeUser(10)
-	makeLot(10)
-	makeSpot(20)
-	makeVehicle(10)
-	makeReviews(50)
->>>>>>> dc65e94d041fe06eb2cf59696359b09a2d97245b
+
 
 
 

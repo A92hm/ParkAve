@@ -86,37 +86,37 @@ function populateDB() {
     {
       title: "I hate this guy",
       stars: 1,
-      reviewerID: "530d6db9614f81a34047f5f5",
-      revieweeID: "530d6db9614f81a34047f5f4",
+      reviewer_id: "530d6db9614f81a34047f5f5",
+      reviewee_id: "530d6db9614f81a34047f5f4",
       body: "worst place ever, she sold my spot...",
      
     },
     {
       title: "not that great",
       stars: 2,
-      reviewerID: "530d6db9614f81a34047f5f3",
-      revieweeID: "530d6db9614f81a34047f5f4",
+      reviewer_id: "530d6db9614f81a34047f5f3",
+      reviewee_id: "530d6db9614f81a34047f5f4",
       body: "she smells bad",
     },
     {
       title: "She is my hero",
       stars: 5,
-      reviewerID: "530d6db9614f81a34047f5f1",
-      revieweeID: "530d6db9614f81a34047f5f4",
+      reviewer_id: "530d6db9614f81a34047f5f1",
+      reviewee_id: "530d6db9614f81a34047f5f4",
       body: "really reliable, great service",
     },
     {
       title: "Good but..",
       stars: 4,
-      reviewerID: "530d6db9614f81a34047f5f0",
-      revieweeID: "530d6db9614f81a34047f5f4",
+      reviewer_id: "530d6db9614f81a34047f5f0",
+      reviewee_id: "530d6db9614f81a34047f5f4",
       body: "the lady's friend was mean",
     },
     {
-      title: "He accused me of something that didn't happen",
+      title: "He accused me of something that d_idn't happen",
       stars: 1,
-      reviewerID: "530d6db9614f81a34047f5f4",
-      revieweeID: "530d6db9614f81a34047f5f5",
+      reviewer_id: "530d6db9614f81a34047f5f4",
+      reviewee_id: "530d6db9614f81a34047f5f5",
       body: "left a bad review on my profile",
     },
   ];
@@ -128,7 +128,7 @@ function populateDB() {
       plate: '6T772H9',
       state: 'OK',
       color: 'blue',
-      ownerID: '530d6db9614f81a34047f5f5'
+      user_id: '530d6db9614f81a34047f5f5'
     },
     {
       make: 'ford',
@@ -137,7 +137,7 @@ function populateDB() {
       plate: '976H2H7',
       state: 'OK',
       color: 'blue',
-      ownerID: '530d6db9614f81a34047f5f4'
+      user_id: '530d6db9614f81a34047f5f4'
     },
     {
       make: 'toyoda',
@@ -146,7 +146,7 @@ function populateDB() {
       plate: '6TFU02H9',
       state: 'TX',
       color: 'green',
-      ownerID: '530d6db9614f81a34047f5f3'
+      user_id: '530d6db9614f81a34047f5f3'
     },
     {
       make: 'dodge',
@@ -155,7 +155,7 @@ function populateDB() {
       plate: '6T0H5S',
       state: 'CA',
       color: 'red',
-      ownerID: '530d6db9614f81a34047f5f2'
+      user_id: '530d6db9614f81a34047f5f2'
     },
     {
       make: 'acura',
@@ -164,7 +164,7 @@ function populateDB() {
       plate: '6G58JT9',
       state: 'NY',
       color: 'black',
-      ownerID: '530d6db9614f81a34047f5f1'
+      user_id: '530d6db9614f81a34047f5f1'
     },
     {
       make: 'honda',
@@ -173,7 +173,7 @@ function populateDB() {
       plate: '76HHE2Y',
       state: 'AK',
       color: 'grey',
-      ownerID: '530d6db9614f81a34047f5f0'
+      user_id: '530d6db9614f81a34047f5f0'
     },
   ];
 
