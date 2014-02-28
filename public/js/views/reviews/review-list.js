@@ -146,7 +146,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
           if(review.get('body').indexOf(split[s]) != -1){
             count++;
           }
-          
         }
         if(count != split.length-1) 
           return true;
@@ -157,20 +156,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       console.log(found);
       this.collection.models = found;
       //this.addAll();
-      console.log('add all');
+      //console.log('add all');
       //this.$reviewList.empty();
       this.$reviewList.html('');
-      this.collection.each(function(review){
-        var reviewView = new Review({model: review, user: this.user});
-        var $theReview = reviewView.render().$el;
-        this.$reviewList.html($theReview);
-        /*
-        this.$reviewList.delay(200).queue(function (next) {
-          $(this).append($theReview.fadeIn(00));
-          next();
-        });
-      */
-      }, this);
+      this.collection.each(this.addOne, this);
       
 
 

@@ -25,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
     render: function() {
       
       //set the buyer name
-      var name = this.reviewer.get("firstName") + this.reviewer.get("lastName");
+      var firstName = this.reviewer.get("firstName") ;
 
       //format the date
       var date = this.model.get("date");
@@ -33,7 +33,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
       //console.log(date);
       var formattedDate = date.substring(0,10);
       //set the model
-      this.model.set({reviewerID: this.reviewerID, reviewerName: name, reviewDate: formattedDate});
+      this.model.set({reviewerID: this.reviewerID, reviewerName: firstName, reviewDate: date});
 
       this.$el.html( this.template( this.model.toJSON() ) );
       var stars = this.model.get("stars");
