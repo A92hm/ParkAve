@@ -73,18 +73,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/home', {trigger: true});
         }
-<<<<<<< HEAD
-      }
-
-=======
-      },
-
-      // Reroute to the lots page
-      sellParking: function(){
-        Router.sharedInstance().navigate(this.model.clienturl() + '/lots', {trigger: true});
-        return false;
-      }
->>>>>>> 29ef145acbe15683d790ce0c80d851cf829631ee
     });
     return NavigationView;
 });
