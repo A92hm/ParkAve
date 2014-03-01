@@ -4,10 +4,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
 
     var NavigationView = Backbone.View.extend({
       tagName: 'div',
+      className: 'soba-navbar-container',
       template: _.template( Template ),
 
       events: {
-        'click a[href="usersettings"]': 'showUserSettingsPage',
+        'click a[href="settings"]': 'showUserSettingsPage',
 
         'click a[href="find-parking"]': 'showParkingLotPage',
         'click a[href="sell-parking"]': 'sellParkingLotPage',
@@ -30,6 +31,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       },
 
       showUserSettingsPage: function(){
+        if($('.user-settings-div').length != 0){
+          return true;
+        }
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/settings', {trigger: true});
         }
@@ -69,8 +73,20 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/home', {trigger: true});
         }
+<<<<<<< HEAD
       }
 
+=======
+      },
+
+      // Reroute to the lots page
+      sellParking: function(){
+        Router.sharedInstance().navigate(this.model.clienturl() + '/lots', {trigger: true});
+        return false;
+      }
+>>>>>>> 29ef145acbe15683d790ce0c80d851cf829631ee
     });
     return NavigationView;
 });
+
+

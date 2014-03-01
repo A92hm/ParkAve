@@ -4,7 +4,7 @@
   right: 0px;
   left: 0px;
   background-image: url('../../images/background.jpg');
-  background-size: 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 .get-started-div > div.container {
@@ -18,7 +18,7 @@
   border: none;
   margin-top: 30px;
   margin-bottom: 60px;
-  height: 480px;
+  height: 544px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;

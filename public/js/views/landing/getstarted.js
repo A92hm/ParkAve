@@ -7,6 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
     template: _.template( Template ),
 
     events: {
+      'keypress #input-password': 'checkPasswordInputForEnterKey',
       'click #sign-up-button': 'signUp'
     },
 
@@ -98,6 +99,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       }});
 
       return false;
+    },
+
+    checkPasswordInputForEnterKey: function(evt){
+      if(evt.keyCode == 13){
+        this.signUp();
+        return false;
+      }
     }
   });
 
