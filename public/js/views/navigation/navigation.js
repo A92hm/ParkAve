@@ -42,18 +42,22 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
 
 
       showParkingLotPage: function(){
-        Router.sharedInstance().navigate('lots', {trigger: true});
+        if(this.model.get('_id')){
+          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
+        }
         return false;
       },
 
       sellParkingLotPage: function(){
-        Router.sharedInstance().navigate('lots', {trigger: true});
+        if(this.model.get('_id')){
+          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
+        }
         return false;
       },
 
       showParkingHistoryPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('lots', {trigger: true});
+          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
         }
         return false;
       },
@@ -69,12 +73,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/home', {trigger: true});
         }
-      },
-
-      // Reroute to the lots page
-      sellParking: function(){
-        Router.sharedInstance().navigate(this.model.clienturl() + '/lots', {trigger: true});
-        return false;
       }
     });
     return NavigationView;
