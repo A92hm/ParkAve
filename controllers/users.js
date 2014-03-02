@@ -89,7 +89,7 @@ module.exports = {
   },
   destroy: function(req, res) {
     console.log('users destroy', req.params, req.body);
-    User.remove( {_id: req.params.cid}, function(err) {
+    User.remove( {_id: req.params.uid}, function(err) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       }else {
