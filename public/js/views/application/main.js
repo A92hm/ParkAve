@@ -58,7 +58,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var lots = new LotsCollection([lot], {user: tempUser});
 
       var lotView = new LotView({model: lot});
-      $('#content').html( lotView.el );
+      $('#content').html( lotView.render().el );
       lot.fetch();
       console.log('showing lot');
     },

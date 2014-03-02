@@ -43,8 +43,22 @@ module.exports = {
     });
   },
   update: function(req, res) {
-    console.log('review update', req.params, req.body);
-    res.status(500).json({err: 'unimplemented'});
+    console.log('reviews update', req.params, req.body);
+
+    var newReview = {};
+    _.each(req.body, function(value, key){
+      if(key != "__v" && key != "_id"){
+        newReview[key] = value;
+      }
+    });
+
+    Review.findByIdAndUpdate(req.params.rid, newReview, function(err){
+      if(err){
+        res.status(500).json({err: 'internal error'});
+      } else {
+        res.json({msg:'success'});
+      }
+    });
   },
   destroy: function(req, res) {
     console.log('review destroy', req.params, req.body);
