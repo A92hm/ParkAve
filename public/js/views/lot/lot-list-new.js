@@ -1,6 +1,7 @@
 
-define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', 'text!templates/widgets/inputerror.html',],
-  function($, _, Backbone, Template, InputErrorTemplate) {
+define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', 'text!templates/widgets/inputerror.html',
+  'models/lot', 'collections/lots'],
+  function($, _, Backbone, Template, InputErrorTemplate, Lot, LotsCollections) {
 
   var NewLotView = Backbone.View.extend({
     tagName: 'div',
@@ -13,7 +14,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
     },
 
     initialize: function() {
-      
+      this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'destroy', this.remove);
     },
 
     render: function() {
@@ -89,6 +91,31 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       // this.lotAttributes.longitude = globalJson.results[0].geometry.location.lon;
 
       this.trigger('dialog:save');
+
+      // Make the lot model and set their data
+      var newLot = new Lot();
+      newLot.set({
+        title: inputTitle.val(),
+        address1: inputAddress1.val(),
+        address2: inputAddress2.val(),
+        city: inputCity.val(),
+        zip: inputZip.val(),
+        state: inputState.val()
+      });
+
+      // Save the new Lot
+      newUser.save({}, {error: function(err){
+        console.log(err);
+      }, success: function(model, response){
+        if(!response.err){
+          Router.sharedInstance().navigate(newLot.clienturl(), {trigger: true});
+        }
+      }});
+
+      var lotsCollection = new LotsCollection([newLot]);
+
+      return false;
+
     }
   });
 
