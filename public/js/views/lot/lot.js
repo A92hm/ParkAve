@@ -21,7 +21,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     },
 
     render: function() {
-      console.log(this.model.toJSON());
       this.$el.html( this.template( this.model.toJSON() ) );
       return this; 
     },
@@ -36,7 +35,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
       this.model.destroy({wait: true})
         .done(function(data) {
           { // pop back to lots. this is annoying
+
+            // Need to get the user first
             var lots = new LotsCollection();
+            console.log("lots url", lots.clienturl());
             Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});
           }
         })

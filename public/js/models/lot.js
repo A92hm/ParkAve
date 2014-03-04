@@ -5,8 +5,15 @@ define(['underscore','backbone'], function(_, Backbone) {
 
     defaults: {
       title: 'Untitled',
-      latitude: 120,
-      longitude: 120
+      lat: 120,
+      lon: 120,
+      address: {
+        address1: "Foo",
+        address2: "",
+        city: "New York",
+        zip: "66232",
+        state: "HI"
+      }
     },
 
     initialize: function() {
