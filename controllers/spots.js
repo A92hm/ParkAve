@@ -3,7 +3,7 @@ var Spot = require('./../models/spot').Spot;
 module.exports = {
   index: function(req, res) {
     console.log('spots index');
-    Spot.find({}, function(err, spots) {
+    Spot.find({user_id: req.params.uid}, function(err, spots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
