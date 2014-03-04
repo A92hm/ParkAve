@@ -33,8 +33,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       var oldPassword = this.$el.find('#input-old-password').val();
       var newPassword = this.$el.find('#input-new-password').val();
       var confirmNewPassword = this.$el.find('#confirm-new-password').val();
-      if(firstName && lastName){
-        this.model.set('name', firstName + ' ' + lastName);
+      if(firstName){
+        this.model.set('firstName', firstName );
+      }
+      if(lastName){
+        this.model.set('lastName', lastName );
       }
       if(dateOfBirth){
         this.model.set('birthdate', dateOfBirth);

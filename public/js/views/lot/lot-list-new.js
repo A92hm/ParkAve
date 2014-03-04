@@ -100,7 +100,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
         address2: inputAddress2.val(),
         city: inputCity.val(),
         zip: inputZip.val(),
-        state: inputState.val()
+        state: inputState.val(),
+        lat = lat,
+        lon = lon
       });
 
       // Save the new Lot
