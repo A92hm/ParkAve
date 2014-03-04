@@ -96,8 +96,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
         city: inputCity.val(),
         zip: inputZip.val(),
         state: inputState.val(),
-        lat = lat,
-        lon = lon
+        lat : lat,
+        lon : lon
       });
 
       // Save the new Lot
