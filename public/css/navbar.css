@@ -56,9 +56,9 @@ src: local("Lucida Console");
 }
 
 .soba-navbar-search-input, .soba-navbar-search-input > div {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  height: 90px;
+  padding-top: 10px;
+  height: 100px;
+  vertical-align: bottom;
 }
 
 .soba-navbar-search-input > div > input {
