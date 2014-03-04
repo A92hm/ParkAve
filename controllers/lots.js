@@ -3,7 +3,7 @@ var Lot = require('./../models/lot').Lot;
 module.exports = {
   index: function(req, res) {
     console.log('lots index');
-    Lot.find({}, function(err, lots) {
+    Lot.find({user_id: req.params.uid}, function(err, lots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
@@ -18,6 +18,16 @@ module.exports = {
         res.status(500).json({err: 'internal error'});
       } else {
         res.json(lot);
+      }
+    });
+  },
+  showAllLots: function(req,res) {
+    console.log('show all of the lots');
+    Lot.find({}, function(err, lots) {
+      if (err) {
+        res.status(500).json({err: 'internal error'});
+      } else {
+        res.json(lots);
       }
     });
   },

@@ -49,6 +49,10 @@ module.exports = {
     app.post( '/api/users/:uid/lots',     lotsController.create);       // Create a lot in the database for a specified user id
     app.put(  '/api/users/:uid/lots/:lid', lotsController.update);      // Update the specific lot for a specified user id and lot id
     app.del(  '/api/users/:uid/lots/:lid', lotsController.destroy);     // Delete the specific lot for a specified user id and lot id
+    
+    app.get(  '/api/lots',     lotsController.showAllLots);             // Get all of the lots 
+    app.get(  '/api/lots/:lid', lotsController.show);                   // Get a specific lot for a specified lot id
+    app.del(  '/api/lots/:lid', lotsController.destroy);                // Delete the specific lot for a specified lot id
 
     // Spots
     app.get(  '/api/users/:uid/lots/:lid/spots', spotsController.index);        // Get all of the spots for a specific lot id and user id

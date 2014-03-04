@@ -145,6 +145,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       console.log(term);
       
       if(term == ""){
+        console.log('null term');
+        this.createCollection();
+        return;
         term = " ";
       }
       
@@ -154,6 +157,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
         for(var s in split){
           //console.log(review.get('body'))
           if(review.get('body').indexOf(split[s]) != -1){
+            console.log(review.get('title')+": "+ split[s]);
             count++;
           }
         }
