@@ -30,7 +30,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       var inputCity = this.$el.find('[name="input-city"]');
       var inputZip = this.$el.find('[name="input-zip"]');
       var inputState = this.$el.find('[name="input-state"]');
-      var inputUserId = this.el.baseURI.slice(28,52); // This is a hack :(
+      var inputUserId = this.uId; // uId is set when the view is created
 
       this.lotAttributes = {
         title: inputTitle.val(),

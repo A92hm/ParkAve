@@ -35,7 +35,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
     },
 
     createNewLot: function(event) {
+      console.log('creating lot');
       this.newLotView = new NewLotView();
+      this.newLotView.uId = this.collection.user.id;
       this.newLotView.render().$el.modal(); // .modal() is bootstrap
       this.listenTo(this.newLotView, 'dialog:save', this.saveNewLot);
       return false;
