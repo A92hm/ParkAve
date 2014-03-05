@@ -189,3 +189,15 @@ input.modern-input-inverse {
   transform: translateY(-50%);
 }
 
+.table-text-centered {
+  vertical-align: middle;
+}
+
+.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+

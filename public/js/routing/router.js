@@ -5,7 +5,7 @@ define(['underscore', 'require', 'backbone'],
   var Router = Backbone.Router.extend({
     routes: {
       'landing': 'landing',
-      'landing/login': 'login',
+      'login': 'login',
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
 

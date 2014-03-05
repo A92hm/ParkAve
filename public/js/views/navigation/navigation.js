@@ -1,6 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigation.html',
+        'text!templates/navigation/userNavItem.html', 'text!templates/navigation/signUpNavItem.html',
         'models/user', 'routing/router'],
-  function($, _, Backbone, Template, User, Router) {
+  function($, _, Backbone, Template, UserNavItemTemplate, SignUpNavItemTemplate, User, Router) {
 
     var NavigationView = Backbone.View.extend({
       tagName: 'div',
@@ -8,13 +9,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       template: _.template( Template ),
 
       events: {
-        'click a[href="settings"]': 'showUserSettingsPage',
-
-        'click a[href="find-parking"]': 'showParkingLotPage',
-        'click a[href="sell-parking"]': 'sellParkingLotPage',
-        'click a[href="parking-history"]': 'showParkingHistoryPage',
-        'click a[href="review"]': 'showReviewPage',
-        'click a[href="home"]': 'showUserPage'
+        'click #nav-settings': 'showUserSettingsPage',
+        'click #nav-buy-parking': 'showBuyParkingPage',
+        'click #nav-sell-parking': 'showSellParkingPage',
+        'click #nav-sign-up': 'showGetStartedPage',
+        'click #nav-login': 'showLoginPage',
+        'click #nav-user-transactions': 'showUserTransactionsPage',
+        'click #nav-user-reviews': 'showUserReviewsPage',
+        'click #nav-user-home': 'showUserPage',
+        'click .navbar-dropdown-li': 'openDropdown'
       },
 
       initialize: function() {
@@ -27,6 +30,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
 
       render: function() {
         this.$el.html( this.template( this.model.toJSON() ) );
+        if(this.model.get('_id')){
+          var userNavItem = _.template( UserNavItemTemplate );
+          this.$el.find('#main-navbar').append( userNavItem( this.model.toJSON() ) );
+        } else{
+          var signUpNavItem = _.template( SignUpNavItemTemplate );
+          this.$el.find('#main-navbar').append( signUpNavItem( this.model.toJSON() ) );
+        }
         return this;
       },
 
@@ -40,29 +50,38 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         return false;
       },
 
+      showBuyParkingPage: function(){
+        // if(this.model.get('_id')){
+        //   Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
+        // }
+        return false;
+      },
 
-      showParkingLotPage: function(){
+      showSellParkingPage: function(){
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
         }
         return false;
       },
 
-      sellParkingLotPage: function(){
+      showGetStartedPage: function(){
+        Router.sharedInstance().navigate('getstarted', {trigger: true});
+        return false
+      },
+
+      showLoginPage: function(){
+        Router.sharedInstance().navigate('landing/login', {trigger: true});
+        return false
+      },
+
+      showUserTransactionsPage: function(){
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
         }
         return false;
       },
 
-      showParkingHistoryPage: function(){
-        if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
-        }
-        return false;
-      },
-
-      showReviewPage: function(){
+      showUserReviewsPage: function(){
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/reviews', {trigger: true});
         }
@@ -71,8 +90,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
 
       showUserPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/home', {trigger: true});
+          Router.sharedInstance().navigate('users/' + this.model.get('_id'), {trigger: true});
         }
+      },
+
+      openDropdown: function(){
+        this.$el.find('.navbar-dropdown-li').toggleClass('open');
       }
     });
     return NavigationView;

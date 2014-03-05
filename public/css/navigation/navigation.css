@@ -51,14 +51,14 @@ src: local("Lucida Console");
 
 .navbar-brand {
   text-align: center;
-	color: #ffffff;
-	text-shadow: none;
+  color: #ffffff;
+  text-shadow: none;
 }
 
 .soba-navbar-search-input, .soba-navbar-search-input > div {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  height: 90px;
+  padding-top: 10px;
+  height: 100px;
+  vertical-align: bottom;
 }
 
 .soba-navbar-search-input > div > input {
@@ -230,10 +230,9 @@ src: local("Lucida Console");
   color: #FFF;
 }
 
-
 /* the filter bar on the feedback page */
 #filter-bar{
-  background-color: rgba(26,26,26,.9);
+  background-color: rgba(26, 26, 26, 0.9);
   border-radius: 10px;
 }
 
