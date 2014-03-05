@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html',
-        'views/navigation/navigation', 'views/landing/login', 'models/session',
+        'views/landing/login', 'models/session',
         'collections/sessions', 'routing/router'],
-  function($, _, Backbone, Template, NavigationView, LoginView, Session, SessionsCollection, Router) {
+  function($, _, Backbone, Template, LoginView, Session, SessionsCollection, Router) {
 
   var LandingView = Backbone.View.extend({
     tagName: 'div',
@@ -18,8 +18,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
 
     render: function() {
       this.$el.html( this.template( ) );
-      var navigationView = new NavigationView();
-      //this.$el.find('#navbar').html( navigationView.render().el );
 
       return this;
     },

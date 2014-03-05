@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
   'views/navigation/navigation', 'models/user', 'models/session', 'collections/users',
   'collections/sessions', 'routing/router'],
-  function($, _, Backbone, Template, NavigationView, User, Session, UsersCollection, SessionsCollection, Router) {
+  function($, _, Backbone, Template, User, Session, UsersCollection, SessionsCollection, Router) {
 
   var UserSettingsView = Backbone.View.extend({
     tagName: 'div',
@@ -18,8 +18,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
 
     render: function() {
       this.$el.html( this.template( this.model.toJSON() ) );
-      var navigationView = new NavigationView( {model: this.model} );
-      this.$el.find('#navbar').html( navigationView.render().el );
       return this;
     },
 

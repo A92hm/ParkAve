@@ -1,12 +1,15 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
         'models/user', 'models/lot', 'models/spot', 'collections/users', 'collections/lots', 'collections/spots',
-        'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
+        'collections/reviews', 'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
         'views/lot/lot-list', 'views/lot/lot', 'views/spot/spot-list', 'views/spot/spot', 'views/user/home',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
-        'collections/reviews'
+        'views/navigation/navigation'
+        
         ], 
-  function($, _, Backbone, Template, User, Lot, Spot, UsersCollection, LotsCollection, SpotsCollection, LandingView, GetStartedView, LoginView, 
-          LotsListView, LotView, SpotsListView, SpotView, UserPageView, FeedbackView, ReviewList, UserSettingsView, ReviewCollection) {
+  function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
+           LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
+           LoginView, LotsListView, LotView, SpotsListView, SpotView,
+           UserPageView, FeedbackView, ReviewList, UserSettingsView, NavigationView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -29,102 +32,135 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showLogin: function(){
-      if(this.$el.find('.landing-view-div').length == 0){
-        var landingView = new LandingView();
-        this.$el.html( landingView.render().el );
-      }
-
-      var loginView = new LoginView();
-      this.$el.append( loginView.render().el );
+      alert('unimplemented');
     },
 
     showLots: function(uid) {
-      var tempUser = new User( {_id: uid});
-      var usersCollection = new UsersCollection([tempUser]);
-      var lots = new LotsCollection([], {user: tempUser});
-
-      var lotsView = new LotsListView({collection: lots})
-      //$('#content').html( lotsView.render().el );
-      this.$el.html(lotsView.render().el);
-      lots.fetch();
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var lots = new LotsCollection([], {user: user});
+        var lotsView = new LotsListView({collection: lots});
+        thisGuy.$el.html(lotsView.render().el);
+        lots.fetch();
+        thisGuy.showNavigation(user);
+      });
     },
 
     showLot: function(uid, lid) {
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var lot = new Lot({_id: lid});
+        var lots = new LotsCollection([lot], {user: user});
 
-      // need to make user and user collection for lot to load
-      var tempUser = new User( {_id: uid});
-      var usersCollection = new UsersCollection([tempUser]);
-
-      var lot = new Lot({_id: lid});
-      var lots = new LotsCollection([lot], {user: tempUser});
-
-      var lotView = new LotView({model: lot});
-      $('#content').html( lotView.render().el );
-      this.$el.html(lotView.render().el);
-      lot.fetch();
-      console.log('showing lot');
+        var lotView = new LotView({model: lot});
+        thisGuy.$el.html( lotView.render().el );
+        lot.fetch();
+        thisGuy.showNavigation(user);
+      });
     },
 
     showSpots: function(uid, lid) {
-      var tempUser = new User( {_id: uid});
-      var usersCollection = new UsersCollection([tempUser]);
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var lot = new Lot({_id: lid});
+        var lots = new LotsCollection([lot], {user: user});
 
-      var lot = new Lot({_id: lid});
-      var lots = new LotsCollection([lot], {user: tempUser});
+        var spots = new SpotsCollection([], {lot: lot, user: user});
 
-      var spots = new SpotsCollection([], {lot: lot, user: tempUser});
-
-      var spotsView = new SpotsListView({collection: spots})
-      $('#content').html( spotsView.render().el );
-      spots.fetch();
+        var spotsView = new SpotsListView({collection: spots});
+        thisGuy.$el.html( spotsView.render().el );
+        spots.fetch();
+        thisGuy.showNavigation(user);
+      });
     },
 
     showSpot: function(uid, lid, sid) {
-      var tempUser = new User( {_id: uid});
-      var usersCollection = new UsersCollection([tempUser]);
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var lot = new Lot({_id: lid});
+        var lots = new LotsCollection([lot], {user: user});
 
-      var lot = new Lot({_id: lid});
-      var lots = new LotsCollection([lot], {user: tempUser});
-
-      var spot = new Spot({_id: sid});
-      var spots = new SpotsCollection([spot], {lot: lot});
-      
-      var spotView = new SpotView({model: spot});
-      $('#content').html( spotView.el );
-      spot.fetch();
+        var spot = new Spot({_id: sid});
+        var spots = new SpotsCollection([spot], {lot: lot});
+        
+        var spotView = new SpotView({model: spot});
+        thisGuy.$el.html( spotView.el );
+        spot.fetch();
+        thisGuy.showNavigation(user);
+      });
     },
 
     showUserPage: function(uid){
-      var user = new User( {_id: uid});
-      var usersCollection = new UsersCollection([user]);
-
-      var userPageView = new UserPageView( {model: user} );
-      this.$el.html( userPageView.el );
-      user.fetch();
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var userPageView = new UserPageView( {model: user} );
+        thisGuy.$el.html( userPageView.render().el );
+        thisGuy.showNavigation(user);
+      });
     },
 
     showUserFeedback: function(uid){
-      var theUser = new User( {_id: uid});
-      var usersCollection = new UsersCollection([theUser]);
-      var userFeedbackView = new FeedbackView({user: theUser});
-      this.$el.html(userFeedbackView.render().el);
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var userFeedbackView = new FeedbackView({user: user});
+        thisGuy.$el.html(userFeedbackView.render().el);
+        thisGuy.showNavigation(user);
+      });
     },
     showReviewList:  function(uid){
-      var theUser = new User( {_id: uid});
-      var usersCollection = new UsersCollection([theUser]);
-      var reviewCollection = new ReviewCollection([],{user: theUser});
-      console.log(reviewCollection);
-      var userReviewList = new ReviewList({collection: reviewCollection, user: theUser});
-      this.$el.html(userReviewList.render().el);
-      reviewCollection.fetch();
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var reviewCollection = new ReviewCollection([],{user: user});
+        console.log(reviewCollection);
+        var userReviewList = new ReviewList({collection: reviewCollection, user: user});
+        thisGuy.$el.html(userReviewList.render().el);
+        reviewCollection.fetch();
+        thisGuy.showNavigation(user);
+      });
     },
     showUserSettings: function(uid){
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var userSettingsView = new UserSettingsView( {model: user} );
+        thisGuy.$el.html( userSettingsView.render().el );
+        thisGuy.showNavigation(user);
+      });
+    },
+
+    showNavigation: function(user, refresh){
+      if($('#main-navbar').length > 0 && !refresh){
+        return;
+      }
+
+      if(!user){  // if there was no user given
+        this.getCurrentUser(function(currUser){
+          var navigationView = new NavigationView( {model: currUser} );
+          $('#navbar').html( navigationView.render().el );
+        })
+      } else{  // if param is a user
+        console.log(user);
+        console.log($('#navbar'));
+        var navigationView = new NavigationView( {model: user} );
+        $('#navbar').html( navigationView.render().el );
+      }
+    },
+
+    getCurrentUser: function(uid, cb){
       var user = new User( {_id: uid});
       var usersCollection = new UsersCollection([user]);
+      user.fetch({error: function(){
+        console.log('err', err);
+      }, success: function(model, res){
+        cb(model);
+      }});
 
-      var userSettingsView = new UserSettingsView( {model: user} );
-      this.$el.html( userSettingsView.el );
-      user.fetch();
+      // with sessions
+      // var session = new Session();
+      // session.fetch({error: function(){
+      //   console.log('err', err);
+      // }, success: function(model, res){
+      //   cb(model);
+      // }});
     }
   });
 
