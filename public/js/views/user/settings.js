@@ -1,14 +1,16 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
-  'views/navigation/navigation', 'models/user', 'models/session', 'collections/users',
-  'collections/sessions', 'routing/router'],
+        'models/user', 'models/session', 'collections/users',
+        'collections/sessions', 'routing/router'],
   function($, _, Backbone, Template, User, Session, UsersCollection, SessionsCollection, Router) {
 
   var UserSettingsView = Backbone.View.extend({
     tagName: 'div',
-    className: 'user-settings-div',
     template: _.template( Template ),
     events: {
-      'click #update-account-button': 'updateUserSettings'
+      'keypress #edit-email': 'checkEmailInputForEnterKey',
+      'keypress #confirm-new-password': 'checkPasswordInputForEnterKey',
+      'click #update-account-button': 'updateUserSettings',
+      'click #change-password-button': 'changePassword'
     },
 
     initialize: function() {
@@ -28,11 +30,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       var dateOfBirth = this.$el.find('#edit-date-of-birth').val();
       var phone = this.$el.find('#edit-phone').val();
       var email = this.$el.find('#edit-email').val();
-      var oldPassword = this.$el.find('#input-old-password').val();
-      var newPassword = this.$el.find('#input-new-password').val();
-      var confirmNewPassword = this.$el.find('#confirm-new-password').val();
-      if(firstName && lastName){
-        this.model.set('name', firstName + ' ' + lastName);
+      if(firstName){
+        this.model.set('firstName', firstName);
+      }
+      if(lastName){
+        this.model.set('lastName', lastName);
       }
       if(dateOfBirth){
         this.model.set('birthdate', dateOfBirth);
@@ -43,7 +45,19 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       if(email){
         this.model.set('email', email);
       }
-      
+
+      this.model.unset('password');
+      this.model.save();
+      Router.sharedInstance().navigate('/users/' + this.model.get('_id'), {trigger: true});
+
+      return false;
+    },
+
+    changePassword: function(){
+      var oldPassword = this.$el.find('#input-old-password').val();
+      var newPassword = this.$el.find('#input-new-password').val();
+      var confirmNewPassword = this.$el.find('#confirm-new-password').val();
+
       var passwordIsCorrect = false;
       var newPasswordsMatch = true;
       if(newPassword != confirmNewPassword){
@@ -74,13 +88,21 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
             Router.sharedInstance().navigate('/users/' + theModel.get('_id'), {trigger: true});
           }
         }});
-      } else{
-        this.model.unset('password');
-        this.model.save();
-        Router.sharedInstance().navigate('/users/' + this.model.get('_id'), {trigger: true});
       }
+    },
 
-      return false;
+    checkEmailInputForEnterKey: function(evt){
+      if(evt.keyCode == 13){
+        this.updateUserSettings();
+        return false;
+      }
+    },
+
+    checkPasswordInputForEnterKey: function(evt){
+      if(evt.keyCode == 13){
+        this.changePassword();
+        return false;
+      }
     }
   });
 

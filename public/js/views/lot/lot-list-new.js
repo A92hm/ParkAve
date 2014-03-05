@@ -9,7 +9,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
     template: _.template( Template ),
 
     events: {
-      'click #new-lot-save': 'saveLot'
+      'keypress .new-lot-main-input': 'checkPasswordInputForEnterKey',
+      'click #new-lot-save-button': 'saveLot'
     },
 
     initialize: function() {
@@ -25,8 +26,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       // might validate the input here
 
       var inputTitle = this.$el.find('[name="input-title"]');
-      var inputAddress1 = this.$el.find('[name="input-address"]');
-      var inputAddress2 = this.$el.find('[name="input-address-2"]');
+      var inputStreet = this.$el.find('[name="input-address"]');
       var inputCity = this.$el.find('[name="input-city"]');
       var inputZip = this.$el.find('[name="input-zip"]');
       var inputState = this.$el.find('[name="input-state"]');
@@ -35,8 +35,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
         title: inputTitle.val(),
         user_id: this.model.get('_id'),
         address: {
-          address1: inputAddress1.val(),
-          address2: inputAddress2.val(),
+          street: inputStreet.val(),
           city: inputCity.val(),
           zip: inputZip.val(),
           state: inputState.val()
@@ -47,8 +46,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       if (inputTitle.val() == '') {
         inputTitle.focus();
         return;
-      } else if (this.lotAttributes.address1 == '') {
-        inputAddress1.focus();
+      } else if (this.lotAttributes.street == '') {
+        inputStreet.focus();
         return;
       } else if (this.lotAttributes.city == '') {
         inputCity.focus();
@@ -65,7 +64,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       var API_KEY = 'AIzaSyB1sgyCCyjydPDo6rFweWMbrDyU6uRxPGM';
       // The url for the geocoding.  The spaces need to be replaced with '+' for the url to work
       // Should do some error checking first.
-      var geocodingAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + inputAddress1.val().split(' ').join('+') + ',+' + inputCity.val().split(' ').join('+')
+      var geocodingAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + inputStreet.val().split(' ').join('+') + ',+' + inputCity.val().split(' ').join('+')
         + ',+' + inputState.val().split(' ').join('+') + ',+' + inputZip.val().split(' ').join('+') + '&sensor=false&key=' + API_KEY;
 
       var thisGuy = this;
@@ -84,6 +83,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
           }
         }
       });
+    },
+
+    checkPasswordInputForEnterKey: function(evt){
+      if(evt.keyCode == 13){
+        this.saveLot();
+        return false;
+      }
     }
   });
 

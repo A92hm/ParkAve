@@ -1,6 +1,6 @@
 #lot-list-container {
   background-color: rgba(50, 133, 140, 0.68);
-  padding: 10px;
+  padding: 20px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
@@ -13,18 +13,26 @@
 
 #lot-view-container {
   background-color: rgba(50, 133, 140, 0.68);
-  padding: 10px;
+  padding: 40px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
 }
 
-button.lot-add-button, button.spot-add-button  {
+.lot-view > div.page-header {
+  margin-top: 0px;
+}
+
+.lot-view > div.page-header > h1 {
+  margin-top: 0px;
+}
+
+button.lot-add-button, button.spot-add-button, button.new-lot-save-button  {
   margin-top: 10px;
   background-color: rgba(84, 169, 103, 1);
 }
 
-button.lot-add-button:hover, button.lot-add-button:focus, button.lot-add-button:active, button.spot-add-button:hover, button.spot-add-button:focus, button.spot-add-button:active {
+button.lot-add-button:hover, button.lot-add-button:focus, button.lot-add-button:active, button.spot-add-button:hover, button.spot-add-button:focus, button.spot-add-button:active, button.new-lot-save-button:hover, button.new-lot-save-button:focus, button.new-lot-save-button:active {
   background-color: rgba(84, 169, 103, 0.68);
 }
 
@@ -47,4 +55,55 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
 .lot-address-panel-title, .lot-address-panel-body {
   text-align: center;
 }
+
+/* add lot modal stuff */
+#new-lot-modal > div > div  {
+  background-color: rgba(109, 188, 128, 0.5);
+  color: #FFFFFF !important;
+}
+
+#new-lot-modal > div > div  {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+#new-lot-modal > div > div > div.modal-body > div.row > div > div.row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.new-lot-main-input {
+  height: 40px;
+}
+
+#new-lot-save-button {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.new-lot-modal-close-button {
+  box-shadow: none;
+  color: #FFF;
+}
+
+.new-lot-modal-close-button:hover, .new-lot-modal-close-button:focus, .new-lot-modal-close-button:active {
+  color: #EEE;
+}
+
+#new-lot-modal > div.modal-content > div.modal-header {
+  border: none;
+}
+
+#new-lot-modal > div.modal-content > div.modal-body {
+  padding-bottom: 20px;
+}
+
+#new-lot-modal > div.modal-content > div.modal-footer {
+  border: none;
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 20px;
+}
+
+
 

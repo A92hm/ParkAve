@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
 
   var LotView = Backbone.View.extend({
     tagName: 'div',
-    className: 'lot',
+    className: 'lot-view',
     template: _.template( Template ),
 
     events: {
@@ -25,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     },
 
     returnToLots: function() {
-      var currentUser = new User({_id : this.model.collection.user.id});
+      var currentUser = new User({_id : this.collection.get('_id')});
       var usersCollection = new UsersCollection([currentUser]);
       var lots = new LotsCollection([], {user: currentUser});
       Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});

@@ -8,8 +8,7 @@ var schema = mongoose.Schema({
   user_id: {type: ObjectId, require:true},
   title: {type: String, require: true, trim: true},
   address: {
-    address1: {type: String, require: true, trim: true},
-    address2: {type: String, require: false, trim: true},
+    street: {type: String, require: true, trim: true},
     city: {type: String, require: true, trim: true},
     zip: {type: String, require: true, trim: true},
     state: {type: String, require: true, trim: true},

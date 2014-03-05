@@ -9,7 +9,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listitem.html',
     template: _.template( Template ),
 
     events: {
-      'click a[href="#delete"]': 'deleteLot',
+      'click .lot-list-item-delete-button': 'deleteLot',
       'click a[href="#view"]': 'viewLot'
     },
 

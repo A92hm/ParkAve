@@ -200,3 +200,6 @@ input.modern-input-inverse {
    user-select: none;
 }
 
+.cursor-default {
+  cursor: default;
+}
