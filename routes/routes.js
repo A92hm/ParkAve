@@ -66,6 +66,12 @@ module.exports = {
     app.get(  '/landing*', function(req, res) {
       sendIndexFile(res);
     });
+    app.get(  '/buy*', function(req, res) {
+      sendIndexFile(res);
+    });
+    app.get(  '/sell*', function(req, res) {
+      sendIndexFile(res);
+    });
     app.get(  '/users*', function(req, res) {
       sendIndexFile(res);
     });

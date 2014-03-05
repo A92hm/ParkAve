@@ -30,11 +30,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       var inputCity = this.$el.find('[name="input-city"]');
       var inputZip = this.$el.find('[name="input-zip"]');
       var inputState = this.$el.find('[name="input-state"]');
-      var inputUserId = this.el.baseURI.slice(28,52); // This is a hack :(
 
       this.lotAttributes = {
         title: inputTitle.val(),
-        user_id: inputUserId,
+        user_id: this.model.get('_id'),
         address: {
           address1: inputAddress1.val(),
           address2: inputAddress2.val(),
@@ -69,21 +68,22 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       var geocodingAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + inputAddress1.val().split(' ').join('+') + ',+' + inputCity.val().split(' ').join('+')
         + ',+' + inputState.val().split(' ').join('+') + ',+' + inputZip.val().split(' ').join('+') + '&sensor=false&key=' + API_KEY;
 
-      var globalJson;
-
+      var thisGuy = this;
       $.ajax({
         url: geocodingAPI,
         async: false,
         dataType: 'json',
         success: function (json) {
-          globalJson = json;
+          if(json.status == "ZERO_RESULTS"){
+            alert('invalid address');
+          } else{
+            thisGuy.lotAttributes.lat = '' + json.results[0].geometry.location.lat;
+            thisGuy.lotAttributes.lon = '' + json.results[0].geometry.location.lng;
+
+            thisGuy.trigger('dialog:save');
+          }
         }
       });
-
-      this.lotAttributes.lat = globalJson.results[0].geometry.location.lat;
-      this.lotAttributes.lon = globalJson.results[0].geometry.location.lng;
-
-      this.trigger('dialog:save');
     }
   });
 

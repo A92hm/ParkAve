@@ -10,9 +10,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     template: _.template( Template ),
 
     events: {
-      'click a[href="#delete"]': 'deleteLot',
-      'click a[href="#lots"]': 'returnToLots',
-      'click a[href="#create-spot"]': 'createSpot'
+      'click #lot-view-delete-lot-button': 'deleteLot',
+      'click #lot-view-add-spot-button': 'createSpot'
     },
 
     initialize: function() {
@@ -34,7 +33,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     },
 
     deleteLot: function() {
-      var uId = this.model.collection.user.id;
+      var uId = this.collection.get('_id');
       this.model.destroy({wait: true})
         .done(function(data) {
           { // pop back to lots. this is annoying

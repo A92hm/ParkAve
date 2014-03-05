@@ -34,6 +34,7 @@ module.exports = {
   create: function(req, res) {
     console.log('lots create');
     Lot.create(req.body, function(err, lot) {
+      console.log('err', err);
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {

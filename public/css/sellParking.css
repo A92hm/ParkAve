@@ -1,0 +1,50 @@
+#lot-list-container {
+  background-color: rgba(50, 133, 140, 0.68);
+  padding: 10px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+#lot-list-container > .row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#lot-view-container {
+  background-color: rgba(50, 133, 140, 0.68);
+  padding: 10px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+button.lot-add-button, button.spot-add-button  {
+  margin-top: 10px;
+  background-color: rgba(84, 169, 103, 1);
+}
+
+button.lot-add-button:hover, button.lot-add-button:focus, button.lot-add-button:active, button.spot-add-button:hover, button.spot-add-button:focus, button.spot-add-button:active {
+  background-color: rgba(84, 169, 103, 0.68);
+}
+
+button.lot-delete-button, button.spot-delete-button  {
+  margin-top: 10px;
+  background-color: rgba(222, 27, 27, 1);
+}
+
+button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delete-button:active, button.spot-delete-button:hover, button.spot-delete-button:focus, button.spot-delete-button:active {
+  background-color: rgba(222, 27, 27, 0.68);
+}
+
+.lot-list-title {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 32px;
+  text-align: center;
+}
+
+.lot-address-panel-title, .lot-address-panel-body {
+  text-align: center;
+}
+

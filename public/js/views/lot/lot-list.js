@@ -8,7 +8,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
     template: _.template( Template ),
 
     events: {
-      'click a[href="#newlot"]': 'createNewLot'
+      'click #lot-list-add-lot-button': 'createNewLot'
     },
 
     initialize: function() {
@@ -18,22 +18,23 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
 
     render: function() {
       this.$el.html( this.template() );
-      this.$lots = this.$el.find('#lots');
+      this.$lots = this.$el.find('#lot-list-container-title');
       return this;
     },
 
     addAll: function() {
+      console.log(this.collection.toJSON());
       this.$lots.empty();
       this.collection.each(this.addOne, this);
     },
 
     addOne: function(lot) {
-      var lotView = new LotListItemView({model: lot});
-      this.$lots.append( lotView.render().el );
+      var lotListItemView = new LotListItemView({model: lot});
+      this.$lots.after( lotListItemView.render().el );
     },
 
     createNewLot: function(event) {
-      this.newLotView = new NewLotView();
+      this.newLotView = new NewLotView( {model: this.collection} );
       this.newLotView.render().$el.modal(); // .modal() is bootstrap
       this.listenTo(this.newLotView, 'dialog:save', this.saveNewLot);
       return false;

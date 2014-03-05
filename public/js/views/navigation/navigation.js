@@ -9,14 +9,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       template: _.template( Template ),
 
       events: {
-        'click #nav-settings': 'showUserSettingsPage',
         'click #nav-buy-parking': 'showBuyParkingPage',
         'click #nav-sell-parking': 'showSellParkingPage',
         'click #nav-sign-up': 'showGetStartedPage',
         'click #nav-login': 'showLoginPage',
+        'click #nav-user-home': 'showUserPage',
         'click #nav-user-transactions': 'showUserTransactionsPage',
         'click #nav-user-reviews': 'showUserReviewsPage',
-        'click #nav-user-home': 'showUserPage',
+        'click #nav-user-settings': 'showUserSettingsPage',
         'click .navbar-dropdown-li': 'openDropdown'
       },
 
@@ -51,15 +51,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       },
 
       showBuyParkingPage: function(){
-        // if(this.model.get('_id')){
-        //   Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
-        // }
+        if(this.model.get('_id')){
+          Router.sharedInstance().navigate('buy/' + this.model.get('_id'), {trigger: true});
+        }
         return false;
       },
 
       showSellParkingPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
+          Router.sharedInstance().navigate('sell/' + this.model.get('_id'), {trigger: true});
         }
         return false;
       },

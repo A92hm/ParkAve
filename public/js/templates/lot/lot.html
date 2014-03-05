@@ -1,12 +1,25 @@
-<div><a href="#create-spot">Create Spot</a></div>
-<h3>Title: <%= title %></h3>
-<p>Address: <%= address.address1 %></p>
-<p><%= address.address2 %></p>
-<p>City: <%= address.city %></p>
-<p>Zip code: <%= address.zip %></p>
-<p>State: <%= address.state %></p>
-<p>Latitude: <%= lat %> </p>
-<p>Longitude: <%= lon %> </p>
-<a href="#delete" class="text-danger">Delete</a>
-<hr>
-<div><a href="#lots">Return to lots</a></div>
+<div class="page-header">
+  <h1><%= title %></h1>
+</div>
+<div class="row">
+  <div class="col-sm-7">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title lot-address-panel-title">Lot Location</h3>
+      </div>
+      <div class="panel-body lot-address-panel-body">
+        <%= address.address1 %><br>
+        <%= address.city %>, <%= address.state %> <%= address.zip %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <button id="lot-view-add-spot-button" type="button" class="btn btn-success btn-block modern-input-inverse spot-add-button"><i class="fa fa-plus"></i> Add Spot</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <button id="lot-view-delete-lot-button" type="button" class="btn btn-success btn-block modern-input-inverse lot-delete-button"><i class="fa fa-times"></i> Delete Lot</button>
+  </div>
+</div>
+

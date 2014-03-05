@@ -1,6 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.html',
         'models/user', 'models/lot', 'models/spot', 'collections/users', 'collections/lots', 'collections/spots',
         'collections/reviews', 'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
+        'views/buyParking/buyParking', 'views/sellParking/sellParking',
         'views/lot/lot-list', 'views/lot/lot', 'views/spot/spot-list', 'views/spot/spot', 'views/user/home',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
         'views/navigation/navigation'
@@ -8,7 +9,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
            LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
-           LoginView, LotsListView, LotView, SpotsListView, SpotView,
+           LoginView, BuyParkingView, SellParkingView, LotsListView, LotView, SpotsListView, SpotView,
            UserPageView, FeedbackView, ReviewList, UserSettingsView, NavigationView) {
 
   var MainAppView = Backbone.View.extend({
@@ -33,6 +34,28 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showLogin: function(){
       alert('unimplemented');
+    },
+
+    showBuyParking: function(uid){
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var buyParkingView = new BuyParkingView( {model: user} );
+        thisGuy.$el.html( buyParkingView.render().el );
+        thisGuy.showNavigation(user);
+      });
+    },
+
+    showSellParking: function(uid){
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user){
+        var lots = new LotsCollection([], {user: user});
+        var sellParkingView = new SellParkingView( {model: user, collection: lots} );
+        thisGuy.$el.html( sellParkingView.render().el );
+        lots.fetch({success: function(model, response){
+          console.log('response', response);
+        }});  // TODO fix api call
+        thisGuy.showNavigation(user);
+      });
     },
 
     showLots: function(uid) {
@@ -111,7 +134,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var thisGuy = this;
       this.getCurrentUser(uid, function(user){
         var reviewCollection = new ReviewCollection([],{user: user});
-        console.log(reviewCollection);
         var userReviewList = new ReviewList({collection: reviewCollection, user: user});
         thisGuy.$el.html(userReviewList.render().el);
         reviewCollection.fetch();
@@ -138,8 +160,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
           $('#navbar').html( navigationView.render().el );
         })
       } else{  // if param is a user
-        console.log(user);
-        console.log($('#navbar'));
         var navigationView = new NavigationView( {model: user} );
         $('#navbar').html( navigationView.render().el );
       }

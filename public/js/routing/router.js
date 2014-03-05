@@ -1,27 +1,27 @@
-
 define(['underscore', 'require', 'backbone'], 
   function(_, require, Backbone, MainAppView) {
 
   var Router = Backbone.Router.extend({
     routes: {
       'landing': 'landing',
-      'login': 'login',
+
+      'buy/:uid': 'buyParking',
+      'sell/:uid': 'sellParking',
+
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
-
       'login': 'login',
-      
-      'users/:uid/lots':      'lots',
-      'users/:uid/lots/:lid':  'lot',
-      'users/:uid/lots/:lid/spots' : 'spots',
-      'users/:uid/lots/:lid/spots/:sid':      'spot',
-      
-      'users': '',
 
+      'users': '',
       'users/:uid': 'userPage',
-      'users/:uid/feedback' : 'userFeedback',
-      'users/:uid/reviews' : 'userReviews',
-      'users/:uid/settings' : 'userSettings',
+      'users/:uid/feedback': 'userFeedback',
+      'users/:uid/reviews': 'userReviews',
+      'users/:uid/settings': 'userSettings',
+
+      'users/:uid/lots': 'lots',
+      'users/:uid/lots/:lid': 'lot',
+      'users/:uid/lots/:lid/spots' : 'spots',
+      'users/:uid/lots/:lid/spots/:sid': 'spot',
 
       '': 'main'
     },
@@ -66,6 +66,18 @@ define(['underscore', 'require', 'backbone'],
       });
     },
 
+    buyParking: function(uid){
+      require(['views/application/main'], function(MainAppView) {
+        MainAppView.sharedInstance().showBuyParking(uid);
+      });
+    },
+
+    sellParking: function(uid){
+      require(['views/application/main'], function(MainAppView) {
+        MainAppView.sharedInstance().showSellParking(uid);
+      });
+    },
+
     getStarted: function(email){
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showGetStarted(email);
@@ -89,6 +101,7 @@ define(['underscore', 'require', 'backbone'],
         MainAppView.sharedInstance().showUserFeedback(uid);
       });
     },
+
     userReviews : function(uid){
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showReviewList(uid);
