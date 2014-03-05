@@ -12,7 +12,7 @@ define(['underscore','backbone', 'models/lot'], function(_, Backbone, Lot) {
     },
 
     clienturl: function() {
-      return this.url.slice(4);
+      return this.url().slice(4);
     }
   });
 

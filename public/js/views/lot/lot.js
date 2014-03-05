@@ -1,7 +1,7 @@
 
 define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
-  'routing/router', 'collections/lots', 'views/lot/lot-list-new'],
-  function($, _, Backbone, Template, Router, LotsCollection, NewLotView) {
+  'routing/router', 'collections/lots', 'views/lot/lot-list-new', 'models/user', 'collections/users'],
+  function($, _, Backbone, Template, Router, LotsCollection, NewLotView, User, UsersCollection) {
 
 
   var LotView = Backbone.View.extend({
@@ -26,19 +26,23 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     },
 
     returnToLots: function() {
-      var lots = new LotsCollection();
+      var currentUser = new User({_id : this.model.collection.user.id});
+      var usersCollection = new UsersCollection([currentUser]);
+      var lots = new LotsCollection([], {user: currentUser});
       Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});
       return false;
     },
 
     deleteLot: function() {
+      var uId = this.model.collection.user.id;
       this.model.destroy({wait: true})
         .done(function(data) {
           { // pop back to lots. this is annoying
 
             // Need to get the user first
-            var lots = new LotsCollection();
-            console.log("lots url", lots.clienturl());
+            var currentUser = new User({_id : uId});
+            var usersCollection = new UsersCollection([currentUser]);
+            var lots = new LotsCollection([], {user: currentUser});
             Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});
           }
         })
