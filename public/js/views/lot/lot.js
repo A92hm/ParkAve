@@ -38,7 +38,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
 
             // Need to get the user first
             var lots = new LotsCollection();
-            console.log("lots url", lots.clienturl());
+            // console.log("lots url", lots.clienturl());
             Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});
           }
         })
