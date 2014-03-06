@@ -68,9 +68,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
     sortDate: function(){
       console.log("sort date clicked");
       this.collection.comparator = 'date';
-      
+      if(this.dateSortTick > 0){
+        this.collection.comparator = function(review){
+          var strDate = review.get('date');
+          var date = new Date(strDate);
+          return -date.getTime();
+        };
+      }
       this.collection.sort({});
-      this.dateSortTick*=-1;
+      this.dateSortTick *= -1;
       this.addAll();
       return false;
     },
@@ -98,12 +104,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
 
       },this);
 
-      return false;
-    },
-    sortLength: function(){
-      console.log("sort length clicked");
-      this.collection.comparator = 'body';
-      this.collection.sort({});
       return false;
     },
     addAverageStars: function(){

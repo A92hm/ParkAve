@@ -9,7 +9,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
     events: {
       'click #submit-button' : 'submitClick',
       'click a[href="#sortdate"]' : 'sortDate',
-      'click a[href="#sortlength"]' : 'sortLength',
       'click a[href="#sortstars"]' : 'sortStars',
     },
 
@@ -45,11 +44,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
     },
     sortStars: function(){
       this.feedbackList.sortStars();
-      return false;
-    },
-    sortLength: function(){
-      console.log("sort length clicked");
-      
       return false;
     },
     test: function(){
