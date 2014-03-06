@@ -1,11 +1,11 @@
 
-define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', 'text!templates/widgets/inputerror.html',],
+define(['jquery', 'underscore', 'backbone', 'text!templates/lot/newLotModal.html',
+        'text!templates/widgets/inputerror.html',],
   function($, _, Backbone, Template, InputErrorTemplate) {
 
   var NewLotView = Backbone.View.extend({
     tagName: 'div',
     className: 'modal fade',
-    id: 'new-form-modal',
     template: _.template( Template ),
 
     events: {

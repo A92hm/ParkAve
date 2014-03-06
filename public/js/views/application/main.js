@@ -2,7 +2,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'models/user', 'models/lot', 'models/spot', 'collections/users', 'collections/lots', 'collections/spots',
         'collections/reviews', 'views/landing/landing', 'views/landing/getstarted', 'views/landing/login',
         'views/buyParking/buyParking', 'views/sellParking/sellParking',
-        'views/lot/lot-list', 'views/lot/lot', 'views/spot/spot-list', 'views/spot/spot',
+        'views/lot/lotList', 'views/lot/lot', 'views/spot/spotList', 'views/spot/spot',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
         'views/navigation/navigation'
         

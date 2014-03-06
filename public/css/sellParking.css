@@ -45,26 +45,22 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   background-color: rgba(222, 27, 27, 0.68);
 }
 
-.lot-list-title {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-size: 32px;
-  text-align: center;
-}
-
-.lot-address-panel-title, .lot-address-panel-body {
-  text-align: center;
-}
-
 /* add lot modal stuff */
+
 #new-lot-modal > div > div  {
   background-color: rgba(109, 188, 128, 0.5);
   color: #FFFFFF !important;
 }
 
 #new-lot-modal > div > div  {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.new-lot-modal-title {
+  font-size: 28px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #new-lot-modal > div > div > div.modal-body > div.row > div > div.row {
@@ -105,7 +101,14 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   padding-bottom: 20px;
 }
 
-.lot-list-item {
+.lot-list-title, .spot-list-title, .lot-location-title {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 32px;
+  text-align: center;
+}
+
+.lot-list-item, .spot-list-item {
   font-size: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -117,11 +120,42 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   border-radius: 15px;
 }
 
-.lot-list-item:hover {
+.lot-list-item:hover, .spot-list-item:hover {
   background-color: rgba(255, 255, 255, 0.25);
 }
 
-.lot-list-item-delete-button:hover {
+.lot-list-item-delete-button:hover, .spot-list-item-delete-button:hover {
   color: #F00;
 }
+
+.lot-view-empty-main-text {
+  font-size: 28px;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.spot-list-div, .lot-location-container {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  margin-bottom: 15px;
+  padding: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.lot-location-title {
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.lot-location-address {
+  text-align: center;
+  font-size: 24px;
+}
+
+
+
+
+
 

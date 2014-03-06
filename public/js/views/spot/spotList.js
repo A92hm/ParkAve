@@ -1,15 +1,16 @@
 
-define(['jquery', 'underscore', 'backbone', 'text!templates/spot/list.html',
-  'views/spot/spot-list-item', 'views/spot/spot-list-new'],
-  function($, _, Backbone, Template, SpotListItemView, NewSpotView) {
+define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
+        'views/spot/spotListItem', 'views/spot/newSpotModal', 'views/spot/spot'],
+  function($, _, Backbone, Template, SpotListItemView, NewSpotView, SpotView) {
 
   var SpotListView = Backbone.View.extend({
     tagName: 'div',
-    className: 'spot-list',
+    className: 'spot-list-div',
     template: _.template( Template ),
 
     events: {
-      'click a[href="#newspot"]': 'createNewSpot'
+      'click #spot-list-add-spot-button': 'createNewSpot',
+        'click .spot-list-item': 'openEditSpotModal'
     },
 
     initialize: function() {
@@ -19,7 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/list.html',
 
     render: function() {
       this.$el.html( this.template() );
-      this.$spots = this.$el.find('#spots');
+      this.$spots = this.$el.find('#spot-list-container-title');
       return this;
     },
 
@@ -30,11 +31,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/list.html',
 
     addOne: function(spot) {
       var spotView = new SpotListItemView({model: spot});
-      this.$spots.append( spotView.render().el );
+      this.$spots.after( spotView.render().el );
     },
 
     createNewSpot: function(event) {
-      this.newSpotView = new NewSpotView();
+      this.newSpotView = new NewSpotView( {model: this.model, collection: this.collection} ); // model is the lot, collection is the user
       this.newSpotView.render().$el.modal(); // .modal() is bootstrap
       this.listenTo(this.newSpotView, 'dialog:save', this.saveNewSpot);
       return false;
@@ -48,7 +49,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/list.html',
       this.stopListening(this.newSpotView); // stop listening to dialog:save
       this.newSpotView.$el.modal('hide'); // from bootstrap
       delete this.newSpotView; // delete reference
-    }
+    },
+
+    openEditSpotModal: function(event) {
+      if(event.currentTarget){
+        var spotId = event.currentTarget.id.slice(event.currentTarget.id.lastIndexOf('-') + 1, event.currentTarget.id.length);
+        this.spotView = new SpotView( {model: this.collection.get(spotId), collection: this.model} );
+        $('#content').after( this.spotView.render().el );
+        $('#new-spot-modal').modal();
+        this.listenTo(this.spotView, 'dialog:save', this.saveEditedSpot); // TODO implement editing
+      }
+      return false;
+    },
   });
 
   return SpotListView;

@@ -3,7 +3,7 @@ var Spot = require('./../models/spot').Spot;
 module.exports = {
   index: function(req, res) {
     console.log('spots index');
-    Spot.find({}, function(err, spots) {
+    Spot.find({lot_id: req.params.lid}, function(err, spots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
@@ -25,7 +25,7 @@ module.exports = {
     console.log('spots create');
     Spot.create(req.body, function(err, spot) {
       if (err) {
-        res.status(500).json({err: 'internal error'});
+        res.status(500).json({err: 'internal error', content: err});
       } else {
         res.json(spot);
       }

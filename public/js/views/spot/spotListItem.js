@@ -1,16 +1,14 @@
 
-define(['jquery', 'underscore', 'backbone', 'text!templates/spot/listitem.html',
+define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotListItem.html',
   'routing/router'],
   function($, _, Backbone, Template, Router) {
 
   var SpotListItemView = Backbone.View.extend({
     tagName: 'div',
-    className: 'spot',
     template: _.template( Template ),
 
     events: {
-      'click a[href="#delete"]': 'deleteSpot',
-      'click a[href="#view"]': 'viewSpot'
+      'click .spot-list-item-delete-button': 'deleteSpot'
     },
 
     initialize: function() {
@@ -19,7 +17,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/listitem.html',
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.toJSON() ) );
+      if(this.model.get('_id')){
+        this.$el.html( this.template( this.model.toJSON() ) );
+      }
       return this; 
     },
 
@@ -27,10 +27,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/listitem.html',
       this.model.destroy({wait: true})
         .done(function(data) {
           // good to go
+          console.log('deleting now...');
         })
         .fail(function(xhr, data) {
           console.log('there was a problem deleting the model');
         });
+      this.remove();
+      this.model.collection.remove(this.model);
       return false; 
     },
 

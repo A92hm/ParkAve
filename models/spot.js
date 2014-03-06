@@ -5,17 +5,17 @@ var Schema = mongoose.Schema,
   ObjectId = Schema.ObjectId;
 
 var schema = mongoose.Schema({
-  user_id: {type: ObjectId, require:true},
+  user_id: {type: ObjectId, require: true},
+  lot_id: {type: ObjectId, require:true},
   title: {type: String, require: true, trim: true},
+  numSpots: {type: Number, require: true},
+  price: {type: Number, require: true},
   date: Date,
-  buyer_list: [Schema.ObjectId],
-  numSpots: Number,
-  blocked: Boolean,
-  size: String,
-  price: Number,
   surface: String,
   event_id: ObjectId,
-  lot_id: {type: ObjectId, require:true}
+  blocked: Boolean,
+  size: String,
+  buyer_list: [Schema.ObjectId]
 });
 
 

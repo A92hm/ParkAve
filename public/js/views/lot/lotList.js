@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
-  'views/lot/lot-list-item', 'views/lot/lot-list-new'],
+define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotList.html',
+  'views/lot/lotListItem', 'views/lot/newLotModal'],
   function($, _, Backbone, Template, LotListItemView, NewLotView) {
 
   var LotListView = Backbone.View.extend({
