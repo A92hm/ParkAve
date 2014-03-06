@@ -2,11 +2,12 @@ var Spot = require('./../models/spot').Spot;
 
 module.exports = {
   index: function(req, res) {
-    console.log('spots index');
+    console.log('spots index', req.params.lid);
     Spot.find({lot_id: req.params.lid}, function(err, spots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
+        console.log(spots);
         res.json(spots);
       }
     });

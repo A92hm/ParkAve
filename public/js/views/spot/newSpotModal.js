@@ -31,6 +31,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/newSpotModal.ht
       var inputPrice = this.$el.find('[name="input-price"]');
       var inputParkingSurface = this.$el.find('[name="input-parking-surface"]');
 
+console.log(this.model.get('_id'));
       this.spotAttributes = {
         user_id: this.collection.get('_id'),
         lot_id: this.model.get('_id'),
@@ -40,7 +41,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/newSpotModal.ht
         date: inputDate.val(),
         surface: inputParkingSurface.val()
       };
-
+      console.log('yolo');
       this.trigger('dialog:save');
     }
   });
