@@ -21,8 +21,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
 
     signUp: function(){
       // Parse the data
-      var firstName = this.$el.find('#input-first-name').val();
-      var lastName = this.$el.find('#input-last-name').val();
+      var fullName = this.$el.find('#input-full-name').val();
+      var firstName = fullName.split(' ')[0];
+      var lastName = fullName.split(' ')[1];
       var dateOfBirth = this.$el.find('#input-date-of-birth').val();
       var phone = this.$el.find('#input-phone').val();
       var email = this.$el.find('#input-email').val();
@@ -32,16 +33,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       var inputErrorTemplate = _.template( InputErrorTemplate );
       var valid = true;
       if(!firstName){
-        this.$el.find('#input-first-name').prev().children('i').html( inputErrorTemplate() );
+        this.$el.find('#input-full-name').prev().children('i').html( inputErrorTemplate() );
         valid = false;
       }else{
-        this.$el.find('#input-first-name').prev().children('i').html( '' );
-      }
-      if(!lastName){
-        this.$el.find('#input-last-name').prev().children('i').html( inputErrorTemplate() );
-        valid = false;
-      }else{
-        this.$el.find('#input-last-name').prev().children('i').html( '' );
+        this.$el.find('#input-full-name').prev().children('i').html( '' );
       }
       if(!dateOfBirth){
         this.$el.find('#input-date-of-birth').prev().children('i').html( inputErrorTemplate() );
@@ -69,6 +64,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       }
 
       if(!valid){
+        console.log("signUp");
         return false;
       }
 
