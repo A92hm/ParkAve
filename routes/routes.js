@@ -61,6 +61,9 @@ module.exports = {
     app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);  // Update a specific spot give a specified spot, lot, and user id
     app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy); // Delete the speceific spot from the database
 
+    // API for closest lots
+    app.get(  '/api/users/:uid/:json',     lotsController.nearlots);        // Get all of the lots for a specified user id
+
     // Non-API routes
 
     app.get(  '/landing*', function(req, res) {
