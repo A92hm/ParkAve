@@ -34,7 +34,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
     },
 
     renderSpots: function() {
-      console.log(this.spotsCollection);
       var spotListView = new SpotListView( {model: this.collection, collection: this.spotsCollection} );  // model is the user. collection is the spots
       this.$el.find('#spot-view-div').html( spotListView.render().el );
       if(this.model.get('_id')){
