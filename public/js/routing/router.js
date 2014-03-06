@@ -13,7 +13,7 @@ define(['underscore', 'require', 'backbone'],
       'login': 'login',
 
       'users': '',
-      'users/:uid': 'userPage',
+      'users/:uid': 'sellParking',
       'users/:uid/feedback': 'userFeedback',
       'users/:uid/reviews': 'userReviews',
       'users/:uid/settings': 'userSettings',
@@ -89,13 +89,7 @@ define(['underscore', 'require', 'backbone'],
         MainAppView.sharedInstance().showLogin();
       });
     },
-
-    userPage: function(uid){
-      require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showUserPage(uid);
-      })
-    },
-
+    
     userFeedback: function(uid) {
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showUserFeedback(uid);

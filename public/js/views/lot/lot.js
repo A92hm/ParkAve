@@ -33,21 +33,16 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     },
 
     deleteLot: function() {
-      var uId = this.collection.get('_id');
       this.model.destroy({wait: true})
         .done(function(data) {
-          { // pop back to lots. this is annoying
-
-            // Need to get the user first
-            var currentUser = new User({_id : uId});
-            var usersCollection = new UsersCollection([currentUser]);
-            var lots = new LotsCollection([], {user: currentUser});
-            Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});
-          }
+          // good to go
+          console.log('deleting now...');
         })
         .fail(function(xhr, data) {
           console.log('there was a problem deleting the model');
         });
+      this.remove();
+      this.model.collection.remove(this.model);
       return false;
     },
 

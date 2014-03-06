@@ -5,7 +5,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listitem.html',
 
   var LotListItemView = Backbone.View.extend({
     tagName: 'div',
-    className: 'lot',
     template: _.template( Template ),
 
     events: {
@@ -19,7 +18,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listitem.html',
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.toJSON() ) );
+      if(this.model.get('_id')){
+        this.$el.html( this.template( this.model.toJSON() ) );
+      }
       return this; 
     },
 

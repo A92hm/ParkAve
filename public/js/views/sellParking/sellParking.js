@@ -7,10 +7,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellPark
       template: _.template( Template ),
 
       events: {
+        'click .lot-list-item': 'renderLotView'
       },
 
       initialize: function() {
-        console.log('this', this.collection);
         this.listenTo(this.collection, 'change', this.renderLotView);
         this.listenTo(this.collection, 'destroy', this.remove);
       },
@@ -26,9 +26,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellPark
         return this;
       },
 
-      renderLotView: function(){
-        var lotView = new LotView( {model: this.collection.at(0)} );
-        this.$el.find('#lot-view-container').html( lotView.render().el );
+      renderLotView: function(event){
+        if(event.currentTarget){
+          var lotId = event.currentTarget.id.slice(event.currentTarget.id.lastIndexOf('-') + 1, event.currentTarget.id.length);
+          var lotView = new LotView( {model: this.collection.get(lotId), collection: this.model} );
+          this.$el.find('#lot-view-container').html( lotView.render().el );
+        } else{
+          var lotView = new LotView( {model: this.collection.at(0), collection: this.model} );
+          this.$el.find('#lot-view-container').html( lotView.render().el );
+        }
       }
     });
     return SellParkingView;

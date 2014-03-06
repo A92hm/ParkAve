@@ -105,5 +105,23 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   padding-bottom: 20px;
 }
 
+.lot-list-item {
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  cursor: pointer;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
 
+.lot-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.lot-list-item-delete-button:hover {
+  color: #F00;
+}
 

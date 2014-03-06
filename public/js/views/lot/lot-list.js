@@ -23,7 +23,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
     },
 
     addAll: function() {
-      console.log(this.collection.toJSON());
       this.$lots.empty();
       this.collection.each(this.addOne, this);
     },
@@ -34,7 +33,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
     },
 
     createNewLot: function(event) {
-      this.newLotView = new NewLotView( {model: this.collection} );
+      this.newLotView = new NewLotView( {model: this.model} );
       this.newLotView.render().$el.modal(); // .modal() is bootstrap
       this.listenTo(this.newLotView, 'dialog:save', this.saveNewLot);
       return false;
