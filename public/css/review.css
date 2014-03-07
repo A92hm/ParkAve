@@ -11,3 +11,6 @@
 #badAverage{
 	background-color: rgba(238,214,214,1);
 }
+#review-body{
+	z-index: 0;
+}
