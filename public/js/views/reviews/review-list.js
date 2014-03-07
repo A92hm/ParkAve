@@ -166,11 +166,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
         var count = 0;
         for(var s in split){
           //console.log(review.get('body'))
-          if(review.get('body').indexOf(split[s]) != -1){
-            console.log(review.get('title')+": "+ split[s]);
+          var body = review.get('body').toLowerCase();
+          var keyword = split[s].toLowerCase();
+
+          if(body.indexOf(keyword) != -1){
+            //console.log(review.get('title')+": "+ split[s]);
             count++;
           }
-          else if(review.get('title').indexOf(split[s]) != -1){
+          else if(body.indexOf(keyword) != -1){
             count++;
           }
         }
