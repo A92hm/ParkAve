@@ -1,4 +1,5 @@
-var Spot = require('./../models/spot').Spot;
+var _ = require('underscore'),
+    Spot = require('./../models/spot').Spot;
 
 module.exports = {
   index: function(req, res) {

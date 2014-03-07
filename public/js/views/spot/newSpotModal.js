@@ -52,6 +52,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/newSpotModal.ht
       this.spotAttributes = {
         user_id: this.user.get('_id'),
         lot_id: this.lot.get('_id'),
+        spotId: this.model.get('_id'),
         numSpots: inputNumSpots.val(),
         price: inputPrice.val(),
         startDate: startDate.toISOString(),

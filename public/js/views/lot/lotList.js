@@ -11,7 +11,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotList.html',
       'click #lot-list-add-lot-button': 'createNewLot'
     },
 
-    initialize: function() {
+    initialize: function(options) {
+      this.user = options.user;
       this.listenTo(this.collection, 'reset', this.addAll);
       this.listenTo(this.collection, 'add', this.addOne);
     },
@@ -33,7 +34,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotList.html',
     },
 
     createNewLot: function(event) {
-      this.newLotView = new NewLotView( {model: this.model} );
+      this.newLotView = new NewLotView( {user: this.user} );
       this.newLotView.render().$el.modal(); // .modal() is bootstrap
       this.listenTo(this.newLotView, 'dialog:save', this.saveNewLot);
       return false;
