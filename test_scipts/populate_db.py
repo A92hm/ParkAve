@@ -51,7 +51,7 @@ def makeLot(n):
 				'zip': fake.postcode()
 			},
 			'lat': float(fake.latitude()),
-			'lng': float(fake.longitude())
+			'lon': float(fake.longitude())
 		}
 		lot_id = db_lots.insert(lot)
 		print 'Added lot: ', lot_id

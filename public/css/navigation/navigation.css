@@ -1,3 +1,6 @@
+// salmon: 241, 90, 92
+// purply dude: 99, 65, 206
+
 @font-face {
   font-family: main-navbarFont;
   src: local("Lucida Console");
@@ -9,7 +12,7 @@
 
 .main-navbar-brand:hover {
   cursor: default;
-  background-color: rgb(109, 188, 128);
+  background-color: rgb(241, 90, 92);
 }
 
 @media (min-width: 768px) {
@@ -42,7 +45,7 @@
     width: 180px !important;
   }
   .user-nav-item > li > ul {
-    width: 190px;
+    width: 180px;
   }
 
   .main-navbar {
@@ -50,7 +53,7 @@
   }
 
   .main-navbar-header:hover {
-    background-color: rgb(109, 188, 128);
+    background-color: rgb(241, 90, 92);
   }
 
   .main-navbar-brand:hover {
@@ -66,7 +69,7 @@
 
 .main-navbar {
   z-index: 1;
-  background-color: rgb(80, 46, 144);
+  background-color: rgb(80, 80, 80);
   border: none;
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
@@ -89,16 +92,16 @@
 }
 
 .main-navbar .nav > li:hover {
-  background-color: rgb(109, 188, 128);
+  background-color: rgb(241, 90, 92);
   color: #ffffff;
 }
 
-.main-navbar .nav > li > a:hover, .main-navbar .nav > li > a:active, .main-navbar .nav > li > a:focus, .main-navbar .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+.main-navbar .nav > li > a:hover, .main-navbar .nav > li > a:active, .main-navbar .nav > li > a:focus, .main-navbar .nav .open > a, .main-navbar .nav .open > a:hover, .main-navbar .nav .open > a:focus{
   background-color: rgba(255, 255, 255, 0.0);
 }
 
 .main-navbar-dropdown, .main-navbar-dropdown > li {
-  background-color: rgb(80, 46, 144);
+  background-color: rgb(80, 80, 80);
   margin: 0px;
   padding: 0px;
   border: none;
@@ -121,7 +124,7 @@
 }
 
 .main-navbar-dropdown > li:hover, .main-navbar-dropdown > li:focus, .main-navbar-dropdown > li:active {
-  background-color: rgb(109, 188, 128);
+  background-color: rgb(241, 90, 92);
 }
 
 .main-navbar-dropdown > li > a:hover, .main-navbar-dropdown > li > a:focus, .main-navbar-dropdown > li > a:active {
@@ -131,17 +134,62 @@
 }
 
 /* the filter bar on the feedback page */
-#filter-bar{
-  /*background-color: rgba(26,26,26,.9);*/
-  background-color: rgba(26,26,26,0.9);
+#filter-bar {
+  background-color: rgba(255, 255, 254, 0.0);
   border-radius: 10px;
+  border: none;
   z-index: 0.5;
 }
 
-.feedback-page-sort-dropdown:hover {
-  background-color: #000;
+.filter-bar-dark-text {
+  color: #000 !important;
 }
 
+.feedback-page-sort-navbar .nav > li:hover {
+  background-color: rgb(241, 90, 92);
+  color: #FFF;
+}
+
+.feedback-page-sort-dropdown:hover {
+  background-color: rgb(241, 90, 92);
+}
+
+.feedback-page-sort-navbar .nav > li > a:hover, .feedback-page-sort-navbar .nav > li > a:active, .feedback-page-sort-navbar .nav > li > a:focus, .feedback-page-sort-navbar .nav .open > a, .feedback-page-sort-navbar .nav .open > a:hover, .feedback-page-sort-navbar .nav .open > a:focus{
+  background-color: rgba(255, 255, 255, 0.0);
+}
+
+.feedback-page-sort-navbar-dropdown, .feedback-page-sort-navbar-dropdown > li {
+  background-color: rgba(255, 255, 254, 0.0);
+  margin: 0px;
+  padding: 0px;
+  border: none;
+}
+
+.feedback-page-sort-navbar-dropdown {
+  background-color: rgb(80, 80, 80);
+}
+
+.feedback-page-sort-navbar-dropdown > li {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.feedback-page-sort-navbar-dropdown > li > a {
+  color: #FFF;
+  display: inline-block;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+.feedback-page-sort-navbar-dropdown > li:hover, .feedback-page-sort-navbar-dropdown > li:focus, .feedback-page-sort-navbar-dropdown > li:active {
+  background-color: rgb(241, 90, 92);
+}
+
+.feedback-page-sort-navbar-dropdown > li > a:hover, .feedback-page-sort-navbar-dropdown > li > a:focus, .feedback-page-sort-navbar-dropdown > li > a:active {
+  cursor: default;
+  background-color: rgba(255, 255, 255, 0.0);
+}
 
 
 

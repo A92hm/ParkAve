@@ -1,5 +1,13 @@
-#lot-list-container, #spot-list-container {
-  background-color: rgba(50, 133, 140, 0.68);
+#lot-list-container {
+  background-color: rgba(18, 83, 164, 0.68);
+  padding: 20px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+#spot-list-container {
+  background-color: rgba(255, 255, 255, 0.25);
   padding: 20px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -12,7 +20,7 @@
 }
 
 #lot-view-container {
-  background-color: rgba(50, 133, 140, 0.68);
+  background-color: rgba(18, 83, 164, 0.68);
   padding: 40px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
