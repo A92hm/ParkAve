@@ -21,10 +21,10 @@ module.exports = {
       return res.status(500).json({err: 'Not all input numeric'});
     }
     // Defined as distance in miles / 7 miles
-    var delta = json[2] / 7;
+    var delta = json[2] / 7 * 0.1;
     var latitude = +json[0];
     var longitude = +json[1];
-    Lot.find( {user_id: req.params.uid,
+    Lot.find( {
               lat: {$gte: (latitude - delta), $lte: (latitude + delta)},
               lon: {$gte: (longitude - delta), $lte: (longitude + delta)},
             },
