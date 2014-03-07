@@ -83,7 +83,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
 
       showUserReviewsPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/reviews', {trigger: true});
+          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/feedback', {trigger: true});
         }
         return false;
       },

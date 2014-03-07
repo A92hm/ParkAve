@@ -13,13 +13,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       'click #change-password-button': 'changePassword'
     },
 
-    initialize: function() {
-      this.listenTo(this.model, 'change', this.render);
-      this.listenTo(this.model, 'destroy', this.remove);
+    initialize: function(options) {
+      this.user = options.user;
+      this.listenTo(this.user, 'change', this.render);
+      this.listenTo(this.user, 'destroy', this.remove);
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.toJSON() ) );
+      this.$el.html( this.template( this.user.toJSON() ) );
       return this;
     },
 
@@ -31,24 +32,24 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       var phone = this.$el.find('#edit-phone').val();
       var email = this.$el.find('#edit-email').val();
       if(firstName){
-        this.model.set('firstName', firstName);
+        this.user.set('firstName', firstName);
       }
       if(lastName){
-        this.model.set('lastName', lastName);
+        this.user.set('lastName', lastName);
       }
       if(dateOfBirth){
-        this.model.set('birthdate', dateOfBirth);
+        this.user.set('birthdate', dateOfBirth);
       }
       if(phone){
-        this.model.set('phone', phone);
+        this.user.set('phone', phone);
       }
       if(email){
-        this.model.set('email', email);
+        this.user.set('email', email);
       }
 
-      this.model.unset('password');
-      this.model.save();
-      Router.sharedInstance().navigate('/users/' + this.model.get('_id'), {trigger: true});
+      this.user.unset('password');
+      this.user.save();
+      Router.sharedInstance().navigate('/users/' + this.user.get('_id'), {trigger: true});
 
       return false;
     },
@@ -67,8 +68,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
 
       // Check password on the server, save if it is correct
       if(oldPassword && newPassword && confirmNewPassword){
-        var theModel = this.model;
-        var session = new Session({email: this.model.get('email'), password: oldPassword});
+        var theModel = this.user;
+        var session = new Session({email: this.user.get('email'), password: oldPassword});
         var sessionsCollection = new SessionsCollection([session]);
         session.save({}, {error: function(err){
           console.log('err', err);

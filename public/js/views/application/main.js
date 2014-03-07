@@ -49,7 +49,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var thisGuy = this;
       this.getCurrentUser(uid, function(user){
         var lots = new LotsCollection([], {user: user});
-        var sellParkingView = new SellParkingView( {model: user, collection: lots} );
+        var sellParkingView = new SellParkingView( {user: user, collection: lots} );
         thisGuy.$el.html( sellParkingView.render().el );
         lots.fetch();
         thisGuy.showNavigation(user);
@@ -132,7 +132,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     showUserSettings: function(uid){
       var thisGuy = this;
       this.getCurrentUser(uid, function(user){
-        var userSettingsView = new UserSettingsView( {model: user} );
+        var userSettingsView = new UserSettingsView( {user: user} );
         thisGuy.$el.html( userSettingsView.render().el );
         thisGuy.showNavigation(user);
       });

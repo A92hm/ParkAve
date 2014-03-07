@@ -10,7 +10,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellPark
         'click .lot-list-item': 'renderLotView'
       },
 
-      initialize: function() {
+      initialize: function(options) {
+        this.user = options.user;
         this.listenTo(this.collection, 'add', this.renderLotView);
         this.listenTo(this.collection, 'remove', this.renderLotView);
         this.listenTo(this.collection, 'reset', this.render);
@@ -28,11 +29,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellPark
       renderLotView: function(event){
         if(event.currentTarget){
           var lotId = event.currentTarget.id.slice(event.currentTarget.id.lastIndexOf('-') + 1, event.currentTarget.id.length);
-          this.lotView = new LotView( {model: this.collection.get(lotId), collection: this.model} );
+          this.lotView = new LotView( {model: this.collection.get(lotId), user: this.user} );
           this.$el.find('#lot-view-container').html( this.lotView.render().el );
         } else{
           if(!this.lotView){
-            this.lotView = new LotView( {model: this.collection.at(this.collection.length - 1), collection: this.model} );
+            this.lotView = new LotView( {model: this.collection.at(this.collection.length - 1), user: this.user} );
             this.$el.find('#lot-view-container').html( this.lotView.render().el );
             return;
           }
@@ -40,7 +41,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellPark
             var currentLotSelected = this.collection.get(this.lotView.model.get('_id'));
           }
           if(!currentLotSelected){
-            this.lotView = new LotView( {model: this.collection.at(this.collection.length - 1), collection: this.model} );
+            this.lotView = new LotView( {model: this.collection.at(this.collection.length - 1), user: this.user} );
             this.$el.find('#lot-view-container').html( this.lotView.render().el );
           }
         }

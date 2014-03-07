@@ -4,11 +4,11 @@ define(['underscore','backbone'], function(_, Backbone) {
     idAttribute: '_id',
 
     defaults: {
-      title: 'Untitled',
-      spot_id: this.idAttribute,
-      parkingSurface: "Grass",
+      numSpots: 0,
       price: 0,
-      buyer_id: [],
+      startDate: new Date(),
+      endDate: new Date(),
+      parkingSurface: "Grass",
       event_id: "",
       lot_id: ""
     },

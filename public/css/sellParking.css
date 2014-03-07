@@ -47,54 +47,51 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
 
 /* add lot modal stuff */
 
-#new-lot-modal > div > div  {
+#new-lot-modal > div > div, #new-spot-modal > div > div  {
   background-color: rgba(109, 188, 128, 0.5);
   color: #FFFFFF !important;
-}
-
-#new-lot-modal > div > div  {
   padding-right: 25px;
   padding-left: 25px;
 }
 
-.new-lot-modal-title {
+.new-lot-modal-title, .new-spot-modal-title {
   font-size: 28px;
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
-#new-lot-modal > div > div > div.modal-body > div.row > div > div.row {
+#new-lot-modal > div > div > div.modal-body > div.row > div > div.row, #new-spot-modal > div > div > div.modal-body > div.row > div > div.row {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.new-lot-main-input {
+.new-lot-main-input, .new-spot-main-input {
   height: 40px;
 }
 
-#new-lot-save-button {
+#new-lot-save-button, #new-spot-save-button {
   padding-left: 20px;
   padding-right: 20px;
 }
 
-.new-lot-modal-close-button {
+.new-lot-modal-close-button, .new-spot-modal-close-button {
   box-shadow: none;
   color: #FFF;
 }
 
-.new-lot-modal-close-button:hover, .new-lot-modal-close-button:focus, .new-lot-modal-close-button:active {
+.new-lot-modal-close-button:hover, .new-lot-modal-close-button:focus, .new-lot-modal-close-button:active, .new-spot-modal-close-button:hover, .new-spot-modal-close-button:focus, .new-spot-modal-close-button:active {
   color: #EEE;
 }
 
-#new-lot-modal > div.modal-content > div.modal-header {
+#new-lot-modal > div.modal-content > div.modal-header, #new-spot-modal > div.modal-content > div.modal-header {
   border: none;
 }
 
-#new-lot-modal > div.modal-content > div.modal-body {
+#new-lot-modal > div.modal-content > div.modal-body, #new-spot-modal > div.modal-content > div.modal-body {
   padding-bottom: 20px;
 }
 
-#new-lot-modal > div.modal-content > div.modal-footer {
+#new-lot-modal > div.modal-content > div.modal-footer, #new-spot-modal > div.modal-content > div.modal-footer {
   border: none;
   margin-top: 0px;
   padding-top: 0px;

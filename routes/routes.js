@@ -50,7 +50,7 @@ module.exports = {
     app.put(  '/api/users/:uid/lots/:lid', lotsController.update);      // Update the specific lot for a specified user id and lot id
     app.del(  '/api/users/:uid/lots/:lid', lotsController.destroy);     // Delete the specific lot for a specified user id and lot id
     
-    app.get(  '/api/lots',     lotsController.showAllLots);             // Get all of the lots 
+    app.get(  '/api/lots',      lotsController.showAllLots);             // Get all of the lots 
     app.get(  '/api/lots/:lid', lotsController.show);                   // Get a specific lot for a specified lot id
     app.del(  '/api/lots/:lid', lotsController.destroy);                // Delete the specific lot for a specified lot id
 

@@ -11,9 +11,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spot.html',
     template: _.template( Template ),
 
     events: {
-      'click a[href="#delete"]': 'deleteSpot',
-      'click a[href="#spots"]': 'returnToSpots',
-      'click a[href="#create-spot"]': 'createSpot'
+      'click a[href="#delete"]': 'deleteSpot'
     },
 
     initialize: function() {
@@ -24,12 +22,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spot.html',
     render: function() {
       this.$el.html( this.template( this.model.toJSON() ) );
       return this; 
-    },
-
-    returnToSpots: function() {
-      var spots = new SpotsCollection();
-      Router.sharedInstance().navigate(spots.clienturl(), {trigger: true});
-      return false;
     },
 
     deleteSpot: function() {
@@ -43,13 +35,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spot.html',
         .fail(function(xhr, data) {
           console.log('there was a problem deleting the model');
         });
-      return false;
-    },
-
-    createSpot: function() {
-      this.newSpotView = new NewSpotView();
-      this.newSpotView.render().$el.modal(); // .modal() is bootstrap
-      this.listenTo(this.newSpotView, 'dialog:save', this.saveNewSpot);
       return false;
     }
   });

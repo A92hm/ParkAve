@@ -66,8 +66,8 @@ def makeSpot(n):
 	for i in xrange(0, n):
 		lot = choice(lots)
 		spot = {
-			'title' : fake.word(),
-			'date' : fake.date(pattern="%m-%d-%y"),
+			'startDate' : fake.date(pattern="%m-%d-%y"),
+			'endDate' : fake.date(pattern="%m-%d-%y"),
 			'buyer_list' : [],
 			'numSpots' :  fake.random_int(min=1, max=10),
 			'event_id' : '',
