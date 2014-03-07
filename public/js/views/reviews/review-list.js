@@ -40,7 +40,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       this.$reviewList = this.$el.find('#review-list');
       this.$reviewList.html("loading...");
       this.addAll();
-      
+      this.oldModels = this.collection.models;
       return this;
     },
     addAll: function(){
@@ -153,8 +153,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
         this.starTot = 0;
     },
     filter: function(term){
-      console.log(term);
-      
+      this.collection.models = this.oldModels;
       if(term == ""){
         console.log('null term');
         this.createCollection();
