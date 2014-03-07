@@ -132,7 +132,8 @@
 
 /* the filter bar on the feedback page */
 #filter-bar{
-  background-color: rgba(26,26,26,.9);
+  /*background-color: rgba(26,26,26,.9);*/
+  background-color: rgba(26,26,26,0.9);
   border-radius: 10px;
   z-index: 0.5;
 }

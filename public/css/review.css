@@ -14,3 +14,10 @@
 #review-body{
 	z-index: 0;
 }
+#submit-button{
+	background-color: rgba(36,36,36,0);
+	border-color: rgba(255,255,255,0)
+}
+#submit-button > #magnifying-glass{
+	color: white;
+}
