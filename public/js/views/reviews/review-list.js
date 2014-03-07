@@ -48,10 +48,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       this.$reviewList.empty();
       if(this.collection.length == 0){
         //no reviews so put a place holder
+        /*
         this.$reviewList.delay(200).queue(function (next) {
         $(this).append("<div class=\"well well-md\"> <p>No reviews found</p></div> ");
         next();
         });
+*/
       }
       
       this.collection.each(this.addOne, this);
