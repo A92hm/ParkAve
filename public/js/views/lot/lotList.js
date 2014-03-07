@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
-  'views/lot/lot-list-item', 'views/lot/lot-list-new'],
+define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotList.html',
+  'views/lot/lotListItem', 'views/lot/newLotModal'],
   function($, _, Backbone, Template, LotListItemView, NewLotView) {
 
   var LotListView = Backbone.View.extend({
@@ -11,7 +11,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
       'click #lot-list-add-lot-button': 'createNewLot'
     },
 
-    initialize: function() {
+    initialize: function(options) {
+      this.user = options.user;
       this.listenTo(this.collection, 'reset', this.addAll);
       this.listenTo(this.collection, 'add', this.addOne);
     },
@@ -23,7 +24,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
     },
 
     addAll: function() {
-      console.log(this.collection.toJSON());
       this.$lots.empty();
       this.collection.each(this.addOne, this);
     },
@@ -34,7 +34,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/list.html',
     },
 
     createNewLot: function(event) {
-      this.newLotView = new NewLotView( {model: this.collection} );
+      this.newLotView = new NewLotView( {user: this.user} );
       this.newLotView.render().$el.modal(); // .modal() is bootstrap
       this.listenTo(this.newLotView, 'dialog:save', this.saveNewLot);
       return false;

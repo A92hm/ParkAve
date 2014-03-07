@@ -1,16 +1,14 @@
 
-define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listitem.html',
+define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotListItem.html',
   'routing/router'],
   function($, _, Backbone, Template, Router) {
 
   var LotListItemView = Backbone.View.extend({
     tagName: 'div',
-    className: 'lot',
     template: _.template( Template ),
 
     events: {
-      'click .lot-list-item-delete-button': 'deleteLot',
-      'click a[href="#view"]': 'viewLot'
+      'click .lot-list-item-delete-button': 'deleteLot'
     },
 
     initialize: function() {
@@ -19,7 +17,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listitem.html',
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.toJSON() ) );
+      if(this.model.get('_id')){
+        this.$el.html( this.template( this.model.toJSON() ) );
+      }
       return this; 
     },
 

@@ -1,126 +1,26 @@
-@font-face
-{
-font-family: navbarFont;
-src: local("Lucida Console");
+@font-face {
+  font-family: main-navbarFont;
+  src: local("Lucida Console");
 }
 
-.soba-navbar-container {
-  background-color: #000;
-}
-
-.navbar{
-  z-index: 1;
-  background-color: rgba(80, 46, 144, 0.5);
-  height: 90px;
-  border: none;
-  -moz-border-radius: 0px;
-  -webkit-border-radius: 0px;
-  border-radius: 0px;
-}
-
-.navbar .nav > li {
-  width: 150px;
-  height: 90px;
-  line-height: 90px;
-  text-align: center;
-  font-family: vitesse-sans-light;
-}
-
-.navbar .nav > li > a {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  color: #ffffff;
-  text-shadow: none;
-  cursor: default;
-}
-
-.navbar .nav > li:hover {
-  background-color: rgba(109, 188, 128, 0.65);
-  color: #ffffff;
-}
-
-.navbar .nav > li > a:hover, .navbar .nav > li > a:active, .navbar .nav > li > a:focus, .navbar .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
-  background-color: rgba(255, 255, 255, 0.0);
-}
-
-.navbar-header, .navbar-brand {
-  width: 180px;
-  height: 90px;
-}
-
-.navbar-brand {
-  text-align: center;
-  color: #ffffff;
-  text-shadow: none;
-}
-
-.soba-navbar-search-input, .soba-navbar-search-input > div {
-  padding-top: 10px;
-  height: 100px;
-  vertical-align: bottom;
-}
-
-.soba-navbar-search-input > div > input {
-  vertical-align: middle;
-}
-
-.navbar-dropdown, .navbar-dropdown > li {
-  background-color: rgba(80, 46, 144, 0.5);
-  margin: 0px;
-  padding: 0px;
-  border: none;
-}
-
-.navbar-dropdown {
-  background-color: rgba(255, 255, 255, 0.0);
-}
-
-.navbar-dropdown > li {
-  height: 40px;
-  line-height: 40px;
-}
-
-.navbar-dropdown > li > a {
-  color: #FFF;
-  display: inline-block;
-  line-height: normal;
-  vertical-align: middle;
-}
-
-.navbar-dropdown > li:hover, .navbar-dropdown > li:focus, .navbar-dropdown > li:active {
-  background-color: rgba(109, 188, 128, 0.65);
-}
-
-.navbar-dropdown > li > a:hover, .navbar-dropdown > li > a:focus, .navbar-dropdown > li > a:active {
-  cursor: default;
-  background-color: rgba(255, 255, 255, 0.0);
-  color: #FFF;
-}
-
-
-
-
-
-
-.navbar-brand {
+.main-navbar-brand {
   margin-left: 15px;
 }
 
-.navbar-brand:hover {
+.main-navbar-brand:hover {
   cursor: default;
   background-color: rgb(109, 188, 128);
 }
 
 @media (min-width: 768px) {
 
-  .navbar-header, .navbar-brand, #nav-home {
+  .main-navbar-header, .main-navbar-brand, #nav-home {
     width: 180px;
     height: 90px;
     cursor: default;
   }
 
-  .navbar-brand {
+  .main-navbar-brand {
     padding-left: 0px;
     padding-right: 0px;
     margin-left: 0px !important;
@@ -132,7 +32,7 @@ src: local("Lucida Console");
     text-shadow: none;
   }
 
-  .navbar .nav > li {
+  .main-navbar .nav > li {
     width: 150px;
     height: 90px;
     line-height: 90px;
@@ -145,26 +45,26 @@ src: local("Lucida Console");
     width: 190px;
   }
 
-  .navbar {
+  .main-navbar {
     height: 90px;
   }
 
-  .navbar-header:hover {
+  .main-navbar-header:hover {
     background-color: rgb(109, 188, 128);
   }
 
-  .navbar-brand:hover {
+  .main-navbar-brand:hover {
     background-color: inherit;
   }
 
 }
 
-.navbar > .container-fluid {
+.main-navbar > .container-fluid {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-.navbar {
+.main-navbar {
   z-index: 1;
   background-color: rgb(80, 46, 144);
   border: none;
@@ -173,12 +73,12 @@ src: local("Lucida Console");
   border-radius: 0px;
 }
 
-.navbar .nav > li {
+.main-navbar .nav > li {
   text-align: center;
   font-family: vitesse-sans-light;
 }
 
-.navbar .nav > li > a {
+.main-navbar .nav > li > a {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
@@ -188,43 +88,43 @@ src: local("Lucida Console");
   cursor: default;
 }
 
-.navbar .nav > li:hover {
+.main-navbar .nav > li:hover {
   background-color: rgb(109, 188, 128);
   color: #ffffff;
 }
 
-.navbar .nav > li > a:hover, .navbar .nav > li > a:active, .navbar .nav > li > a:focus, .navbar .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+.main-navbar .nav > li > a:hover, .main-navbar .nav > li > a:active, .main-navbar .nav > li > a:focus, .main-navbar .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
   background-color: rgba(255, 255, 255, 0.0);
 }
 
-.navbar-dropdown, .navbar-dropdown > li {
+.main-navbar-dropdown, .main-navbar-dropdown > li {
   background-color: rgb(80, 46, 144);
   margin: 0px;
   padding: 0px;
   border: none;
 }
 
-.navbar-dropdown {
+.main-navbar-dropdown {
   background-color: rgba(255, 255, 255, 0.0);
 }
 
-.navbar-dropdown > li {
+.main-navbar-dropdown > li {
   height: 40px;
   line-height: 40px;
 }
 
-.navbar-dropdown > li > a {
+.main-navbar-dropdown > li > a {
   color: #FFF;
   display: inline-block;
   line-height: normal;
   vertical-align: middle;
 }
 
-.navbar-dropdown > li:hover, .navbar-dropdown > li:focus, .navbar-dropdown > li:active {
+.main-navbar-dropdown > li:hover, .main-navbar-dropdown > li:focus, .main-navbar-dropdown > li:active {
   background-color: rgb(109, 188, 128);
 }
 
-.navbar-dropdown > li > a:hover, .navbar-dropdown > li > a:focus, .navbar-dropdown > li > a:active {
+.main-navbar-dropdown > li > a:hover, .main-navbar-dropdown > li > a:focus, .main-navbar-dropdown > li > a:active {
   cursor: default;
   background-color: rgba(255, 255, 255, 0.0);
   color: #FFF;
@@ -232,10 +132,15 @@ src: local("Lucida Console");
 
 /* the filter bar on the feedback page */
 #filter-bar{
-  background-color: rgba(26, 26, 26, 0.9);
+  /*background-color: rgba(26,26,26,.9);*/
+  background-color: rgba(26,26,26,0.9);
   border-radius: 10px;
+  z-index: 0.5;
 }
 
+.feedback-page-sort-dropdown:hover {
+  background-color: #000;
+}
 
 
 

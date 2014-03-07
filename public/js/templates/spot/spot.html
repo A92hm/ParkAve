@@ -1,8 +1,32 @@
-<div><a href="#create-spot">Create Spot</a></div>
-<h3>Title: <%= title %></h3>
-<p>Number of spots: <%= numSpots %></p>
-<p>Price: $<%= price %></p>
-<p>event_id: <%= event_id %></p>
-<a href="#delete" class="text-danger">Delete</a>
-<hr>
-<div><a href="#lots">Return to lots</a></div>
+<!-- PROBABLY DON'T NEED THIS DIALOG, JUST USE NEW SPOT MODAL INSTEAD -->
+
+<div id="new-lot-modal" class="modal-dialog">
+  <div class="modal-content unselectable cursor-default">
+    <div class="modal-header">
+      <button type="button" class="close new-lot-modal-close-button" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="new-lot-modal-title">Edit Spot</h4>
+    </div>
+
+    <div class="modal-body">
+      <form role="form">
+        <div class="form-group">
+          <label for="input-title">Title</label>
+          <input type="text" class="form-control modern-input new-lot-main-input" name="input-title" value=<%= title %> placeholder="title" autofocus="autofocus" required=true>
+        </div>
+        <div class="form-group">
+          <label for="input-num-spots">Number of Spots</label>
+          <input type="text" class="form-control modern-input new-lot-main-input" name="input-num-spots" value=<%= numSpots %> placeholder="number of spots">
+        </div>
+        <div class="form-group">
+          <label for="input-price">Price</label>
+          <input type="text" class="form-control modern-input new-lot-main-input" name="input-price" value=<%= price %> placeholder="price">
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary modern-input-inverse new-lot-save-button new-lot-main-input" id="new-lot-save-button">save changes</button>
+    </div>
+
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

@@ -1,19 +1,20 @@
 
-define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', 'text!templates/widgets/inputerror.html',],
+define(['jquery', 'underscore', 'backbone', 'text!templates/lot/newLotModal.html',
+        'text!templates/widgets/inputerror.html',],
   function($, _, Backbone, Template, InputErrorTemplate) {
 
   var NewLotView = Backbone.View.extend({
     tagName: 'div',
     className: 'modal fade',
-    id: 'new-form-modal',
     template: _.template( Template ),
 
     events: {
-      'click #new-lot-save': 'saveLot'
+      'keypress .new-lot-main-input': 'checkPasswordInputForEnterKey',
+      'click #new-lot-save-button': 'saveLot'
     },
 
-    initialize: function() {
-      
+    initialize: function(options) {
+      this.user = options.user;
     },
 
     render: function() {
@@ -23,21 +24,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
 
     saveLot: function(event) {
       // might validate the input here
-
       var inputTitle = this.$el.find('[name="input-title"]');
-      var inputAddress1 = this.$el.find('[name="input-address"]');
-      var inputAddress2 = this.$el.find('[name="input-address-2"]');
+      var inputStreet = this.$el.find('[name="input-address"]');
       var inputCity = this.$el.find('[name="input-city"]');
       var inputZip = this.$el.find('[name="input-zip"]');
       var inputState = this.$el.find('[name="input-state"]');
-      var inputUserId = this.uId; // uId is set when the view
 
       this.lotAttributes = {
         title: inputTitle.val(),
-        user_id: inputUserId,
+        user_id: this.user.get('_id'),
         address: {
-          address1: inputAddress1.val(),
-          address2: inputAddress2.val(),
+          street: inputStreet.val(),
           city: inputCity.val(),
           zip: inputZip.val(),
           state: inputState.val()
@@ -46,18 +43,23 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
 
       // Some input validation
       if (inputTitle.val() == '') {
+        alert('Input title');
         inputTitle.focus();
         return;
-      } else if (this.lotAttributes.address1 == '') {
-        inputAddress1.focus();
+      } else if (this.lotAttributes.street == '') {
+        alert('Input street');
+        inputStreet.focus();
         return;
       } else if (this.lotAttributes.city == '') {
+        alert('Input city');
         inputCity.focus();
         return;
       } else if (this.lotAttributes.zip == '') {
+        alert('Input zip');
         inputZip.focus();
         return;
       } else if (this.lotAttributes.state == '') {
+        alert('Input state');
         inputState.focus();
         return;
       }
@@ -66,24 +68,32 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/listnew.html', '
       var API_KEY = 'AIzaSyB1sgyCCyjydPDo6rFweWMbrDyU6uRxPGM';
       // The url for the geocoding.  The spaces need to be replaced with '+' for the url to work
       // Should do some error checking first.
-      var geocodingAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + inputAddress1.val().split(' ').join('+') + ',+' + inputCity.val().split(' ').join('+')
+      var geocodingAPI = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + inputStreet.val().split(' ').join('+') + ',+' + inputCity.val().split(' ').join('+')
         + ',+' + inputState.val().split(' ').join('+') + ',+' + inputZip.val().split(' ').join('+') + '&sensor=false&key=' + API_KEY;
 
-      var globalJson;
-
+      var thisGuy = this;
       $.ajax({
         url: geocodingAPI,
         async: false,
         dataType: 'json',
         success: function (json) {
-          globalJson = json;
+          if(json.status == "ZERO_RESULTS"){
+            alert('invalid address');
+          } else{
+            thisGuy.lotAttributes.lat = '' + json.results[0].geometry.location.lat;
+            thisGuy.lotAttributes.lon = '' + json.results[0].geometry.location.lng;
+
+            thisGuy.trigger('dialog:save');
+          }
         }
       });
+    },
 
-      this.lotAttributes.lat = globalJson.results[0].geometry.location.lat;
-      this.lotAttributes.lon = globalJson.results[0].geometry.location.lng;
-
-      this.trigger('dialog:save');
+    checkPasswordInputForEnterKey: function(evt){
+      if(evt.keyCode == 13){
+        this.saveLot();
+        return false;
+      }
     }
   });
 

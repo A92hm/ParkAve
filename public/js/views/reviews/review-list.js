@@ -40,13 +40,24 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
       this.$reviewList = this.$el.find('#review-list');
       this.$reviewList.html("loading...");
       this.addAll();
-      
+      this.oldModels = this.collection.models;
       return this;
     },
     addAll: function(){
       console.log('add all');
       this.$reviewList.empty();
       this.collection.each(this.addOne, this);
+      /*
+      if(this.collection.length == 0){
+        //no reviews so put a place holder
+        
+        this.$reviewList.delay(200).queue(function (next) {
+        $(this).html("<div class=\"well well-md\"> <p>No reviews found</p></div> ");
+          next();
+        });
+
+      }
+      */
     },
     addOne: function(review){// methond
       //calculate star average
@@ -68,9 +79,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
     sortDate: function(){
       console.log("sort date clicked");
       this.collection.comparator = 'date';
-      
+      if(this.dateSortTick > 0){
+        this.collection.comparator = function(review){
+          var strDate = review.get('date');
+          var date = new Date(strDate);
+          return -date.getTime();
+        };
+      }
       this.collection.sort({});
-      this.dateSortTick*=-1;
+      this.dateSortTick *= -1;
       this.addAll();
       return false;
     },
@@ -98,12 +115,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
 
       },this);
 
-      return false;
-    },
-    sortLength: function(){
-      console.log("sort length clicked");
-      this.collection.comparator = 'body';
-      this.collection.sort({});
       return false;
     },
     addAverageStars: function(){
@@ -140,10 +151,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
         //reset counters
         this.count =0;
         this.starTot = 0;
+
     },
     filter: function(term){
-      console.log(term);
-      
+      this.collection.models = this.oldModels;
       if(term == ""){
         console.log('null term');
         this.createCollection();
@@ -156,15 +167,21 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
         var count = 0;
         for(var s in split){
           //console.log(review.get('body'))
-          if(review.get('body').indexOf(split[s]) != -1){
-            console.log(review.get('title')+": "+ split[s]);
+          var body = review.get('body').toLowerCase();
+          var keyword = split[s].toLowerCase();
+
+          if(body.indexOf(keyword) != -1){
+            //console.log(review.get('title')+": "+ split[s]);
+            count++;
+          }
+          else if(body.indexOf(keyword) != -1){
             count++;
           }
         }
-        if(count != split.length-1) 
-          return true;
-        else
+        if(count < split.length) 
           return false;
+        else
+          return true;
       });
       //clear review list and add items
       console.log(found);

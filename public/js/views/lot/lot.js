@@ -1,7 +1,9 @@
 
-define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
-  'routing/router', 'collections/lots', 'views/lot/lot-list-new', 'models/user', 'collections/users'],
-  function($, _, Backbone, Template, Router, LotsCollection, NewLotView, User, UsersCollection) {
+define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text!templates/lot/lotViewEmpty.html',
+        'routing/router', 'collections/lots', 'collections/spots', 'collections/users',
+        'views/spot/spotList', 'views/spot/newSpotModal', 'models/user'],
+  function($, _, Backbone, Template, LotViewEmptyTemplate, Router, LotsCollection,
+           SpotsCollection, UsersCollection, SpotListView, NewSpotView, User) {
 
 
   var LotView = Backbone.View.extend({
@@ -10,49 +12,47 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html',
     template: _.template( Template ),
 
     events: {
-      'click #lot-view-delete-lot-button': 'deleteLot',
-      'click #lot-view-add-spot-button': 'createSpot'
+      'click #spot-list-add-spot-button': 'createSpot'
     },
 
-    initialize: function() {
-      this.listenTo(this.model, 'change', this.render);
-      this.listenTo(this.model, 'destroy', this.remove);
+    initialize: function(options) {
+      this.user = options.user;
+      if(this.model){
+        this.spotsCollection = new SpotsCollection([], {lot: this.model});
+        this.listenTo(this.model, 'change', this.render);
+        this.listenTo(this.model, 'destroy', this.remove);
+      }
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.toJSON() ) );
+      if(this.model){
+        this.$el.html( this.template( this.model.toJSON() ) );
+        this.renderSpots();
+      } else {
+        this.$el.html( LotViewEmptyTemplate );
+      }
       return this; 
     },
 
-    returnToLots: function() {
-      var currentUser = new User({_id : this.collection.get('_id')});
-      var usersCollection = new UsersCollection([currentUser]);
-      var lots = new LotsCollection([], {user: currentUser});
-      Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});
-      return false;
+    renderSpots: function() {
+      var spotListView = new SpotListView( {collection: this.spotsCollection, user: this.user} );
+      this.$el.find('#spot-view-div').html( spotListView.render().el );
+      if(this.model.get('_id')){
+        this.spotsCollection.fetch();
+      }
     },
 
     deleteLot: function() {
-      var uId = this.collection.get('_id');
       this.model.destroy({wait: true})
         .done(function(data) {
-          { // pop back to lots. this is annoying
-
-            // Need to get the user first
-            var currentUser = new User({_id : uId});
-            var usersCollection = new UsersCollection([currentUser]);
-            var lots = new LotsCollection([], {user: currentUser});
-            Router.sharedInstance().navigate(lots.clienturl(), {trigger: true});
-          }
+          // good to go
+          console.log('deleting now...');
         })
         .fail(function(xhr, data) {
           console.log('there was a problem deleting the model');
         });
-      return false;
-    },
-
-    createSpot: function() {
-      Router.sharedInstance().navigate(this.model.clienturl() + '/spots', {trigger: true});
+      this.remove();
+      this.model.collection.remove(this.model);
       return false;
     }
   });

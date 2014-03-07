@@ -50,7 +50,7 @@ module.exports = {
     app.put(  '/api/users/:uid/lots/:lid', lotsController.update);      // Update the specific lot for a specified user id and lot id
     app.del(  '/api/users/:uid/lots/:lid', lotsController.destroy);     // Delete the specific lot for a specified user id and lot id
     
-    app.get(  '/api/lots',     lotsController.showAllLots);             // Get all of the lots 
+    app.get(  '/api/lots',      lotsController.showAllLots);             // Get all of the lots 
     app.get(  '/api/lots/:lid', lotsController.show);                   // Get a specific lot for a specified lot id
     app.del(  '/api/lots/:lid', lotsController.destroy);                // Delete the specific lot for a specified lot id
 
@@ -61,9 +61,16 @@ module.exports = {
     app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);  // Update a specific spot give a specified spot, lot, and user id
     app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy); // Delete the speceific spot from the database
 
+    // API for closest lots
+    // Call to get the nearest lots within a given distance :json is in the form lat+lon+dist
+    app.get(  '/api/location/:json',     lotsController.nearlots);        // Get all of the lots for a specified user id
+
     // Non-API routes
 
     app.get(  '/landing*', function(req, res) {
+      sendIndexFile(res);
+    });
+    app.get(  '/login*', function(req, res) {
       sendIndexFile(res);
     });
     app.get(  '/buy*', function(req, res) {

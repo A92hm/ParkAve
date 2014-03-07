@@ -13,51 +13,15 @@ define(['underscore', 'require', 'backbone'],
       'login': 'login',
 
       'users': '',
-      'users/:uid': 'userPage',
+      'users/:uid': 'sellParking',
       'users/:uid/feedback': 'userFeedback',
-      'users/:uid/reviews': 'userReviews',
       'users/:uid/settings': 'userSettings',
-
-      'users/:uid/lots': 'lots',
-      'users/:uid/lots/:lid': 'lot',
-      'users/:uid/lots/:lid/spots' : 'spots',
-      'users/:uid/lots/:lid/spots/:sid': 'spot',
 
       '': 'main'
     },
 
     main: function() {
       this.navigate('landing', {trigger: true});
-    },
-
-    lots: function(uid) {
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showLots(uid);
-      });
-
-      // we can require the main view dynamically when needed. if not we encouter a circularity:
-      // router -> main -> lot list -> lot list item -> router
-    }, 
-
-    lot: function(uid, lid) {
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showLot(uid, lid);
-      });
-    },
-
-    spots: function(uid, lid) {
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showSpots(uid, lid);
-    });
-
-      // we can require the main view dynamically when needed. if not we encouter a circularity:
-      // router -> main -> lot list -> lot list item -> router
-    }, 
-
-    spot: function(uid, lid, sid) {
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showSpot(uid, lid, sid);
-      });
     },
 
     landing: function(){
@@ -89,22 +53,10 @@ define(['underscore', 'require', 'backbone'],
         MainAppView.sharedInstance().showLogin();
       });
     },
-
-    userPage: function(uid){
-      require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showUserPage(uid);
-      })
-    },
-
+    
     userFeedback: function(uid) {
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showUserFeedback(uid);
-      });
-    },
-
-    userReviews : function(uid){
-      require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showReviewList(uid);
       });
     },
     

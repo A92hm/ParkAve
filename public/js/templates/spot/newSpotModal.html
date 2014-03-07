@@ -1,0 +1,43 @@
+<div id="new-spot-modal" class="modal-dialog">
+  <div class="modal-content unselectable cursor-default">
+    <div class="modal-header">
+      <button type="button" class="close new-spot-modal-close-button" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="new-spot-modal-title">Add Spots</h4>
+    </div>
+
+    <div class="modal-body">
+      <form role="form">
+        <div class="form-group">
+          <label for="input-title">number of spots</label>
+          <input type="number" class="form-control modern-input new-spot-main-input" name="input-num-spots" value=<%= numSpots %> placeholder="number of spots" autofocus="autofocus" required=true>
+        </div>
+        <div class="form-group">
+          <label for="input-address">price</label>
+          <input type="number" class="form-control modern-input new-spot-main-input" name="input-price" value=<%= price %> placeholder="price">
+        </div>
+        <div class="form-group">
+          <label for="input-start-date">available from</label>
+          <input type="date" class="form-control modern-input new-spot-main-input" name="input-start-date" value=<%= getFormattedDateString(startDate) %>>
+        </div>
+        <div class="form-group">
+          <label for="input-end-date">available until</label>
+          <input type="date" class="form-control modern-input new-spot-main-input" name="input-end-date" value=<%= getFormattedDateString(endDate) %>>
+        </div>
+        <div class="form-group">
+          <label for="input-parking-surface">parking surface</label>
+          <select class="form-control modern-input new-spot-main-input" name="input-parking-surface">
+            <option>Grass</option>
+            <option>Gravel</option>
+            <option>Pavement</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary modern-input-inverse new-spot-save-button new-spot-main-input" id="new-spot-save-button">add spots</button>
+    </div>
+
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

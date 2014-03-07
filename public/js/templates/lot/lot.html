@@ -1,21 +1,28 @@
-<div class="page-header">
+<div class="page-header unselectable cursor-default">
   <h1 class="light-text"><%= title %></h1>
 </div>
-<div class="row">
-  <div class="col-sm-7">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title lot-address-panel-title">Lot Location</h3>
+
+<!-- <div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class='lot-location-container'>
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="lot-location-title light-text unselectable cursor-default">Location</h1>
+        </div>
       </div>
-      <div class="panel-body lot-address-panel-body">
-        <%= address.street %><br>
-        <%= address.city %>, <%= address.state %> <%= address.zip %>
+      <div class="row">
+        <div class="col-xs-12 lot-location-address light-text">
+          <%= address.street %><br>
+          <%= address.city %>, <%= address.state %> <%= address.zip %>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-5">
-    <button id="lot-view-add-spot-button" type="button" class="btn btn-success btn-block modern-input-inverse spot-add-button"><i class="fa fa-plus"></i> Add Spot</button>
-    <button id="lot-view-delete-lot-button" type="button" class="btn btn-success btn-block modern-input-inverse lot-delete-button"><i class="fa fa-times"></i> Delete Lot</button>
+</div> -->
+
+<div class="row unselectable cursor-default">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div id="spot-view-div"></div>
   </div>
 </div>
 

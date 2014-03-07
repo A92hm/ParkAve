@@ -1,4 +1,4 @@
-#lot-list-container {
+#lot-list-container, #spot-list-container {
   background-color: rgba(50, 133, 140, 0.68);
   padding: 20px;
   -moz-border-radius: 15px;
@@ -6,7 +6,7 @@
   border-radius: 15px;
 }
 
-#lot-list-container > .row {
+#lot-list-container > .row, #spot-list-container > .row {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -27,12 +27,12 @@
   margin-top: 0px;
 }
 
-button.lot-add-button, button.spot-add-button, button.new-lot-save-button  {
+button.lot-add-button, button.spot-add-button, button.new-lot-save-button, button.new-spot-save-button  {
   margin-top: 10px;
   background-color: rgba(84, 169, 103, 1);
 }
 
-button.lot-add-button:hover, button.lot-add-button:focus, button.lot-add-button:active, button.spot-add-button:hover, button.spot-add-button:focus, button.spot-add-button:active, button.new-lot-save-button:hover, button.new-lot-save-button:focus, button.new-lot-save-button:active {
+button.lot-add-button:hover, button.lot-add-button:focus, button.lot-add-button:active, button.spot-add-button:hover, button.spot-add-button:focus, button.spot-add-button:active, button.new-lot-save-button:hover, button.new-lot-save-button:focus, button.new-lot-save-button:active, button.new-spot-save-button:hover, button.new-spot-save-button:focus, button.new-spot-save-button:active {
   background-color: rgba(84, 169, 103, 0.68);
 }
 
@@ -45,65 +45,110 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   background-color: rgba(222, 27, 27, 0.68);
 }
 
-.lot-list-title {
+/* add lot modal stuff */
+
+#new-lot-modal > div > div, #new-spot-modal > div > div  {
+  background-color: rgba(109, 188, 128, 0.5);
+  color: #FFFFFF !important;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.new-lot-modal-title, .new-spot-modal-title {
+  font-size: 28px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#new-lot-modal > div > div > div.modal-body > div.row > div > div.row, #new-spot-modal > div > div > div.modal-body > div.row > div > div.row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.new-lot-main-input, .new-spot-main-input {
+  height: 40px;
+}
+
+#new-lot-save-button, #new-spot-save-button {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.new-lot-modal-close-button, .new-spot-modal-close-button {
+  box-shadow: none;
+  color: #FFF;
+}
+
+.new-lot-modal-close-button:hover, .new-lot-modal-close-button:focus, .new-lot-modal-close-button:active, .new-spot-modal-close-button:hover, .new-spot-modal-close-button:focus, .new-spot-modal-close-button:active {
+  color: #EEE;
+}
+
+#new-lot-modal > div.modal-content > div.modal-header, #new-spot-modal > div.modal-content > div.modal-header {
+  border: none;
+}
+
+#new-lot-modal > div.modal-content > div.modal-body, #new-spot-modal > div.modal-content > div.modal-body {
+  padding-bottom: 20px;
+}
+
+#new-lot-modal > div.modal-content > div.modal-footer, #new-spot-modal > div.modal-content > div.modal-footer {
+  border: none;
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 20px;
+}
+
+.lot-list-title, .spot-list-title, .lot-location-title {
   margin-top: 0px;
   margin-bottom: 0px;
   font-size: 32px;
   text-align: center;
 }
 
-.lot-address-panel-title, .lot-address-panel-body {
+.lot-list-item, .spot-list-item {
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  cursor: pointer;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.lot-list-item:hover, .spot-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.lot-list-item-delete-button:hover, .spot-list-item-delete-button:hover {
+  color: #F00;
+}
+
+.lot-view-empty-main-text {
+  font-size: 28px;
   text-align: center;
-}
-
-/* add lot modal stuff */
-#new-lot-modal > div > div  {
-  background-color: rgba(109, 188, 128, 0.5);
-  color: #FFFFFF !important;
-}
-
-#new-lot-modal > div > div  {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-#new-lot-modal > div > div > div.modal-body > div.row > div > div.row {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.new-lot-main-input {
-  height: 40px;
-}
-
-#new-lot-save-button {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.new-lot-modal-close-button {
-  box-shadow: none;
-  color: #FFF;
-}
-
-.new-lot-modal-close-button:hover, .new-lot-modal-close-button:focus, .new-lot-modal-close-button:active {
-  color: #EEE;
-}
-
-#new-lot-modal > div.modal-content > div.modal-header {
-  border: none;
-}
-
-#new-lot-modal > div.modal-content > div.modal-body {
-  padding-bottom: 20px;
-}
-
-#new-lot-modal > div.modal-content > div.modal-footer {
-  border: none;
   margin-top: 0px;
-  padding-top: 0px;
-  padding-bottom: 20px;
+  margin-bottom: 0px;
 }
+
+.lot-location-container {
+  margin-bottom: 15px;
+  padding: 15px;
+}
+
+.lot-location-title {
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.lot-location-address {
+  text-align: center;
+  font-size: 24px;
+}
+
+
+
 
 
 
