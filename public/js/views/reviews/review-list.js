@@ -46,7 +46,16 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
     addAll: function(){
       console.log('add all');
       this.$reviewList.empty();
+      if(this.collection.length == 0){
+        //no reviews so put a place holder
+        this.$reviewList.delay(200).queue(function (next) {
+        $(this).append("<div class=\"well well-md\"> <p>No reviews found</p></div> ");
+        next();
+        });
+      }
+      
       this.collection.each(this.addOne, this);
+      
     },
     addOne: function(review){// methond
       //calculate star average
@@ -160,11 +169,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review-list.
             console.log(review.get('title')+": "+ split[s]);
             count++;
           }
+          else if(review.get('title').indexOf(split[s]) != -1){
+            count++;
+          }
         }
-        if(count != split.length-1) 
-          return true;
-        else
+        if(count < split.length) 
           return false;
+        else
+          return true;
       });
       //clear review list and add items
       console.log(found);
