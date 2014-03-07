@@ -17,15 +17,16 @@ module.exports = {
     console.log('near lots');
     var json = req.params.json.split('+');
     // Some error checking
-    if (json.length != 3 || !isFinite(json[0]) || !isFinite(json[0]) || !isFinite(json[0])) {
+    if (json.length != 3) {
+      return res.status(500).json({err: 'Incorrect number of arguments'});
+    } else if (!isFinite(json[0]) || !isFinite(json[0]) || !isFinite(json[0])) {
       return res.status(500).json({err: 'Not all input numeric'});
     }
     // Defined as distance in miles / 7 miles
     var delta = json[2] / 7 * 0.1;
     var latitude = +json[0];
     var longitude = +json[1];
-    Lot.find( {
-              lat: {$gte: (latitude - delta), $lte: (latitude + delta)},
+    Lot.find( {lat: {$gte: (latitude - delta), $lte: (latitude + delta)},
               lon: {$gte: (longitude - delta), $lte: (longitude + delta)},
             },
       function(err, lots) {

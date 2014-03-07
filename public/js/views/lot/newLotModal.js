@@ -24,7 +24,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/newLotModal.html
 
     saveLot: function(event) {
       // might validate the input here
-
       var inputTitle = this.$el.find('[name="input-title"]');
       var inputStreet = this.$el.find('[name="input-address"]');
       var inputCity = this.$el.find('[name="input-city"]');
@@ -44,18 +43,23 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/newLotModal.html
 
       // Some input validation
       if (inputTitle.val() == '') {
+        alert('Input title');
         inputTitle.focus();
         return;
       } else if (this.lotAttributes.street == '') {
+        alert('Input street');
         inputStreet.focus();
         return;
       } else if (this.lotAttributes.city == '') {
+        alert('Input city');
         inputCity.focus();
         return;
       } else if (this.lotAttributes.zip == '') {
+        alert('Input zip');
         inputZip.focus();
         return;
       } else if (this.lotAttributes.state == '') {
+        alert('Input state');
         inputState.focus();
         return;
       }
