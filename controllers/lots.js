@@ -1,4 +1,6 @@
-var Lot = require('./../models/lot').Lot;
+var _ = require('underscore'),
+    Lot = require('./../models/lot').Lot,
+    Spot = require('./../models/spot').Spot;
 
 module.exports = {
   index: function(req, res) {
@@ -27,12 +29,13 @@ module.exports = {
     var latitude = +json[0];
     var longitude = +json[1];
     Lot.find( {lat: {$gte: (latitude - delta), $lte: (latitude + delta)},
-              lon: {$gte: (longitude - delta), $lte: (longitude + delta)},
+              lon: {$gte: (longitude - delta), $lte: (longitude + delta)}
             },
       function(err, lots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
+        console.log(lots);
         res.json(lots);
       }
     });
@@ -87,12 +90,19 @@ module.exports = {
     });
   },
   destroy: function(req, res) {
-    Lot.remove( {_id: req.params.lid}, function(err) {
-      if (err) {
-        res.status(500).json({err: 'internal error'});
-      } else {
-        res.json({msg:'success'});
-      }
+    Spot.find({lot_id: req.params.lid}, function(err, spots){
+      _.each(spots, function(spot){
+        Spot.remove({_id: spot._id}, function(err){
+          console.log('err', err);
+        });
+      });
+      Lot.remove({_id: req.params.lid}, function(err) {
+        if (err) {
+          res.status(500).json({err: 'internal error'});
+        } else {
+          res.json({msg:'success'});
+        }
+      });
     });
   }
 };
