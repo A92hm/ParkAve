@@ -7,11 +7,7 @@
 }
 
 #spot-list-container {
-  background-color: rgba(255, 255, 255, 0.25);
   padding: 20px;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
 }
 
 #lot-list-container > .row, #spot-list-container > .row {
@@ -120,9 +116,9 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   margin-left: 0px;
   margin-right: 0px;
   cursor: pointer;
-  -moz-border-radius: 15px;
+  /*-moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 15px;*/
 }
 
 .lot-list-item:hover, .spot-list-item:hover {
@@ -154,7 +150,6 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   text-align: center;
   font-size: 24px;
 }
-
 
 
 

@@ -7,26 +7,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
     template: _.template( Template ),
 
     events: {
-      'hide.bs.modal': 'modalHidden',
       'keypress #input-login-password': 'checkPasswordInputForEnterKey',
       'click #input-login-button': 'login'
     },
 
-    initialize: function() {
+    initialize: function(options) {
+      this.email = options.email;
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.toJSON() ) );
+      this.$el.html( this.template( {email: this.email} ) );
       this.$el.find('#login-modal').modal({show: true, backdrop: false});
-      this.$el.find('#input-login-password').get(0).focus(); // TODO not working
       return this;
-    },
-
-    modalHidden: function(){
-      $('#landing-page-content-block').animate({
-          'width': 'inherit',
-          'margin-left': '0px'
-        }, this.model.get('animateTime'));
     },
 
     login: function(){

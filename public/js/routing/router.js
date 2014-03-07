@@ -11,6 +11,7 @@ define(['underscore', 'require', 'backbone'],
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
       'login': 'login',
+      'login/:email': 'login',
 
       'users': '',
       'users/:uid': 'sellParking',
@@ -48,9 +49,9 @@ define(['underscore', 'require', 'backbone'],
       });
     },
 
-    login: function(){
+    login: function(email){
       require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showLogin();
+        MainAppView.sharedInstance().showLogin(email);
       });
     },
     

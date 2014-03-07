@@ -11,11 +11,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       'click #sign-up-button': 'signUp'
     },
 
-    initialize: function() {
+    initialize: function(options) {
+      this.email = options.email;
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.toJSON() ) );
+      this.$el.html( this.template( {email: this.email} ) );
       return this;
     },
 

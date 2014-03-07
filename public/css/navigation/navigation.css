@@ -112,8 +112,8 @@
 }
 
 .main-navbar-dropdown > li {
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 60px;
 }
 
 .main-navbar-dropdown > li > a {
@@ -121,6 +121,7 @@
   display: inline-block;
   line-height: normal;
   vertical-align: middle;
+  font-size: 1.25em;
 }
 
 .main-navbar-dropdown > li:hover, .main-navbar-dropdown > li:focus, .main-navbar-dropdown > li:active {
