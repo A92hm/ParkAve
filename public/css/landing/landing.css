@@ -1,41 +1,11 @@
-/*@font-face{
-  font-family: vitesse-sans-light;
-  src: url('../../fonts/VitesseSans-Light.otf');
-}
-@font-face{
-  font-family: vitesse-sans-thin;
-  src: url('../../fonts/VitesseSans-Thin.otf');
-}*/
+
 .landing-body-div {
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
-  background-image: url('../../images/background.jpg');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
-
-/*#landing-page-title {
-  font-size: 100px;
-  font-family: vitesse-sans-light;
-}
-#landing-page-content-block {
-  margin-top: 140px;
-  height: 280px;
-  margin-right: 0px;
-  margin-left: 0px;
-  background-color: rgba(80, 46, 144, 0.5);
-}
-.landing-page-input-container {
-  margin-top: 50px;
-}
-
-
-.landing-page-main-input {
-  height: 44px;
-}*/
 
 @import url("http://fonts.googleapis.com/css?family=Lato:300,400,700");
 html {
@@ -135,7 +105,4 @@ html body div.firstArticle p {
   line-height: 1.8;
   padding: 5px 15px;
 }
-/*#content { max-width: 28em; text-align: justify; margin: 0 auto; padding: 2em; }
 
-#content p { margin: 0 0 2em; }
-*/
