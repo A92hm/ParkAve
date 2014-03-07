@@ -43,7 +43,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
     },
 
     saveNewSpot: function(event) {
-      console.log(this.newSpotView.spotAttributes);
       this.collection.create(this.newSpotView.spotAttributes);
       // really we should have some error handling here
 
@@ -66,8 +65,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
     },
 
     saveEditedSpot: function(){
-      // console.log(this.);
-      var spot = this.collection.find;
+      var spot = this.collection.where(this.newSpotView.spotAttributes);
       //TODO
 
       // dismiss the dialog
