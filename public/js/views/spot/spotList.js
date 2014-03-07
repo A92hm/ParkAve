@@ -65,8 +65,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
     },
 
     saveEditedSpot: function(){
-      var spot = this.collection.where(this.newSpotView.spotAttributes);
-      //TODO
+      var spot = this.collection.get(this.newSpotView.spotAttributes.spotId);
+      this.newSpotView.spotAttributes.spotId = undefined;
+      spot.save(this.newSpotView.spotAttributes);
 
       // dismiss the dialog
       this.stopListening(this.newSpotView); // stop listening to dialog:save

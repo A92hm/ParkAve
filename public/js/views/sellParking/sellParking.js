@@ -19,7 +19,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellPark
 
       render: function() {
         this.$el.html( this.template( this.collection.toJSON() ) );
-        var lotListView = new LotListView( {model: this.model, collection: this.collection} );
+        var lotListView = new LotListView( {user: this.user, collection: this.collection} );
         this.$el.find('#lot-list-view-container').html( lotListView.render().el );
 
         this.renderLotView({});

@@ -87,7 +87,6 @@ module.exports = {
     });
   },
   destroy: function(req, res) {
-    console.log('lots destroy');
     Lot.remove( {_id: req.params.lid}, function(err) {
       if (err) {
         res.status(500).json({err: 'internal error'});
