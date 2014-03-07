@@ -15,7 +15,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
       'click #spot-list-add-spot-button': 'createSpot'
     },
 
-    initialize: function() {
+    initialize: function(options) {
+      this.user = options.user;
       if(this.model){
         this.spotsCollection = new SpotsCollection([], {lot: this.model});
         this.listenTo(this.model, 'change', this.render);
@@ -34,7 +35,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
     },
 
     renderSpots: function() {
-      var spotListView = new SpotListView( {model: this.collection, collection: this.spotsCollection} );  // model is the user. collection is the spots
+      var spotListView = new SpotListView( {collection: this.spotsCollection, user: this.user} );
       this.$el.find('#spot-view-div').html( spotListView.render().el );
       if(this.model.get('_id')){
         this.spotsCollection.fetch();

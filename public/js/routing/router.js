@@ -15,7 +15,6 @@ define(['underscore', 'require', 'backbone'],
       'users': '',
       'users/:uid': 'sellParking',
       'users/:uid/feedback': 'userFeedback',
-      'users/:uid/reviews': 'userReviews',
       'users/:uid/settings': 'userSettings',
 
       '': 'main'
@@ -58,12 +57,6 @@ define(['underscore', 'require', 'backbone'],
     userFeedback: function(uid) {
       require(['views/application/main'], function(MainAppView){
         MainAppView.sharedInstance().showUserFeedback(uid);
-      });
-    },
-
-    userReviews : function(uid){
-      require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showReviewList(uid);
       });
     },
     

@@ -11,6 +11,32 @@ module.exports = {
       }
     });
   },
+  // req.params.json should contain
+  // lat+lng+dist
+  nearlots: function(req,res) {
+    console.log('near lots');
+    var json = req.params.json.split('+');
+    // Some error checking
+    if (json.length != 3) {
+      return res.status(500).json({err: 'Incorrect number of arguments'});
+    } else if (!isFinite(json[0]) || !isFinite(json[0]) || !isFinite(json[0])) {
+      return res.status(500).json({err: 'Not all input numeric'});
+    }
+    // Defined as distance in miles / 7 miles
+    var delta = json[2] / 7 * 0.1;
+    var latitude = +json[0];
+    var longitude = +json[1];
+    Lot.find( {lat: {$gte: (latitude - delta), $lte: (latitude + delta)},
+              lon: {$gte: (longitude - delta), $lte: (longitude + delta)},
+            },
+      function(err, lots) {
+      if (err) {
+        res.status(500).json({err: 'internal error'});
+      } else {
+        res.json(lots);
+      }
+    });
+  },
   show: function(req, res) {
     console.log('lots show');
     Lot.findById(req.params.lid, function(err, lot) {
