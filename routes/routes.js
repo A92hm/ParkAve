@@ -62,6 +62,7 @@ module.exports = {
     app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy); // Delete the speceific spot from the database
 
     // API for closest lots
+    // Call to get the nearest lots within a given distance :json is in the form lat+lon+dist
     app.get(  '/api/:json',     lotsController.nearlots);        // Get all of the lots for a specified user id
 
     // Non-API routes
