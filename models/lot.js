@@ -13,8 +13,8 @@ var schema = mongoose.Schema({
     zip: {type: String, require: true, trim: true},
     state: {type: String, require: true, trim: true},
   },
-  lat: String,
-  lon: String
+  lat: Number,
+  lon: Number
 });
 
 var Lot = mongoose.model('lots', schema);
