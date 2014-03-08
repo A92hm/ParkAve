@@ -1,107 +1,99 @@
-
-/* .landing-body-div {
+.landing-main-div {
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
+  background-image: url('/images/landing.jpg');
+  background-size: 100% 100%;
 }
 
-@import url("http://fonts.googleapis.com/css?family=Lato:300,400,700");
-html {
-  height: 100%;
-}
-html body {
-  font: 400 1.0em/1.0 "Lato", Helvetica, Arial, serif;
-  background: #f5f7fa;
-  color: #f5f7fa;
-}
-html body div.opening {
-  background: url("/images/parallax.jpg") no-repeat 50% 0 fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-html body div.opening .openingText {
+.landing-title-container {
   width: 300px;
   height: 150px;
-  position: fixed;
+  position: absolute;
   top: 33%;
-  left: 50%;
-  z-index: 1;
+  left: 28%;
   margin-left: -150px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: 10px solid #f5f7fa;
 }
-html body div.opening .openingText h1 {
+
+.landing-title {
   line-height: 130px;
   font-size: 50px;
+  color: #f5f7fa;
 }
-html body div.header {
+
+.landing-main-buttons-container {
+  width: 160px;
+  height: 50px;
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #f5f7fa;
-  z-index: 200;
+  top: calc(33% + 160px);
+  left: 28%;
+  margin-left: -80px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-html body div.header a {
-  color: #434a54;
-  width: 25%;
-  float: left;
-  font-size: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border: 1px solid #000;
+
+.landing-page-main-button {
+  width: 100%;
+  border: 0;
+  color: white;
+  background-color: #F15A5C;
+  border-radius: 5px;
+  height: 50px;
+  font-weight: 400;
+  font-size: 1.5em;
+}
+
+.landing-page-main-button:focus{
+  color: white;
+}
+
+.landing-page-main-button:hover{
+  color: rgba(0,0,0,.5);
+}
+
+.landing-page-main-button:active{
+  color: rgba(0,0,0,.3);
+}
+
+.landing-main-login-container {
+  width: 200px;
+  height: 50px;
+  position: absolute;
+  top: calc(33% + 220px);
+  left: 28%;
+  text-align: center;
+  margin-left: -100px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   color: #f5f7fa;
-  background: #434a54;
-}
-html body div.sideBar {
-  width: 25%;
-  height: calc(unquote('100% - 70px'));
-  height: calc(unquote('100% - 70px'));
-  position: absolute;
-  top: calc(unquote('100% + 70px'));
-  top: -webkit-calc(unquote('100% + 70px'));
-  left: 0;
-  color: #434a54;
-}
-html body div.sideBar ul {
-  padding-top: 100px;
-}
-html body div.sideBar ul li {
-  padding: 20px;
-  list-style-type: none;
-}
-html body div.firstArticle {
-  width: 60%;
-  text-align: justify;
-  position: absolute;
-  top: 120%;
-  left: 25%;
-  margin: 0 auto;
-  padding: 40px 20px 20px 20px;
-  color: #434a54;
-  z-index: 2;
-}
-html body div.firstArticle h2 {
-  font-size: 30px;
-  padding: 25px 15px;
-  color: #434a54;
-}
-html body div.firstArticle p {
-  color: #434a54;
-  font-size: 14px;
-  line-height: 1.8;
-  padding: 5px 15px;
+  text-shadow: -2px 2px 4px #000;
 }
 
-*/
+@media (max-width: 992px) {
+  .landing-title-container {
+    left: 50%;
+  }
+  .landing-main-buttons-container {
+    left: 50%;
+  }
+  .landing-main-login-container {
+    left: 50%;
+  }
+}
+
+.landing-content-div {
+  position: absolute;
+  top: 100%;
+  background-color: #2c3338;
+  background-size: 100% 100%;
+  height: 150%;
+  width: 100%;
+}

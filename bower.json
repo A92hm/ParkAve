@@ -25,6 +25,6 @@
     "requirejs": "~2.1.10",
     "requirejs-text": "~2.0.10",
     "font-awesome": "~4.0.3",
-    "parallax": "~1.0.0"
+    "jquery.stellar": "~0.6.2"
   }
 }
