@@ -184,3 +184,13 @@ input.modern-input-inverse {
 .cursor-default {
   cursor: default;
 }
+
+input [type=text] {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none !important;
+}
+
+
+
+
