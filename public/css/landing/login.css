@@ -1,62 +1,52 @@
-@charset "utf-8";
-/* CSS Document */
-
-/* ---------- ERIC MEYER'S RESET CSS ---------- */
-/* ---------- http://meyerweb.com/eric/tools/css/reset/ ---------- */
-
-@import url(http://meyerweb.com/eric/tools/css/reset/reset.css);
-
-/* ---------- FONTAWESOME ---------- */
-
-/* ---------- GENERAL ---------- */
-
-body {
+.login-div{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	left: 0px;
 	background: #2c3338;
 	color: #606468;
-  font: 87.5%/1.5em 'Open Sans', sans-serif;
-  margin: 0;
+	font: 87.5%/1.5em 'Helvetica',Helvetica, sans-serif;
+	margin: 0;
+	width: 100%;
+	height: 100%;
 }
 
-a {
+.login-div a {
 	color: #eee;
 	text-decoration: none;
 }
 
-a:hover {
+.login-div a:hover {
 	text-decoration: underline;
 }
 
-input {
+.singin-logo {
+	margin: 0 auto;
+	margin-top: 90px;
+}
+
+.login-input {
 	border: none;
-	font-family: 'Open Sans', Arial, sans-serif;
 	font-size: 14px;
 	line-height: 1.5em;
 	padding: 0;
 	-webkit-appearance: none;
 }
 
-p {
+.login-div p {
 	line-height: 1.5em;
 }
 
-.clearfix { *zoom: 1; } /* For IE 6/7 */
-.clearfix:before, .clearfix:after {
-	display: table;
-	content: "";
-}
-.clearfix:after { clear: both; }
 
-/* ---------- LOGIN ---------- */
-
-#login {
-	margin: 50px auto;
-	width: 280px;
+.login {
+	margin: 0 auto;
+	margin-top: 50px;
 }
 
-#login form span {
+.login .login-form span {
 	background-color: #363b41;
 	border-radius: 3px 0px 0px 3px;
-	color: #606468;
+	color: #FFF;
 	display: block;
 	float: left;
 	height: 50px;
@@ -65,39 +55,39 @@ p {
 	width: 50px;
 }
 
-#login form input {
+.login .login-form .login-input {
 	height: 50px;
 }
 
-#login form input[type="text"], input[type="password"] {
+.login .login-form .login-input[type="text"], .login-input[type="password"] {
 	background-color: #3b4148;
 	border-radius: 0px 3px 3px 0px;
-	color: #606468;
+	color: #FFF;
 	margin-bottom: 1em;
 	padding: 0 16px;
 	width: 198px;
 }
 
-#login form input[type="submit"] {
+.login .login-form .login-input[type="submit"] {
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	background-color: #ea4c88;
+	background-color: #6341CE;
 	color: #eee;
 	font-weight: bold;
 	margin-bottom: 2em;
 	text-transform: uppercase;
-	width: 280px;
+	width: 248px;
 }
 
-#login form input[type="submit"]:hover {
-	background-color: #d44179;
+.login .login-form .login-input[type="submit"]:hover {
+	background-color: #4F32A8;
 }
 
-#login > p {
-	text-align: center;
+.login > p {
+	/*text-align: center;*/
 }
 
-#login > p span {
-	padding-left: 5px;
+.login > p span {
+	/*padding-left: 5px;*/
 }

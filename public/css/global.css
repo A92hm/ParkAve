@@ -184,3 +184,30 @@ input.modern-input-inverse {
 .cursor-default {
   cursor: default;
 }
+
+.btn-pink{
+  background-color: #F15A5C;
+  border-radius: 5px;
+  height: 50px;
+  color: white;
+  font-weight: 400;
+  font-size: 1.5em;
+}
+
+.btn-pink:hover{
+  background-color:  #DE5250;
+}
+
+.btn-purple{
+  background-color: #6341CE;
+  border-radius: 5px;
+  height: 50px;
+  color: white;
+  font-weight: 400;
+  font-size: 1.5em;
+}
+
+.btn-purple:hover{
+  background-color:  #4F32A8;
+}
+

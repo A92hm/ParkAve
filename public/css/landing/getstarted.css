@@ -56,31 +56,8 @@
   margin-top: 25px;
   width: 70%;
   border: 0;
-  /*background-color: #D64132; RED */
-  /*background-color: #6341CE;*/
-  /*background-color: #53CACE;*/
-  background-color: #F15A5C;
-
-  /*background-color: rgb(128,50,255);*/
-
-  border-radius: 5px;
-  height: 50px;
-  color: white;
-  font-weight: 400;
-  font-size: 1.5em;
 }
 
-.input-submit:focus{
-  color: white;
-}
-
-.input-submit:hover{
-  color: rgba(0,0,0,.5);
-}
-
-.input-submit:active{
-  color: rgba(0,0,0,.3);
-}
 
 .info-box-title {
   color: rgba(0,0,0,.7);
