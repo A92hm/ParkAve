@@ -1,4 +1,5 @@
-var Review = require('./../models/review').Review;
+var Review = require('./../models/review').Review,
+    User   = require('./../models/user').User;
 
 module.exports = {
   index: function(req, res) {
@@ -7,7 +8,6 @@ module.exports = {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
-        console.log('Review: ' +review);
         res.json(review);
       }
     });
@@ -62,6 +62,7 @@ module.exports = {
   },
   destroy: function(req, res) {
     console.log('review destroy', req.params, req.body);
+  
     Review.remove( {_id: req.params.rid}, function(err) {
       if (err) {
         res.status(500).json({err: 'internal error'});
