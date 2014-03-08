@@ -10,7 +10,8 @@ define(['underscore','backbone'], function(_, Backbone) {
       endDate: new Date(),
       parkingSurface: "Grass",
       event_id: "",
-      lot_id: ""
+      lot_id: "",
+      description: ""
     },
 
     initialize: function() {

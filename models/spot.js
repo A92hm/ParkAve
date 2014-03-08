@@ -15,7 +15,8 @@ var schema = mongoose.Schema({
   event_id: ObjectId,
   blocked: Boolean,
   size: String,
-  buyer_list: [Schema.ObjectId]
+  buyer_list: [Schema.ObjectId],
+  description: String
 });
 
 
