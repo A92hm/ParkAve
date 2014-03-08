@@ -26,6 +26,19 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/newSpotModal.ht
       }
       this.model.set('getFormattedDateString', this.getFormattedDateString);
       this.$el.html( this.template( this.model.toJSON() ) );
+      var surface = this.model.get('surface');
+      var blocked = this.model.get('blocked');
+      console.log('the surface: '+surface);
+      console.log('the blocked' +blocked);
+      //set the select inputs
+      this.$el.find('#select-surface').val(surface);
+      if(blocked)
+        this.$el.find('#select-blocked').val('yes');
+      else
+        this.$el.find('#select-blocked').val('no');
+
+
+
       return this;
     },
 
@@ -37,11 +50,16 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/newSpotModal.ht
       var inputStartDate = this.$el.find('[name="input-start-date"]');
       var inputEndDate = this.$el.find('[name="input-end-date"]');
       var inputParkingSurface = this.$el.find('[name="input-parking-surface"]');
+      var inputBlocked = this.$el.find('[name="input-blocked"]');
+      var inputDescription = this.$el.find('[name="input-description"]');
 
-      if(!inputNumSpots.val() || !inputPrice.val() || !inputStartDate.val() || !inputEndDate.val() || !inputParkingSurface.val()){
+      if(!inputNumSpots.val() || !inputPrice.val() || !inputStartDate.val() || !inputEndDate.val() || !inputParkingSurface.val() || !inputBlocked.val()){
         console.log('this');
         return;
       }
+      var isBlocked = false;
+      if(inputBlocked.val() == "yes");
+        isBlocked = true;
 
       function parseDate(dateString){  // YYYY-MM-DD
         var date = new Date(dateString.slice(0, 4), dateString.slice(5, 7), dateString.slice(8, 10))
@@ -57,7 +75,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/newSpotModal.ht
         price: inputPrice.val(),
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
-        surface: inputParkingSurface.val()
+        surface: inputParkingSurface.val(),
+        blocked: isBlocked,
+        description: inputDescription.val()
       };
       this.trigger('dialog:save');
     },
