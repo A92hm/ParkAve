@@ -1,5 +1,5 @@
 
-.landing-body-div {
+/* .landing-body-div {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -12,11 +12,9 @@ html {
   height: 100%;
 }
 html body {
-  background: #f5f7fa;
   font: 400 1.0em/1.0 "Lato", Helvetica, Arial, serif;
+  background: #f5f7fa;
   color: #f5f7fa;
-  text-align: center;
-  height: 100%;
 }
 html body div.opening {
   background: url("/images/parallax.jpg") no-repeat 50% 0 fixed;
@@ -106,3 +104,4 @@ html body div.firstArticle p {
   padding: 5px 15px;
 }
 
+*/
