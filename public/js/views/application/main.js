@@ -24,6 +24,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     showLanding: function() {
       var landingView = new LandingView();
       this.$el.html( landingView.render().el );
+      
+      $.stellar();
     },
 
     showGetStarted: function(email){
