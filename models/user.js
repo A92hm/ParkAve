@@ -12,7 +12,9 @@ var userSchema = mongoose.Schema({
   phone: {type: String, require: true, trim: true},
   userImage : {type: String, require: false, trim: true},
   reservedSpots: {type: [ObjectId], require: true},
-  spotHistory: {type: [ObjectId], require: true}
+  spotHistory: {type: [ObjectId], require: true},
+  //do not set these values
+  averageRating: {type:Number, min: 0, max: 5, default:0},
 });
 
 var User = mongoose.model('users', userSchema);
