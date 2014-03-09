@@ -24,8 +24,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     showLanding: function() {
       var landingView = new LandingView();
       this.$el.html( landingView.render().el );
-      
-      $.stellar();
     },
 
     showGetStarted: function(email){
@@ -51,10 +49,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       var thisGuy = this;
       this.getCurrentUser(uid, function(user){
         var lots = new LotsCollection([], {user: user});
-        var sellParkingView = new SellParkingView( {user: user, collection: lots} );
-        thisGuy.$el.html( sellParkingView.render().el );
-        lots.fetch();
-        thisGuy.showNavigation(user);
+        lots.fetch({success: function(theLots){
+          var sellParkingView = new SellParkingView( {user: user, collection: theLots} );
+          thisGuy.$el.html( sellParkingView.render().el );
+          thisGuy.showNavigation(user);
+        }});
       });
     },
 

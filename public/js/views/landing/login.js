@@ -8,7 +8,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
 
     events: {
       'keypress #input-login-password': 'checkPasswordInputForEnterKey',
-      'click #input-login-button': 'login'
+      'click #input-login-button': 'login',
+      'click #not-a-member' : 'signup'
     },
 
     initialize: function(options) {
@@ -26,7 +27,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
       var password = this.$el.find('#input-login-password').val();
 
       var theLoginModal = this.$el.find('#login-modal');
-      var session = new Session({email: email, password: password});
+      var session = new Session({email: email.toLowerCase(), password: password});
       var sessionsCollection = new SessionsCollection([session]);
       session.save({}, {error: function(err){
         console.log('err', err);
@@ -53,8 +54,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
         this.login();
         return false;
       }
+    },
+
+    signup: function(){
+       Router.sharedInstance().navigate('/getstarted', {trigger: true});
+       return false;
     }
   });
+  
+
 
   return LoginView;
 });

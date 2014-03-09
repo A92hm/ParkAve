@@ -27,7 +27,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       var lastName = fullName.split(' ')[1];
       var dateOfBirth = this.$el.find('#input-date-of-birth').val();
       var phone = this.$el.find('#input-phone').val();
-      var email = this.$el.find('#input-email').val();
+      var email = this.$el.find('#input-email').val().toLowerCase();
       var password = this.$el.find('#input-password').val();
 
       // Validate the input

@@ -1,5 +1,3 @@
-
-
 .user-settings-div > div.container {
   margin-top: 0px;
 }
@@ -20,9 +18,6 @@ button.user-settings-main-input:hover, button.user-settings-main-input:focus, bu
   border: none;
   margin-top: 30px;
   margin-bottom: 60px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
   background-color: rgba(18, 83, 164, 0.68);
   padding-right: 15px;
   padding-left: 15px;

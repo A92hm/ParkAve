@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'stellar', 'text!templates/landing/landing.html',
-        'models/session', 'collections/sessions', 'routing/router'],
-  function($, _, Backbone, stellar, Template, Session, SessionsCollection, Router) {
+        'models/session', 'collections/sessions', 'routing/router', 'stellar'],
+  function($, _, Backbone, stellar, Template, Session, SessionsCollection, Router, Stellar) {
 
   var LandingView = Backbone.View.extend({
     tagName: 'div',
@@ -17,6 +17,11 @@ define(['jquery', 'underscore', 'backbone', 'stellar', 'text!templates/landing/l
 
     render: function() {
       this.$el.html( this.template() );
+
+      setTimeout(function(){
+        $.stellar();
+        $.stellar('refresh');
+      }, 50);
       return this;
     },
 
