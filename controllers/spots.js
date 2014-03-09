@@ -36,19 +36,22 @@ module.exports = {
   purchaseSpot: function(req, res) {
     console.log('buying spot');
     var content = req.body;
-    Spot.update({_id: content.spot_id}, { $addToSet: {buyer_list: content.user_id} },
+    Spot.update({_id: content.spot_id, $size: {buyer_list: { $lt: this.numSpots}}}, { $addToSet: {buyer_list: content.user_id} },
       function(err, spot) {
       if (err) {
         res.status(500).json({err: 'internal error', content: err});
+      } else if (!spot) {
+        res.status(500).json({response: "No spots available"});
       }
     });
     User.update({_id: content.user_id},{ $addToSet: {reservedSpots: content.spot_id, spotHistory: content.spot_id} },
       function(err, spot) {
         if (err) {
           res.status(500).json({err: 'internal error', content: err});
+        } else if (!spot) {
+          res.status(500).json({response: "No spots available"});
         } else {
-          var result = {response: "Success"};
-          res.json(result);
+          res.json({ response: "Success"});
         }
       });
   },
