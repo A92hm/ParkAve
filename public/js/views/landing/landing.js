@@ -1,6 +1,6 @@
-define(['jquery', 'underscore', 'backbone', 'stellar', 'text!templates/landing/landing.html',
+define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html',
         'models/session', 'collections/sessions', 'routing/router', 'stellar'],
-  function($, _, Backbone, stellar, Template, Session, SessionsCollection, Router, Stellar) {
+  function($, _, Backbone, Template, Session, SessionsCollection, Router, stellar) {
 
   var LandingView = Backbone.View.extend({
     tagName: 'div',
