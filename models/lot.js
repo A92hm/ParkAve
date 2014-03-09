@@ -14,7 +14,11 @@ var schema = mongoose.Schema({
     state: {type: String, require: true, trim: true},
   },
   lat: Number,
-  lon: Number
+  lon: Number,
+  //do not set this values
+  //
+  averagePrice: {type: Number, default: -1},
+  averageRating: {type: Number, default: -1}//this will be retrieved from the user
 });
 
 var Lot = mongoose.model('lots', schema);
