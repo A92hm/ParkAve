@@ -45,9 +45,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
       }
     },
 
-    renderEditSpotView: function(siblingElement, model, lot, user){
+    renderEditSpotView: function(element, model, lot, user, isParent){
       this.editSpotView = new EditSpotView( {model: model, lot: lot, user: user} );
-      siblingElement.after( this.editSpotView.render().el );
+      if(isParent){
+        element.append( this.editSpotView.render().el );
+      } else{
+        element.after( this.editSpotView.render().el );
+      }
     },
 
     deleteLot: function() {
@@ -65,7 +69,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
     },
 
     createNewSpot: function(event) {
-      this.renderEditSpotView(this.$el.find('.spot-list-last'), undefined, this.model, this.user);
+      var element = this.$el.find('.spot-list-last');
+      var isParent = false;
+      if(element.length == 0){
+        element = this.$el.find('#spot-list-view-table-body');
+        isParent = true;
+      }
+      this.renderEditSpotView(element, undefined, this.model, this.user, isParent);
       this.listenTo(this.editSpotView, 'dialog:save', this.saveNewSpot);
       return false;
     },
