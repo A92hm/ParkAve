@@ -3,6 +3,65 @@ var _ = require('underscore'),
     Spot = require('./../models/spot').Spot,
     User = require('./../models/user').User;
 
+
+function getAveragePrice(lotID, callback){
+  var total = 0;
+  var count = 0;
+  //all lots
+  if(lotID == ""){
+    var newLots = [];
+    var count = 0;
+    Lot.find({}, function(err, lots) {
+      if (err) {
+        res.status(500).json({err: 'internal error'});
+      }else {
+        var numOfLots = lots.length;
+        console.log('num of lots: '+numOfLots);
+        _.each(lots, function(lot){
+          //recursivly call to set average for each user
+          getAverageRating(lot._id, function(averagePrice, averageRating){
+            console.log("getting the average: "+average);
+            //set average for each one using this method
+            lot.averagePrice = averagePrice;
+            lot.averageRating = averageRating;
+            console.log('count: '+count);
+            newLots[count] = lot;
+            count++;
+            //need to do this within the callback
+            if(count == numOfLots-1){
+              console.log("finished array");
+              callback(newLots);
+            }
+          });
+        });        
+      }
+    });
+}
+  else{
+
+
+
+
+    Review.find({reviewee_id: userID}, function(err, reviews) {
+      if (err) {
+        res.status(500).json({err: 'internal error'});
+      } else {
+        _.each(reviews, function(review){
+          total = total + review.stars;
+          count = count + 1;
+        });
+        if(count > 0)
+          callback(total/count);
+        else
+          callback(0);       
+      }
+    }); 
+  }
+}
+
+
+
+
 module.exports = {
   index: function(req, res) {
     console.log('lots index');
@@ -106,4 +165,6 @@ module.exports = {
       });
     });
   }
+
+  
 };
