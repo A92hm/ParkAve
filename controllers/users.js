@@ -124,7 +124,7 @@ module.exports = {
           });
         });
       }else{
-        res.json({err: 'emailexists'});        
+        res.json({err: 'emailexists'+req.body.email});        
       }
     });
   },

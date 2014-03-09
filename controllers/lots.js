@@ -21,6 +21,10 @@ function getAverages(lotID, userID, callback){
       }else {
         var count = 0;
         var numOfLots = lots.length;
+        if(numOfLots == 0){
+          //no lots so return
+          callback(newLots);
+        }
         _.each(lots, function(lot){
           //recursivly call to set averages for each lot
           getAverages(lot._id, lot.user_id, function(newLot){
