@@ -15,8 +15,7 @@ var schema = mongoose.Schema({
   },
   lat: Number,
   lon: Number,
-  //do not set these values
-  numberOfSpots: {type: Number, default:0},
+  //do not set this values
   averagePrice: {type: Number, default: 0}
 });
 

@@ -17,22 +17,34 @@ function getAverageRating(userID, callback){
   var count = 0;
   //all users
   if(userID == ""){
-    var users;
+    var newUsers = [];
     var count = 0;
     User.find({}, function(err, users) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       }else {
+        var numOfUsers = users.length;
+        console.log('num of users: '+numOfUsers);
         _.each(users, function(user){
-          count++;
+          user.name = 'dave';
           //recursivly call to set average for each user
           getAverageRating(user._id, function(average){
+            console.log("getting the average: "+average);
             //set average for each one using this method
             user.averageRating = average;
-            user[count] = user;
+            console.log('count: '+count);
+            newUsers[count] = user;
+            count++;
+            //need to do this within the callback
+            if(count == numOfUsers-1){
+              console.log("finished array");
+              callback(newUsers);
+            }
           });
+          
         });
-        callback(users);//nothing to send back
+        console.log('newUsers: \n'+newUsers + '-----------');
+        
       }
     });
 }
@@ -42,7 +54,6 @@ function getAverageRating(userID, callback){
         res.status(500).json({err: 'internal error'});
       } else {
         _.each(reviews, function(review){
-          console.log('stars: '+review.stars);
           total = total + review.stars;
           count = count + 1;
         });
@@ -68,7 +79,10 @@ module.exports = {
         _.each(users, function(user){
           user.password = undefined;
         });
-        res.json(users);
+        getAverageRating("",function(users){
+          res.json(users);
+        });
+        
         
         
       }
