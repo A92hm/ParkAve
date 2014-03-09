@@ -28,7 +28,7 @@ function getAverages(lotID, userID, callback){
             newLots[count] = newLot;
             count++;
             //need callback with the fixed lots durring the last individual callback to make sure all of the information is there
-            if(count == numOfLots-1){
+            if(count == numOfLots){
               callback(newLots);
             }
           });
@@ -192,6 +192,7 @@ module.exports = {
   showAllLots: function(req,res) {
     console.log('show all of the lots');
     getAverages("","",function(lots){
+
       res.json(lots);
     })
     /*
