@@ -1,0 +1,16 @@
+<td>
+  <label for="input-title">number of spots</label>
+  <input type="number" class="form-control" name="input-num-spots" value=<%= numSpots %> placeholder="number of spots" autofocus="autofocus" required=true>
+</td>
+<td>
+  <label for="input-address">price</label>
+  <input type="number" class="form-control" name="input-price" value=<%= price %> placeholder="price">
+</td>
+<td>
+  <label for="input-start-date">available from</label>
+  <input type="date" class="form-control" name="input-start-date" value=<%= getFormattedDateString(startDate) %>>
+  <label for="input-end-date">available until</label>
+  <input type="date" class="form-control" name="input-end-date" value=<%= getFormattedDateString(endDate) %>>
+  <button type="button" class="btn btn-success btn-block new-spot-save-button">Add spots</button>
+</td>
+
