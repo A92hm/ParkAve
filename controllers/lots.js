@@ -1,61 +1,108 @@
 var _ = require('underscore'),
     Lot = require('./../models/lot').Lot,
     Spot = require('./../models/spot').Spot,
-    User = require('./../models/user').User;
+    Review = require('./../models/review').Review;
 
 
-function getAveragePrice(lotID, callback){
-  var total = 0;
-  var count = 0;
-  //all lots
+//set a user id to get the lots for user or set the lot id to get averages for that lot, don't set either to set averages on all of the lots
+//if you just want a single lot then your call back should be function(avePrice,aveRating)
+function getAverages(lotID, userID, callback){
   if(lotID == ""){
     var newLots = [];
     var count = 0;
-    Lot.find({}, function(err, lots) {
+    //if the user id isn't null then set the parameters to find the lots for user
+    var theParams = {};
+    if(userID != ""){
+      theParams = {user_id: userID};
+    }
+    Lot.find(theParams, function(err, lots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       }else {
+        var count = 0;
         var numOfLots = lots.length;
-        console.log('num of lots: '+numOfLots);
         _.each(lots, function(lot){
-          //recursivly call to set average for each user
-          getAverageRating(lot._id, function(averagePrice, averageRating){
-            console.log("getting the average: "+average);
+          //recursivly call to set averages for each lot
+          getAverages(lot._id, lot.user_id, function(averagePrice, averageRating){
             //set average for each one using this method
             lot.averagePrice = averagePrice;
             lot.averageRating = averageRating;
-            console.log('count: '+count);
             newLots[count] = lot;
             count++;
-            //need to do this within the callback
+            //need callback with the fixed lots durring the last individual callback to make sure all of the information is there
             if(count == numOfLots-1){
-              console.log("finished array");
               callback(newLots);
             }
           });
         });        
       }
     });
-}
+  }
   else{
 
-
-
-
-    Review.find({reviewee_id: userID}, function(err, reviews) {
-      if (err) {
-        res.status(500).json({err: 'internal error'});
-      } else {
-        _.each(reviews, function(review){
-          total = total + review.stars;
-          count = count + 1;
+    Lot.findById(lotID, function(err, lot){
+      if(err){res.status(500).json({err: 'internal error finding lot'});}
+      else{
+        //now to do everything we need to do the lot
+        //first get the average price and continue from there through callbacks
+        Spot.find({lot_id: lot._id}, function(err,spots){
+          if(err){res.status(500).json({err: 'internal error finding spots'});}
+          else{
+            var total = 0;
+            var count = 0;
+            var tick = 0;
+            var totalSpots = spots.length;
+            console.log('totalspots: '+totalSpots);
+            if(totalSpots != 0){
+              _.each(spots, function(spot){
+              total += spot.numSpots*spot.price;
+              count += spot.numSpots;
+              tick++;
+              console.log('tick: '+tick);
+              //need to put this in here or else it will skip the lots
+              if(tick == totalSpots-1){
+                averagePrice = -1;
+                if(count>0)
+                  averagePrice = total/count;
+                //now find the average rating
+                Review.find({reviewee_id: lot.user_id}, function(err, reviews) {
+                  if (err) {res.status(500).json({err: 'internal error'});} 
+                  else {
+                    _.each(reviews, function(review){
+                      total = total + review.stars;
+                      count = count + 1;
+                    });
+                    //callback from here to avoid the ratings now being included
+                    if(count > 0)
+                      callback(averagePrice,total/count);
+                    else
+                      callback(averagePrice,-1);       
+                  }
+                }); 
+                }
+              });
+            }
+            else{
+              //just get the review average because there are no spots
+              Review.find({reviewee_id: lot.user_id}, function(err, reviews) {
+                  if (err) {res.status(500).json({err: 'internal error'});} 
+                  else {
+                    _.each(reviews, function(review){
+                      total = total + review.stars;
+                      count = count + 1;
+                    });
+                    //callback from here to avoid the ratings now being included
+                    if(count > 0)
+                      callback(-1,total/count);
+                    else
+                      callback(-1,-1);       
+                  }
+                }); 
+            }
+          }
         });
-        if(count > 0)
-          callback(total/count);
-        else
-          callback(0);       
       }
-    }); 
+    });
   }
 }
 
@@ -65,6 +112,11 @@ function getAveragePrice(lotID, callback){
 module.exports = {
   index: function(req, res) {
     console.log('lots index');
+
+    getAverages("",req.params.uid,function(newLots){
+      res.json(newLots);
+    });
+    /*
     Lot.find({user_id: req.params.uid}, function(err, lots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -72,6 +124,7 @@ module.exports = {
         res.json(lots);
       }
     });
+*/
   },
   // req.params.json should contain
   // lat+lng+dist
@@ -96,22 +149,33 @@ module.exports = {
         res.status(500).json({err: 'internal error'});
       } else {
         console.log(lots);
+
         res.json(lots);
       }
     });
   },
   show: function(req, res) {
     console.log('lots show');
+    
     Lot.findById(req.params.lid, function(err, lot) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
-        res.json(lot);
+        getAverages(lot._id,'',function(averagePrice,averageRating){
+          lot.averagePrice = averagePrice;
+          lot.averageRating = averageRating;
+          res.json(lot);
+        });
       }
     });
+
   },
   showAllLots: function(req,res) {
     console.log('show all of the lots');
+    getAverages("","",function(){
+      res.json(lots);
+    })
+    /*
     Lot.find({}, function(err, lots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -119,6 +183,7 @@ module.exports = {
         res.json(lots);
       }
     });
+*/
   },
   create: function(req, res) {
     console.log('lots create');
