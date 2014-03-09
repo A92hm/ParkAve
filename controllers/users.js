@@ -60,7 +60,7 @@ function getAverageRating(userID, callback){
         if(count > 0)
           callback(total/count);
         else
-          callback(0);       
+          callback(-1);       
       }
     }); 
   }
@@ -116,7 +116,10 @@ module.exports = {
             if (err) {
               res.status(500).json({err: 'internal error'});
             } else {
-              res.json(user);
+              getAverageRating(user._id, function(average){
+                user.averageRating = average;
+                res.json(user);
+              });
             }
           });
         });
