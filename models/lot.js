@@ -16,7 +16,9 @@ var schema = mongoose.Schema({
   lat: Number,
   lon: Number,
   //do not set this values
-  averagePrice: {type: Number, default: 0}
+  //
+  averagePrice: {type: Number, default: -1},
+  averageRating: {type: Number, default: -1}//this will be retrieved from the user
 });
 
 var Lot = mongoose.model('lots', schema);
