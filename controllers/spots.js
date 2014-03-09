@@ -1,6 +1,7 @@
 var _ = require('underscore'),
     Spot = require('./../models/spot').Spot,
-    Lot  = require('./../models/lot').Lot;
+    User = require('./../models/user').User;
+
 module.exports = {
   index: function(req, res) {
     console.log('spots index');
@@ -28,101 +29,56 @@ module.exports = {
       if (err) {
         res.status(500).json({err: 'internal error', content: err});
       } else {
-        Lot.findById(spot.lot_id, function(err, lot){
-          if(err){
-            console.log('error');
-          }else{
-            console.log('creating average');
-            var oldNumber = lot.numberOfSpots;
-            lot.numberOfSpots++;
-            lot.averagePrice = (lot.averagePrice*oldNumber + spot.price) / lot.numberOfSpots;
-            //update the lot on the server
-            Lot.findByIdAndUpdate(lot._id, lot, function(err){
-              if(err){
-                res.status(500).json({err: 'internal error'});
-              } else {
-                console.log('Lot average updated');
-              }
-            });
-
-            res.json(spot);
-          }
-        });
+       var result = {response: "Success"};
+       res.json(result);
       }
     });
+  },
+  purchaseSpot: function(req, res) {
+    console.log('buying spot');
+    var content = req.body;
+    Spot.update({_id: content.spot_id}, { $addToSet: {buyer_list: content.user_id} },
+      function(err, spot) {
+      if (err) {
+        res.status(500).json({err: 'internal error', content: err});
+      }
+    });
+    User.update({_id: content.user_id},{ $addToSet: {reservedSpots: content.spot_id, spotHistory: content.spot_id} },
+      function(err, spot) {
+        if (err) {
+          res.status(500).json({err: 'internal error', content: err});
+        } else {
+          var result = {response: "Success"};
+          res.json(result);
+        }
+      });
   },
   update: function(req, res) {
     console.log('spots update');
-
-    Spot.findById(req.params.sid, function(err, spot) {
-      if (err) {
-        res.status(500).json({err: 'internal error', content: err});
-      } else {
-        Lot.findById(spot.lot_id, function(err, lot){
-          if(err){}else{
-            var oldNumber = lot.numberOfSpots;
-            lot.numberOfSpots--;
-            lot.averagePrice = (lot.averagePrice*oldNumber - spot.price) / lot.numberOfSpots;
-            //
-            //
-             //update the spot\\
-            var newSpot = {};
-            _.each(req.body, function(value, key){
-              if(key != "__v" && key != "_id"){
-                newSpot[key] = value;
-              }
-            });
-            Spot.findByIdAndUpdate(req.params.sid, newSpot, function(err){
-              if(err){
-                res.status(500).json({err: 'internal error'});
-              } else {
-                //change the average price again
-                oldNumber = lot.numberOfSpots;
-                lot.numberOfSpots++;
-                lot.averagePrice = (lot.averagePrice*oldNumber + spot.price) / lot.numberOfSpots;
-                //update the lot on the server
-                Lot.findByIdAndUpdate(lot._id, lot, function(err){
-                  if(err){
-                    res.status(500).json({err: 'internal error'});
-                  } else {
-                    console.log('Lot average updated');
-                  }
-                });
-                res.json({msg:'success'});
-              }
-            });
-            
-          }
-        });
+    var newSpot = {};
+    _.each(req.body, function(value, key){
+      if(key != "__v" && key != "_id"){
+        newSpot[key] = value;
       }
     });
-
-   
+    Spot.findByIdAndUpdate(req.params.sid, newSpot, function(err){
+      if(err){
+        res.status(500).json({err: 'internal error'});
+      } else {
+        res.json({msg:'success'});
+      }
+    });   
   },
   destroy: function(req, res) {
     console.log('spots destroy');
-    Spot.findById(req.params.sid, function(err, spot) {
+
+    //destroy spot
+    Spot.remove( {_id: req.params.sid}, function(err) {
       if (err) {
-        res.status(500).json({err: 'internal error', content: err});
+        res.status(500).json({err: 'internal error'});
       } else {
-        Lot.findById(spot.lot_id, function(err, lot){
-          if(err){}else{
-            var oldNumber = lot.numberOfSpots;
-            lot.numberOfSpots--;
-            lot.averagePrice = (lot.averagePrice*oldNumber - spot.price) / lot.numberOfSpots;
-            //destroy spot
-            Spot.remove( {_id: req.params.sid}, function(err) {
-              if (err) {
-                res.status(500).json({err: 'internal error'});
-              } else {
-                res.json({msg:'success'});
-              }
-            });
-          }
-        });
+        res.json({msg:'success'});
       }
     });
-
-    
   }
 };
