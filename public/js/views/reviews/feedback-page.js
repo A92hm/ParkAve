@@ -29,11 +29,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
       this.$reviewBody.html( this.feedbackList.render().el );
     },
     submitClick: function(){
-      //console.log('test');
-      //this.input = $('#filter-input').val();
-      //console.log(this.input);
-      var input = " ";
-      this.feedbackList.filter($('#filter-input').val());
+      var input = $('#filter-input').val();
+      if(input == "") 
+        input = " ";
+      this.feedbackList.filter(input);
       return false;
     },
     sortDate: function(){

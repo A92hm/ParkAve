@@ -1,18 +1,22 @@
 #lot-list-container {
-  background-color: rgba(50, 133, 140, 0.68);
+  background-color: rgba(18, 83, 164, 0.68);
   padding: 20px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
 }
 
-#lot-list-container > .row {
+#spot-list-container {
+  padding: 20px;
+}
+
+#lot-list-container > .row, #spot-list-container > .row {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 #lot-view-container {
-  background-color: rgba(50, 133, 140, 0.68);
+  background-color: rgba(18, 83, 164, 0.68);
   padding: 40px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -27,12 +31,12 @@
   margin-top: 0px;
 }
 
-button.lot-add-button, button.spot-add-button, button.new-lot-save-button  {
+button.lot-add-button, button.spot-add-button, button.new-lot-save-button, button.new-spot-save-button  {
   margin-top: 10px;
   background-color: rgba(84, 169, 103, 1);
 }
 
-button.lot-add-button:hover, button.lot-add-button:focus, button.lot-add-button:active, button.spot-add-button:hover, button.spot-add-button:focus, button.spot-add-button:active, button.new-lot-save-button:hover, button.new-lot-save-button:focus, button.new-lot-save-button:active {
+button.lot-add-button:hover, button.lot-add-button:focus, button.lot-add-button:active, button.spot-add-button:hover, button.spot-add-button:focus, button.spot-add-button:active, button.new-lot-save-button:hover, button.new-lot-save-button:focus, button.new-lot-save-button:active, button.new-spot-save-button:hover, button.new-spot-save-button:focus, button.new-spot-save-button:active {
   background-color: rgba(84, 169, 103, 0.68);
 }
 
@@ -112,9 +116,9 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   margin-left: 0px;
   margin-right: 0px;
   cursor: pointer;
-  -moz-border-radius: 15px;
+  /*-moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 15px;*/
 }
 
 .lot-list-item:hover, .spot-list-item:hover {
@@ -132,13 +136,9 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   margin-bottom: 0px;
 }
 
-.spot-list-div, .lot-location-container {
-  border: 1px solid rgba(255, 255, 255, 0.25);
+.lot-location-container {
   margin-bottom: 15px;
   padding: 15px;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
 }
 
 .lot-location-title {
@@ -150,7 +150,6 @@ button.lot-delete-button:hover, button.lot-delete-button:focus, button.lot-delet
   text-align: center;
   font-size: 24px;
 }
-
 
 
 

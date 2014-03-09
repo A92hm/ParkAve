@@ -1,78 +1,33 @@
-define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html',
-        'views/landing/login', 'models/session',
-        'collections/sessions', 'routing/router'],
-  function($, _, Backbone, Template, LoginView, Session, SessionsCollection, Router) {
+define(['jquery', 'underscore', 'backbone', 'stellar', 'text!templates/landing/landing.html',
+        'models/session', 'collections/sessions', 'routing/router'],
+  function($, _, Backbone, stellar, Template, Session, SessionsCollection, Router) {
 
   var LandingView = Backbone.View.extend({
     tagName: 'div',
-    className: 'landing-body-div',
+    className: 'landing-div',
     template: _.template( Template ),
 
     events: {
-      'keypress #email-input': 'checkEmailInputForEnterKey',
-      'click #submit-email-button': 'submitEmail'
+      'click #landing-get-started-button': 'openGetStartedPage',
+      'click #landing-login-button': 'openLoginPage'
     },
 
     initialize: function() {
     },
 
     render: function() {
-      this.$el.html( this.template( ) );
-
+      this.$el.html( this.template() );
       return this;
     },
 
-    submitEmail: function(){
-      var email = this.$el.find('#email-input').val();
-
-      var session = new Session({email: email, password: "N/A"});
-      var sessionsCollection = new SessionsCollection([session]);
-      var openLoginModal = this.openLoginModal;
-      var openGetStartedPage = this.openGetStartedPage;
-      session.save({}, {error: function(err){
-        console.log('err', err);
-      }, success: function(model, response){
-        if(!response._id){
-          if(response.err == 'nomatch'){
-            openLoginModal(email);
-          } else{
-            openGetStartedPage(email);
-          }
-        }
-      }});
-
-      // //TODO check database for email key. Branch out accordingly to either login or get started
-      // if(confirm('Press OK to Login. Press Cancel to Sign Up.')){
-      //   this.openLoginModal(email);        
-      // } else{
-      //   this.openGetStartedPage(email);
-      // }
-    },
-
-    openGetStartedPage: function(email){
-      if(email){
-        Router.sharedInstance().navigate('getstarted/' + email, {trigger: true});
-      }
+    openGetStartedPage: function(){
+      Router.sharedInstance().navigate('getstarted', {trigger: true});
       return false;
     },
 
-    openLoginModal: function(email){
-      var animateTime = 800;
-      $('#landing-page-content-block').animate({
-          'width': '0',
-          'margin-left': '100%'
-        }, animateTime);
-      var loginModel = new Backbone.Model( {email: email, animateTime: animateTime} );
-      var loginView = new LoginView( {model: loginModel} );
-      $('.landing-body-div').append( loginView.render().el );
+    openLoginPage: function(){
+      Router.sharedInstance().navigate('login', {trigger: true});
       return false;
-    },
-
-    checkEmailInputForEnterKey: function(evt){
-      if(evt.keyCode == 13){
-        this.submitEmail();
-        return false;
-      }
     }
   });
 

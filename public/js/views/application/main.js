@@ -24,16 +24,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     showLanding: function() {
       var landingView = new LandingView();
       this.$el.html( landingView.render().el );
+      
+      $.stellar();
     },
 
     showGetStarted: function(email){
-      var getStartedModel = new Backbone.Model( {firstName: '', lastName: '', email: email} );
-      var getStartedView = new GetStartedView( {model: getStartedModel} );
+      var getStartedView = new GetStartedView( {email: email} );
       this.$el.html( getStartedView.render().el );
     },
 
-    showLogin: function(){
-      alert('unimplemented');
+    showLogin: function(email){
+      var loginView = new LoginView( {email: email} );
+      this.$el.html( loginView.render().el );
     },
 
     showBuyParking: function(uid){

@@ -70,6 +70,9 @@ module.exports = {
     app.get(  '/landing*', function(req, res) {
       sendIndexFile(res);
     });
+    app.get(  '/login*', function(req, res) {
+      sendIndexFile(res);
+    });
     app.get(  '/buy*', function(req, res) {
       sendIndexFile(res);
     });

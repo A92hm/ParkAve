@@ -13,8 +13,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/newLotModal.html
       'click #new-lot-save-button': 'saveLot'
     },
 
-    initialize: function() {
-      
+    initialize: function(options) {
+      this.user = options.user;
     },
 
     render: function() {
@@ -32,7 +32,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/newLotModal.html
 
       this.lotAttributes = {
         title: inputTitle.val(),
-        user_id: this.model.get('_id'),
+        user_id: this.user.get('_id'),
         address: {
           street: inputStreet.val(),
           city: inputCity.val(),

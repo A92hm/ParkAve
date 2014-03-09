@@ -8,11 +8,11 @@
     <div class="modal-body">
       <form role="form">
         <div class="form-group">
-          <label for="input-title" class="sr-only">Number of Spots</label>
+          <label for="input-title">number of spots</label>
           <input type="number" class="form-control modern-input new-spot-main-input" name="input-num-spots" value=<%= numSpots %> placeholder="number of spots" autofocus="autofocus" required=true>
         </div>
         <div class="form-group">
-          <label for="input-address" class="sr-only">Price</label>
+          <label for="input-address">price</label>
           <input type="number" class="form-control modern-input new-spot-main-input" name="input-price" value=<%= price %> placeholder="price">
         </div>
         <div class="form-group">
@@ -25,12 +25,23 @@
         </div>
         <div class="form-group">
           <label for="input-parking-surface">parking surface</label>
-          <select class="form-control modern-input new-spot-main-input" name="input-parking-surface">
-            <option>Grass</option>
-            <option>Gravel</option>
-            <option>Pavement</option>
-            <option>Other</option>
+          <select class="form-control modern-input new-spot-main-input" id="select-surface" name="input-parking-surface">
+            <option value="Grass">Grass</option>
+            <option value="Gravel">Gravel</option>
+            <option value="Pavement">Pavement</option>
+            <option value="Other">Other</option>
           </select>
+        </div>
+        <div class="form-group">
+          <label for="input-blocked">will the spot be blocked?</label>
+          <select class="form-control modern-input new-spot-main-input" id="select-blocked" name="input-blocked">
+            <option value="no">no</option>
+            <option value="yes">yes</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="input-description">description</label>
+          <textarea class="form-control modern-input new-spot-main-input" rows="3" name="input-description"> <%= description %> </textarea>
         </div>
       </form>
     </div>

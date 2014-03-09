@@ -13,7 +13,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         'click #nav-sell-parking': 'showSellParkingPage',
         'click #nav-sign-up': 'showGetStartedPage',
         'click #nav-login': 'showLoginPage',
-        'click #nav-user-home': 'showUserPage',
         'click #nav-user-transactions': 'showUserTransactionsPage',
         'click #nav-user-reviews': 'showUserReviewsPage',
         'click #nav-user-settings': 'showUserSettingsPage',
@@ -86,12 +85,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
           Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/feedback', {trigger: true});
         }
         return false;
-      },
-
-      showUserPage: function(){
-        if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id'), {trigger: true});
-        }
       },
 
       openDropdown: function(){

@@ -1,22 +1,3 @@
-.lot-list .lot {
-  padding: 4px;
-  margin: 8px 0;
-}
-
-.lot-list .lot:nth-child(even) {
-  background-color: #eee;
-}
-
-.lot-list .lot a.title {
-  color: inherit;
-  font-size: 1.5em;
-}
-
-.lot-list .lot a.title:hover {
-  text-decoration: none;
-  color: #428bca;
-}
-
 /* form styling */
 
 #new-form-modal textarea {
@@ -46,9 +27,9 @@ button.modern-input {
   margin-left: 0px !important;
   border: none;
   box-shadow: none;
-  -moz-border-radius: 15px;
+/*  -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 15px;*/
   font-size: 20px;
   padding: 4px 7px;
   outline: 0;
@@ -79,9 +60,9 @@ input.modern-input {
   letter-spacing: 1.5px;
   border: none;
   box-shadow: none;
-  -moz-border-radius: 15px;
+  /*-moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 15px;*/
   font-size: 20px;
   padding: 4px 7px;
   outline: 0;
@@ -116,9 +97,9 @@ button.modern-input-inverse {
   margin-left: 0px !important;
   border: none;
   box-shadow: none;
-  -moz-border-radius: 15px;
+  /*-moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 15px;*/
   font-size: 20px;
   padding: 4px 7px;
   outline: 0;
@@ -148,10 +129,10 @@ input.modern-input-inverse {
   font-weight: 100 !important;
   letter-spacing: 1.5px;
   border: none;
-  box-shadow: none;
+  /*box-shadow: none;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 15px;*/
   font-size: 20px;
   padding: 4px 7px;
   outline: 0;
@@ -203,3 +184,30 @@ input.modern-input-inverse {
 .cursor-default {
   cursor: default;
 }
+
+.btn-pink{
+  background-color: #F15A5C;
+  border-radius: 5px;
+  height: 50px;
+  color: white;
+  font-weight: 400;
+  font-size: 1.5em;
+}
+
+.btn-pink:hover{
+  background-color:  #DE5250;
+}
+
+.btn-purple{
+  background-color: #6341CE;
+  border-radius: 5px;
+  height: 50px;
+  color: white;
+  font-weight: 400;
+  font-size: 1.5em;
+}
+
+.btn-purple:hover{
+  background-color:  #4F32A8;
+}
+

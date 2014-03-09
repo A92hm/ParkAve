@@ -1,6 +1,7 @@
 require.config({
   paths: {
     "jquery": "/jquery/dist/jquery",
+    "stellar": "/jquery.stellar/jquery.stellar",
     "bootstrap": "/bootstrap/dist/js/bootstrap.min",
     "underscore": "/underscore/underscore",
     "backbone": "/backbone/backbone",
@@ -20,8 +21,8 @@ require.config({
 });
 
 require(['jquery', 'bootstrap', 'underscore', 'backbone', 'modernizr', 
-        'routing/router', 'views/application/main'], 
-  function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView) {
+         'stellar', 'routing/router', 'views/application/main'], 
+  function($, Bootstrap, _, Backbone, Modernizr, yolo, Router, MainAppView) {
   
   MainAppView.sharedInstance().render();  
   Router.sharedInstance().start();
