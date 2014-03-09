@@ -21,8 +21,8 @@ require.config({
 });
 
 require(['jquery', 'bootstrap', 'underscore', 'backbone', 'modernizr', 
-         'stellar', 'routing/router', 'views/application/main'], 
-  function($, Bootstrap, _, Backbone, Modernizr, yolo, Router, MainAppView) {
+         'routing/router', 'views/application/main'], 
+  function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView) {
   
   MainAppView.sharedInstance().render();  
   Router.sharedInstance().start();

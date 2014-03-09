@@ -4,14 +4,19 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotListItem.html
   function($, _, Backbone, Template, Router) {
 
   var LotListItemView = Backbone.View.extend({
-    tagName: 'div',
+    tagName: 'a',
+    attributes: {
+      href: '#',
+      class: 'list-group-item lot-list-item text-center'
+    },
     template: _.template( Template ),
 
     events: {
       'click .lot-list-item-delete-button': 'deleteLot'
     },
 
-    initialize: function() {
+    initialize: function(options) {
+      this.isSelectedByDefault = options.isSelectedByDefault;
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);
     },
@@ -19,6 +24,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotListItem.html
     render: function() {
       if(this.model.get('_id')){
         this.$el.html( this.template( this.model.toJSON() ) );
+        if(this.isSelectedByDefault){
+          this.$el.addClass('active');
+        }
+        this.$el.attr('id', 'lot-list-item-' + this.model.get('_id'));
       }
       return this; 
     },

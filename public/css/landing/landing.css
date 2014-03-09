@@ -1,5 +1,5 @@
 .landing-main-div {
-  position: absolute;
+  position: absolute; /* TODO fixed */
   top: 0px;
   right: 0px;
   bottom: 0px;
@@ -11,7 +11,7 @@
 .landing-title-container {
   width: 300px;
   height: 150px;
-  position: absolute;
+  position: fixed;
   top: 33%;
   left: 28%;
   margin-left: -150px;
@@ -25,15 +25,17 @@
   line-height: 130px;
   font-size: 50px;
   color: #f5f7fa;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .landing-main-buttons-container {
-  width: 160px;
+  width: 180px;
   height: 50px;
-  position: absolute;
+  position: fixed;
   top: calc(33% + 160px);
   left: 28%;
-  margin-left: -80px;
+  margin-left: -90px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -65,7 +67,7 @@
 .landing-main-login-container {
   width: 200px;
   height: 50px;
-  position: absolute;
+  position: fixed;
   top: calc(33% + 220px);
   left: 28%;
   text-align: center;
@@ -74,7 +76,6 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   color: #f5f7fa;
-  text-shadow: -2px 2px 4px #000;
 }
 
 @media (max-width: 992px) {

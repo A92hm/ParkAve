@@ -19,7 +19,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotList.html',
 
     render: function() {
       this.$el.html( this.template() );
-      this.$lots = this.$el.find('#lot-list-container-title');
+      this.$lots = this.$el.find('.lot-list-group');
+      if(this.collection.length > 0){
+        this.addAll();
+      }
       return this;
     },
 
@@ -29,8 +32,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotList.html',
     },
 
     addOne: function(lot) {
-      var lotListItemView = new LotListItemView({model: lot});
-      this.$lots.after( lotListItemView.render().el );
+      var isSelectedByDefault = false;
+      if(this.collection.get(lot.get('_id')) == this.collection.at(0)){
+        isSelectedByDefault = true;
+      }
+      var lotListItemView = new LotListItemView({model: lot, isSelectedByDefault: isSelectedByDefault});
+      this.$lots.append( lotListItemView.render().el );
     },
 
     createNewLot: function(event) {
