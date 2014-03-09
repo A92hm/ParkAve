@@ -5,7 +5,7 @@ var _ = require('underscore'),
 
 
 //set a user id to get the lots for user or set the lot id to get averages for that lot, don't set either to set averages on all of the lots
-//if you just want a single lot then your call back should be function(avePrice,aveRating)
+//if you just want a single lot then your call back should be function(minPrice,aveRating)
 function getAverages(lotID, userID, callback){
   if(lotID == ""){
     var newLots = [];
@@ -23,11 +23,9 @@ function getAverages(lotID, userID, callback){
         var numOfLots = lots.length;
         _.each(lots, function(lot){
           //recursivly call to set averages for each lot
-          getAverages(lot._id, lot.user_id, function(averagePrice, averageRating){
+          getAverages(lot._id, lot.user_id, function(newLot){
             //set average for each one using this method
-            lot.averagePrice = averagePrice;
-            lot.averageRating = averageRating;
-            newLots[count] = lot;
+            newLots[count] = newLot;
             count++;
             //need callback with the fixed lots durring the last individual callback to make sure all of the information is there
             if(count == numOfLots-1){
@@ -52,33 +50,44 @@ function getAverages(lotID, userID, callback){
             var count = 0;
             var tick = 0;
             var totalSpots = spots.length;
+            var currentMin = -1;
             console.log('totalspots: '+totalSpots);
             if(totalSpots != 0){
               _.each(spots, function(spot){
-              total += spot.numSpots*spot.price;
-              count += spot.numSpots;
-              tick++;
-              console.log('tick: '+tick);
-              //need to put this in here or else it will skip the lots
-              if(tick == totalSpots-1){
-                averagePrice = -1;
-                if(count>0)
-                  averagePrice = total/count;
-                //now find the average rating
-                Review.find({reviewee_id: lot.user_id}, function(err, reviews) {
-                  if (err) {res.status(500).json({err: 'internal error'});} 
-                  else {
-                    _.each(reviews, function(review){
-                      total = total + review.stars;
-                      count = count + 1;
-                    });
-                    //callback from here to avoid the ratings now being included
-                    if(count > 0)
-                      callback(averagePrice,total/count);
-                    else
-                      callback(averagePrice,-1);       
-                  }
-                }); 
+
+                if(currentMin == -1 || spot.price < currentMin){
+                  currentMin = spot.price;
+                }
+                tick++;
+                count++;
+                console.log('tick: '+tick);
+                //need to put this in here or else it will skip the lots
+                if(tick == totalSpots){
+                  //now find the average rating
+                  Review.find({reviewee_id: lot.user_id}, function(err, reviews) {
+                    if (err) {res.status(500).json({err: 'internal error'});} 
+                    else {
+                      count = 0;
+                      total = 0;
+                      _.each(reviews, function(review){
+                        total = total + review.stars;
+                        count = count + 1;
+                      });
+                      console.log('average'+(total/count));
+                      //callback from here to avoid the ratings now being included
+                      if(count > 0){
+                        lot.minimumPrice = currentMin;
+                        lot.averageRating = total/count;
+                        callback(lot);
+                      }
+                        
+                      else{
+                        lot.minimumPrice = currentMin;
+                        lot.averageRating = -1;
+                        callback(lot);
+                      }
+                    }
+                  }); 
                 }
               });
             }
@@ -92,10 +101,17 @@ function getAverages(lotID, userID, callback){
                       count = count + 1;
                     });
                     //callback from here to avoid the ratings now being included
-                    if(count > 0)
-                      callback(-1,total/count);
-                    else
-                      callback(-1,-1);       
+                    if(count > 0){
+                        lot.minimumPrice = -1;
+                        lot.averageRating = total/count;
+                        callback(lot);
+                      }
+                        
+                      else{
+                        lot.minimumPrice = -1;
+                        lot.averageRating = -1;
+                        callback(lot);
+                      }      
                   }
                 }); 
             }
@@ -156,23 +172,26 @@ module.exports = {
   },
   show: function(req, res) {
     console.log('lots show');
-    
+    getAverages(req.params.lid,'',function(lot){
+      res.json(lot);
+    });
+    /*
     Lot.findById(req.params.lid, function(err, lot) {
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
-        getAverages(lot._id,'',function(averagePrice,averageRating){
-          lot.averagePrice = averagePrice;
+        getAverages(lot._id,'',function(minimumPrice,averageRating){
+          lot.minimumPrice = minimumPrice;
           lot.averageRating = averageRating;
           res.json(lot);
         });
       }
     });
-
+*/
   },
   showAllLots: function(req,res) {
     console.log('show all of the lots');
-    getAverages("","",function(){
+    getAverages("","",function(lots){
       res.json(lots);
     })
     /*

@@ -17,7 +17,7 @@ var schema = mongoose.Schema({
   lon: Number,
   //do not set this values
   //
-  averagePrice: {type: Number, default: -1},
+  minimumPrice: {type: Number, default: -1},
   averageRating: {type: Number, default: -1}//this will be retrieved from the user
 });
 
