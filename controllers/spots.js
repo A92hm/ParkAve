@@ -29,8 +29,7 @@ module.exports = {
       if (err) {
         res.status(500).json({err: 'internal error', content: err});
       } else {
-       var result = {response: "Success"};
-       res.json(result);
+       res.json(spot);
       }
     });
   },

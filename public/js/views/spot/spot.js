@@ -1,7 +1,7 @@
 
 define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spot.html',
-  'routing/router', 'collections/spots', 'views/spot/newSpotModal'],
-  function($, _, Backbone, Template, Router, SpotsCollection, NewSpotView) {
+  'routing/router', 'collections/spots'],
+  function($, _, Backbone, Template, Router, SpotsCollection) {
 
 
   var SpotView = Backbone.View.extend({

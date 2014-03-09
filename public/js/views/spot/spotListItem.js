@@ -4,7 +4,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotListItem.ht
   function($, _, Backbone, Template, Router) {
 
   var SpotListItemView = Backbone.View.extend({
-    tagName: 'div',
+    tagName: 'tr',
+    className: 'spot-list-item',
     template: _.template( Template ),
 
     events: {
@@ -19,6 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotListItem.ht
     render: function() {
       if(this.model.get('_id')){
         this.$el.html( this.template( this.model.toJSON() ) );
+        this.$el.attr('id', 'spot-list-item-' + this.model.get('_id'));
       }
       return this; 
     },
