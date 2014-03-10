@@ -24,6 +24,9 @@ function getAverageRating(userID, callback){
         res.status(500).json({err: 'internal error'});
       }else {
         var numOfUsers = users.length;
+        if(numOfUsers == 0){
+          callback(-1);
+        }
         console.log('num of users: '+numOfUsers);
         _.each(users, function(user){
           user.name = 'dave';
@@ -53,6 +56,8 @@ function getAverageRating(userID, callback){
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
+         count = 0;
+         total = 0;
         _.each(reviews, function(review){
           total = total + review.stars;
           count = count + 1;
@@ -111,11 +116,16 @@ module.exports = {
     User.findOne({email: req.body.email}, function(err, user){
       if(!user){
         getEncryptedPassword(req.body.password, function(encryptedPassword){
+
           req.body.password = encryptedPassword;
+
           User.create(req.body, function(err, user) {
+
             if (err) {
+              console.log('error: '+err);
               res.status(500).json({err: 'internal error'});
             } else {
+              console.log('creating user');
               getAverageRating(user._id, function(average){
                 user.averageRating = average;
                 res.json(user);

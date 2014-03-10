@@ -29,6 +29,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       var phone = this.$el.find('#input-phone').val();
       var email = this.$el.find('#input-email').val().toLowerCase();
       var password = this.$el.find('#input-password').val();
+      var reservedSpots = [];
+      var spotHistory = [];
 
       // Validate the input
       var inputErrorTemplate = _.template( InputErrorTemplate );
@@ -79,7 +81,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
         birthdate: dateOfBirth,
         phone: phone,
         email: email,
-        password: password
+        password: password,
+        reservedSpots: reservedSpots,
+        spotHistory: spotHistory
       });
 
       // Save the new user
