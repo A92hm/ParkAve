@@ -13,7 +13,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
 
     events: {
       'click #spot-list-add-spot-button': 'createNewSpot',
-      'click .spot-list-item': 'openEditSpotModal'
+      'click .spot-list-item': 'toggleEditSpotModal'
     },
 
     initialize: function(options) {
@@ -69,6 +69,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
     },
 
     createNewSpot: function(event) {
+      if(this.$el.find('.new-spot-save-button').length > 0){
+        return;
+      }
       var element = this.$el.find('.spot-list-last');
       var isParent = false;
       if(element.length == 0){
@@ -76,7 +79,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
         isParent = true;
       }
       this.renderEditSpotView(element, undefined, this.model, this.user, isParent);
-      this.listenTo(this.editSpotView, 'dialog:save', this.saveNewSpot);
+      this.listenTo(this.editSpotView, 'spots:save', this.saveNewSpot);
+      this.listenTo(this.editSpotView, 'spots:cancel', this.cancelEditSpot);
       return false;
     },
 
@@ -87,18 +91,26 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
       }});
       // really we should have some error handling here
 
-      // dismiss the dialog
-      this.stopListening(this.editSpotView); // stop listening to dialog:save
+      this.cancelEditSpot();
+    },
+
+    cancelEditSpot: function(){
+      this.stopListening(this.editSpotView);
       this.editSpotView.$el.remove();
       delete this.editSpotView; // delete reference
     },
 
-    openEditSpotModal: function(event) {
-      if(event.currentTarget){
+    toggleEditSpotModal: function(event) {
+      if(event.currentTarget && this.$el.find('.new-spot-save-button').length == 0){
         var spotId = event.currentTarget.id.slice(event.currentTarget.id.lastIndexOf('-') + 1, event.currentTarget.id.length);
         this.renderEditSpotView(this.$el.find('#' + event.currentTarget.id), this.spotsCollection.get(spotId), this.model, this.user);
         this.editSpotView.$el.find('.new-spot-save-button').html('Save changes');
-        this.listenTo(this.editSpotView, 'dialog:save', this.saveEditedSpot);
+        this.listenTo(this.editSpotView, 'spots:save', this.saveEditedSpot);
+        this.listenTo(this.editSpotView, 'spots:cancel', this.cancelEditSpot);
+      } else {
+        this.stopListening(this.editSpotView);
+        this.editSpotView.$el.remove();
+        delete this.editSpotView; // delete reference
       }
       return false;
     },
@@ -108,10 +120,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
       this.editSpotView.spotAttributes.spotId = undefined;
       spot.save(this.editSpotView.spotAttributes);
 
-      // dismiss the dialog
-      this.stopListening(this.editSpotView); // stop listening to dialog:save
-      this.editSpotView.$el.remove();
-      delete this.editSpotView; // delete reference
+      this.cancelEditSpot();
     }
   });
 

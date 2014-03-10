@@ -16,6 +16,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         'click #nav-user-transactions': 'showUserTransactionsPage',
         'click #nav-user-reviews': 'showUserReviewsPage',
         'click #nav-user-settings': 'showUserSettingsPage',
+        'click #main-navbar-logo': 'showLanding',
         'click .navbar-dropdown-li': 'openDropdown'
       },
 
@@ -60,6 +61,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('sell/' + this.model.get('_id'), {trigger: true});
         }
+        return false;
+      },
+
+      showLanding: function(){
+        Router.sharedInstance().navigate('landing', {trigger: true});
         return false;
       },
 

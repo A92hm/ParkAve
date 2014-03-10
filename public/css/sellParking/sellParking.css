@@ -34,11 +34,12 @@
   }
 }
 
-#sell-parking-main-view-container > .container {
+#sell-parking-main-view-container > .row {
   margin-left: 0px;
   margin-right: 0px;
-  width: calc(100% - 280px);
+  width: 100%;
 }
+
 
 #sell-parking-dashboard-title {
   width: 100%;
@@ -151,14 +152,6 @@
 .lot-list-item.active {
   background-color: rgb(99, 65, 206) !important;
   border-color: rgb(99, 65, 206) !important;
-}
-
-.lot-list-item:hover, .spot-list-item:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-}
-
-.lot-list-item-delete-button:hover, .spot-list-item-delete-button:hover {
-  color: #F00;
 }
 
 .lot-view-empty-main-text {

@@ -8,6 +8,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
     template: _.template( Template ),
 
     events: {
+      'click .new-spot-cancel-button': 'cancelAddSpots',
       'click .new-spot-save-button': 'addSpots'
     },
 
@@ -33,6 +34,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
       return this;
     },
 
+    cancelAddSpots: function(event) {
+      this.trigger('spots:cancel');
+    },
+
     addSpots: function(event) {
       // validate the input here
 
@@ -47,6 +52,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
       if(!inputNumSpots.val() || !inputPrice.val() || !inputStartDate.val() || !inputEndDate.val()){
         return;
       }
+      if(this.model.get('buyer_list') && inputNumSpots.val() < this.model.get('buyer_list').length){
+        alert('Spot removal not allowed. You have already sold these spots');
+        return;
+      }
+
       var isBlocked = false;
       if(inputBlocked.val() == "yes");
         isBlocked = true;
@@ -69,7 +79,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
         blocked: isBlocked,
         description: inputDescription.val() || ''
       };
-      this.trigger('dialog:save');
+      this.trigger('spots:save');
     },
 
     getFormattedDateString: function(dateString){  // from ISO/UTC to YYYY-MM-DD

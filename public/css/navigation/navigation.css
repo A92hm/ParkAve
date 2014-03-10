@@ -6,21 +6,33 @@
   src: local("Lucida Console");
 }
 
-.main-navbar-brand {
-  margin-left: 15px;
-}
-
 .main-navbar-brand:hover {
   cursor: default;
   background-color: rgb(241, 90, 92);
 }
 
+#main-navbar-logo {
+  height: 50px;
+  width: 144px;
+  background-image: url('/images/logo.png');
+  background-size: 100% 100%;
+}
+
+@media (max-width: 768px) {
+  #main-navbar-logo {
+    margin-left: 15px;
+  }
+  .main-navbar-header {
+    width: 100%;
+  }
+}
+
 @media (min-width: 768px) {
 
-  .main-navbar-header, .main-navbar-brand, #nav-home {
-    width: 180px;
+  #main-navbar-logo {
+    width: 173px;
     height: 60px;
-    cursor: default;
+    cursor: pointer;
   }
 
   .main-navbar-brand {
@@ -33,6 +45,10 @@
     text-align: center;
     color: #ffffff;
     text-shadow: none;
+  }
+
+  #main-navbar-logo {
+    height: 60px;
   }
 
   .main-navbar .nav > li {
