@@ -17,11 +17,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/landing.html
 
     render: function() {
       this.$el.html( this.template() );
-
-      setTimeout(function(){
-        $.stellar();
-        $.stellar('refresh');
-      }, 50);
       return this;
     },
 
