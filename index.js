@@ -4,8 +4,6 @@ var express = require('express'),
     mongoose = require('mongoose'),
     routes = require('./routes/routes.js');
 
-//mongoose.connect('mongodb://54.84.154.254/parking');  // Production
-//mongoose.connect('mongodb://localhost/dummydb');
 mongoose.connect('mongodb://localhost/parking');
 
 var db = mongoose.connection;
@@ -32,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 
 routes.init(app);
 
-// Should be deleted
+// For development
 app.set('port', process.env.PORT || 3000);
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
