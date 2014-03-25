@@ -12,6 +12,10 @@
     "express": "~3.4.8",
     "underscore": "~1.5.2",
     "mongoose": "~3.8.6",
-    "bcrypt": "~0.7.7"
+    "bcrypt": "~0.7.7",
+    "consolidate": "~0.10.0",
+    "mustache": "~0.8.1",
+    "connect-memcached": "0.0.6",
+    "nconf": "~0.6.9"
   }
 }
