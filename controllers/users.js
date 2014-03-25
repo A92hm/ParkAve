@@ -181,14 +181,20 @@ module.exports = {
   },
   session: function(req, res) {
     User.findOne({email: req.body.email}, function(err, user){
+      console.log(user);
       if(err){
         res.status(500).json({err: 'internal error'});
       }else if(user){
-        console.log(user);
-        if(bcrypt.compareSync(req.body.password, user.password)){
-          res.json(user);
-        }
-        res.json({err: 'nomatch'});
+        bcrypt.compare(req.body.password, user.password, function(err1, resp) {
+          if(err){
+            res.status(500).json({err: 'internal error'});
+          }
+          if (resp){
+            res.json(user);
+          } else {
+            res.json({err: 'nomatch'});
+          }
+        });
       }else{
         res.json({err: 'notfound'});
       }
