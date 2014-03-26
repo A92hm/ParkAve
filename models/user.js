@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
   lastName: {type: String, require: true, trim: true},
   email: {type: String, require: true, trim: true},
   password: {type: String, require: true, trim: true},
-  birthdate: {type: Date, require: true, trim: true},
+  birthdate: {type: String, require: true, trim: true},
   phone: {type: String, require: true, trim: true},
   userImage : {type: String, require: false, trim: true},
   reservedSpots: {type: [ObjectId], require: true},
