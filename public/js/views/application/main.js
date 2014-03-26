@@ -37,7 +37,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         $.stellar();
         $.stellar('refresh');
       });
-    }
+    },
 
     showGetStarted: function(email){
       var getStartedView = new GetStartedView( {email: email} );
