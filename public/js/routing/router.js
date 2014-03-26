@@ -5,6 +5,8 @@ define(['underscore', 'require', 'backbone'],
     routes: {
       'landing': 'landing',
 
+      'feedback': 'feedback', 
+
       'buy/:uid': 'buyParking',
       'sell/:uid': 'sellParking',
 
@@ -30,6 +32,12 @@ define(['underscore', 'require', 'backbone'],
         MainAppView.sharedInstance().showLanding();
       });
     },
+
+    feedback: function() {
+      require(['views/application/main'], function(MainAppView) {
+        MainAppView.sharedInstance().showFeedback();
+      });
+    }
 
     buyParking: function(uid){
       require(['views/application/main'], function(MainAppView) {
