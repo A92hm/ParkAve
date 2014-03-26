@@ -87,9 +87,6 @@ module.exports = {
         getAverageRating("",function(users){
           res.json(users);
         });
-        
-        
-        
       }
     });
     //res.json(theUsers);
@@ -100,12 +97,15 @@ module.exports = {
       User.findById(req.params.uid, function(err, user) {
       if (err) {
         res.status(500).json({err: 'internal error'});
-      }else {
+      }else if(user) {
         user.password = undefined;
         user.averageRating = average
         console.log(user.averageRating);
 
         res.json(user);
+      }
+      else{
+        res.json({});
       }
     });
     });
