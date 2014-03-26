@@ -28,6 +28,8 @@ module.exports = {
     Spot.create(req.body, function(err, spot) {
       if (err) {
         res.status(500).json({err: 'internal error', content: err});
+      } else if (req.body.numSpots < 0) {
+        res.status(500).json({err: 'Cannot add a negative number of spots', content: err});
       } else {
        res.json(spot);
       }

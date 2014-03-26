@@ -29,7 +29,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotListItem.html
         }
         this.$el.attr('id', 'lot-list-item-' + this.model.get('_id'));
       }
-      return this; 
+      return this;
     },
 
     deleteLot: function() {

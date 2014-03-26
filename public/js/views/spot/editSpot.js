@@ -51,8 +51,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
 
       if(!inputNumSpots.val() || !inputPrice.val() || !inputStartDate.val() || !inputEndDate.val()){
         return;
-      }
-      if(this.model.get('buyer_list') && inputNumSpots.val() < this.model.get('buyer_list').length){
+      } else if (inputNumSpots.val() < 0) {
+        alert('Input a positive number of spots to sell.');
+        return;
+      } else if(this.model.get('buyer_list') && inputNumSpots.val() < this.model.get('buyer_list').length){
         alert('Spot removal not allowed. You have already sold these spots');
         return;
       }

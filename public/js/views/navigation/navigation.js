@@ -11,6 +11,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       events: {
         'click #nav-buy-parking': 'showBuyParkingPage',
         'click #nav-sell-parking': 'showSellParkingPage',
+        'click #nav-feedback':     'showFeedbackPage', 
         'click #nav-sign-up': 'showGetStartedPage',
         'click #nav-login': 'showLoginPage',
         'click #nav-user-transactions': 'showUserTransactionsPage',
@@ -54,6 +55,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         if(this.model.get('_id')){
           Router.sharedInstance().navigate('buy/' + this.model.get('_id'), {trigger: true});
         }
+        return false;
+      },
+
+      showFeedbackPage: function(){
+        Router.sharedInstance().navigate('feedback', {trigger: true});
         return false;
       },
 
