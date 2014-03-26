@@ -48,7 +48,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
 routes.init(app);
-
 // For local development
 app.set('port', process.env.PORT || 3000);
 http.createServer(app).listen(app.get('port'), function () {

@@ -9,6 +9,7 @@ define(['underscore','backbone', 'models/lot'], function(_, Backbone, Lot) {
 
     initialize: function(models, options) {
       this.user = options.user;
+      console.log('user url: '+ this.user.url());
     },
 
     clienturl: function() {
