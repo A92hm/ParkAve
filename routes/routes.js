@@ -1,15 +1,13 @@
 var path = require('path'),
-    usersController = require('./../controllers/users');
+    usersController = require('./../controllers/users'),
+    lotsController = require('./../controllers/lots.js'),
+    spotsController = require('./../controllers/spots.js'),
+    reviewsController = require('./../controllers/reviews.js'),
+    carsController = require('./../controllers/cars.js');
 
-// Require your controllers here
-// Example: var postsController = require('./../controllers/posts.js');  
-var lotsController = require('./../controllers/lots.js');
-var spotsController = require('./../controllers/spots.js');
-var reviewsController = require('./../controllers/reviews.js');
-var carsController = require('./../controllers/cars.js');
-function sendIndexFile(res){
-  res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
-}
+// function sendIndexFile(res){
+//   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
+// }
 
 module.exports = {
   init: function(app) {
@@ -70,25 +68,25 @@ module.exports = {
 
     // Non-API routes
 
-    app.get(  '/landing*', function(req, res) {
-      sendIndexFile(res);
-    });
-    app.get(  '/login*', function(req, res) {
-      sendIndexFile(res);
-    });
-    app.get(  '/buy*', function(req, res) {
-      sendIndexFile(res);
-    });
-    app.get(  '/sell*', function(req, res) {
-      sendIndexFile(res);
-    });
-    app.get(  '/users*', function(req, res) {
-      sendIndexFile(res);
-    });
-    app.get(  '/getstarted*', function(req, res) {
-      sendIndexFile(res);
-    });
-    app.get(  '/lots*', function(req, res) {
+    // app.get(  '/landing*', function(req, res) {
+    //   sendIndexFile(res);
+    // });
+    // app.get(  '/login*', function(req, res) {
+    //   sendIndexFile(res);
+    // });
+    // app.get(  '/buy*', function(req, res) {
+    //   sendIndexFile(res);
+    // });
+    // app.get(  '/sell*', function(req, res) {
+    //   sendIndexFile(res);
+    // });
+    // app.get(  '/users*', function(req, res) {
+    //   sendIndexFile(res);
+    // });
+    // app.get(  '/getstarted*', function(req, res) {
+    //   sendIndexFile(res);
+    // });
+    app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
 

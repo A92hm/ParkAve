@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: main-navbarFont;
-  src: local("Lucida Console");
+  src: local("Helvetica");
 }
 
 .main-navbar-brand:hover {
@@ -12,28 +12,29 @@
 }
 
 #main-navbar-logo {
-  height: 50px;
-  width: 144px;
-  background-image: url('/images/logo.png');
-  background-size: 100% 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+  height: 20px;
+  width: 90px;
+/*  background-size: 100% 100%;*/
 }
 
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
   #main-navbar-logo {
     margin-left: 15px;
   }
   .main-navbar-header {
     width: 100%;
   }
-}
+}*/
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
 
   #main-navbar-logo {
     width: 173px;
     height: 60px;
     cursor: pointer;
-  }
+  }*/
 
   .main-navbar-brand {
     padding-left: 0px;
@@ -47,9 +48,9 @@
     text-shadow: none;
   }
 
-  #main-navbar-logo {
+/*  #main-navbar-logo {
     height: 60px;
-  }
+  }*/
 
   .main-navbar .nav > li {
     width: 150px;
@@ -69,7 +70,7 @@
   }
 
   .main-navbar-header:hover {
-    background-color: rgb(241, 90, 92);
+    /*background-color: rgb(241, 90, 92);*/
   }
 
   .main-navbar-brand:hover {
@@ -94,7 +95,7 @@
 
 .main-navbar .nav > li {
   text-align: center;
-  font-family: vitesse-sans-light;
+  font-family: Helvetica;
 }
 
 .main-navbar .nav > li > a {

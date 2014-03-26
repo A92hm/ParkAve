@@ -13,12 +13,12 @@
   height: 150px;
   position: fixed;
   top: 33%;
-  left: 28%;
-  margin-left: -150px;
+  left: 13%;
+/*  margin-left: -150px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 10px solid #f5f7fa;
+  border: 10px solid #f5f7fa;*/
 }
 
 .landing-title {
