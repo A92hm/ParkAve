@@ -37,7 +37,7 @@ define(['underscore', 'require', 'backbone'],
       require(['views/application/main'], function(MainAppView) {
         MainAppView.sharedInstance().showFeedback();
       });
-    }
+    },
 
     buyParking: function(uid){
       require(['views/application/main'], function(MainAppView) {
