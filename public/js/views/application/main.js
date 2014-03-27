@@ -189,10 +189,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       }
 
       if(!user){  // if there was no user given
-        this.getCurrentUser(function(currUser){
+        this.getCurrentUser(function(currUser, rightUser){
           var navigationView = new NavigationView( {model: currUser} );
           $('#navbar').html( navigationView.render().el );
-        })
+        });
       } else{  // if param is a user
         var navigationView = new NavigationView( {model: user} );
         $('#navbar').html( navigationView.render().el );
