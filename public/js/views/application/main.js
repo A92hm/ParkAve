@@ -4,13 +4,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'views/buyParking/buyParking', 'views/sellParking/sellParking',
         'views/lot/lotList', 'views/lot/lot', 'views/spot/spotList', 'views/spot/spot',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
-        'views/navigation/navigation'
+        'views/navigation/navigation', 'views/feedback/feedback'
         
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
            LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
            LoginView, BuyParkingView, SellParkingView, LotsListView, LotView, SpotsListView, SpotView,
-           FeedbackView, ReviewList, UserSettingsView, NavigationView) {
+           FeedbackView, ReviewList, UserSettingsView, NavigationView, FeedbackView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -31,12 +31,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showFeedback: function() {
-      var landingView = new LandingView();
-      this.$el.html( landingView.render().el );
-      require(['stellar'], function(stellar) {
-        $.stellar();
-        $.stellar('refresh');
-      });
+      var feedbackView = new FeedbackView();
+      this.$el.html( feedbackView.render().el );
     },
 
     showGetStarted: function(email){
