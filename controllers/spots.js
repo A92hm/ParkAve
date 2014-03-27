@@ -59,7 +59,7 @@ module.exports = {
         res.status(500).json({err: 'spot not found'});
         return;
       }
-      if(spot.numSpots <= 0){
+      if(spot.numSpots <= spot.buyer_list.length){
         res.status(500).json({err: 'spot not available'});
         return;
       }
@@ -101,7 +101,7 @@ module.exports = {
           if (response) {
               console.log("Create Payment Response");
               console.log(response);
-              Spot.findByIdAndUpdate(content.spot_id, {$inc: {numSpots: -1}, $addToSet: {buyer_list: content.user_id} },
+              Spot.findByIdAndUpdate(content.spot_id, {$addToSet: {buyer_list: content.user_id} },
                 function(err, spot) {
                   if (err) {
                     console.log("spot update error", err);

@@ -24,7 +24,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/buyParking/buyParkin
       },
 
       makePurchase: function() {
-        console.log("yolo");
         var paypalPayment = new PaypalPayment({
           spot_id: "",
           user_id: this.user.get('_id'),
@@ -46,13 +45,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/buyParking/buyParkin
         var paypalPayments = new PaypalPaymentsCollection([paypalPayment]);
         var lots = new LotsCollection([], {user: this.user});
         lots.fetch({success: function(lots){
-          console.log('here');
           if(lots.length > 0){
             var spots = new SpotsCollection([], {lot: lots.at(0)});
             spots.fetch({success: function(spots){
-              console.log('there');
               if(spots.length > 0){
-                console.log(spots.at(0).toJSON());
                 paypalPayment.set('spot_id', spots.at(0).get('_id'));
                 paypalPayment.save();
               } else{
