@@ -57,7 +57,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
           router.sharedInstance().navigate('buy/'+user.id ,{trigger: true, replace:true});
           return;
         }
-        var buyParkingView = new BuyParkingView( {model: user} );
+        var buyParkingView = new BuyParkingView( {user: user} );
         thisGuy.$el.html( buyParkingView.render().el );
         thisGuy.showNavigation(user);
       });
