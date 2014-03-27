@@ -107,6 +107,11 @@ module.exports = {
       res.status(500).json({err: 'incorrect user error'});
       return;
     }
+    else if(req.session.user == -1){
+      //user has been logged out
+      res.json({});
+      return;
+    }
     console.log("body: "+req.session.user.email);
     if(req.params.uid == 'session')
       user_id = req.session.user._id;
@@ -197,7 +202,15 @@ module.exports = {
     });
   },
   session: function(req, res) {
+    //logout a user
+    if(req.body.email == 'logout' && req.body.password){
+      req.session.user = -1;
+      res.json({err: 'logged out'});
+    }
+
+
     User.findOne({email: req.body.email}, function(err, user){
+      console.log('the user');
       console.log(user);
       if(err){
         res.status(500).json({err: 'internal error'});
