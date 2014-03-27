@@ -48,7 +48,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showBuyParking: function(uid){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
           router.sharedInstance().navigate('buy/'+user.id ,{trigger: true, replace:true});
