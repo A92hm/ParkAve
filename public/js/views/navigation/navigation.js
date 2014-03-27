@@ -59,7 +59,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
       },
 
       showFeedbackPage: function(){
-        Router.sharedInstance().navigate('users/'+this.model.get('_id') +'/feedback', {trigger: true});
+        // Router.sharedInstance().navigate('users/'+this.model.get('_id') +'/feedback', {trigger: true});
+        Router.sharedInstance().navigate('feedback', {trigger: true});
         return false;
       },
 
