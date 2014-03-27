@@ -4,13 +4,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'views/buyParking/buyParking', 'views/sellParking/sellParking',
         'views/lot/lotList', 'views/lot/lot', 'views/spot/spotList', 'views/spot/spot',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
-        'views/navigation/navigation', 'views/feedback/feedback'
+        'views/navigation/navigation', 'models/session', 'collections/sessions', 'views/feedback/feedback',
+        'routing/router'
         
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
            LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
            LoginView, BuyParkingView, SellParkingView, LotsListView, LotView, SpotsListView, SpotView,
-           FeedbackView, ReviewList, UserSettingsView, NavigationView, FeedbackView) {
+           UserfeedBackView, ReviewList, UserSettingsView, NavigationView, Session, SessionsCollection, FeedbacksView, router) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -31,7 +32,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showFeedback: function() {
-      var feedbackView = new FeedbackView();
+      var feedbackView = new FeedbacksView();
       this.$el.html( feedbackView.render().el );
     },
 
@@ -48,7 +49,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     showBuyParking: function(uid){
       var thisGuy = this;
       this.getCurrentUser(uid, function(user){
-        var buyParkingView = new BuyParkingView( {model: user} );
+        //redirect if wrong user
+        if(!rightUser){
+          router.sharedInstance().navigate('buy/'+user.id ,{trigger: true, replace:true});
+          return;
+        }
+        var buyParkingView = new BuyParkingView( {user: user} );
         thisGuy.$el.html( buyParkingView.render().el );
         thisGuy.showNavigation(user);
       });
@@ -56,19 +62,30 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showSellParking: function(uid){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      console.log('show sell parking');
+      this.getCurrentUser(uid, function(user, rightUser){
+        //redirect if wrong user
+        if(!rightUser){
+          router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
+          return;
+        }
+        console.log('got the current user');
         var lots = new LotsCollection([], {user: user});
         lots.fetch({success: function(theLots){
+          console.log('fetching lots');
           var sellParkingView = new SellParkingView( {user: user, collection: theLots} );
           thisGuy.$el.html( sellParkingView.render().el );
           thisGuy.showNavigation(user);
+        }, error: function(collection, res, options){
+          console.log('err: ');
+          console.log();
         }});
       });
     },
 
     showLots: function(uid) {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      this.getCurrentUser(uid, function(user, rightUser){
         var lots = new LotsCollection([], {user: user});
         var lotsView = new LotsListView({collection: lots});
         thisGuy.$el.html(lotsView.render().el);
@@ -79,7 +96,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showLot: function(uid, lid) {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      this.getCurrentUser(uid, function(user, rightUser){
         var lot = new Lot({_id: lid});
         var lots = new LotsCollection([lot], {user: user});
 
@@ -92,7 +109,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showSpots: function(uid, lid) {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      this.getCurrentUser(uid, function(user, rightUser){
         var lot = new Lot({_id: lid});
         var lots = new LotsCollection([lot], {user: user});
 
@@ -107,7 +124,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showSpot: function(uid, lid, sid) {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      this.getCurrentUser(uid, function(user, rightUser){
         var lot = new Lot({_id: lid});
         var lots = new LotsCollection([lot], {user: user});
 
@@ -123,15 +140,25 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showUserFeedback: function(uid){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
-        var userFeedbackView = new FeedbackView({user: user});
-        thisGuy.$el.html(userFeedbackView.render().el);
+      this.getCurrentUser(uid, function(user, rightUser){
+        //redirect if wrong user
+        if(!rightUser){
+          router.sharedInstance().navigate('users/'+user.id+'/feedback' ,{trigger: true, replace:true});
+          return;
+        }
+        var userUserfeedBackView = new UserfeedBackView({user: user});
+        thisGuy.$el.html(userUserfeedBackView.render().el);
         thisGuy.showNavigation(user);
       });
     },
     showReviewList:  function(uid){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      this.getCurrentUser(uid, function(user, rightUser){
+        //redirect if wrong user
+        if(!rightUser){
+          router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
+          return;
+        }
         var reviewCollection = new ReviewCollection([],{user: user});
         var userReviewList = new ReviewList({collection: reviewCollection, user: user});
         thisGuy.$el.html(userReviewList.render().el);
@@ -141,7 +168,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
     showUserSettings: function(uid){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      this.getCurrentUser(uid, function(user, rightUser){
+        //redirect if wrong user
+        if(!rightUser){
+          router.sharedInstance().navigate('users/'+user.id+'/settings' ,{trigger: true, replace:true});
+          return;
+        }
         var userSettingsView = new UserSettingsView( {user: user} );
         thisGuy.$el.html( userSettingsView.render().el );
         thisGuy.showNavigation(user);
@@ -165,6 +197,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     getCurrentUser: function(uid, cb){
+      /*
       var user = new User( {_id: uid});
       var usersCollection = new UsersCollection([user]);
       user.fetch({error: function(){
@@ -172,14 +205,36 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       }, success: function(model, res){
         cb(model);
       }});
+*/
 
-      // with sessions
-      // var session = new Session();
-      // session.fetch({error: function(){
-      //   console.log('err', err);
-      // }, success: function(model, res){
-      //   cb(model);
-      // }});
+      //with sessions
+      var session = new Session();
+      var sessionCollection = new SessionsCollection([session]);
+      var rightUser = true;
+      session.fetch({error: function(model, res, options){
+        console.log('err: ', res);
+      }, success: function(model, res){
+        console.log('confirmed that it is the right user: ');
+        console.log(model.url());
+        //take 'session' out of the url
+        var newURL = model.url();
+        newURL = newURL.substring(0,11) + newURL.substring(19,newURL.length);
+        model.url = function(){return newURL;};//change the url to take out session
+        //if the uid that is trying to be accessed doesn't match the session
+        if (uid != model.id) {
+          console.log('wrong user');
+          //route back to the right user
+          rightUser = false;
+          /*
+          console.log(router);
+          console.log(router.sharedInstance);
+          router.sharedInstance().navigate('users/'+model.id ,{trigger: true, replace:true});
+
+          return;
+          */
+        };
+        cb(model, rightUser);
+      }});
     }
   });
 

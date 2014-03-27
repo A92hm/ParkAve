@@ -16,6 +16,7 @@
     "consolidate": "~0.10.0",
     "mustache": "~0.8.1",
     "connect-memcached": "0.0.6",
-    "nconf": "~0.6.9"
+    "nconf": "~0.6.9",
+    "paypal-rest-sdk": "~0.6.4"
   }
 }

@@ -12,6 +12,7 @@ function getEncryptedPassword(password, callback){
   });
 }
 
+//returns false for an error
 function getAverageRating(userID, callback){
   var total = 0;
   var count = 0;
@@ -21,11 +22,13 @@ function getAverageRating(userID, callback){
     var count = 0;
     User.find({}, function(err, users) {
       if (err) {
-        res.status(500).json({err: 'internal error'});
+        console.log('error: '+ err);
+        callback(-1);
+        return;
       }else {
         var numOfUsers = users.length;
         if(numOfUsers == 0){
-          callback(-1);
+          callback(false);
         }
         console.log('num of users: '+numOfUsers);
         _.each(users, function(user){
@@ -50,11 +53,13 @@ function getAverageRating(userID, callback){
         
       }
     });
-}
+  }
   else{
+    console.log('the uid for average: ' +userID);
     Review.find({reviewee_id: userID}, function(err, reviews) {
       if (err) {
-        res.status(500).json({err: 'internal error'});
+        console.log("error: "+err);
+        callback(-2);
       } else {
          count = 0;
          total = 0;
@@ -85,27 +90,39 @@ module.exports = {
           user.password = undefined;
         });
         getAverageRating("",function(users){
-          res.json(users);
+          if(users)
+            res.json(users);
+          else
+            res.status(500).json({err: 'internal error'});
         });
-        
-        
-        
       }
     });
     //res.json(theUsers);
   },
   show: function(req, res) {
     console.log('users show');
-    getAverageRating(req.params.uid, function(average){
-      User.findById(req.params.uid, function(err, user) {
-      if (err) {
-        res.status(500).json({err: 'internal error'});
-      }else {
+    var user_id = req.params.uid;
+    //check to make sure the session is valid
+    if(!req.session.user){
+      res.status(500).json({err: 'incorrect user error'});
+      return;
+    }
+    console.log("body: "+req.session.user.email);
+    if(req.params.uid == 'session')
+      user_id = req.session.user._id;
+    getAverageRating(user_id, function(average){
+      User.findById(user_id, function(err, user) {
+      if (err || average == -2) {
+        res.status(500).json({err: 'internal average error'});
+      }else if(user) {
         user.password = undefined;
         user.averageRating = average
         console.log(user.averageRating);
 
         res.json(user);
+      }
+      else{
+        res.json({});
       }
     });
     });
@@ -190,6 +207,9 @@ module.exports = {
             res.status(500).json({err: 'internal error'});
           }
           if (resp){
+            //!!!!!!TODO!!!!!!
+            //get the average rating
+            req.session.user = user;
             res.json(user);
           } else {
             res.json({err: 'nomatch'});

@@ -6,7 +6,7 @@ var _ = require('underscore'),
 
 //set a user id to get the lots for user or set the lot id to get averages for that lot, don't set either to set averages on all of the lots
 //if you just want a single lot then your call back should be function(minPrice,aveRating)
-function getAverages(lotID, userID, callback){
+function getAverages(lotID, userID, callback, res){
   if(lotID == ""){
     var newLots = [];
     var count = 0;
@@ -35,7 +35,7 @@ function getAverages(lotID, userID, callback){
             if(count == numOfLots){
               callback(newLots);
             }
-          });
+          }, res);
         });        
       }
     });
@@ -135,7 +135,7 @@ module.exports = {
 
     getAverages("",req.params.uid,function(newLots){
       res.json(newLots);
-    });
+    }, res);
     /*
     Lot.find({user_id: req.params.uid}, function(err, lots) {
       if (err) {
@@ -177,8 +177,9 @@ module.exports = {
   show: function(req, res) {
     console.log('lots show');
     getAverages(req.params.lid,'',function(lot){
+      // not being reached JEREMY -- lot is being sent back as an array
       res.json(lot);
-    });
+    }, res);
     /*
     Lot.findById(req.params.lid, function(err, lot) {
       if (err) {
@@ -188,7 +189,7 @@ module.exports = {
           lot.minimumPrice = minimumPrice;
           lot.averageRating = averageRating;
           res.json(lot);
-        });
+        }, res);
       }
     });
 */
@@ -198,7 +199,7 @@ module.exports = {
     getAverages("","",function(lots){
 
       res.json(lots);
-    })
+    }, res)
     /*
     Lot.find({}, function(err, lots) {
       if (err) {
