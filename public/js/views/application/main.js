@@ -54,6 +54,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
           router.sharedInstance().navigate('buy/'+user.id ,{trigger: true, replace:true});
           return;
         }
@@ -69,6 +74,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
+
           router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
           return;
         }
@@ -146,6 +157,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
           router.sharedInstance().navigate('users/'+user.id+'/feedback' ,{trigger: true, replace:true});
           return;
         }
@@ -159,6 +175,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
           router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
           return;
         }
@@ -174,6 +195,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
           router.sharedInstance().navigate('users/'+user.id+'/settings' ,{trigger: true, replace:true});
           return;
         }
