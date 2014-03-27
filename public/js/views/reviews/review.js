@@ -38,7 +38,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
       //console.log(date);
       var formattedDate = date.substring(0,10);
       //set the model
-      this.model.set({reviewerID: this.reviewerID, reviewerName: this.firstName, reviewDate: date});
+      this.model.set({reviewerID: this.reviewerID, reviewerName: this.firstName, reviewDate: formattedDate});
 
       this.$el.html( this.template( this.model.toJSON() ) );
       var stars = this.model.get("stars");
