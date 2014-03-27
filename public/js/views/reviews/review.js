@@ -30,7 +30,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/review.html'
       //!! Names are not working !!
       //TODO
       this.firstName = "Reviewer";//this.reviewer.get("firstName") ;
-
       //console.log(firstName);
       //format the date
       var date = this.model.get("date");
