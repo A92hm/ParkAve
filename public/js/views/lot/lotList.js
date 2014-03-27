@@ -33,7 +33,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotList.html',
 
     addOne: function(lot) {
       var isSelectedByDefault = false;
-      if(this.collection.get(lot.get('_id')) == this.collection.at(0)){
+      if(this.collection.get(lot.get('_id')) == this.collection.at(0) || this.collection.length == 1){
         isSelectedByDefault = true;
       }
       var lotListItemView = new LotListItemView({model: lot, isSelectedByDefault: isSelectedByDefault});

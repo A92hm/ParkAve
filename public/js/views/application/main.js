@@ -52,7 +52,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     showBuyParking: function(uid){
       var thisGuy = this;
       this.getCurrentUser(uid, function(user){
-        var buyParkingView = new BuyParkingView( {model: user} );
+        var buyParkingView = new BuyParkingView( {user: user} );
         thisGuy.$el.html( buyParkingView.render().el );
         thisGuy.showNavigation(user);
       });
