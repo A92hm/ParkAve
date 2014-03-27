@@ -1,6 +1,6 @@
 <td>
   <label for="input-title">number of spots</label>
-  <input type="number" class="form-control" name="input-num-spots" value=<%= numSpots %> placeholder="number of spots" autofocus="autofocus" required=true>
+  <input type="number" class="form-control" name="input-num-spots" value=<%= numSpots %> placeholder="number of spots" autofocus="autofocus" required=true min="0">
   <!-- <label for="input-parking-surface">parking surface</label>
   <select class="form-control" id="select-surface" name="input-parking-surface">
     <option value="Grass">Grass</option>
@@ -11,7 +11,7 @@
 </td>
 <td>
   <label for="input-address">price</label>
-  <input type="number" class="form-control" name="input-price" value=<%= price %> placeholder="price">
+  <input type="number" class="form-control" name="input-price" value=<%= price %> placeholder="price" min="0">
   <!-- <label for="input-blocked">Blocked in?</label>
   <select class="form-control" id="select-blocked" name="input-blocked">
     <option value="no">no</option>
