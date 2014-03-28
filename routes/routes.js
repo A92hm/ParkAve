@@ -6,6 +6,8 @@ var path = require('path'),
     carsController = require('./../controllers/cars.js'),
     feedbackController = require('./../controllers/feedbacks.js');
 
+var s3 = require('./../s3/s3.js');
+
 // function sendIndexFile(res){
 //   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
 // }
@@ -98,6 +100,10 @@ module.exports = {
     app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
+
+    //api for AWS S3 policy
+    app.get('/api/s3', s3.index);
+    app.get('/api/s3/signed',s3.signed);
 
   }
 };
