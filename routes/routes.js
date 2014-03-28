@@ -3,7 +3,8 @@ var path = require('path'),
     lotsController = require('./../controllers/lots.js'),
     spotsController = require('./../controllers/spots.js'),
     reviewsController = require('./../controllers/reviews.js'),
-    carsController = require('./../controllers/cars.js');
+    carsController = require('./../controllers/cars.js'),
+    feedbackController = require('./../controllers/feedbacks.js');
 
 // function sendIndexFile(res){
 //   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
@@ -58,6 +59,13 @@ module.exports = {
     app.post( '/api/users/:uid/lots/:lid/spots', spotsController.create);       // Create a spot in the database for a specific lot id
     app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);  // Update a specific spot give a specified spot, lot, and user id
     app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy); // Delete the speceific spot from the database
+
+    // API for feedback
+    app.get(  '/api/feedback',     feedbackController.index);     // get all feedback
+    app.get(  '/api/feedback/:fid', feedbackController.show);     // get the feedback with the given id
+    app.post( '/api/feedback',     feedbackController.create);    // create a user
+    app.put(  '/api/feedback/:fid', feedbackController.update);   // update the feedback for the given id
+    app.del(  '/api/feedback/:fid', feedbackController.destroy);  // delete the feedback with id <:fid> from the database
 
     // API for closest lots
     // Call to get the nearest lots within a given distance :json is in the form lat+lon+distance

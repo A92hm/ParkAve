@@ -4,13 +4,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'views/buyParking/buyParking', 'views/sellParking/sellParking',
         'views/lot/lotList', 'views/lot/lot', 'views/spot/spotList', 'views/spot/spot',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
-        'views/navigation/navigation', 'models/session', 'collections/sessions', 'routing/router'
+        'views/navigation/navigation', 'models/session', 'collections/sessions', 'views/feedback/feedback',
+        'routing/router'
         
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
            LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
            LoginView, BuyParkingView, SellParkingView, LotsListView, LotView, SpotsListView, SpotView,
-           FeedbackView, ReviewList, UserSettingsView, NavigationView, Session, SessionsCollection, router) {
+           UserfeedBackView, ReviewList, UserSettingsView, NavigationView, Session, SessionsCollection, FeedbacksView, router) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -31,12 +32,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showFeedback: function() {
-      var landingView = new LandingView();
-      this.$el.html( landingView.render().el );
-      require(['stellar'], function(stellar) {
-        $.stellar();
-        $.stellar('refresh');
-      });
+      var feedbackView = new FeedbacksView();
+      this.$el.html( feedbackView.render().el );
     },
 
     showGetStarted: function(email){
@@ -51,9 +48,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showBuyParking: function(uid){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user){
+      this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
           router.sharedInstance().navigate('buy/'+user.id ,{trigger: true, replace:true});
           return;
         }
@@ -69,6 +71,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
+
           router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
           return;
         }
@@ -146,11 +154,16 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
           router.sharedInstance().navigate('users/'+user.id+'/feedback' ,{trigger: true, replace:true});
           return;
         }
-        var userFeedbackView = new FeedbackView({user: user});
-        thisGuy.$el.html(userFeedbackView.render().el);
+        var userUserfeedBackView = new UserfeedBackView({user: user});
+        thisGuy.$el.html(userUserfeedBackView.render().el);
         thisGuy.showNavigation(user);
       });
     },
@@ -159,6 +172,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
           router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
           return;
         }
@@ -174,6 +192,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.getCurrentUser(uid, function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
           router.sharedInstance().navigate('users/'+user.id+'/settings' ,{trigger: true, replace:true});
           return;
         }
@@ -189,10 +212,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       }
 
       if(!user){  // if there was no user given
-        this.getCurrentUser(function(currUser){
+        this.getCurrentUser(function(currUser, rightUser){
           var navigationView = new NavigationView( {model: currUser} );
           $('#navbar').html( navigationView.render().el );
-        })
+        });
       } else{  // if param is a user
         var navigationView = new NavigationView( {model: user} );
         $('#navbar').html( navigationView.render().el );
