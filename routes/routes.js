@@ -61,7 +61,8 @@ module.exports = {
 
     // API for closest lots
     // Call to get the nearest lots within a given distance :json is in the form lat+lon+distance
-    app.get(  '/api/location/:json', lotsController.nearlots);        // Get all of the lots for a specified user id
+    app.get(  '/api/location/:json', lotsController.nearbyLots);        // Get all of the lots for a specified user id
+    app.get(  '/api/location/all/:json', lotsController.nearbyLotsAndSpots);        // Get all of the lots for a specified user id
 
     // API for buying spots
     app.post( '/api/purchase', spotsController.purchaseSpot);
