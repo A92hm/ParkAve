@@ -265,15 +265,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
     
     showImageUploader: function() {
-      var thisGuy = this;
-      var s3Collection = new S3Collection();
-      var imageUploderView = new ImageUploaderView({collection:s3Collection});
-      thisGuy.$el.html(imageUploderView.render().el);
-      s3Collection.fetch();
-      require(['stellar'], function(stellar) {
-        $.stellar();
-        $.stellar('refresh');
-      });
+      //var thisGuy = this;
+      //var s3Collection = new S3Collection();
+      //var imageUploderView = new ImageUploaderView({collection:s3Collection});
+      //thisGuy.$el.html(imageUploderView.render().el);
+      //s3Collection.fetch();
+      //require(['stellar'], function(stellar) {
+      //  $.stellar();
+      //  $.stellar('refresh');
+      //});
+
+      var imageUploaderView = new ImageUploaderView();
+      this.$el.html(imageUploaderView.render().el );
     }
   });
 
