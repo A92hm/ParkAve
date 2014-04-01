@@ -12,6 +12,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     initialize: function(options) {
+      var credentials = new S3Collection();
+      var data = credentials.toJSON();
+      this.aws_key = data.aws_key;
     },
 
     render: function() {
@@ -20,8 +23,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     uploadFileToS3 : function (options){
-      var credentials = new S3Collection();
-      var data = credentials.toJSON();
+
       this
     }
 
