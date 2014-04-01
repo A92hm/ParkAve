@@ -271,7 +271,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       //thisGuy.$el.html(imageUploderView.render().el);
       //s3Collection.fetch();
       var imageUploaderView = new ImageUploaderView();
-      this.$el.html( landingView.render().el );
+      this.$el.html( imageUploaderView.render().el );
       require(['stellar'], function(stellar) {
         $.stellar();
         $.stellar('refresh');
