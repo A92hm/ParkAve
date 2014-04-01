@@ -12,7 +12,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/imageuploader.h
     },
 
     initialize: function(options) {
-      this.credentials = options.credentials;
 
     },
 
