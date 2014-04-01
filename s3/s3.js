@@ -30,7 +30,8 @@ module.exports = {
     var base64policy = new Buffer(policy).toString('base64'); // Create base64 policy 
     var signature = crypto.createHmac('sha1', config.aws_secret).update(base64policy).digest('base64'); // Create signature
     var file_key = uuid.v4(); // Generate uuid for filename
-
+    console.log('key')
+    console.log(config.aws_key);
     // Return JSON View
     res.json({ 
                aws_bucket: config.aws_bucket, // Passes to view to set as vars
