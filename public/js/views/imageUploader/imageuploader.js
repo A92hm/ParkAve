@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'text!templates/user/imageuploader.html',
+define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageuploader.html',
         'models/user', 'models/session', 'collections/users',
         'collections/sessions', 'routing/router', 'models/s3Model', 'collections/s3Collection'],
   function($, _, Backbone, Template, User, Session, UsersCollection, SessionsCollection, Router, 
