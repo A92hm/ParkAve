@@ -12,7 +12,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     initialize: function(options) {
-
     },
 
     render: function() {
@@ -23,7 +22,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     uploadFileToS3 : function (options){
       var credentials = new S3Collection();
       var data = credentials.toJSON();
-      console.log(data);
+      this
     }
 
   });
