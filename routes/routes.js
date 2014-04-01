@@ -101,7 +101,7 @@ module.exports = {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
 
-    //api for AWS S3 policy
+    //api for AWS S3 credentials
     app.get('/api/s3', s3.index);
     app.get('/api/s3/signed',s3.signed);
 

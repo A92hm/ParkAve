@@ -7,11 +7,6 @@ var crypto = require('crypto'),
 
 module.exports = {
   index : function(req, res){
-    res.render('index', { aws_bucket: config.aws_bucket, // Passes to view to set as vars
-                          aws_key: config.aws_key,
-                          redirect_host: config.redirect_host,
-                          bucket_dir: config.bucket_dir,
-                          host: config.host});
   },
 
   signed : function(req, res){
