@@ -5,8 +5,6 @@ var crypto = require('crypto'),
     config = require('./../s3/config');
 
 
-exports.
-
 module.exports = {
   index : function(req, res){
     res.render('index', { aws_bucket: config.aws_bucket, // Passes to view to set as vars
