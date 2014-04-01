@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/user/imageuploader.html',
         'models/user', 'models/session', 'collections/users',
-        'collections/sessions', 'routing/router', 'collections/s3Collection'],
+        'collections/sessions', 'routing/router', 'models/s3Model', 'collections/s3Collection'],
   function($, _, Backbone, Template, User, Session, UsersCollection, SessionsCollection, Router, 
     S3Collection) {
 
@@ -13,7 +13,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/imageuploader.h
 
     initialize: function(options) {
       this.credentials = options.credentials;
-      
+
     },
 
     render: function() {
@@ -22,7 +22,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/imageuploader.h
     },
 
     uploadFileToS3 : function (options){
-      
+      var credentials = new S3Collection();
+      var data = credentials.toJSON();
     }
 
   });
