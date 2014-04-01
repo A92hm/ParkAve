@@ -102,7 +102,6 @@ module.exports = {
     });
 
     //api for AWS S3 credentials
-    app.get('/api/s3', s3.index);
     app.get('/api/s3/signed',s3.signed);
 
   }
