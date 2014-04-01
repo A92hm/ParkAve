@@ -12,10 +12,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     initialize: function(options) {
-      var s3Model = new S3Model();
-      var credentials = new S3Collection();
-      var data = credentials.toJSON();
-      this.aws_key = data.aws_key;
+      //var s3Model = new S3Model();
+      //var credentials = new S3Collection();
+      //var data = credentials.toJSON();
+      this.aws_key = options.aws_key;
     },
 
     render: function() {
