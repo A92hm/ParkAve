@@ -37,7 +37,13 @@ module.exports = {
     var file_key = uuid.v4(); // Generate uuid for filename
 
     // Return JSON View
-    res.json({ policy: base64policy,
+    res.json({ 
+               aws_bucket: config.aws_bucket, // Passes to view to set as vars
+               aws_key: config.aws_key,
+               redirect_host: config.redirect_host,
+               bucket_dir: config.bucket_dir,
+               host: config.host,
+               policy: base64policy,
                signature: signature,
                key: config.bucket_dir + file_key + "_" + req.query.title,
                success_action_redirect: "/",
