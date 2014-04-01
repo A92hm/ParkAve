@@ -18,7 +18,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     render: function() {
-      this.$el.html( this.template());
+      this.$el.html( this.template({aws_key: this.aws_key}));
       return this;
     },
 
