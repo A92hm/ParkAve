@@ -77,6 +77,9 @@ module.exports = {
     // API for buying spots
     app.post( '/api/purchase', spotsController.purchaseSpot);
 
+     //api for AWS S3 credentials
+    app.get('/api/s3/signed',s3.signed);
+
     // Non-API routes
 
     // app.get(  '/landing*', function(req, res) {
@@ -101,8 +104,7 @@ module.exports = {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
 
-    //api for AWS S3 credentials
-    app.get('/api/s3/signed',s3.signed);
+   
 
   }
 };

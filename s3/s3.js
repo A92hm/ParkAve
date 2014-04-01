@@ -9,6 +9,8 @@ module.exports = {
   index : function(req, res){
   },
 
+  
+
   signed : function(req, res){
     /* JSON View for obtaining CORS policy, signature, key, redirect and mime-type, then signs policy as a sha1 digest */
 

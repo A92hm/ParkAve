@@ -4,7 +4,7 @@ define(['underscore','backbone', 'models/user'], function(_, Backbone, User) {
     model: User,
     url: '/api/users',
     clienturl: function() {
-      return this.url.slice(5);
+      return this.url.slice(4);
     }
   });
 
