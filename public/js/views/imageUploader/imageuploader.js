@@ -24,6 +24,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/imageuploader.h
     uploadFileToS3 : function (options){
       var credentials = new S3Collection();
       var data = credentials.toJSON();
+      console.log(data);
     }
 
   });
