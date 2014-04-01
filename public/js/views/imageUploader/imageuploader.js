@@ -15,7 +15,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
       var s3Model = new S3Model();
       var credentials = new S3Collection();
       var data = credentials.toJSON();
-      this.aws_key = data.aws_key;
+      this.aws_key = data.key;
     },
 
     render: function() {
