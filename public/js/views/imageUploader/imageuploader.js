@@ -47,9 +47,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     uploadFileToS3 : function (){
+      setValueForS3();
+    }
+
+    setValueForS3 : function(){
       var host = this.s3Model.get('host');
       var bucket = this.s3Model.get('aws_bucket');
-      var url = 'http://'+host+'.'+bucket;
+      var url = 'http://'+bucket+'.'+host;
       var form = this.$el.find('#direct-upload-s3') || null;
       if(form){
         form.action = url;
