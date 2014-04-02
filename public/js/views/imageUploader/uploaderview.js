@@ -11,7 +11,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
     },
 
     initialize:function () {
-      this.s3Model = new S3Model();
+      /*this.s3Model = new S3Model();
       this.collection = new S3Collection([this.s3Model]);
       console.log('test');
       var theView = this;
@@ -24,14 +24,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
           theView.render();
         }
       });
-      this.listenTo(this.collection, 'change', this.render);
+      this.listenTo(this.collection, 'change', this.render);*/
+      render();
     },
 
     render: function() {
+      /*
       if (this.collection.length > 0) {
         this.s3Model = this.collection.at(0);
       }
       console.log('aws: '+this.s3Model.get('url'));
+      */
       this.$el.html( this.template());
       return this;
     },
