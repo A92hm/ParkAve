@@ -35,7 +35,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
             $this.$el.find('#status').html('Upload error: ' + status);
         }
       });
-      console.log(test);
+      console.log('test');
     }
   });
   return UploaderView;
