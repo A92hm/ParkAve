@@ -79,7 +79,7 @@ module.exports = {
     app.post( '/api/purchase', spotsController.purchaseSpot);
 
      //api for AWS S3 credentials
-    app.get('/api/s3/signed',s3.signed);
+    //app.get('/api/s3/signed',s3.signed);
     app.get('/api/sign_s3', s3backend.signed);
 
     // Non-API routes
