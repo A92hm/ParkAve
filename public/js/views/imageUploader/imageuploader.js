@@ -42,13 +42,19 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
         this.s3Model = this.collection.at(0);
       }
       console.log('aws: '+this.s3Model.get('aws_bucket'));
-      console.log(this.s3Model);
-      //this.s3Model.set('aws_bucket', 'this is a test');
       this.$el.html( this.template( this.s3Model.toJSON() ));
       return this;
     },
 
     uploadFileToS3 : function (){
+      var host = this.s3Model.get('host');
+      var bucket = this.s3Model.get('aws_bucket');
+      var url = 'http://'+host+'.'+bucket;
+      var form = this.$el.find('#direct-upload-s3') || null;
+      if(form){
+        form.action = url;
+      }
+      console.log('url '+url);
     }
 
   });

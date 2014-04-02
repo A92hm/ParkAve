@@ -24,7 +24,7 @@ module.exports = {
                       ["starts-with", "$key", config.bucket_dir],
                       {"acl": "public-read"},
                       {"success_action_status": "201"},
-                      //["starts-with", "$Content-Type", mime_type],
+                      ["starts-with", "$Content-Type", ""],
                       ["content-length-range", 0, config.max_filesize]
                     ]
                   });
