@@ -40,6 +40,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
     },
 
     uploadFileToS3 : function (){
+      this.var1 = 'test';
+      console.log(this.var1);
       var s3upload = new S3Upload({
         file_dom_selector: this.$el.find('#files'),
         s3_sign_put_url: '/api/sign_s3',
@@ -55,8 +57,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
         },
         onError: function(status) {
             $this.$el.find('#status').html('Upload error: ' + status);
+            this.var1 = status;
         }
       });
+      console.log(this.var1)
     }
   });
   return UploaderView;
