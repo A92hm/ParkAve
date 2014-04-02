@@ -25,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     render: function() {
-      this.$el.html( this.template({host:this.host}));
+      this.$el.html( this.template({test:this.test}));
       return this;
     },
 
