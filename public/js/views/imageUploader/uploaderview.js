@@ -19,7 +19,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
     },
 
     uploadFileToS3 : function (){
-      S3 = new S3Upload();
+      var S3 = new S3Upload();
       var s3upload = S3({
         file_dom_selector: this.$el.find('#files'),
         s3_sign_put_url: '/api/sign_s3',
