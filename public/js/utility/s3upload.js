@@ -141,7 +141,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
         return this_s3upload.uploadToS3(file, signedURL, publicURL, opts);
       }, opts);
     };
+    return S3Upload;
   });
-
-  return S3Upload;
-});
+}).call(this);
