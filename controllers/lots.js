@@ -1,4 +1,4 @@
-var _ = require('underscore'),
+ var _ = require('underscore'),
     Lot = require('./../models/lot').Lot,
     Spot = require('./../models/spot').Spot,
     Review = require('./../models/review').Review;

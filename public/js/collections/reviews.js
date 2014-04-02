@@ -10,8 +10,6 @@ define(['underscore','backbone', 'models/review'], function(_, Backbone, Review)
     	//console.log("options", options);
     	this.user = options.user;
     },
-
-
     clienturl: function() {
       return this.url.slice(4);
     }

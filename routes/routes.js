@@ -5,7 +5,8 @@ var path = require('path'),
     reviewsController = require('./../controllers/reviews.js'),
     carsController = require('./../controllers/cars.js'),
     paymentController = require('./../controllers/payments.js'),
-    feedbackController = require('./../controllers/feedbacks.js');
+    feedbackController = require('./../controllers/feedbacks.js'),
+    s3 = require('./../s3/s3.js');
 
 module.exports = {
   init: function(app) {
@@ -69,14 +70,21 @@ module.exports = {
     app.get(  '/api/location/:json', lotsController.nearbyLots);        // Get all of the lots for a specified user id
     app.get(  '/api/location/all/:json', lotsController.nearbyLotsAndSpots);        // Get all of the lots for a specified user id
 
-    // API for buying spots
+    // API for payment
     app.post( '/api/addpaymentmethod', paymentController.addCreditCard);
     app.post( '/api/purchase', paymentController.purchaseSpot);
+
+     //api for AWS S3 credentials
+    app.get('/api/s3/signed',s3.signed);
+
+    // Non-API routes
 
 
     app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
+
+   
 
   }
 };
