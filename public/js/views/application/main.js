@@ -281,7 +281,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
     showImageUploader: function() {
       var imageUploaderView = new ImageUploaderView();
-      this.$el.html( imageUploaderView.render());
+      this.$el.html( imageUploaderView.render().el);
     }
   });
 

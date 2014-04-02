@@ -16,6 +16,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
 
     render: function() {
       this.$el.html(this.template());
+      return this;
     },
 
     uploadFileToS3 : function (){
@@ -34,6 +35,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
             $this.$el.find('#status').html('Upload error: ' + status);
         }
       });
+      console.log(test);
     }
   });
   return UploaderView;
