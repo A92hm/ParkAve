@@ -43,10 +43,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
       }
       console.log('aws: '+this.s3Model.get('aws_bucket'));
       this.$el.html( this.template( this.s3Model.toJSON() ));
+      /*
       this.$el.find('#AWSAccessKeyId').value = this.s3Model.get('public_key');
       this.$el.find('#key').value = this.s3Model.get('file_alias');
       this.$el.find('#policy').value = this.s3Model.get('policy');
       this.$el.find('#signature').value = this.s3Model.get('signature');
+      */
       return this;
     },
 
@@ -58,9 +60,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
       if(form){
         form.action = url;
       }
+      this.$el.find('input[name=key]').val(this.s3Model.get('file_alias'));
+      this.$el.find('input[name=policy]').val(this.s3Model.get('policy'));
+      this.$el.find('input[name=signature]').val(this.s3Model.get('signature'));
     }
 
   });
-
   return ImageUploaderView;
 });
