@@ -12,11 +12,11 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 */
 
-(function() {
+define([],function() {
 
-  window.S3Upload = (function() {
+  var S3Upload = (function() {
 
-    S3Upload.prototype.s3_sign_put_url = '/signS3put';
+    S3Upload.prototype.s3_sign_put_url = '/api/signS3put';
 
     S3Upload.prototype.file_dom_selector = '#file_upload';
 
@@ -142,10 +142,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
       }, opts);
     };
 
-    
-
-  })();
-
-  return S3Upload;
-
-}).call(this);
+  })
+return S3Upload;
+})
