@@ -62,6 +62,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
         }
       });
       console.log(this.var1);
+      console.log(s3upload);
       return s3upload;
     }
   });
