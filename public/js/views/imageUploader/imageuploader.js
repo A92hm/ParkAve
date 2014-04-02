@@ -54,9 +54,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
       if(form){
         form.action = url;
       }
-      console.log('url '+url);
-    }
-      
+      this.$el.find('#aws_id').value = this.s3Model.get('aws_key');
     }
 
   });
