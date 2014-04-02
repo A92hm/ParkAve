@@ -14,7 +14,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 define([],function() {
 
-  var S3Upload = (function() {
+  window S3Upload = (function() {
 
     S3Upload.prototype.s3_sign_put_url = '/api/signS3put';
 
@@ -141,7 +141,6 @@ define([],function() {
         return this_s3upload.uploadToS3(file, signedURL, publicURL, opts);
       }, opts);
     };
-    return (S3Upload);
   })
-return;
+return (S3Upload);
 })
