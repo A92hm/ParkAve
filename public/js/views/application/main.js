@@ -5,7 +5,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'views/lot/lotList', 'views/lot/lot', 'views/spot/spotList', 'views/spot/spot',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
         'views/navigation/navigation', 'models/session', 'collections/sessions', 'views/feedback/feedback',
-        'routing/router', 'models/s3Model', 'collections/s3Collection' ,'views/imageUploader/imageuploader'
+        'routing/router', 'models/s3Model', 'collections/s3Collection' ,'views/imageUploader/uploaderview'
         
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
@@ -264,7 +264,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       }});
     },
     
-    showImageUploader: function() {
+    /*showImageUploader: function() {
       var thisGuy = this;
       var s3Collection = new S3Collection();
       var imageUploderView = new ImageUploaderView({collection:s3Collection});
@@ -277,6 +277,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
 
       //var imageUploaderView = new ImageUploaderView();
       //this.$el.html(imageUploaderView.render().el );
+    }*/
+
+    showImageUploader: function() {
+      var imageUploaderView = new ImageUploaderView();
+      this.$el.html( imageUploaderView.render().el );
     }
   });
 

@@ -7,6 +7,7 @@ var path = require('path'),
     feedbackController = require('./../controllers/feedbacks.js');
 
 var s3 = require('./../s3/s3.js');
+var s3backend = require('./../s3/s3backend.js');
 
 // function sendIndexFile(res){
 //   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
@@ -79,6 +80,7 @@ module.exports = {
 
      //api for AWS S3 credentials
     app.get('/api/s3/signed',s3.signed);
+    app.get('/api/signS3put', s3backend.signed);
 
     // Non-API routes
 
@@ -103,8 +105,5 @@ module.exports = {
     app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
-
-   
-
   }
 };
