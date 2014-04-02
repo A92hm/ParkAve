@@ -141,7 +141,6 @@ define(function() {
         return this_s3upload.uploadToS3(file, signedURL, publicURL, opts);
       }, opts);
     };
-
-    return S3Upload;
   })
+  return S3Upload;
 })
