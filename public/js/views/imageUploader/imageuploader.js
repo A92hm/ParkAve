@@ -13,8 +13,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
 
     initialize:function () {
       var s3Model = new S3Model();
-      this.collection = new S3Collection([s3Model]);
-      var test = s3Model.toJSON();
+      var collection = new S3Collection([s3Model]);
+      var test = collection.toJSON();
       console.log('test');
       console.log(test);
       this.collection.fetch({
