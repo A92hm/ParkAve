@@ -15,6 +15,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
 
     render: function() {
       this.$el.html(this.template());
+      return this;
     },
 
     uploadFileToS3 : function (){
