@@ -80,7 +80,7 @@ module.exports = {
 
      //api for AWS S3 credentials
     app.get('/api/s3/signed',s3.signed);
-    app.get('/api/signS3put', s3backend.signed);
+    app.get('/api/sign_s3', s3backend.signed);
 
     // Non-API routes
 

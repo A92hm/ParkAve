@@ -5,7 +5,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
   var UploaderView = Backbone.View.extend({
     tagName: 'div',
     template: _.template( Template ),
-    
+
     events: {
       'change #files' : 'uploadFileToS3'
     },
