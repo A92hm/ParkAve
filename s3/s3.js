@@ -45,7 +45,7 @@ module.exports = {
                signature: signature,
                key: config.bucket_dir + file_key + "_" + req.query.title,
                success_action_redirect: "/",
-               contentType: mime_type
+               //contentType: mime_type
             })
   }
 }
