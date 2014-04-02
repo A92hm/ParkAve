@@ -44,7 +44,7 @@ module.exports = {
                policy: base64policy,
                signature: signature,
                key: config.bucket_dir + file_key + "_" + req.query.title,
-               success_action_redirect: "/"
+               success_action_redirect: "/",
                contentType: mime_type
             })
   }
