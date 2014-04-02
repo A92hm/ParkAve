@@ -23,7 +23,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
       var s3upload = new S3Upload({
         file_dom_selector: this.$el.find('#files'),
         s3_sign_put_url: '/api/sign_s3',
-        this.check = 'url',
+        this.check : s3_sign_put_url.get('url'),
         onProgress: function(percent, message) {
             this.$el.find('#status').html('Upload progress: ' + percent + '% ' + message);
         },
@@ -36,7 +36,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
             $this.$el.find('#status').html('Upload error: ' + status);
         }
       });
-      console.log('this.check');
+      console.log(this.check);
     }
   });
   return UploaderView;
