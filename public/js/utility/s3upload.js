@@ -142,6 +142,7 @@ define(function() {
       }, opts);
     };
 
-    return S3Upload;
+    
   })();
+  return S3Upload;
 })
