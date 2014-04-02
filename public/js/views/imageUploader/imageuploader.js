@@ -47,6 +47,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     uploadFileToS3 : function (){
+      setValueForS3();
+    },
+
+    setValueForS3 : function(){
       var host = this.s3Model.get('host');
       var bucket = this.s3Model.get('aws_bucket');
       var url = 'http://'+bucket+'.'+host;
@@ -55,11 +59,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
         form.action = url;
       }
       console.log('url '+url);
-      setValueForS3();
-    },
-
-    setValueForS3 : function(){
-
     }
 
   });
