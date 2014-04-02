@@ -142,8 +142,10 @@ Unless required by applicable law or agreed to in writing, software distributed 
       }, opts);
     };
 
-    return S3Upload;
+    
 
   })();
+
+  return S3Upload;
 
 }).call(this);
