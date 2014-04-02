@@ -12,7 +12,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 */
 
-define(function() {
+define([],function() {
 
   window.S3Upload = (function() {
 
