@@ -40,8 +40,7 @@ function getAverages(lotID, userID, callback, res){
       }
     });
   }
-  else{
-
+  else {
     Lot.findById(lotID, function(err, lot){
       if(err){res.status(500).json({err: 'internal error finding lot'});}
       else{
@@ -58,7 +57,6 @@ function getAverages(lotID, userID, callback, res){
             console.log('totalspots: '+totalSpots);
             if(totalSpots != 0){
               _.each(spots, function(spot){
-
                 if(currentMin == -1 || spot.price < currentMin){
                   currentMin = spot.price;
                 }
@@ -84,7 +82,6 @@ function getAverages(lotID, userID, callback, res){
                         lot.averageRating = total/count;
                         callback(lot);
                       }
-                        
                       else{
                         lot.minimumPrice = currentMin;
                         lot.averageRating = -1;
@@ -126,7 +123,22 @@ function getAverages(lotID, userID, callback, res){
   }
 }
 
-
+function getNearbyLots(req, res, cb) {
+  var json = req.params.json.split('+');
+  // Some error checking
+  if (json.length != 3) {
+    return res.status(500).json({err: 'Incorrect number of arguments'});
+  } else if (!isFinite(json[0]) || !isFinite(json[0]) || !isFinite(json[0])) {
+    return res.status(500).json({err: 'Not all input numeric'});
+  }
+  // Defined as distance in miles / 7 miles
+  var delta = json[2] / 7 * 0.1;
+  var latitude = +json[0];
+  var longitude = +json[1];
+  Lot.find( {lat: {$gte: (latitude - delta), $lte: (latitude + delta)},
+            lon: {$gte: (longitude - delta), $lte: (longitude + delta)}
+          }, cb);
+}
 
 
 module.exports = {
@@ -148,36 +160,37 @@ module.exports = {
   },
   // req.params.json should contain
   // lat+lng+dist
-  nearlots: function(req,res) {
+  nearbyLots: function(req, res) {
     console.log('near lots');
-    var json = req.params.json.split('+');
-    // Some error checking
-    if (json.length != 3) {
-      return res.status(500).json({err: 'Incorrect number of arguments'});
-    } else if (!isFinite(json[0]) || !isFinite(json[0]) || !isFinite(json[0])) {
-      return res.status(500).json({err: 'Not all input numeric'});
-    }
-    // Defined as distance in miles / 7 miles
-    var delta = json[2] / 7 * 0.1;
-    var latitude = +json[0];
-    var longitude = +json[1];
-    Lot.find( {lat: {$gte: (latitude - delta), $lte: (latitude + delta)},
-              lon: {$gte: (longitude - delta), $lte: (longitude + delta)}
-            },
-      function(err, lots) {
+    getNearbyLots(req, res, function(err, lots){
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
-        console.log(lots);
-
         res.json(lots);
+      }
+    });
+  },
+  nearbyLotsAndSpots: function(req, res) {
+    getNearbyLots(req, res, function(err, lots){
+      if (err) {
+        res.status(500).json({err: 'internal error'});
+      } else {
+        Spot.find({}, function(err, spots){
+          if (err) {
+            res.status(500).json({err: 'internal error'});
+          } else {
+            var responseObj = {};
+            responseObj.lots = lots;
+            responseObj.spots = spots;
+            res.json(responseObj);
+          }
+        });
       }
     });
   },
   show: function(req, res) {
     console.log('lots show');
-    getAverages(req.params.lid,'',function(lot){
-      // not being reached JEREMY -- lot is being sent back as an array
+    getAverages(req.params.lid, '', function(lot){
       res.json(lot);
     }, res);
     /*
@@ -255,6 +268,4 @@ module.exports = {
       });
     });
   }
-
-  
 };
