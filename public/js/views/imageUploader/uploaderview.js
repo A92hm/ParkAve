@@ -54,10 +54,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
             this.$el.find('#avatar_url').val(public_url);
             this.$el.find('#preview').html('<img src="'+public_url+'" style="width:300px;" />');
             console.log('url '+public_url );
+            this.var1 = public_url;
+            console.log(this.var1);
         },
         onError: function(status) {
             $this.$el.find('#status').html('Upload error: ' + status);
-            this.var1 = status;
         }
       });
       console.log(this.var1)
