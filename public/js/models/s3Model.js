@@ -1,17 +1,22 @@
 define(['underscore','backbone'], function(_, Backbone) {
-
   var S3Model = Backbone.Model.extend({
-    idAttribute: '_id',
     defaults: {
+      aws_bucket: '',
+      aws_key: '',
+      redirect_host: '',
+      bucket_dir: '',
+      host: '',
     	policy: '',
-        signature: '',
-        key: '',
-        success_action_redirect: '',
-        contentType: ''
+      signature: '',
+      key: '',
+      success_action_redirect: '',
+      contentType: ''
     },
-    initialize: function() {
+    parse:function (response) {
+            console.log(response);
+            response.id = response._id;
+            return response;
     }
   });
-
   return S3Model;
 });

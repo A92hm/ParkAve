@@ -11,15 +11,21 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
       'change #direct-upload-s3' : 'uploadFileToS3'
     },
 
-    initialize: function(options) {
-      //var s3Model = new S3Model();
-      //var credentials = new S3Collection();
-      //var data = credentials.toJSON();
-      this.aws_key = options.aws_key;
+    initialize:function () {
+      this.collection = new S3Collection();
+      var test = this.collection;
+      console.log('test');
+      console.log(test);
+      this.collection.fetch({
+        error:function(){
+          console.log(error);
+        }
+      });
+      this.render();
     },
 
     render: function() {
-      this.$el.html( this.template({aws_key: this.aws_key}));
+      this.$el.html( this.template({host:this.host}));
       return this;
     },
 
