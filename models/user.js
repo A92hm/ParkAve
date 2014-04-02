@@ -15,6 +15,7 @@ var userSchema = mongoose.Schema({
   spotHistory: {type: [ObjectId], require: true},
   //do not set these values
   averageRating: {type:Number, min: -1, max: 5, default:-1},
+  creditCard: {type: String, require: false, trim: true}
 });
 
 var User = mongoose.model('users', userSchema);

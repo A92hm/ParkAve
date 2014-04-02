@@ -4,11 +4,8 @@ var path = require('path'),
     spotsController = require('./../controllers/spots.js'),
     reviewsController = require('./../controllers/reviews.js'),
     carsController = require('./../controllers/cars.js'),
+    paymentController = require('./../controllers/payments.js'),
     feedbackController = require('./../controllers/feedbacks.js');
-
-// function sendIndexFile(res){
-//   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
-// }
 
 module.exports = {
   init: function(app) {
@@ -73,28 +70,10 @@ module.exports = {
     app.get(  '/api/location/all/:json', lotsController.nearbyLotsAndSpots);        // Get all of the lots for a specified user id
 
     // API for buying spots
-    app.post( '/api/purchase', spotsController.purchaseSpot);
+    app.post( '/api/addpaymentmethod', paymentController.addCreditCard);
+    app.post( '/api/purchase', paymentController.purchaseSpot);
 
-    // Non-API routes
 
-    // app.get(  '/landing*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/login*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/buy*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/sell*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/users*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/getstarted*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
     app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
