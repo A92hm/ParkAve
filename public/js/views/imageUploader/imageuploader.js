@@ -47,7 +47,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     uploadFileToS3 : function (){
-      setValueForS3();
+      'setValueForS3';
     },
 
     setValueForS3 : function(){
