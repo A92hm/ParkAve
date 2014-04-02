@@ -12,10 +12,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
     },
 
     initialize:function () {
-      this.collection = new S3Collection();
-      var test = this.collection;
+      var s3Model = new S3Model();
+      var collection = new S3Collection([s3Model]);
+      var test = collection.fetch();
       console.log('test');
-      console.log(test);
+      console.log(test.aws_key);
       this.collection.fetch({
         error:function(){
           console.log(error);
