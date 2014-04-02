@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/uploaderview.html', 
-  'utility/s3upload'],
-  function($, _, Backbone, Template, S3Upload) {
+  'utility/s3upload', 'models/s3Credential', 'collections/s3Credentials'],
+  function($, _, Backbone, Template, S3Upload, S3Model, S3Collection) {
 
   var UploaderView = Backbone.View.extend({
     tagName: 'div',
@@ -11,11 +11,28 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
     },
 
     initialize:function () {
-      this.render();
+      this.s3Model = new S3Model();
+      this.collection = new S3Collection([this.s3Model]);
+      console.log('test');
+      var theView = this;
+      this.collection.fetch({
+        error:function(){
+          console.log(error);
+        },
+        success:function(){
+          console.log('success!');
+          theView.render();
+        }
+      });
+      this.listenTo(this.collection, 'change', this.render);
     },
 
     render: function() {
-      this.$el.html(this.template());
+      if (this.collection.length > 0) {
+        this.s3Model = this.collection.at(0);
+      }
+      console.log('aws: '+this.s3Model.get('url'));
+      this.$el.html( this.template());
       return this;
     },
 
@@ -37,6 +54,5 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
       });
     }
   });
-  console.log(UploaderView.get('url'));
   return UploaderView;
 });
