@@ -16,7 +16,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
       var collection = new S3Collection([s3Model]);
       var test = collection.toJSON();
       console.log('test');
-      console.log(test);
+      console.log(collection);
       this.collection.fetch({
         error:function(){
           console.log(error);
