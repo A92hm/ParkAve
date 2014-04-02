@@ -24,12 +24,12 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
         file_dom_selector: this.$el.find('#files'),
         s3_sign_put_url: '/api/sign_s3',
         onProgress: function(percent, message) {
-            $('#status').html('Upload progress: ' + percent + '% ' + message);
+            this.$el.find('#status').html('Upload progress: ' + percent + '% ' + message);
         },
         onFinishS3Put: function(public_url) {
             this.$el.find('#status').html('Upload completed. Uploaded to: '+ public_url);
-            this.$el.find("#avatar_url").val(public_url);
-            this.$el.find("#preview").html('<img src="'+public_url+'" style="width:300px;" />');
+            this.$el.find('#avatar_url').val(public_url);
+            this.$el.find('#preview').html('<img src="'+public_url+'" style="width:300px;" />');
         },
         onError: function(status) {
             $this.$el.find('#status').html('Upload error: ' + status);
