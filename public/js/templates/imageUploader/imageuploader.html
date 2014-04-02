@@ -5,15 +5,15 @@
   
   <form method="post" enctype="multipart/form-data" class="direct-upload" id ="direct-upload-s3">
       <input type="hidden" id="key">
-      <input type="hidden" id= "aws_id"> 
+      <input type="hidden" id="AWSAccessKeyId"> 
       <input type="hidden" id="acl" value="public-read"> 
       <input type="hidden" id="policy">
       <input type="hidden" id="signature">
       <input type="hidden" id="success_action_status" value="201">
       <input type="hidden" id="Content-Type" value="image/jpeg">
-      <input class="file-input" id="file" type="file">
+      <input name="file" id="file" type="file">&nbsp;<input type="submit" />
     </form>
-    <div class="progress round eight"><span class="meter"></span></div>
+    <br>
     <input class="share-url" type="text" />
 
 </div>
