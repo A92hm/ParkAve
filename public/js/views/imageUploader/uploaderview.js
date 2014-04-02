@@ -25,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
         }
       });
       this.listenTo(this.collection, 'change', this.render);*/
-      render();
+      this.render();
     },
 
     render: function() {
