@@ -43,7 +43,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
       this.var1 = 'test';
       console.log(this.var1);
       var s3upload = new S3Upload({
-        file_dom_selector: this.$el('#files'),
+        file_dom_selector: '#files',
         s3_sign_put_url: '/api/sign_s3',
         onProgress: function(percent, message) {
             this.$el.find('#status').html('Upload progress: ' + percent + '% ' + message);
