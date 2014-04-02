@@ -13,7 +13,7 @@ define(['underscore','backbone'], function(_, Backbone) {
       contentType: ''
     },
     parse:function (response) {
-      //console.log(response);
+      console.log(response);
       response.id = response._id;
       return response;
     }
