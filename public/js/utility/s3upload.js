@@ -12,7 +12,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 */
 
-(function() {
+define(function() {
 
   window.S3Upload = (function() {
 
@@ -144,6 +144,5 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
     return S3Upload;
 
-  })();
-
-}).call(this);
+  });
+});
