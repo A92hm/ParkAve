@@ -14,7 +14,7 @@ module.exports = {
   signed : function(req, res){
     /* JSON View for obtaining CORS policy, signature, key, redirect and mime-type, then signs policy as a sha1 digest */
 
-    var mime_type = mime.lookup(req.query.title); // Uses node-mime to detect mime-type based on file extension
+    //var mime_type = mime.lookup(req.query.title); // Uses node-mime to detect mime-type based on file extension
     var expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z"); // Set policy expire date +30 minutes in UTC
     // Creates the JSON policy according to Amazon S3's CORS uploads specfication (http://aws.amazon.com/articles/1434)
     var policy = JSON.stringify({
@@ -24,7 +24,7 @@ module.exports = {
                       ["starts-with", "$key", config.bucket_dir],
                       {"acl": "public-read"},
                       {"success_action_status": "201"},
-                      ["starts-with", "$Content-Type", mime_type],
+                      //["starts-with", "$Content-Type", mime_type],
                       ["content-length-range", 0, config.max_filesize]
                     ]
                   });
