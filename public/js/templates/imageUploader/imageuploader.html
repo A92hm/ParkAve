@@ -1,19 +1,18 @@
 <div id="image-uploader">
   <div>Hello</div>
-  <h1><%= aws_bucket %></h1>
-  
-  
   <form method="post" enctype="multipart/form-data" class="direct-upload" id ="direct-upload-s3">
       <input type="hidden" name="key">
-      <input type="hidden" name="AWSAccessKeyId" id = "aws_id"> 
+      <input type="hidden" name="AWSAccessKeyId"> 
       <input type="hidden" name="acl" value="public-read"> 
       <input type="hidden" name="policy">
       <input type="hidden" name="signature">
       <input type="hidden" name="success_action_status" value="201">
-      <input type="hidden" name="Content-Type">
-      <input class="file-input" name="file" type="file">
+      <input type="hidden" name="Content-Type" value="image/jpg">
+      <input name="file" id="file" type="file">
+      <br>
+      <input type="submit" name="submit" value="Post to Amazon S3" />
     </form>
-    <div class="progress round eight"><span class="meter"></span></div>
+    <br>
     <input class="share-url" type="text" />
 
 </div>

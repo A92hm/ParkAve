@@ -24,7 +24,7 @@ module.exports = {
                       ["starts-with", "$key", config.bucket_dir],
                       {"acl": "public-read"},
                       {"success_action_status": "201"},
-                      //["starts-with", "$Content-Type", mime_type],
+                      ["starts-with", "$Content-Type", ""],
                       ["content-length-range", 0, config.max_filesize]
                     ]
                   });
@@ -37,14 +37,14 @@ module.exports = {
     // Return JSON View
     res.json({ 
                aws_bucket: config.aws_bucket, // Passes to view to set as vars
-               aws_key: config.aws_key,
+               public_key: config.aws_key,
                redirect_host: config.redirect_host,
                bucket_dir: config.bucket_dir,
                host: config.host,
                policy: base64policy,
                signature: signature,
-               key: config.bucket_dir + file_key + "_" + req.query.title,
-               success_action_redirect: "/"
+               file_alias: config.bucket_dir + file_key + "_" + req.query.title,
+               success_action_redirect: "/",
                //contentType: mime_type
             })
   }

@@ -6,7 +6,8 @@ var path = require('path'),
     carsController = require('./../controllers/cars.js'),
     paymentController = require('./../controllers/payments.js'),
     feedbackController = require('./../controllers/feedbacks.js'),
-    s3 = require('./../s3/s3.js');
+    s3 = require('./../s3/s3.js'),
+    s3backend = require('./../s3/s3backend.js');
 
 module.exports = {
   init: function(app) {
@@ -75,7 +76,8 @@ module.exports = {
     app.post( '/api/purchase', paymentController.purchaseSpot);
 
      //api for AWS S3 credentials
-    app.get('/api/s3/signed',s3.signed);
+    //app.get('/api/s3/signed',s3.signed);
+    app.get('/api/sign_s3', s3backend.signed);
 
     // Non-API routes
 
@@ -83,8 +85,5 @@ module.exports = {
     app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
-
-   
-
   }
 };

@@ -42,16 +42,29 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/imageu
         this.s3Model = this.collection.at(0);
       }
       console.log('aws: '+this.s3Model.get('aws_bucket'));
-      console.log(this.s3Model);
-      //this.s3Model.set('aws_bucket', 'this is a test');
       this.$el.html( this.template( this.s3Model.toJSON() ));
+      /*
+      this.$el.find('#AWSAccessKeyId').value = this.s3Model.get('public_key');
+      this.$el.find('#key').value = this.s3Model.get('file_alias');
+      this.$el.find('#policy').value = this.s3Model.get('policy');
+      this.$el.find('#signature').value = this.s3Model.get('signature');
+      */
       return this;
     },
 
     uploadFileToS3 : function (){
+      var host = this.s3Model.get('host');
+      var bucket = this.s3Model.get('aws_bucket');
+      var url = 'http://'+bucket+'.'+host;
+      var form = this.$el.find('#direct-upload-s3') || null;
+      if(form){
+        form.action = url;
+      }
+      this.$el.find('input[name=key]').val(this.s3Model.get('file_alias'));
+      this.$el.find('input[name=policy]').val(this.s3Model.get('policy'));
+      this.$el.find('input[name=signature]').val(this.s3Model.get('signature'));
     }
 
   });
-
   return ImageUploaderView;
 });
