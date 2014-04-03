@@ -4,14 +4,10 @@ var path = require('path'),
     spotsController = require('./../controllers/spots.js'),
     reviewsController = require('./../controllers/reviews.js'),
     carsController = require('./../controllers/cars.js'),
-    feedbackController = require('./../controllers/feedbacks.js');
-
-var s3 = require('./../s3/s3.js');
-var s3backend = require('./../s3/s3backend.js');
-
-// function sendIndexFile(res){
-//   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
-// }
+    paymentController = require('./../controllers/payments.js'),
+    feedbackController = require('./../controllers/feedbacks.js'),
+    s3 = require('./../s3/s3.js'),
+    s3backend = require('./../s3/s3backend.js');
 
 module.exports = {
   init: function(app) {
@@ -75,8 +71,9 @@ module.exports = {
     app.get(  '/api/location/:json', lotsController.nearbyLots);        // Get all of the lots for a specified user id
     app.get(  '/api/location/all/:json', lotsController.nearbyLotsAndSpots);        // Get all of the lots for a specified user id
 
-    // API for buying spots
-    app.post( '/api/purchase', spotsController.purchaseSpot);
+    // API for payment
+    app.post( '/api/addpaymentmethod', paymentController.addCreditCard);
+    app.post( '/api/purchase', paymentController.purchaseSpot);
 
      //api for AWS S3 credentials
     //app.get('/api/s3/signed',s3.signed);
@@ -84,24 +81,7 @@ module.exports = {
 
     // Non-API routes
 
-    // app.get(  '/landing*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/login*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/buy*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/sell*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/users*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/getstarted*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
+
     app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
