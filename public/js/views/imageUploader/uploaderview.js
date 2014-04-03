@@ -5,7 +5,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
   var UploaderView = Backbone.View.extend({
     tagName: 'div',
     template: _.template( Template ),
-    url : '/api/sign_s3',
+    //url : '/api/sign_s3',
     events: {
       'change #files' : 'uploadFileToS3'
     },
@@ -25,6 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
         }
       });
       this.listenTo(this.collection, 'change', this.render);*/
+      this.var0 = 'helo'
       this.render();
     },
 
@@ -40,25 +41,24 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/imageUploader/upload
     },
 
     uploadFileToS3 : function (){
-      this.var1 = 'test';
+      this.var1 = this.var0;
       console.log(this.var1);
       var s3upload = new S3Upload({
         file_dom_selector: '#files',
         s3_sign_put_url: '/api/sign_s3',
         onProgress: function(percent, message) {
             this.$el.find('#status').html('Upload progress: ' + percent + '% ' + message);
-            console.log('percent'+percent);
+            console.log('Upload progress: ' + percent + '% ' + message);
         },
         onFinishS3Put: function(public_url) {
             this.$el.find('#status').html('Upload completed. Uploaded to: '+ public_url);
             this.$el.find('#avatar_url').val(public_url);
             this.$el.find('#preview').html('<img src="'+public_url+'" style="width:300px;" />');
-            console.log('url '+public_url );
-            this.var1 = public_url;
-            console.log(this.var1);
+            console.log('Upload completed. Uploaded to: '+ public_url);
         },
         onError: function(status) {
             $this.$el.find('#status').html('Upload error: ' + status);
+            console.log('Upload error: ' + status);
         }
       });
       console.log(this.var1);
