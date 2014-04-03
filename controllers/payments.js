@@ -45,7 +45,7 @@ module.exports = {
                 err: 'unable to save credit card'
               });
             } else {
-              res.status(200)json({ response: "Success"});
+              res.status(200).json({ response: "Success"});
             }
           });
         }
@@ -144,7 +144,7 @@ module.exports = {
                           content: err
                         });
                       } else {
-                        res.status(200)json({ response: "Success"});
+                        res.status(200).json({ response: "Success"});
                       }
                     });
                 }
