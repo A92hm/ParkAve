@@ -130,10 +130,7 @@ define([], function() {
         return this_s3upload.uploadToS3(file, signedURL, publicURL);
       });
     };
-
-    
-
-  })();
+  });
   return S3Upload;
 
 })
