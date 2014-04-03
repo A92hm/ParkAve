@@ -133,8 +133,7 @@ define([], function() {
 
     
 
-  })(),
-
+  })();
   return S3Upload;
 
 })
