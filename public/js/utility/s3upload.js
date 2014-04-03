@@ -131,8 +131,10 @@ define([], function() {
       });
     };
 
-    return S3Upload;
+    
 
-  })();
+  })(),
+
+  return S3Upload;
 
 })
