@@ -19,5 +19,12 @@
     "nconf": "~0.6.9",
     "paypal-rest-sdk": "~0.6.4",
     "socket.io": "~0.9.16"
+    "hjs": "*",
+    "less-middleware": "*",
+    "node-uuid": "*",
+    "crypto": "*",
+    "mime": "*",
+    "moment": "*"
+
   }
 }

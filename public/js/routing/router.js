@@ -20,7 +20,9 @@ define(['underscore', 'require', 'backbone'],
       'users/:uid/feedback': 'userFeedback',
       'users/:uid/settings': 'userSettings',
 
-      '': 'main'
+      '': 'main',
+
+      'image' : 'imageUploader'
     },
 
     main: function() {
@@ -94,7 +96,14 @@ define(['underscore', 'require', 'backbone'],
           router.navigate(href, true);
         }
       });
+    },
+
+    imageUploader: function(){
+      require(['views/application/main'], function(MainAppView) {
+        MainAppView.sharedInstance().showImageUploader();
+      });
     }
+
   });
 
   Router.sharedInstance = _.once(function() {

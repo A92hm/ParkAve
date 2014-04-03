@@ -3,11 +3,11 @@ var path = require('path'),
     lotsController = require('./../controllers/lots.js'),
     spotsController = require('./../controllers/spots.js'),
     reviewsController = require('./../controllers/reviews.js'),
-    carsController = require('./../controllers/cars.js');
-
-// function sendIndexFile(res){
-//   res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
-// }
+    carsController = require('./../controllers/cars.js'),
+    paymentController = require('./../controllers/payments.js'),
+    feedbackController = require('./../controllers/feedbacks.js'),
+    s3 = require('./../s3/s3.js'),
+    s3backend = require('./../s3/s3backend.js');
 
 module.exports = {
   init: function(app) {
@@ -59,36 +59,31 @@ module.exports = {
     app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);  // Update a specific spot give a specified spot, lot, and user id
     app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy); // Delete the speceific spot from the database
 
+    // API for feedback
+    app.get(  '/api/feedback',     feedbackController.index);     // get all feedback
+    app.get(  '/api/feedback/:fid', feedbackController.show);     // get the feedback with the given id
+    app.post( '/api/feedback',     feedbackController.create);    // create a user
+    app.put(  '/api/feedback/:fid', feedbackController.update);   // update the feedback for the given id
+    app.del(  '/api/feedback/:fid', feedbackController.destroy);  // delete the feedback with id <:fid> from the database
+
     // API for closest lots
     // Call to get the nearest lots within a given distance :json is in the form lat+lon+distance
-    app.get(  '/api/location/:json', lotsController.nearlots);        // Get all of the lots for a specified user id
+    app.get(  '/api/location/:json', lotsController.nearbyLots);        // Get all of the lots for a specified user id
+    app.get(  '/api/location/all/:json', lotsController.nearbyLotsAndSpots);        // Get all of the lots for a specified user id
 
-    // API for buying spots
-    app.post( '/api/purchase', spotsController.purchaseSpot);
+    // API for payment
+    app.post( '/api/addpaymentmethod', paymentController.addCreditCard);
+    app.post( '/api/purchase', paymentController.purchaseSpot);
+
+     //api for AWS S3 credentials
+    //app.get('/api/s3/signed',s3.signed);
+    app.get('/api/sign_s3', s3backend.signed);
 
     // Non-API routes
 
-    // app.get(  '/landing*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/login*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/buy*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/sell*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/users*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
-    // app.get(  '/getstarted*', function(req, res) {
-    //   sendIndexFile(res);
-    // });
+
     app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
-
   }
 };

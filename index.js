@@ -44,6 +44,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 */
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
@@ -52,6 +53,15 @@ routes.init(app);
 app.set('port', process.env.PORT || 3000);
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
+});
+
+app.configure(function(){
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  //app.use(app.router);
+  app.use(require('less-middleware')(path.join(__dirname, 'public')));
 });
 
 // For deployment
