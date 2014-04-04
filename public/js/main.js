@@ -21,9 +21,9 @@ require.config({
 });
 
 require(['jquery', 'bootstrap', 'underscore', 'backbone', 'modernizr', 
-         'routing/router', 'views/application/main'], 
-  function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView) {
-  
+         'routing/router', 'views/application/main', 'backbone.io'], 
+  function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView, backboneio) {
+  //backboneio.connect();
   MainAppView.sharedInstance().render();  
   Router.sharedInstance().start();
 

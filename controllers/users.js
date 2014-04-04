@@ -1,7 +1,8 @@
 var User = require('./../models/user').User,
     _ = require('underscore'),
-    bcrypt = require('bcrypt');
-var Review = require('./../models/review').Review;
+    bcrypt = require('bcrypt'),
+    Review = require('./../models/review').Review;
+
 
 
 function getEncryptedPassword(password, callback){
@@ -30,20 +31,16 @@ function getAverageRating(userID, callback){
         if(numOfUsers == 0){
           callback(false);
         }
-        console.log('num of users: '+numOfUsers);
         _.each(users, function(user){
           user.name = 'dave';
           //recursivly call to set average for each user
           getAverageRating(user._id, function(average){
-            console.log("getting the average: "+average);
             //set average for each one using this method
             user.averageRating = average;
-            console.log('count: '+count);
             newUsers[count] = user;
             count++;
             //need to do this within the callback
             if(count == numOfUsers-1){
-              console.log("finished array");
               callback(newUsers);
             }
           });
@@ -55,7 +52,6 @@ function getAverageRating(userID, callback){
     });
   }
   else{
-    console.log('the uid for average: ' +userID);
     Review.find({reviewee_id: userID}, function(err, reviews) {
       if (err) {
         console.log("error: "+err);
@@ -90,8 +86,10 @@ module.exports = {
           user.password = undefined;
         });
         getAverageRating("",function(users){
-          if(users)
+          if(users){
+            
             res.json(users);
+          }
           else
             res.status(500).json({err: 'internal error'});
         });

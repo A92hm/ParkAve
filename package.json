@@ -18,13 +18,12 @@
     "connect-memcached": "0.0.6",
     "nconf": "~0.6.9",
     "paypal-rest-sdk": "~0.6.4",
-    "socket.io": "~0.9.16"
     "hjs": "*",
     "less-middleware": "*",
     "node-uuid": "*",
     "crypto": "*",
     "mime": "*",
-    "moment": "*"
-
+    "moment": "*",
+    "backbone.io" : "0.4.1"
   }
 }

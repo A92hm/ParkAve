@@ -4,6 +4,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     cons = require('consolidate'),
     routes = require('./routes/routes.js');
+    //backboneio = require('backbone.io');
+
 
 mongoose.connect('mongodb://localhost/parking');
 var db = mongoose.connection;
@@ -51,7 +53,10 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 routes.init(app);
 // For local development
 app.set('port', process.env.PORT || 3000);
-http.createServer(app).listen(app.get('port'), function () {
+
+
+var server = http.createServer(app);
+server.listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
 });
 
@@ -63,6 +68,13 @@ app.configure(function(){
   //app.use(app.router);
   app.use(require('less-middleware')(path.join(__dirname, 'public')));
 });
-
+/*
+//backbone.io
+var backend = backboneio.createBackend();
+backend.use(backboneio.middleware.memoryStore());
+backboneio.listen(server, { mybackend: backend });
+*/
 // For deployment
-module.exports = app;
+module.exports = {
+  app: app,
+}
