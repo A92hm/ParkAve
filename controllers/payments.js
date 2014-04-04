@@ -15,7 +15,7 @@ module.exports = {
     var content = req.body;
     User.findById(content.payer_id, function (err, user) {
       if (err) {
-        res.status(500).json({
+        res.status(511).json({
           err: 'user not found'
         });
         return;
@@ -34,14 +34,14 @@ module.exports = {
 
       PaypalAPI.credit_card.create(create_card_details, config_opts, function (error, credit_card) {
         if (error) {
-          res.status(500).json({
+          res.status(526).json({
             err: 'Not a valid Credit card.'
           });
         } else {
           user.creditCard = credit_card.id;
           user.save(function (err2, user) {
             if (err2) {
-              res.status(500).json({
+              res.status(596).json({
                 err: 'unable to save credit card'
               });
             } else {
