@@ -83,7 +83,6 @@ module.exports = {
 
 
     app.get(  '*', function(req, res) {
-        console.log('routing to public');
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
     });
   }

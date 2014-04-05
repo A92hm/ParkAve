@@ -26,7 +26,6 @@ define(['underscore', 'require', 'backbone'],
     },
 
     main: function() {
-      console.log('route to main');
       this.navigate('landing', {trigger: true});
     },
 

@@ -3,8 +3,8 @@ var express = require('express'),
     http = require('http'),
     mongoose = require('mongoose'),
     cons = require('consolidate'),
-    routes = require('./routes/routes.js');
-    //backboneio = require('backbone.io');
+    routes = require('./routes/routes.js'),
+    backboneio = require('backbone.io');
 
 
 mongoose.connect('mongodb://localhost/parking');
@@ -68,13 +68,23 @@ app.configure(function(){
   //app.use(app.router);
   app.use(require('less-middleware')(path.join(__dirname, 'public')));
 });
-/*
+
 //backbone.io
 var backend = backboneio.createBackend();
+backend.use(function(req, res, next) {
+  console.log("HERE I AM");
+    console.log(req.backend);
+    console.log(req.method);
+    console.log(JSON.stringify(req.model));
+    next();
+});
+
 backend.use(backboneio.middleware.memoryStore());
 backboneio.listen(server, { mybackend: backend });
-*/
+
 // For deployment
 module.exports = {
+  test: 'test',
   app: app,
+  Backend: backend
 }

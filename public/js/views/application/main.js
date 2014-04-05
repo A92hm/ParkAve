@@ -24,7 +24,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
     },
 
     showLanding: function() {
-      console.log('showing landing');
       var landingView = new LandingView();
       this.$el.html( landingView.render().el );
       require(['stellar'], function(stellar) {

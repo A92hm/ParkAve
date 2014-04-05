@@ -1,7 +1,8 @@
 var User = require('./../models/user').User,
     _ = require('underscore'),
     bcrypt = require('bcrypt'),
-    Review = require('./../models/review').Review;
+    Review = require('./../models/review').Review,
+    Backend = require('./../index');
 
 
 
@@ -75,6 +76,7 @@ function getAverageRating(userID, callback){
 module.exports = {
   index: function(req, res) {
     console.log('users index');
+    console.log(Backend);
     var theUsers = {};
     var count = 0;
 
