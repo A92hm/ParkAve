@@ -77,6 +77,12 @@ define(['underscore', 'require', 'backbone'],
       });
     },
 
+    imageUploader: function(){
+      require(['views/application/main'], function(MainAppView) {
+        MainAppView.sharedInstance().showImageUploader();
+      });
+    },
+
     // call start when the application is ready to begin routing
     start: function() {
       var router = this;
@@ -96,14 +102,8 @@ define(['underscore', 'require', 'backbone'],
           router.navigate(href, true);
         }
       });
-    },
-
-    imageUploader: function(){
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showImageUploader();
-      });
     }
-
+    
   });
 
   Router.sharedInstance = _.once(function() {
