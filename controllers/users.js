@@ -89,12 +89,16 @@ module.exports = {
         _.each(users, function(user){
           user.password = undefined;
         });
+        res.json(users);
+        //Needs to be fixed
+        /*
         getAverageRating("",function(users){
           if(users)
             res.json(users);
           else
             res.status(500).json({err: 'internal error'});
         });
+        */
       }
     });
     //res.json(theUsers);
@@ -203,6 +207,7 @@ module.exports = {
   },
   session: function(req, res) {
     //logout a user
+    // Should be another way also remove the cookies
     if(req.body.email == 'logout' && req.body.password){
       req.session.user = -1;
       res.json({err: 'logged out'});
@@ -210,8 +215,6 @@ module.exports = {
 
 
     User.findOne({email: req.body.email}, function(err, user){
-      console.log('the user');
-      console.log(user);
       if(err){
         res.status(500).json({err: 'internal error'});
       }else if(user){
@@ -223,13 +226,17 @@ module.exports = {
             //!!!!!!TODO!!!!!!
             //get the average rating
             req.session.user = user;
+            user.password = undefined;
+            if (!user.creditCard){
+              user.creditCard = 'XXX';
+            }
             res.json(user);
           } else {
-            res.json({err: 'nomatch'});
+            res.json({err: 'not match'});
           }
         });
       }else{
-        res.json({err: 'notfound'});
+        res.json({err: 'not found'});
       }
     });
   }

@@ -28,8 +28,10 @@ var app = express();
 app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.favicon());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
+app.use(express.bodyParser());
 app.use(express.session({
 	secret: 'This is just a string',
 	cookie: {maxAge: 1800000},
@@ -44,25 +46,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 */
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
-
+app.use(require('less-middleware')(path.join(__dirname, 'public')));
 routes.init(app);
-// For local development
-app.set('port', process.env.PORT || 3000);
-http.createServer(app).listen(app.get('port'), function () {
-    console.log("Express server listening on port " + app.get('port'));
-});
 
-app.configure(function(){
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  //app.use(app.router);
-  app.use(require('less-middleware')(path.join(__dirname, 'public')));
-});
+if (process.env.NODE_ENV === 'production') {
+  module.exports = app;
 
-// For deployment
-module.exports = app;
+} else {
+  app.set('port', process.env.PORT || 3000);
+  http.createServer(app).listen(app.get('port'), function () {
+      console.log("Express server listening on port " + app.get('port'));
+  });
+}
