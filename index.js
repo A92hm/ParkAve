@@ -4,7 +4,11 @@ var express = require('express'),
     mongoose = require('mongoose'),
     cons = require('consolidate'),
     routes = require('./routes/routes.js'),
-    backboneio = require('backbone.io');
+    backboneio = require('backbone.io'),
+    //we need access to the controllers here for sockets
+    usersController = require('./controllers/users.js'),
+    spotsController = require('./controllers/spots.js'),
+    lotsController  = require('./controllers/spots.js');
 
 
 mongoose.connect('mongodb://localhost/parking');
@@ -50,7 +54,6 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
-routes.init(app);
 // For local development
 app.set('port', process.env.PORT || 3000);
 
@@ -81,6 +84,9 @@ backend.use(function(req, res, next) {
 
 backend.use(backboneio.middleware.memoryStore());
 backboneio.listen(server, { mybackend: backend });
+//give the backend to the controllers
+//usersController.setBackend(backend); 
+routes.init(app, backend);
 
 // For deployment
 module.exports = {

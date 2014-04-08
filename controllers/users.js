@@ -1,9 +1,7 @@
 var User = require('./../models/user').User,
     _ = require('underscore'),
     bcrypt = require('bcrypt'),
-    Review = require('./../models/review').Review,
-    Backend = require('./../index');
-
+    Review = require('./../models/review').Review;
 
 
 function getEncryptedPassword(password, callback){
@@ -74,12 +72,11 @@ function getAverageRating(userID, callback){
 }
 
 module.exports = {
-  index: function(req, res) {
+  index: function(req, res, backend) {
     console.log('users index');
-    console.log(Backend);
     var theUsers = {};
     var count = 0;
-
+    console.log(backend);
     User.find({}, function(err, users) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -160,9 +157,9 @@ module.exports = {
       }
     });
   },
-  update: function(req, res) {
+  update: function(req, res, backend) {
     console.log('users update', req.params, req.body);
-
+    backend.mymessage = "updated a user";
     var newUser = {};
     _.each(req.body, function(value, key){
       if(key != "__v" && key != "_id" && key != "password"){
@@ -177,6 +174,7 @@ module.exports = {
           if(err){
             res.status(500).json({err: 'internal error'});
           } else {
+            backend.emit('update', newUser);
             res.json({msg:'success'});
           }
         });
@@ -185,7 +183,9 @@ module.exports = {
       User.findByIdAndUpdate(req.params.uid, newUser, function(err){
         if(err){
           res.status(500).json({err: 'internal error'});
-        } else {
+        } else { 
+         backend.emit('update', newUser);
+
           res.json({msg:'success'});
         }
       });
@@ -223,6 +223,8 @@ module.exports = {
             //!!!!!!TODO!!!!!!
             //get the average rating
             req.session.user = user;
+            user.password = 'undefined';
+            console.log(user);
             res.json(user);
           } else {
             res.json({err: 'nomatch'});

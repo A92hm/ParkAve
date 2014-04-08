@@ -32,7 +32,11 @@ require(['jquery', 'bootstrap', 'underscore', 'backbone', 'modernizr',
   function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView, socketio, backboneio) {
     MainAppView.sharedInstance().render();  
     Router.sharedInstance().start();
-    Backbone.io.connect();
+    var io = Backbone.io.connect();
+    console.log(Backbone.io);
+    io.on('hey', function(model){
+      console.log('said hey');
+    });
   // ensure csrf token is included in ajax requests
   // we haven't talked about this
 

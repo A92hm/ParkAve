@@ -13,10 +13,10 @@ define(['underscore','backbone', 'models/user'], function(_, Backbone, User) {
       });
       this.bind('backend:update', function(model) {
       	console.log('user updated socket');
-        self.get(model.id).set(model);
+        self.get(model._id).set(model);
       });
       this.bind('backend:delete', function(model) {
-          self.remove(model.id);
+          self.remove(model._id);
       });
     },
 
