@@ -6,7 +6,6 @@ var path = require('path'),
     carsController = require('./../controllers/cars.js'),
     paymentController = require('./../controllers/payments.js'),
     feedbackController = require('./../controllers/feedbacks.js'),
-    s3 = require('./../s3/s3.js'),
     s3backend = require('./../s3/s3backend.js');
 
 module.exports = {
