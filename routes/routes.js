@@ -6,22 +6,25 @@ var path = require('path'),
     carsController = require('./../controllers/cars.js'),
     paymentController = require('./../controllers/payments.js'),
     feedbackController = require('./../controllers/feedbacks.js'),
-    s3 = require('./../s3/s3.js'),
     s3backend = require('./../s3/s3backend.js');
 
 module.exports = {
-  init: function(app) {
+  init: function(app, backend) {
     app.get('/heartbeat', function(req, res) {
       res.send("it's alive! it's alive!!")
     });
 
     // API Routes go here
-    app.get(  '/api', function(req, res){ res.send("working"); });
-    
-    app.get(  '/api/users',     usersController.index);     // get all users
+    app.get(  '/api', function(req, res){ res.send("working"); });  
+    app.get(  '/api/users',     function(res,req){
+        backend.emit('updated', {});
+        usersController.index(res,req, backend);
+    });     // get all users
     app.get(  '/api/users/:uid', usersController.show);     // get the user with the given id
     app.post( '/api/users',     usersController.create);    // create a user
-    app.put(  '/api/users/:uid', usersController.update);   // update the user for the given id
+    app.put(  '/api/users/:uid', function(res,req){
+        usersController.update(res,req,backend);
+    });   // update the user for the given id
     app.del(  '/api/users/:uid', usersController.destroy);  // delete the user with id <:uid> from the database
 
     app.post( '/api/users/session', usersController.session);  // used to validate email/password combinations -- give it an email and password

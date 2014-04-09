@@ -1,7 +1,7 @@
 var User = require('./../models/user').User,
     _ = require('underscore'),
-    bcrypt = require('bcrypt');
-var Review = require('./../models/review').Review;
+    bcrypt = require('bcrypt'),
+    Review = require('./../models/review').Review;
 
 
 function getEncryptedPassword(password, callback){
@@ -30,20 +30,16 @@ function getAverageRating(userID, callback){
         if(numOfUsers == 0){
           callback(false);
         }
-        console.log('num of users: '+numOfUsers);
         _.each(users, function(user){
           user.name = 'dave';
           //recursivly call to set average for each user
           getAverageRating(user._id, function(average){
-            console.log("getting the average: "+average);
             //set average for each one using this method
             user.averageRating = average;
-            console.log('count: '+count);
             newUsers[count] = user;
             count++;
             //need to do this within the callback
             if(count == numOfUsers-1){
-              console.log("finished array");
               callback(newUsers);
             }
           });
@@ -55,7 +51,6 @@ function getAverageRating(userID, callback){
     });
   }
   else{
-    console.log('the uid for average: ' +userID);
     Review.find({reviewee_id: userID}, function(err, reviews) {
       if (err) {
         console.log("error: "+err);
@@ -77,11 +72,11 @@ function getAverageRating(userID, callback){
 }
 
 module.exports = {
-  index: function(req, res) {
+  index: function(req, res, backend) {
     console.log('users index');
     var theUsers = {};
     var count = 0;
-
+    console.log(backend);
     User.find({}, function(err, users) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -89,12 +84,18 @@ module.exports = {
         _.each(users, function(user){
           user.password = undefined;
         });
+        res.json(users);
+        //Needs to be fixed
+        /*
         getAverageRating("",function(users){
-          if(users)
+          if(users){
+            
             res.json(users);
+          }
           else
             res.status(500).json({err: 'internal error'});
         });
+        */
       }
     });
     //res.json(theUsers);
@@ -150,6 +151,7 @@ module.exports = {
               console.log('creating user');
               getAverageRating(user._id, function(average){
                 user.averageRating = average;
+                req.session.user = user;
                 res.json(user);
               });
             }
@@ -160,9 +162,9 @@ module.exports = {
       }
     });
   },
-  update: function(req, res) {
+  update: function(req, res, backend) {
     console.log('users update', req.params, req.body);
-
+    backend.mymessage = "updated a user";
     var newUser = {};
     _.each(req.body, function(value, key){
       if(key != "__v" && key != "_id" && key != "password"){
@@ -177,6 +179,7 @@ module.exports = {
           if(err){
             res.status(500).json({err: 'internal error'});
           } else {
+            backend.emit('update', newUser);
             res.json({msg:'success'});
           }
         });
@@ -185,7 +188,9 @@ module.exports = {
       User.findByIdAndUpdate(req.params.uid, newUser, function(err){
         if(err){
           res.status(500).json({err: 'internal error'});
-        } else {
+        } else { 
+         backend.emit('update', newUser);
+
           res.json({msg:'success'});
         }
       });
@@ -203,6 +208,7 @@ module.exports = {
   },
   session: function(req, res) {
     //logout a user
+    // Should be another way also remove the cookies
     if(req.body.email == 'logout' && req.body.password){
       req.session.user = -1;
       res.json({err: 'logged out'});
@@ -210,8 +216,6 @@ module.exports = {
 
 
     User.findOne({email: req.body.email}, function(err, user){
-      console.log('the user');
-      console.log(user);
       if(err){
         res.status(500).json({err: 'internal error'});
       }else if(user){
@@ -223,13 +227,17 @@ module.exports = {
             //!!!!!!TODO!!!!!!
             //get the average rating
             req.session.user = user;
+            if (!user.creditCard){
+              user.creditCard = 'XXX';
+            }
+            user.password = 'undefined';
             res.json(user);
           } else {
-            res.json({err: 'nomatch'});
+            res.json({err: 'not match'});
           }
         });
       }else{
-        res.json({err: 'notfound'});
+        res.json({err: 'not found'});
       }
     });
   }

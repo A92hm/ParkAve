@@ -81,6 +81,10 @@ define(['underscore', 'require', 'backbone'],
     addCard: function(uid) {
       require(['views/application/main'], function(MainAppView) {
         MainAppView.sharedInstance().showAddCard(uid);
+    },
+    imageUploader: function(){
+      require(['views/application/main'], function(MainAppView) {
+        MainAppView.sharedInstance().showImageUploader();
       });
     },
 
@@ -103,14 +107,8 @@ define(['underscore', 'require', 'backbone'],
           router.navigate(href, true);
         }
       });
-    },
-
-    imageUploader: function(){
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showImageUploader();
-      });
     }
-
+    
   });
 
   Router.sharedInstance = _.once(function() {

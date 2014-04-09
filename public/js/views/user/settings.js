@@ -21,6 +21,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
     },
 
     render: function() {
+      console.log('rendering settings');
+      console.log(this.user);
       this.$el.html( this.template( this.user.toJSON() ) );
       return this;
     },
