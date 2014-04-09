@@ -82,6 +82,7 @@ define(['underscore', 'require', 'backbone'],
     //   require(['views/application/main'], function(MainAppView) {
     //     MainAppView.sharedInstance().showAddCard(uid);
     // },
+    
     imageUploader: function(){
        require(['views/application/main'], function(MainAppView) {
          MainAppView.sharedInstance().showImageUploader();
