@@ -5,14 +5,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'views/lot/lotList', 'views/lot/lot', 'views/spot/spotList', 'views/spot/spot',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
         'views/navigation/navigation', 'models/session', 'collections/sessions', 'views/feedback/feedback',
-        'routing/router', 'models/s3Model', 'collections/s3Collection' ,'views/imageUploader/uploaderview'
+        'routing/router' ,'views/imageUploader/uploaderview'
         
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
            LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
            LoginView, BuyParkingView, SellParkingView, LotsListView, LotView, SpotsListView, SpotView,
            UserfeedBackView, ReviewList, UserSettingsView, NavigationView, Session, 
-           SessionsCollection, FeedbacksView, router, S3Model, S3Collection, ImageUploaderView) {
+           SessionsCollection, FeedbacksView, router, ImageUploaderView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
