@@ -5,14 +5,15 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'views/lot/lotList', 'views/lot/lot', 'views/spot/spotList', 'views/spot/spot',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
         'views/navigation/navigation', 'models/session', 'collections/sessions', 'views/feedback/feedback',
-        'routing/router', 'models/s3Model', 'collections/s3Collection' ,'views/imageUploader/uploaderview'
+        'routing/router', 'models/s3Model', 'collections/s3Collection' ,'views/imageUploader/uploaderview',
+        'views/payment/payment'
         
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
            LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
            LoginView, BuyParkingView, SellParkingView, LotsListView, LotView, SpotsListView, SpotView,
            UserfeedBackView, ReviewList, UserSettingsView, NavigationView, Session, 
-           SessionsCollection, FeedbacksView, router, S3Model, S3Collection, ImageUploaderView) {
+           SessionsCollection, FeedbacksView, router, S3Model, S3Collection, ImageUploaderView, PaymentView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -203,6 +204,25 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         }
         var userSettingsView = new UserSettingsView( {user: user} );
         thisGuy.$el.html( userSettingsView.render().el );
+        thisGuy.showNavigation(user);
+      });
+    },
+
+    showAddCard: function(uid) {
+      var thisGuy = this;
+      this.getCurrentUser(uid, function(user, rightUser){
+        //redirect if wrong user
+        if(!rightUser){
+          //check if the user has been logged out
+          if(user.id == null){
+            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            return;
+          }
+          router.sharedInstance().navigate('users/'+user.id+'/settings/credit-card' ,{trigger: true, replace:true});
+          return;
+        }
+        var addCardView = new PaymentView( {user: user} );
+        thisGuy.$el.html( addCardView.render().el );
         thisGuy.showNavigation(user);
       });
     },
