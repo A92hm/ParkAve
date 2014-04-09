@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
            LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
            LoginView, BuyParkingView, SellParkingView, LotsListView, LotView, SpotsListView, SpotView,
            UserfeedBackView, ReviewList, UserSettingsView, NavigationView, Session, 
-           SessionsCollection, FeedbacksView, router, S3Model, S3Collection, ImageUploaderView) {
+           SessionsCollection, FeedbacksView, Router, S3Model, S3Collection, ImageUploaderView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -47,17 +47,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       this.$el.html( loginView.render().el );
     },
 
-    showBuyParking: function(uid){
+    showBuyParking: function(){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
           //check if the user has been logged out
           if(user.id == null){
-            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            Router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
             return;
           }
-          router.sharedInstance().navigate('buy/'+user.id ,{trigger: true, replace:true});
+          Router.sharedInstance().navigate('buy' ,{trigger: true, replace:true});
           return;
         }
         var buyParkingView = new BuyParkingView( {user: user} );
@@ -66,25 +66,22 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       });
     },
 
-    showSellParking: function(uid){
+    showSellParking: function(){
       var thisGuy = this;
-      console.log('show sell parking');
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
           //check if the user has been logged out
           if(user.id == null){
-            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            Router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
             return;
           }
 
-          router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
+          Router.sharedInstance().navigate('users' ,{trigger: true, replace:true});
           return;
         }
-        console.log('got the current user');
         var lots = new LotsCollection([], {user: user});
         lots.fetch({success: function(theLots){
-          console.log('fetching lots');
           var sellParkingView = new SellParkingView( {user: user, collection: theLots} );
           thisGuy.$el.html( sellParkingView.render().el );
           thisGuy.showNavigation(user);
@@ -95,9 +92,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       });
     },
 
-    showLots: function(uid) {
+    showLots: function() {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         var lots = new LotsCollection([], {user: user});
         var lotsView = new LotsListView({collection: lots});
         thisGuy.$el.html(lotsView.render().el);
@@ -106,9 +103,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       });
     },
 
-    showLot: function(uid, lid) {
+    showLot: function(lid) {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         var lot = new Lot({_id: lid});
         var lots = new LotsCollection([lot], {user: user});
 
@@ -119,9 +116,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       });
     },
 
-    showSpots: function(uid, lid) {
+    showSpots: function(lid) {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         var lot = new Lot({_id: lid});
         var lots = new LotsCollection([lot], {user: user});
 
@@ -134,9 +131,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       });
     },
 
-    showSpot: function(uid, lid, sid) {
+    showSpot: function(lid, sid) {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         var lot = new Lot({_id: lid});
         var lots = new LotsCollection([lot], {user: user});
 
@@ -150,17 +147,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       });
     },
 
-    showUserFeedback: function(uid){
+    showUserFeedback: function(){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
           //check if the user has been logged out
           if(user.id == null){
-            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            Router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
             return;
           }
-          router.sharedInstance().navigate('users/'+user.id+'/feedback' ,{trigger: true, replace:true});
+          Router.sharedInstance().navigate('users/'+user.id+'/feedback' ,{trigger: true, replace:true});
           return;
         }
         var userUserfeedBackView = new UserfeedBackView({user: user});
@@ -168,17 +165,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         thisGuy.showNavigation(user);
       });
     },
-    showReviewList:  function(uid){
+    showReviewList:  function(){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
           //check if the user has been logged out
           if(user.id == null){
-            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            Router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
             return;
           }
-          router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
+          Router.sharedInstance().navigate('users/'+user.id ,{trigger: true, replace:true});
           return;
         }
         var reviewCollection = new ReviewCollection([],{user: user});
@@ -188,17 +185,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         thisGuy.showNavigation(user);
       });
     },
-    showUserSettings: function(uid){
+    showUserSettings: function(){
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
           //check if the user has been logged out
           if(user.id == null){
-            router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
+            Router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
             return;
           }
-          router.sharedInstance().navigate('users/'+user.id+'/settings' ,{trigger: true, replace:true});
+          Router.sharedInstance().navigate('users/'+user.id+'/settings' ,{trigger: true, replace:true});
           return;
         }
         var userSettingsView = new UserSettingsView( {user: user} );
@@ -223,17 +220,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       }
     },
 
-    getCurrentUser: function(uid, cb){
-      /*
-      var user = new User( {_id: uid});
-      var usersCollection = new UsersCollection([user]);
-      user.fetch({error: function(){
-        console.log('err', err);
-      }, success: function(model, res){
-        cb(model);
-      }});
-*/
-
+    getCurrentUser: function(cb){
       //with sessions
       var session = new Session();
       var sessionCollection = new SessionsCollection([session]);
@@ -247,19 +234,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         var newURL = model.url();
         newURL = newURL.substring(0,11) + newURL.substring(19,newURL.length);
         model.url = function(){return newURL;};//change the url to take out session
-        //if the uid that is trying to be accessed doesn't match the session
-        if (uid != model.id) {
-          console.log('wrong user');
-          //route back to the right user
-          rightUser = false;
-          /*
-          console.log(router);
-          console.log(router.sharedInstance);
-          router.sharedInstance().navigate('users/'+model.id ,{trigger: true, replace:true});
-
-          return;
-          */
-        };
         cb(model, rightUser);
       }});
     },

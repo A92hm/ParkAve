@@ -7,7 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lotListItem.html
     tagName: 'a',
     attributes: {
       href: '#',
-      class: 'list-group-item lot-list-item text-center'
+      class: 'list-group-item lot-list-item'
     },
     template: _.template( Template ),
 

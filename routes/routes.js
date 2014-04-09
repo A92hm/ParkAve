@@ -67,7 +67,7 @@ module.exports = {
     app.del(  '/api/feedback/:fid', feedbackController.destroy);  // delete the feedback with id <:fid> from the database
 
     // API for closest lots
-    // Call to get the nearest lots within a given distance :json is in the form lat+lon+distance
+    // Call to get the nearest lots within a given distance :json is in the form lat+lon+distance (e.g. http://localhost:3000/api/location/all/40+40+50000)
     app.get(  '/api/location/:json', lotsController.nearbyLots);        // Get all of the lots for a specified user id
     app.get(  '/api/location/all/:json', lotsController.nearbyLotsAndSpots);        // Get all of the lots for a specified user id
 

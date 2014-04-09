@@ -47,7 +47,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
           return true;
         }
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/settings', {trigger: true});
+          Router.sharedInstance().navigate('users/settings', {trigger: true});
         }
         return false;
       },
@@ -59,14 +59,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
         }, success: function(model, response){
             console.log('logged out')
             //navigate back to the landing
-            Router.sharedInstance().navigate('/landing', {trigger: true});
+            Router.sharedInstance().navigate('landing', {trigger: true});
         }});
 
         return false;
       },
       showBuyParkingPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('buy/' + this.model.get('_id'), {trigger: true});
+          Router.sharedInstance().navigate('buy', {trigger: true});
         }
         return false;
       },
@@ -79,7 +79,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
 
       showSellParkingPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('sell/' + this.model.get('_id'), {trigger: true});
+          Router.sharedInstance().navigate('sell', {trigger: true});
         }
         return false;
       },
@@ -101,14 +101,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/navigation/navigatio
 
       showUserTransactionsPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/lots', {trigger: true});
+          Router.sharedInstance().navigate('users/lots', {trigger: true});
         }
         return false;
       },
 
       showUserReviewsPage: function(){
         if(this.model.get('_id')){
-          Router.sharedInstance().navigate('users/' + this.model.get('_id') + '/feedback', {trigger: true});
+          Router.sharedInstance().navigate('users/feedback', {trigger: true});
         }
         return false;
       },

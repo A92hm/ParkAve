@@ -69,18 +69,19 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
     },
 
     createNewSpot: function(event) {
-      if(this.$el.find('.new-spot-save-button').length > 0){
-        return;
-      }
-      var element = this.$el.find('.spot-list-last');
-      var isParent = false;
-      if(element.length == 0){
-        element = this.$el.find('#spot-list-view-table-body');
-        isParent = true;
-      }
-      this.renderEditSpotView(element, undefined, this.model, this.user, isParent);
-      this.listenTo(this.editSpotView, 'spots:save', this.saveNewSpot);
-      this.listenTo(this.editSpotView, 'spots:cancel', this.cancelEditSpot);
+      // if(this.$el.find('.new-spot-save-button').length > 0){
+      //   return;
+      // }
+      // var element = this.$el.find('.spot-list-last');
+      // var isParent = false;
+      // if(element.length == 0){
+      //   element = this.$el.find('#spot-list-view-table-body');
+      //   isParent = true;
+      // }
+      // this.renderEditSpotView(element, undefined, this.model, this.user, isParent);
+      // TODO
+      // this.listenTo(this.editSpotView, 'spots:save', this.saveNewSpot);
+      // this.listenTo(this.editSpotView, 'spots:cancel', this.cancelEditSpot);
       return false;
     },
 

@@ -1,7 +1,7 @@
 
 define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
-        'views/spot/spotListItem', 'views/spot/spot'],
-  function($, _, Backbone, Template, SpotListItemView, SpotView) {
+        'text!templates/spot/editSpot.html', 'views/spot/spotListItem', 'views/spot/spot'],
+  function($, _, Backbone, Template, EditSpotTemplate, SpotListItemView, SpotView) {
 
   var SpotListView = Backbone.View.extend({
     tagName: 'div',
@@ -16,9 +16,31 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
     },
 
     render: function() {
+      var editSpotTemplate = _.template( EditSpotTemplate );
       this.$el.html( this.template() );
       this.$spots = this.$el.find('#spot-list-view-table-body');
       this.addAll();
+      this.$el.find('#spot-list-add-spot-button').popover({
+        html : true, 
+        content: function() {
+          var spot;
+          if(this.spotToEdit){
+            spot = this.spotToEdit.toJSON();
+          }
+          if(!spot){
+            spot = {};
+            spot.numSpots = 0;
+            spot.price = 0;
+            spot.startDate = "";
+            spot.endDate = "";
+            spot.getFormattedDateString = function(){ return ""; };
+          }
+          return editSpotTemplate( spot );
+        },
+        title: function() {
+          return "Add Spots";
+        }
+      });
       return this;
     },
 
