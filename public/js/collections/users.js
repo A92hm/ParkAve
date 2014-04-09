@@ -7,7 +7,7 @@ define(['underscore','backbone', 'models/user'], function(_, Backbone, User) {
 
     initialize: function() {
   	 var self = this;
-
+     /*
       this.bind('backend:create', function(model) {
           self.add(model);
       });
@@ -18,6 +18,8 @@ define(['underscore','backbone', 'models/user'], function(_, Backbone, User) {
       this.bind('backend:delete', function(model) {
           self.remove(model._id);
       });
+
+    */
     },
 
     clienturl: function() {
