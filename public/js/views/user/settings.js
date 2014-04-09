@@ -10,7 +10,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       'keypress #edit-email': 'checkEmailInputForEnterKey',
       'keypress #confirm-new-password': 'checkPasswordInputForEnterKey',
       'click #update-account-button': 'updateUserSettings',
-      'click #change-password-button': 'changePassword'
+      'click #change-password-button': 'changePassword',
+      'click #change-credit-card': 'addCreditCard',
     },
 
     initialize: function(options) {
@@ -92,6 +93,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
           }
         }});
       }
+    },
+
+    addCreditCard: function() {
+      Router.sharedInstance().navigate('/users/' + this.user.get('_id') + '/settings/credit-card', {trigger: true});
     },
 
     checkEmailInputForEnterKey: function(evt){
