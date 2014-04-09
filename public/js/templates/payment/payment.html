@@ -2,96 +2,222 @@
 <div class="user-settings-div unselectable cursor-default">
   <div class="container">
     <div class="page-header">
-      <h1 class="user-settings-page-title">User Settings</h1>
+      <h1 class="user-settings-page-title">Add Credit Card</h1>
     </div>
-    <div class="col-md-5 col-md-offset-1 col-sm-6">
-        <div class="panel panel-default user-settings-input-panel">
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-type" class="sr-only">Type</label>
-                <select id="input-card-type">
-                  <option value="visa">Visa</option>
-                  <option value="mastercard">Mastercard</option>
-                  <option value="american-express">American Express</option>
-                  <option value="discover">Discover</option>
-                </select>
-              </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <form role="form">
+                    <div class="form-group">
+                        <label>Cardholder's Name</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Exp Month</label>
+                                <input type="text" class="form-control" placeholder="MM">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Exp Year</label>
+                                <input type="text" class="form-control" placeholder="YYYY">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>CVC</label>
+                                <input type="text" class="form-control" placeholder="Ex. 331">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Street Address</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="control-group">
+                      <label for="state" class="control-label"> 
+                        State
+                      </label>
+                      <div class="controls">
+                        <select name="state" id="state">
+                            <option value=""></option>
+                            <option value="AL">AL</option>
+                            <option value="AK">AK</option>
+                            <option value="AZ">AZ</option>
+                            <option value="AR">AR</option>
+                            <option value="CA">CA</option>
+                            <option value="CO">CO</option>
+                            <option value="CT">CT</option>
+                            <option value="DE">DE</option>
+                            <option value="DC">DC</option>
+                            <option value="FL">FL</option>
+                            <option value="GA">GA</option>
+                            <option value="HI">HI</option>
+                            <option value="ID">ID</option>
+                            <option value="IL">IL</option>
+                            <option value="IN">IN</option>
+                            <option value="IA">IA</option>
+                            <option value="KS">KS</option>
+                            <option value="KY">KY</option>
+                            <option value="LA">LA</option>
+                            <option value="ME">ME</option>
+                            <option value="MD">MD</option>
+                            <option value="MA">MA</option>
+                            <option value="MI">MI</option>
+                            <option value="MN">MN</option>
+                            <option value="MS">MS</option>
+                            <option value="MO">MO</option>
+                            <option value="MT">MT</option>
+                            <option value="NE">NE</option>
+                            <option value="NV">NV</option>
+                            <option value="NH">NH</option>
+                            <option value="NJ">NJ</option>
+                            <option value="NM">NM</option>
+                            <option value="NY">NY</option>
+                            <option value="NC">NC</option>
+                            <option value="ND">ND</option>
+                            <option value="OH">OH</option>
+                            <option value="OK">OK</option>
+                            <option value="OR">OR</option>
+                            <option value="PA">PA</option>
+                            <option value="RI">RI</option>
+                            <option value="SC">SC</option>
+                            <option value="SD">SD</option>
+                            <option value="TN">TN</option>
+                            <option value="TX">TX</option>
+                            <option value="UT">UT</option>
+                            <option value="VT">VT</option>
+                            <option value="VA">VA</option>
+                            <option value="WA">WA</option>
+                            <option value="WV">WV</option>
+                            <option value="WI">WI</option>
+                            <option value="WY">WY</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Zip Code</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="control-group">
+                      <label for="country" class="control-label"> 
+                        Country
+                      </label>
+                      <div class="controls">
+                        <select name="country" id="country">
+                          <option value=""></option>
+                          <option value="AR">Argentina</option>
+                          <option value="AU">Australia</option>
+                          <option value="AT">Austria</option>
+                          <option value="BY">Belarus</option>
+                          <option value="BE">Belgium</option>
+                          <option value="BA">Bosnia and Herzegovina</option>
+                          <option value="BR">Brazil</option>
+                          <option value="BG">Bulgaria</option>
+                          <option value="CA">Canada</option>
+                          <option value="CL">Chile</option>
+                          <option value="CN">China</option>
+                          <option value="CO">Colombia</option>
+                          <option value="CR">Costa Rica</option>
+                          <option value="HR">Croatia</option>
+                          <option value="CU">Cuba</option>
+                          <option value="CY">Cyprus</option>
+                          <option value="CZ">Czech Republic</option>
+                          <option value="DK">Denmark</option>
+                          <option value="DO">Dominican Republic</option>
+                          <option value="EG">Egypt</option>
+                          <option value="EE">Estonia</option>
+                          <option value="FI">Finland</option>
+                          <option value="FR">France</option>
+                          <option value="GE">Georgia</option>
+                          <option value="DE">Germany</option>
+                          <option value="GI">Gibraltar</option>
+                          <option value="GR">Greece</option>
+                          <option value="HK">Hong Kong S.A.R., China</option>
+                          <option value="HU">Hungary</option>
+                          <option value="IS">Iceland</option>
+                          <option value="IN">India</option>
+                          <option value="ID">Indonesia</option>
+                          <option value="IR">Iran</option>
+                          <option value="IQ">Iraq</option>
+                          <option value="IE">Ireland</option>
+                          <option value="IL">Israel</option>
+                          <option value="IT">Italy</option>
+                          <option value="JM">Jamaica</option>
+                          <option value="JP">Japan</option>
+                          <option value="KZ">Kazakhstan</option>
+                          <option value="KW">Kuwait</option>
+                          <option value="KG">Kyrgyzstan</option>
+                          <option value="LA">Laos</option>
+                          <option value="LV">Latvia</option>
+                          <option value="LB">Lebanon</option>
+                          <option value="LT">Lithuania</option>
+                          <option value="LU">Luxembourg</option>
+                          <option value="MK">Macedonia</option>
+                          <option value="MY">Malaysia</option>
+                          <option value="MT">Malta</option>
+                          <option value="MX">Mexico</option>
+                          <option value="MD">Moldova</option>
+                          <option value="MC">Monaco</option>
+                          <option value="ME">Montenegro</option>
+                          <option value="MA">Morocco</option>
+                          <option value="NL">Netherlands</option>
+                          <option value="NZ">New Zealand</option>
+                          <option value="NI">Nicaragua</option>
+                          <option value="KP">North Korea</option>
+                          <option value="NO">Norway</option>
+                          <option value="PK">Pakistan</option>
+                          <option value="PS">Palestinian Territory</option>
+                          <option value="PE">Peru</option>
+                          <option value="PH">Philippines</option>
+                          <option value="PL">Poland</option>
+                          <option value="PT">Portugal</option>
+                          <option value="PR">Puerto Rico</option>
+                          <option value="QA">Qatar</option>
+                          <option value="RO">Romania</option>
+                          <option value="RU">Russia</option>
+                          <option value="SA">Saudi Arabia</option>
+                          <option value="RS">Serbia</option>
+                          <option value="SG">Singapore</option>
+                          <option value="SK">Slovakia</option>
+                          <option value="SI">Slovenia</option>
+                          <option value="ZA">South Africa</option>
+                          <option value="KR">South Korea</option>
+                          <option value="ES">Spain</option>
+                          <option value="LK">Sri Lanka</option>
+                          <option value="SE">Sweden</option>
+                          <option value="CH">Switzerland</option>
+                          <option value="TW">Taiwan</option>
+                          <option value="TH">Thailand</option>
+                          <option value="TN">Tunisia</option>
+                          <option value="TR">Turkey</option>
+                          <option value="UA">Ukraine</option>
+                          <option value="AE">United Arab Emirates</option>
+                          <option value="GB">United Kingdom</option>
+                          <option value="US">USA</option>
+                          <option value="UZ">Uzbekistan</option>
+                          <option value="VN">Vietnam</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <button type="submit" id="add-credit-card" class="btn btn-large btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-number" class="sr-only">Card Number</label>
-                <input type="password" class="form-control modern-input-inverse" id="input-card-number" placeholder="Card number">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-expire-month" class="sr-only">Expiration Month</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-expire-month" placeholder="Expiration Month">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-expire-year" class="sr-only">Expiration Year</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-expire-month" placeholder="Expiration Year">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-cvv2" class="sr-only">cvv2</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-cvv2" placeholder="cvv2">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-first-name" class="sr-only">First Name</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-first-name" placeholder="First Name">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-last-name" class="sr-only">Last Name</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-last-name" placeholder="Last Name">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-address" class="sr-only">Address</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-address" placeholder="Address">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-city" class="sr-only">City</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-city" placeholder="City">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-state" class="sr-only">State</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-state" placeholder="State">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-zip-code" class="sr-only">Zip Code</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-zip-code" placeholder="Zip Code">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-8 col-md-10">
-                <label for="input-card-country" class="sr-only">Country</label>
-                <input type="text" class="form-control modern-input-inverse" id="input-card-country" placeholder="Country">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-7 col-lg-offset-5 col-md-9 col-md-offset-3">
-                <button id="change-credit-card" type="button" class="btn btn-primary btn-block modern-input-inverse user-settings-main-input">Add Credit Card</button>
-              </div>
-            </div>
-          </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
         </div>
-      </div>
     </div>
   </div>
 </div>

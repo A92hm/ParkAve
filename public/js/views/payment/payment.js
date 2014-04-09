@@ -8,7 +8,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/payment/payment.html
     tagName: 'div',
     template: _.template( Template ),
     events: {
-      'click #change-credit-card': 'addCreditCard',
+      'click #add-credit-card': 'addCreditCard',
     },
 
     initialize: function(options) {
