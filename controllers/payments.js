@@ -46,6 +46,7 @@ module.exports = {
               });
             } else {
               res.status(200).json({ response: "Success"});
+              console.log('success');
             }
           });
         }
