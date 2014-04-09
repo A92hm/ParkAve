@@ -4,7 +4,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     cons = require('consolidate'),
     routes = require('./routes/routes.js'),
-    backboneio = require('backbone.io'),
+    //backboneio = require('backbone.io'),
     //we need access to the controllers here for sockets
     usersController = require('./controllers/users.js'),
     spotsController = require('./controllers/spots.js'),
