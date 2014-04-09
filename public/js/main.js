@@ -6,10 +6,7 @@ require.config({
     "underscore": "/underscore/underscore",
     "backbone": "/backbone/backbone",
     "modernizr": "/modernizr/modernizr",
-    "text": "/requirejs-text/text",
-    "socketio":   '../../socket.io/socket.io',
-    "backboneio": '../../socket.io/backbone.io'
-    
+    "text": "/requirejs-text/text"
   },
   shim: {
     'bootstrap': ['jquery'],
@@ -28,8 +25,8 @@ require.config({
 });
 
 require(['jquery', 'bootstrap', 'underscore', 'backbone', 'modernizr', 
-         'routing/router', 'views/application/main', 'socketio', 'backboneio'], 
-  function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView, socketio, backboneio) {
+         'routing/router', 'views/application/main'], 
+  function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView) {
     
    // var io = Backbone.io.connect();
    // console.log(Backbone.io);

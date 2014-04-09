@@ -77,16 +77,16 @@ define(['underscore', 'require', 'backbone'],
         MainAppView.sharedInstance().showUserSettings(uid);
       });
     },
-
-    addCard: function(uid) {
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showAddCard(uid);
-    },
-    imageUploader: function(){
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showImageUploader();
-      });
-    },
+    
+    // addCard: function(uid) {
+    //   require(['views/application/main'], function(MainAppView) {
+    //     MainAppView.sharedInstance().showAddCard(uid);
+    // },
+    // imageUploader: function(){
+    //   require(['views/application/main'], function(MainAppView) {
+    //     MainAppView.sharedInstance().showImageUploader();
+    //   });
+    // },
 
     // call start when the application is ready to begin routing
     start: function() {

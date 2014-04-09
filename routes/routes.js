@@ -16,10 +16,7 @@ module.exports = {
 
     // API Routes go here
     app.get(  '/api', function(req, res){ res.send("working"); });  
-    app.get(  '/api/users',     function(res,req){
-        backend.emit('updated', {});
-        usersController.index(res,req, backend);
-    });     // get all users
+    app.get(  '/api/users',     usersController.index);     // get all users
     app.get(  '/api/users/:uid', usersController.show);     // get the user with the given id
     app.post( '/api/users',     usersController.create);    // create a user
     app.put(  '/api/users/:uid', function(res,req){

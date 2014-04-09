@@ -5,23 +5,14 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
         'views/lot/lotList', 'views/lot/lot', 'views/spot/spotList', 'views/spot/spot',
         'views/reviews/feedback-page', 'views/reviews/review-list', 'views/user/settings',
         'views/navigation/navigation', 'models/session', 'collections/sessions', 'views/feedback/feedback',
-<<<<<<< HEAD
-        'routing/router' ,'views/imageUploader/uploaderview'
-=======
-        'routing/router', 'models/s3Model', 'collections/s3Collection' ,'views/imageUploader/uploaderview',
-        'views/payment/payment'
->>>>>>> 9aa66767bfca5f4d05ac36751bb11d8fa24e0107
+        'routing/router','views/payment/payment'
         
         ], 
   function($, _, Backbone, Template, User, Lot, Spot, UsersCollection,
            LotsCollection, SpotsCollection, ReviewCollection, LandingView, GetStartedView,
            LoginView, BuyParkingView, SellParkingView, LotsListView, LotView, SpotsListView, SpotView,
            UserfeedBackView, ReviewList, UserSettingsView, NavigationView, Session, 
-<<<<<<< HEAD
-           SessionsCollection, FeedbacksView, router, ImageUploaderView) {
-=======
-           SessionsCollection, FeedbacksView, router, S3Model, S3Collection, ImageUploaderView, PaymentView) {
->>>>>>> 9aa66767bfca5f4d05ac36751bb11d8fa24e0107
+           SessionsCollection, FeedbacksView, router, PaymentView) {
 
   var MainAppView = Backbone.View.extend({
     el: '#content',
@@ -307,10 +298,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       //this.$el.html(imageUploaderView.render().el );
     }*/
 
-    showImageUploader: function() {
-      var imageUploaderView = new ImageUploaderView();
-      this.$el.html( imageUploaderView.render().el);
-    }
+    // showImageUploader: function() {
+    //   var imageUploaderView = new ImageUploaderView();
+    //   this.$el.html( imageUploaderView.render().el);
+    // }
   });
 
   MainAppView.sharedInstance = _.once(function() {
