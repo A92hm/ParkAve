@@ -58,16 +58,10 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 
 //backbone.io
-var backend = backboneio.createBackend();
-backend.use(function(req, res, next) {
-  console.log("HERE I AM");
-    console.log(req.backend);
-    console.log(req.method);
-    console.log(JSON.stringify(req.model));
-    next();
-});
+//var backend = backboneio.createBackend();
 
-backend.use(backboneio.middleware.memoryStore());
+
+//backend.use(backboneio.middleware.memoryStore());
 
 //give the backend to the controllers
 //usersController.setBackend(backend); 
@@ -86,8 +80,14 @@ if (process.env.NODE_ENV === 'production') {
   server = http.createServer(app).listen(app.get('port'), function () {
       console.log("Express server listening on port " + app.get('port'));
   });
-  backboneio.listen(server, {mybackend: backend});
-  routes.init(app, backend);
+  //backboneio.listen(server, {mybackend: backend});
+  //routes.init(app, backend);
+  routes.init(app);
+  /*
+  backboneio.io.on('connection', function(socket){
+    socket.emit('hey',{});
+  });
+*/
 }
 
 

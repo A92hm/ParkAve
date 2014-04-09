@@ -30,13 +30,18 @@ require.config({
 require(['jquery', 'bootstrap', 'underscore', 'backbone', 'modernizr', 
          'routing/router', 'views/application/main', 'socketio', 'backboneio'], 
   function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView, socketio, backboneio) {
-    MainAppView.sharedInstance().render();  
-    Router.sharedInstance().start();
-    var io = Backbone.io.connect();
-    console.log(Backbone.io);
-    io.on('hey', function(model){
-      console.log('said hey');
-    });
+    
+   // var io = Backbone.io.connect();
+   // console.log(Backbone.io);
+   // io.on('connect', function(model){
+   //   console.log('connected');
+      MainAppView.sharedInstance().render();  
+      Router.sharedInstance().start();
+   //   io.on('sup', function(){
+   //     console.log('wooooooooooooo!!!!!');
+   //   });
+   // });
+
   // ensure csrf token is included in ajax requests
   // we haven't talked about this
 

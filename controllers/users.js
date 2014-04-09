@@ -151,7 +151,7 @@ module.exports = {
               console.log('creating user');
               getAverageRating(user._id, function(average){
                 user.averageRating = average;
-                res.session.user = user;
+                req.session.user = user;
                 res.json(user);
               });
             }
