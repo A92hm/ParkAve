@@ -82,11 +82,11 @@ define(['underscore', 'require', 'backbone'],
     //   require(['views/application/main'], function(MainAppView) {
     //     MainAppView.sharedInstance().showAddCard(uid);
     // },
-    // imageUploader: function(){
-    //   require(['views/application/main'], function(MainAppView) {
-    //     MainAppView.sharedInstance().showImageUploader();
-    //   });
-    // },
+    imageUploader: function(){
+       require(['views/application/main'], function(MainAppView) {
+         MainAppView.sharedInstance().showImageUploader();
+       });
+    },
 
     // call start when the application is ready to begin routing
     start: function() {
