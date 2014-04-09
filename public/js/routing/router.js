@@ -78,10 +78,11 @@ define(['underscore', 'require', 'backbone'],
       });
     },
     
-    // addCard: function(uid) {
-    //   require(['views/application/main'], function(MainAppView) {
-    //     MainAppView.sharedInstance().showAddCard(uid);
-    // },
+    addCard: function(uid) {
+       require(['views/application/main'], function(MainAppView) {
+         MainAppView.sharedInstance().showAddCard(uid);
+       });
+    },
     
     imageUploader: function(){
        require(['views/application/main'], function(MainAppView) {
