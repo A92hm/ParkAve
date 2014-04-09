@@ -19,6 +19,7 @@ define(['underscore', 'require', 'backbone'],
       'users/:uid': 'sellParking',
       'users/:uid/feedback': 'userFeedback',
       'users/:uid/settings': 'userSettings',
+      'users/:uid/settings/credit-card': 'addCard',
 
       '': 'main',
 
@@ -77,6 +78,10 @@ define(['underscore', 'require', 'backbone'],
       });
     },
 
+    addCard: function(uid) {
+      require(['views/application/main'], function(MainAppView) {
+        MainAppView.sharedInstance().showAddCard(uid);
+    },
     imageUploader: function(){
       require(['views/application/main'], function(MainAppView) {
         MainAppView.sharedInstance().showImageUploader();

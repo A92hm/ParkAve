@@ -3,7 +3,13 @@ var express = require('express'),
     http = require('http'),
     mongoose = require('mongoose'),
     cons = require('consolidate'),
-    routes = require('./routes/routes.js');
+    routes = require('./routes/routes.js'),
+    //backboneio = require('backbone.io'),
+    //we need access to the controllers here for sockets
+    usersController = require('./controllers/users.js'),
+    spotsController = require('./controllers/spots.js'),
+    lotsController  = require('./controllers/spots.js');
+
 
 mongoose.connect('mongodb://localhost/parking');
 var db = mongoose.connection;
@@ -48,15 +54,42 @@ app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
-routes.init(app);
+
+//backbone.io
+//var backend = backboneio.createBackend();
+
+
+//backend.use(backboneio.middleware.memoryStore());
+
+//give the backend to the controllers
+//usersController.setBackend(backend); 
+
+var server = {};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = app;
+  // For deployment
+  module.exports = {
+    test: 'test',
+    app: app,
 
+  }
 } else {
   app.set('port', process.env.PORT || 3000);
-  http.createServer(app).listen(app.get('port'), function () {
+  server = http.createServer(app).listen(app.get('port'), function () {
       console.log("Express server listening on port " + app.get('port'));
   });
+  //backboneio.listen(server, {mybackend: backend});
+  //routes.init(app, backend);
+  routes.init(app);
+  /*
+  backboneio.io.on('connection', function(socket){
+    socket.emit('hey',{});
+  });
+*/
 }
+
+
+
+
