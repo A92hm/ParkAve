@@ -54,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 // routes.init(app);
 
 if (process.env.NODE_ENV === 'production') {
+  console.log('production');
   // For deployment
   routes.init(app);
   module.exports = app;
@@ -65,24 +66,20 @@ if (process.env.NODE_ENV === 'production') {
       console.log("Express server listening on port " + app.get('port'));
   });
   //sockets
-  io.listen(server).on('connection', function (socket) {
-    //give the io to the controllers
-    usersController.socket = socket;
-    spotsController.socket = socket;
-    lotsController.socket  = socket;
-    routes.init(app, socket);
+  io = io.listen(server);
+  io.sockets.on('connection', function (socket) {
+        
+
+    
     socket.on('updatingUser', function(model){
       console.log('a user is being updated');
       socket.broadcast.emit('updatedUser', model);
     });
     socket.on('updatingSpot', function(model){
       socket.broadcast.emit('updatedSpot', model);
-    });
-
-
+    }); 
   });
-  console.log(io);
-  
+  routes.init(app, io.sockets);
   /*
   io.sockets.on('connection', function (socket) {
     socket.emit('news', { hello: 'world' });

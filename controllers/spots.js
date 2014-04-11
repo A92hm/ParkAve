@@ -63,7 +63,7 @@ module.exports = {
         res.status(500).json({err: 'internal error'});
       } else {
         newSpot['_id'] = req.params.sid;
-        socket.broadcast.emit('updatedSpot', newSpot);
+        socket.emit('updatedSpot', newSpot);
         res.json({msg:'success'});
       }
     });   

@@ -13,7 +13,10 @@ module.exports = {
     app.get('/heartbeat', function(req, res) {
       res.send("it's alive! it's alive!!")
     });
+    
+    
 
+    //console.log('init of routes');
     // API Routes go here
     app.get(  '/api', function(req, res){ res.send("working"); });  
     app.get(  '/api/users',     usersController.index);     // get all users

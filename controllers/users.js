@@ -177,7 +177,7 @@ module.exports = {
           if(err){
             res.status(500).json({err: 'internal error'});
           } else {
-            socket.broadcast.emit('updatedUser', model);
+            socket.emit('updatedUser', newUser);
             res.json({msg:'success'});
           }
         });
@@ -187,7 +187,7 @@ module.exports = {
         if(err){
           res.status(500).json({err: 'internal error'});
         } else { 
-          socket.broadcast.emit('updatedUser', model);
+          socket.emit('updatedUser', newUser);
           res.json({msg:'success'});
         }
       });
