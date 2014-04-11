@@ -1,12 +1,18 @@
-define(['underscore','backbone', 'models/user'], function(_, Backbone, User) {
+define(['underscore','backbone', 'models/user', 'socket.io'], function(_, Backbone, User, io) {
 
   var UsersCollection = Backbone.Collection.extend({
     model: User,
     url: '/api/users',
-    backend: 'mybackend', //for the websockets
 
     initialize: function() {
-  	 var self = this;
+  	  var self = this;
+      var socket = io.connect('http://localhost');
+      socket.on('userUpdated', function(model){
+        console.log('woooo updated a user');
+        console.log(model);
+         self.get(model._id).set(model);
+      });
+
      /*
       this.bind('backend:create', function(model) {
           self.add(model);
