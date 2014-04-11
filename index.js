@@ -4,11 +4,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     cons = require('consolidate'),
     routes = require('./routes/routes.js'),
-    io = require('socket.io'),
-    //we need access to the controllers here to pass them the socket
-    usersController = require('./controllers/users.js'),
-    spotsController = require('./controllers/spots.js'),
-    lotsController  = require('./controllers/spots.js');
+    io = require('socket.io');
 
 
 mongoose.connect('mongodb://localhost/parking');
