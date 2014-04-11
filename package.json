@@ -24,6 +24,6 @@
     "crypto": "*",
     "mime": "*",
     "moment": "*",
-    "socket.io": "0.9.x",
+    "socket.io": "0.9.x"
   }
 }
