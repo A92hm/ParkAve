@@ -6,7 +6,8 @@ require.config({
     "underscore": "/underscore/underscore",
     "backbone": "/backbone/backbone",
     "modernizr": "/modernizr/modernizr",
-    "text": "/requirejs-text/text"
+    "text": "/requirejs-text/text",
+    "socket.io" : "./../socket.io/socket.io"
   },
   shim: {
     'bootstrap': ['jquery'],
@@ -17,16 +18,15 @@ require.config({
     'underscore': {
       exports: '_'
     },
-    'backboneio': {
-      deps: ["backbone", "socketio"]
-    }
-
+    'socket.io': {
+      exports: 'io'
+    },
   }
 });
 
 require(['jquery', 'bootstrap', 'underscore', 'backbone', 'modernizr', 
-         'routing/router', 'views/application/main'], 
-  function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView) {
+         'routing/router', 'views/application/main', "socket.io"], 
+  function($, Bootstrap, _, Backbone, Modernizr, Router, MainAppView, io) {
     
    // var io = Backbone.io.connect();
    // console.log(Backbone.io);
@@ -34,10 +34,18 @@ require(['jquery', 'bootstrap', 'underscore', 'backbone', 'modernizr',
    //   console.log('connected');
       MainAppView.sharedInstance().render();  
       Router.sharedInstance().start();
-   //   io.on('sup', function(){
-   //     console.log('wooooooooooooo!!!!!');
-   //   });
-   // });
+      //console.log(io);
+      // //sockets
+      // var socket = io.connect('http://localhost');
+      // socket.on('connect', function (data) {
+      //   socket.emit('message', { message: 'there is a god' });
+      // });
+      /*
+      socket.on('userUpdated', function(data){
+        console.log('woooo updated a user');
+        console.log(data);
+      });
+*/
 
   // ensure csrf token is included in ajax requests
   // we haven't talked about this

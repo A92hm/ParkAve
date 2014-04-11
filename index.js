@@ -3,12 +3,12 @@ var express = require('express'),
     http = require('http'),
     mongoose = require('mongoose'),
     cons = require('consolidate'),
-    routes = require('./routes/routes.js');
-    //backboneio = require('backbone.io'),
-    //we need access to the controllers here for sockets
-    // usersController = require('./controllers/users.js'),
-    // spotsController = require('./controllers/spots.js'),
-    // lotsController  = require('./controllers/spots.js');
+    routes = require('./routes/routes.js'),
+    io = require('socket.io'),
+    //we need access to the controllers here to pass them the socket
+    usersController = require('./controllers/users.js'),
+    spotsController = require('./controllers/spots.js'),
+    lotsController  = require('./controllers/spots.js');
 
 
 mongoose.connect('mongodb://localhost/parking');
@@ -55,20 +55,47 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 // app.use(require('less-middleware')(path.join(__dirname, 'public')));
-routes.init(app);
+// routes.init(app);
 
 if (process.env.NODE_ENV === 'production') {
   // For deployment
+  routes.init(app);
   module.exports = app;
 
 } else {
   app.set('port', process.env.PORT || 3000);
-  server = http.createServer(app).listen(app.get('port'), function () {
+  var server = http.createServer(app);
+  server.listen(app.get('port'), function () {
       console.log("Express server listening on port " + app.get('port'));
   });
+  //sockets
+  io.listen(server).on('connection', function (socket) {
+    //give the io to the controllers
+    usersController.socket = socket;
+    spotsController.socket = socket;
+    lotsController.socket  = socket;
+    routes.init(app, socket);
+    socket.on('updatingUser', function(model){
+      console.log('a user is being updated');
+      socket.broadcast.emit('updatedUser', model);
+    });
+    socket.on('updatingSpot', function(model){
+      socket.broadcast.emit('updatedSpot', model);
+    });
 
- 
 
+  });
+  console.log(io);
+  
+  /*
+  io.sockets.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+      console.log(data);
+    });
+  });
+
+*/
 }
 
 

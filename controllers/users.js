@@ -72,11 +72,10 @@ function getAverageRating(userID, callback){
 }
 
 module.exports = {
-  index: function(req, res, backend) {
+  index: function(req, res) {
     console.log('users index');
     var theUsers = {};
     var count = 0;
-    console.log(backend);
     User.find({}, function(err, users) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -162,9 +161,8 @@ module.exports = {
       }
     });
   },
-  update: function(req, res, backend) {
+  update: function(req, res, socket) {
     console.log('users update', req.params, req.body);
-    backend.mymessage = "updated a user";
     var newUser = {};
     _.each(req.body, function(value, key){
       if(key != "__v" && key != "_id" && key != "password"){
@@ -179,7 +177,7 @@ module.exports = {
           if(err){
             res.status(500).json({err: 'internal error'});
           } else {
-            backend.emit('update', newUser);
+            socket.broadcast.emit('updatedUser', model);
             res.json({msg:'success'});
           }
         });
@@ -189,8 +187,7 @@ module.exports = {
         if(err){
           res.status(500).json({err: 'internal error'});
         } else { 
-         backend.emit('update', newUser);
-
+          socket.broadcast.emit('updatedUser', model);
           res.json({msg:'success'});
         }
       });
