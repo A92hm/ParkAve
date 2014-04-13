@@ -25,8 +25,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       var fullName = this.$el.find('#input-full-name').val();
       var firstName = fullName.split(' ')[0];
       var lastName = fullName.split(' ')[1];
-      var dateOfBirth = this.$el.find('#input-date-of-birth').val();
-      var phone = this.$el.find('#input-phone').val();
       var email = this.$el.find('#input-email').val().toLowerCase();
       var password = this.$el.find('#input-password').val();
       var reservedSpots = [];
@@ -40,18 +38,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
         valid = false;
       }else{
         this.$el.find('#input-full-name').prev().children('i').html( '' );
-      }
-      if(!dateOfBirth){
-        this.$el.find('#input-date-of-birth').prev().children('i').html( inputErrorTemplate() );
-        valid = false;
-      }else{
-        this.$el.find('#input-date-of-birth').prev().children('i').html( '' );
-      }
-      if(!phone){
-        this.$el.find('#input-phone').prev().children('i').html( inputErrorTemplate() );
-        valid = false;
-      }else{
-        this.$el.find('#input-phone').prev().children('i').html( '' );
       }
       if(!email){
         this.$el.find('#input-email').prev().children('i').html( inputErrorTemplate() );
@@ -67,7 +53,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       }
 
       if(!valid){
-        console.log("signUp");
+        alert('Please fill out all required fields');
         return false;
       }
 
@@ -78,8 +64,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
       newUser.set({
         firstName: firstName,
         lastName: lastName,
-        birthdate: dateOfBirth,
-        phone: phone,
         email: email,
         password: password,
         reservedSpots: reservedSpots,
@@ -91,7 +75,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/getstarted.h
         console.log(err);
       }, success: function(model, response){
         if(!response.err){
-          Router.sharedInstance().navigate(newUser.clienturl(), {trigger: true});
+          Router.sharedInstance().navigate('sell', {trigger: true});
         }else if(response.err == 'emailexists'){
           alert('This email has already been used to create an account');
         }

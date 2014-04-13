@@ -115,7 +115,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
     },
 
     addCreditCard: function() {
-      Router.sharedInstance().navigate('/users/' + this.user.get('_id') + '/settings/credit-card', {trigger: true});
+      Router.sharedInstance().navigate('/users/settings/credit-card', {trigger: true});
     },
 
     checkEmailInputForEnterKey: function(evt){

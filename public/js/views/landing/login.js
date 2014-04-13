@@ -43,7 +43,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
         var user = new User(response);
         var usersCollection = new UsersCollection([user]);
         theLoginModal.modal('hide');
-        Router.sharedInstance().navigate(user.clienturl(), {trigger: true});
+        Router.sharedInstance().navigate('sell', {trigger: true});
       }});
 
       return false;
@@ -57,7 +57,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/landing/login.html',
     },
 
     signup: function(){
-       Router.sharedInstance().navigate('/getstarted', {trigger: true});
+       Router.sharedInstance().navigate('getstarted', {trigger: true});
        return false;
     }
   });

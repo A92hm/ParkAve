@@ -7,19 +7,18 @@ define(['underscore', 'require', 'backbone'],
 
       'feedback': 'feedback', 
 
-      'buy/:uid': 'buyParking',
-      'sell/:uid': 'sellParking',
+      'buy': 'buyParking',
+      'sell': 'sellParking',
 
       'getstarted': 'getStarted',
       'getstarted/:email': 'getStarted',
       'login': 'login',
       'login/:email': 'login',
 
-      'users': '',
-      'users/:uid': 'sellParking',
-      'users/:uid/feedback': 'userFeedback',
-      'users/:uid/settings': 'userSettings',
-      'users/:uid/settings/credit-card': 'addCard',
+      'users': 'sellParking',
+      'users/feedback': 'userFeedback',
+      'users/settings': 'userSettings',
+      'users/settings/credit-card': 'addCard',
 
       '': 'main',
 
@@ -42,15 +41,15 @@ define(['underscore', 'require', 'backbone'],
       });
     },
 
-    buyParking: function(uid){
+    buyParking: function(){
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showBuyParking(uid);
+        MainAppView.sharedInstance().showBuyParking();
       });
     },
 
-    sellParking: function(uid){
+    sellParking: function(){
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showSellParking(uid);
+        MainAppView.sharedInstance().showSellParking();
       });
     },
 
@@ -66,21 +65,21 @@ define(['underscore', 'require', 'backbone'],
       });
     },
     
-    userFeedback: function(uid) {
+    userFeedback: function() {
       require(['views/application/main'], function(MainAppView){
-        MainAppView.sharedInstance().showUserFeedback(uid);
+        MainAppView.sharedInstance().showUserFeedback();
       });
     },
     
-    userSettings: function(uid){
+    userSettings: function(){
       require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showUserSettings(uid);
+        MainAppView.sharedInstance().showUserSettings();
       });
     },
     
-    addCard: function(uid) {
+    addCard: function() {
        require(['views/application/main'], function(MainAppView) {
-         MainAppView.sharedInstance().showAddCard(uid);
+         MainAppView.sharedInstance().showAddCard();
        });
     },
     
