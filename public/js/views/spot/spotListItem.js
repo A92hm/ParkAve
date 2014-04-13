@@ -1,7 +1,7 @@
 
 define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotListItem.html',
-  'routing/router'],
-  function($, _, Backbone, Template, Router) {
+  'routing/router', 'socket.io'],
+  function($, _, Backbone, Template, Router, io) {
 
   var SpotListItemView = Backbone.View.extend({
     tagName: 'tr',
@@ -13,6 +13,17 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotListItem.ht
     },
 
     initialize: function() {
+      //create socket
+      this.socket = io.connect('http://localhost');
+      var self = this;
+      this.socket.on('updatedSpot', function(model){
+        console.log('a spot was updated');
+        console.log(model);
+        if(model._id == self.model.get('_id')){
+          self.model.fetch();
+        }
+      });
+
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);
     },

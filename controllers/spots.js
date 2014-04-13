@@ -50,7 +50,7 @@ module.exports = {
       }
     });
   },
-  update: function(req, res) {
+  update: function(req, res, socket) {
     console.log('spots update');
     var newSpot = {};
     _.each(req.body, function(value, key){
@@ -62,6 +62,8 @@ module.exports = {
       if(err){
         res.status(500).json({err: 'internal error'});
       } else {
+        newSpot['_id'] = req.params.sid;
+        socket.emit('updatedSpot', newSpot);
         res.json({msg:'success'});
       }
     });   

@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellParking.html',
-        'views/lot/lot', 'views/lot/lotList', 'routing/router'],
-  function($, _, Backbone, Template, LotView, LotListView, Router) {
+        'views/lot/lot', 'views/lot/lotList', 'routing/router', '/socket.io/socket.io'],
+  function($, _, Backbone, Template, LotView, LotListView, Router, IO) {
 
     var SellParkingView = Backbone.View.extend({
       tagName: 'div',
@@ -12,6 +12,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellPark
 
       initialize: function(options) {
         this.user = options.user;
+
         this.listenTo(this.collection, 'add', this.renderLotView);
         this.listenTo(this.collection, 'remove', this.renderLotView);
         this.listenTo(this.collection, 'reset', this.render);

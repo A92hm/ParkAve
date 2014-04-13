@@ -6,22 +6,25 @@ var path = require('path'),
     carsController = require('./../controllers/cars.js'),
     paymentController = require('./../controllers/payments.js'),
     feedbackController = require('./../controllers/feedbacks.js'),
-    s3 = require('./../s3/s3.js'),
     s3backend = require('./../s3/s3backend.js');
 
 module.exports = {
-  init: function(app) {
+  init: function(app, socket) {
     app.get('/heartbeat', function(req, res) {
       res.send("it's alive! it's alive!!")
     });
-
-    // API Routes go here
-    app.get(  '/api', function(req, res){ res.send("working"); });
     
+    
+
+    //console.log('init of routes');
+    // API Routes go here
+    app.get(  '/api', function(req, res){ res.send("working"); });  
     app.get(  '/api/users',     usersController.index);     // get all users
     app.get(  '/api/users/:uid', usersController.show);     // get the user with the given id
     app.post( '/api/users',     usersController.create);    // create a user
-    app.put(  '/api/users/:uid', usersController.update);   // update the user for the given id
+    app.put(  '/api/users/:uid', function(res,req){
+        usersController.update(res,req,socket);
+    });   // update the user for the given id
     app.del(  '/api/users/:uid', usersController.destroy);  // delete the user with id <:uid> from the database
 
     app.post( '/api/users/session', usersController.session);  // used to validate email/password combinations -- give it an email and password
@@ -56,7 +59,9 @@ module.exports = {
     app.get(  '/api/users/:uid/lots/:lid/spots', spotsController.index);        // Get all of the spots for a specific lot id and user id
     app.get(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.show);    // Get a specific spot for a specific lot and user id
     app.post( '/api/users/:uid/lots/:lid/spots', spotsController.create);       // Create a spot in the database for a specific lot id
-    app.put(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.update);  // Update a specific spot give a specified spot, lot, and user id
+    app.put(  '/api/users/:uid/lots/:lid/spots/:sid', function(res,req){
+        spotsController.update(res,req,socket);
+    });  // Update a specific spot give a specified spot, lot, and user id
     app.del(  '/api/users/:uid/lots/:lid/spots/:sid', spotsController.destroy); // Delete the speceific spot from the database
 
     // API for feedback

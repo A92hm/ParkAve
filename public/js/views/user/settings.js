@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
         'models/user', 'models/session', 'collections/users',
-        'collections/sessions', 'routing/router'],
-  function($, _, Backbone, Template, User, Session, UsersCollection, SessionsCollection, Router) {
+        'collections/sessions', 'routing/router', 'socket.io'],
+  function($, _, Backbone, Template, User, Session, UsersCollection, SessionsCollection, Router, io) {
 
   var UserSettingsView = Backbone.View.extend({
     tagName: 'div',
@@ -10,16 +10,34 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       'keypress #edit-email': 'checkEmailInputForEnterKey',
       'keypress #confirm-new-password': 'checkPasswordInputForEnterKey',
       'click #update-account-button': 'updateUserSettings',
-      'click #change-password-button': 'changePassword'
+      'click #change-password-button': 'changePassword',
+      'click #change-credit-card': 'addCreditCard',
     },
 
     initialize: function(options) {
       this.user = options.user;
+      this.socket = io.connect('http://localhost');
+      var self = this;
+      this.socket.on('connect', function(){
+        console.log('connected');
+      });
+      this.socket.on('updatedUser', function(model){
+        console.log('woooo updated a user');
+        console.log(self.user);
+        if(model._id == self.user.get('_id')){
+          console.log('updated a user');
+          //the user has been updated
+          self.user.fetch();
+        }
+      });
+
       this.listenTo(this.user, 'change', this.render);
       this.listenTo(this.user, 'destroy', this.remove);
     },
 
     render: function() {
+      console.log('rendering settings');
+      console.log(this.user);
       this.$el.html( this.template( this.user.toJSON() ) );
       return this;
     },
@@ -48,6 +66,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       }
 
       this.user.unset('password');
+      //this.socket.on('connect', function(){
+        //console.log('sending emit');
+        this.socket.emit('updatingUser', this.user);
+      //});
       this.user.save();
       Router.sharedInstance().navigate('/users/' + this.user.get('_id'), {trigger: true});
 
@@ -90,6 +112,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
           }
         }});
       }
+    },
+
+    addCreditCard: function() {
+      Router.sharedInstance().navigate('/users/settings/credit-card', {trigger: true});
     },
 
     checkEmailInputForEnterKey: function(evt){

@@ -23,6 +23,7 @@
     "node-uuid": "*",
     "crypto": "*",
     "mime": "*",
-    "moment": "*"
+    "moment": "*",
+    "socket.io": "0.9.x",
   }
 }

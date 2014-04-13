@@ -18,6 +18,7 @@ define(['underscore', 'require', 'backbone'],
       'users': 'sellParking',
       'users/feedback': 'userFeedback',
       'users/settings': 'userSettings',
+      'users/settings/credit-card': 'addCard',
 
       '': 'main',
 
@@ -75,11 +76,17 @@ define(['underscore', 'require', 'backbone'],
         MainAppView.sharedInstance().showUserSettings();
       });
     },
-
+    
+    addCard: function() {
+       require(['views/application/main'], function(MainAppView) {
+         MainAppView.sharedInstance().showAddCard();
+       });
+    },
+    
     imageUploader: function(){
-      require(['views/application/main'], function(MainAppView) {
-        MainAppView.sharedInstance().showImageUploader();
-      });
+       require(['views/application/main'], function(MainAppView) {
+         MainAppView.sharedInstance().showImageUploader();
+       });
     },
 
     // call start when the application is ready to begin routing

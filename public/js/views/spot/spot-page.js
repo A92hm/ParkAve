@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-page.html',
-        'routing/router', 'views/spot/spotList', 'views/navigation/navigation','collections/sessions'],
-  function($, _, Backbone, Template, Router, ReviewList, NavBar, SessionsCollection) {
+        'routing/router', 'views/spot/spotList', 'views/navigation/navigation','collections/sessions', 'socket.io'],
+  function($, _, Backbone, Template, Router, ReviewList, NavBar, SessionsCollection, io) {
 
   	var UserSpotView = Backbone.View.extend({
 	  tagName: 'div',
@@ -17,6 +17,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-pag
       this.user = options.user;
       this.feedbackList = new ReviewList({collection: this.collection,user: this.user});
       this.nav = new NavBar({model: this.user});
+
+      });
       //this.listenTo(this.collection, 'reset', this.renderReviews);
       //this.listenTo(this.collection, 'add', this.renderReviews);
     },

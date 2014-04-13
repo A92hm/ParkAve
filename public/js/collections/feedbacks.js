@@ -1,4 +1,4 @@
-define(['underscore','backbone', 'models/Feedback'], function(_, Backbone, Feedback) {
+define(['underscore','backbone', 'models/feedback'], function(_, Backbone, Feedback) {
 
   var FeedbacksCollection = Backbone.Collection.extend({
     model: Feedback,
