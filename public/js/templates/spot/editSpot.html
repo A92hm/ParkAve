@@ -1,23 +1,31 @@
-<label for="input-title">number of spots</label>
-<input type="number" class="form-control" name="input-num-spots" value=<%= numSpots %> placeholder="number of spots" autofocus="autofocus" required=true min="0"><br>
-<!-- <label for="input-parking-surface">parking surface</label>
-<select class="form-control" id="select-surface" name="input-parking-surface">
-  <option value="Grass">Grass</option>
-  <option value="Gravel">Gravel</option>
-  <option value="Pavement">Pavement</option>
-  <option value="Other">Other</option>
-</select><br> -->
-<label for="input-address">price</label>
-<input type="number" class="form-control" name="input-price" value=<%= price %> placeholder="price" min="0"><br>
-<!-- <label for="input-blocked">Blocked in?</label>
-<select class="form-control" id="select-blocked" name="input-blocked">
-  <option value="no">no</option>
-  <option value="yes">yes</option>
-</select><br> -->
-<label for="input-start-date">available from</label>
-<input type="date" class="form-control" name="input-start-date" value=<%= getFormattedDateString(startDate) %>><br>
-<label for="input-end-date">available until</label>
-<input type="date" class="form-control" name="input-end-date" value=<%= getFormattedDateString(endDate) %>><br>
-<button type="button" class="btn btn-warning btn-block new-spot-cancel-button">Cancel</button>
-<button type="button" class="btn btn-success btn-block new-spot-save-button">Add Spot</button>
+<td>
+  <label for="input-title">number of spots</label>
+  <input type="number" class="form-control" name="input-num-spots" value=<%= numSpots %> placeholder="number of spots" autofocus="autofocus" required=true min="0">
+  <!-- <label for="input-parking-surface">parking surface</label>
+  <select class="form-control" id="select-surface" name="input-parking-surface">
+    <option value="Grass">Grass</option>
+    <option value="Gravel">Gravel</option>
+    <option value="Pavement">Pavement</option>
+    <option value="Other">Other</option>
+  </select> -->
+</td>
+<td>
+  <label for="input-address">price</label>
+  <input type="number" class="form-control" name="input-price" value=<%= price %> placeholder="price" min="0">
+  <!-- <label for="input-blocked">Blocked in?</label>
+  <select class="form-control" id="select-blocked" name="input-blocked">
+    <option value="no">no</option>
+    <option value="yes">yes</option>
+  </select> -->
+</td>
+<td>
+  <label for="input-start-date">available from</label>
+  <input type="date" class="form-control" name="input-start-date" value=<%= getFormattedDateString(startDate) %>>
+  <label for="input-end-date">available until</label>
+  <input type="date" class="form-control" name="input-end-date" value=<%= getFormattedDateString(endDate) %>>
+</td>
+<td style="vertical-align: middle;">
+  <button type="button" class="btn btn-warning btn-block new-spot-cancel-button">Cancel</button>
+  <button type="button" class="btn btn-success btn-block new-spot-save-button">Add Spot</button>
+</td>
 
