@@ -16,11 +16,6 @@
   right: 0px;
 }
 
-#sell-parking-main-view-container > .row > div {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
 @media (min-width: 768px) {
   #sell-parking-dashboard-container {
     position: absolute;
@@ -45,62 +40,49 @@
   width: 100%;
 }
 
+
 #sell-parking-dashboard-title {
   width: 100%;
-  text-align: left;
-  padding: 0px 25px;
-  font-size: 22px;
+  text-align: center;
+  padding: 20px 0px;
+  font-size: 32px;
   font-weight: 600;
-  line-height: 44px;
-  height: 44px;
 }
-.dashboard-title-container {
-  line-height: normal;
-  vertical-align: middle;
-}
+
 #sell-parking-dashboard-title > i {
-  color: #FFF;
+  color: #00CD00;
   position: absolute;
-  top: 12px; /* parent padding + ((container size - element size) / 2) == 20px + ((45 - 31) / 2) */
+  height: 30px;
+  width: 30px;
+  top: 27px; /* parent padding + ((container size - element size) / 2) == 20px + ((45 - 31) / 2) */
   bottom: 20px;
   right: 10px;
 }
 #sell-parking-dashboard-title > i:hover {
-  color: #AAA;
-}
-
-.lot-page-main-image {
-  height: 300px;
-  width: 100%;
-  z-index: -2;
-  position: relative;
+  color: #00EE00;
 }
 
 #lot-list-container {
   height: 100%;
-  background-color: rgb(122, 86, 173);
+  background-color: rgb(110, 110, 110);
   padding: 0px;
-  position: relative;
-  bottom: 0px;
-  z-index: 1;
 }
 
 .lot-list {
   height: 100%;
 }
 
-#spot-list-container > table > thead > tr > th {
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.4);
-  color: white !important;
-  font-size: 18px !important;
-  letter-spacing: 1px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+#spot-list-container {
+  padding: 20px;
 }
 
 #lot-list-container > .row, #spot-list-container > .row {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+#lot-view-container {
+  padding: 40px;
 }
 
 .lot-view > div.page-header {
@@ -157,6 +139,8 @@
 
 .lot-list-item, .spot-list-item {
   font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-left: 0px;
   margin-right: 0px;
   -moz-border-radius: 0px !important;
@@ -165,26 +149,9 @@
   cursor: default;
 }
 
-.lot-list-item {
-  height: 60px;
-  background-color: rgb(122, 86, 173);
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.4);
-  border-top: 2px dashed rgba(255, 255, 255, 0.4);
-  border-left: 0;
-  border-right: 0;
-  color: white !important;
-}
-
-.lot-list-item > span {
-  text-align: left;
-  vertical-align: middle;
-}
-
 .lot-list-item.active {
-  background-color: rgb(188, 172, 214) !important;
-  border-color: rgb(188, 172, 214) !important;
-  /*border-bottom: 0;
-  border-top: 0 !important;*/
+  background-color: rgb(99, 65, 206) !important;
+  border-color: rgb(99, 65, 206) !important;
 }
 
 .lot-view-empty-main-text {
@@ -200,28 +167,26 @@
 }
 
 .lot-page-title {
-  margin-left: 30px;
-  margin-top: -60px;
-  position: relative;
-  z-index: 1;
-  font-size: 48px;
-  color: white;
-  text-shadow: 0px 0px 15px #000;
-}
-
-.lot-view-lower-container {
-  background-color: rgb(65, 65, 65);
-  box-shadow: 0px 0px 32px 20px rgb(65, 65, 65);
-  bottom: 0px;
+  display: inline-block;
+  margin-left: 40px;
 }
 
 #spot-list-add-spot-button {
+  font-size: 31px;
   color: #00CD00;
   cursor: default;
+  position: absolute;
+  right: 100px;
+  top: 49px; /* parent padding + ((container size - element size) / 2) == 40px + ((49 - 31) / 2) */
+  height: 30px;
+  width: 30px;
 }
 
 #spot-list-add-spot-button:hover {
   color: #00EE00;
+  position: absolute;
+  height: 30px;
+  width: 30px;
 }
 
 .spot-list-view-table-body {
