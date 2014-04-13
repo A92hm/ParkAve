@@ -1,4 +1,4 @@
-
+// THIS VIEW IS NO LONGER USED //
 define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
         'text!templates/widgets/inputerror.html', 'models/spot', 'socket.io'],
   function($, _, Backbone, Template, InputErrorTemplate, Spot) {
@@ -41,6 +41,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
     },
 
     addSpots: function(event) {
+      alert('yoolo');
       // validate the input here
 
       var inputNumSpots = this.$el.find('[name="input-num-spots"]');
