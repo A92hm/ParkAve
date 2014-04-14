@@ -237,6 +237,21 @@ module.exports = {
         res.json({err: 'not found'});
       }
     });
+  },
+
+  getName: function(req, res) {
+    var user_id = req.params.uid;
+    console.log('user getName');
+    User.findById(user_id, function(err, user) {
+      if (err) {
+        res.status(500).json({err: 'internal average error'});
+      }else if(user) {
+        res.json({firstName: user.firstName, lastName: user.lastName});
+      }
+      else{
+        res.json({});
+      }
+    });
   }
 };
 

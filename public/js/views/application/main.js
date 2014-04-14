@@ -204,9 +204,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
       });
     },
 
-    showAddCard: function(uid) {
+    showAddCard: function() {
       var thisGuy = this;
-      this.getCurrentUser(uid, function(user, rightUser){
+      this.getCurrentUser(function(user, rightUser){
         //redirect if wrong user
         if(!rightUser){
           //check if the user has been logged out
@@ -214,7 +214,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/application/main.htm
             Router.sharedInstance().navigate('landing' ,{trigger: true, replace:true});
             return;
           }
-          Router.sharedInstance().navigate('users/settings/credit-card' ,{trigger: true, replace:true});
+          Router.sharedInstance().navigate('users' + user.id + '/settings/credit-card' ,{trigger: true, replace:true});
           return;
         }
         var addCardView = new PaymentView( {user: user} );
