@@ -53,7 +53,7 @@ module.exports = {
       });
     });
   },
-  purchaseSpot: function (req, res) {
+  purchaseSpot: function (req, res, sockets) {
     var content = req.body;
     console.log('buying spot', content.spot_id);
 
@@ -145,6 +145,7 @@ module.exports = {
                           content: err
                         });
                       } else {
+                        sockets.emit('updatedSpot', spot);
                         res.status(200).json({ response: "Success"});
                       }
                     });
