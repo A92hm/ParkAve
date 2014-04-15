@@ -227,13 +227,14 @@ module.exports = {
             //!!!!!!TODO!!!!!!
             //get the average rating
             req.session.user = user;
-            if (!user.creditCard){
-              user.creditCard = 'XXX';
-            }
-            user.password = 'undefined';
+            // hide for later
+            // if (!user.creditCard){
+            //   user.creditCard = 'XXX';
+            // }
+            // user.password = 'undefined';
             res.json(user);
           } else {
-            res.status(407).json({err: 'not match'});
+            res.status(411).json({err: 'not match'});
           }
         });
       }else{
