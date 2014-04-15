@@ -235,5 +235,17 @@
 .spot-description-text{
   color: white;
 }
+.spot-list-item-view {
+  text-align: left;
+}
+
+.spot-list-item-view:hover {
+  background-color: grey;
+}
+
+
+
+
+
 
 

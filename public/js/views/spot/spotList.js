@@ -26,6 +26,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
       {
         html : true, 
         content: function() {
+          console.log('new spot popover');
           var spot;
           if(this.spotToEdit){
             spot = this.spotToEdit.toJSON();
@@ -77,7 +78,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
     addSpots: function(event) {
       alert('yoolo');
       // validate the input here
-
+      console.log('add spot');
       var inputNumSpots = this.$el.find('[name="input-num-spots"]');
       var inputPrice = this.$el.find('[name="input-price"]');
       var inputStartDate = this.$el.find('[name="input-start-date"]');
