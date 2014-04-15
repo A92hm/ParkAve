@@ -20,6 +20,7 @@
 
 #main-navbar {
   color: rgb(65, 65, 65);
+  float: right;
 }
 
 @media (max-width: 768px) {

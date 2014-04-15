@@ -225,12 +225,16 @@
 }
 
 .spot-list-view-table-body {
+  color: white !important;
 }
 
 .new-spot-save-button {
   margin-top: 10px;
 }
 
+.spot-list-item-view {
+  
+}
 
 
 

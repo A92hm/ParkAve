@@ -1,5 +1,7 @@
-<td><%= numSpots - buyer_list.length %> / <%= numSpots %></td>
-<td>$<%= price %></td>
-<td><%= new Date(startDate).toLocaleDateString() %> - <%= new Date(endDate).toLocaleDateString() %></td>
-<td><button type="button" class="btn btn-danger spot-list-item-delete-button">Delete Spot</button</td>
+<div class="spot-list-item-view">
+	<td><%= numSpots - buyer_list.length %> / <%= numSpots %></td>
+	<td>$<%= price %></td>
+	<td><%= new Date(startDate).toLocaleDateString() %> - <%= new Date(endDate).toLocaleDateString() %></td>
+	<td><button type="button" class="btn btn-danger spot-list-item-delete-button">Delete Spot</button</td>
+</div>
 
