@@ -19,6 +19,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotListItem.ht
       var url = fullurl.substr(0, endIndex);
       this.socket = io.connect(url);
       var self = this;
+      this.socket.on('connect', function(){
+        console.log('socket connected');
+      });
       this.socket.on('updatedSpot', function(model){
         console.log('a spot was updated');
         console.log(model);
