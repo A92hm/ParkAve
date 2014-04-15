@@ -69,9 +69,6 @@ app.use(require('less-middleware')(path.join(__dirname, 'public')));
   //sockets
   io = io.listen(server);
   io.sockets.on('connection', function (socket) {
-        
-
-    
     socket.on('updatingUser', function(model){
       console.log('a user is being updated');
       socket.broadcast.emit('updatedUser', model);
