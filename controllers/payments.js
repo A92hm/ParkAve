@@ -39,16 +39,17 @@ module.exports = {
           });
         } else {
           user.creditCard = credit_card.id;
-          user.save(function (err2, user) {
-            if (err2) {
-              res.status(596).json({
-                err: 'unable to save credit card'
-              });
-            } else {
-              res.status(200).json({ response: "Success"});
-              console.log('success');
-            }
-          });
+          res.status(200).json({ response: "Success"});
+          // user.save(function (err2, user) {
+          //   if (err2) {
+          //     res.status(596).json({
+          //       err: 'unable to save credit card'
+          //     });
+          //   } else {
+          //     res.status(200).json({ response: "Success"});
+          //     console.log('success');
+          //   }
+          // });
         }
       });
     });

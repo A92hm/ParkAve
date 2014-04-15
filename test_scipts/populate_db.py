@@ -7,7 +7,7 @@ from faker import Factory
 
 fake = Factory.create()
 # client = MongoClient('mongodb://54.84.154.254')
-client = MongoClient('mongodb://localhost')
+client = MongoClient('mongodb://54.86.14.132')
 db = client.parking
 db_users = db.users
 db_lots = db.lots
