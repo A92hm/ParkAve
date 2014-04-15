@@ -1,6 +1,6 @@
 
 define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
-        'text!templates/widgets/inputerror.html', 'models/spot', 'socket.io'],
+        'text!templates/widgets/inputerror.html', 'models/spot'],
   function($, _, Backbone, Template, InputErrorTemplate, Spot) {
 
   var NewSpotView = Backbone.View.extend({
@@ -16,7 +16,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
       this.user = options.user;
       this.lot = options.lot;
 
-      this.socket = io.connect('http://localhost');
     },
 
     render: function() {
@@ -84,7 +83,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
         description: inputDescription.val() || ''
       };
       this.trigger('spots:save');
-      //this.socket.emit('updatingSpot', this.model);
     },
 
     getFormattedDateString: function(dateString){  // from ISO/UTC to YYYY-MM-DD

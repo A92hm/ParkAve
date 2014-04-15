@@ -177,6 +177,7 @@ module.exports = {
           if(err){
             res.status(500).json({err: 'internal error'});
           } else {
+            newUser._id = req.params.uid;
             socket.emit('updatedUser', newUser);
             res.json({msg:'success'});
           }
@@ -187,6 +188,7 @@ module.exports = {
         if(err){
           res.status(500).json({err: 'internal error'});
         } else { 
+          newUser._id = req.params.uid;
           socket.emit('updatedUser', newUser);
           res.json({msg:'success'});
         }

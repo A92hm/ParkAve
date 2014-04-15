@@ -16,7 +16,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
 
     initialize: function(options) {
       this.user = options.user;
-      this.socket = io.connect('http://localhost');
+      var fullurl = document.URL;
+      var endIndex = fullurl.indexOf('/', 7);
+      var url = fullurl.substr(0, endIndex);
+      this.socket = io.connect(url);
       var self = this;
       this.socket.on('connect', function(){
         console.log('connected');
@@ -24,6 +27,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       this.socket.on('updatedUser', function(model){
         console.log('woooo updated a user');
         console.log(self.user);
+        console.log(model);
         if(model._id == self.user.get('_id')){
           console.log('updated a user');
           //the user has been updated
@@ -66,12 +70,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       }
 
       this.user.unset('password');
-      //this.socket.on('connect', function(){
-        //console.log('sending emit');
-        this.socket.emit('updatingUser', this.user);
-      //});
       this.user.save();
-      Router.sharedInstance().navigate('/users/' + this.user.get('_id'), {trigger: true});
+      Router.sharedInstance().navigate('/sell' , {trigger: true}); ///' + this.user.get('_id'), {trigger: true});
 
       return false;
     },
