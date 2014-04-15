@@ -27,5 +27,6 @@ button.user-settings-main-input:hover, button.user-settings-main-input:focus, bu
   margin-bottom: 30px;
 }
 
-
-
+#user-settings-container{
+  margin-top: 35px;
+}
