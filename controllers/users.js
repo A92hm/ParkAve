@@ -206,6 +206,7 @@ module.exports = {
     });
   },
   session: function(req, res) {
+    console.log('Login attempt');
     //logout a user
     // Should be another way also remove the cookies
     if(req.body.email == 'logout' && req.body.password){
