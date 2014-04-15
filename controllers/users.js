@@ -219,7 +219,7 @@ module.exports = {
         res.status(500).json({err: 'internal error'});
       }else if(user){
         bcrypt.compare(req.body.password, user.password, function(err1, resp) {
-          if(err){
+          if(err1){
             res.status(500).json({err: 'internal error'});
           }
           if (resp){
@@ -232,11 +232,11 @@ module.exports = {
             user.password = 'undefined';
             res.json(user);
           } else {
-            res.json({err: 'not match'});
+            res.status(407).json({err: 'not match'});
           }
         });
       }else{
-        res.json({err: 'not found'});
+        res.status(407).json({err: 'not found'});
       }
     });
   },
