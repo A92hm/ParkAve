@@ -10,7 +10,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
 
     events: {
       'click .new-spot-cancel-button': 'cancelAddSpots',
-      'click .new-spot-save-button': 'addSpots'
+      'click .new-spot-save-button': 'addSpots',
+      'click #spot-list-add-spot-button' : ''
     },
 
     initialize: function(options) {
@@ -22,9 +23,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
       this.$el.html( this.template() );
       this.$spots = this.$el.find('#spot-list-view-table-body');
       this.addAll();
-      this.$el.find('#spot-list-add-spot-button').popover(
+      /*
+      this.newSpotPopover = this.$el.find('#spot-list-add-spot-button').popover(
       {
-        html : true, 
+        html : true,
+        animation: true, 
         content: function() {
           console.log('new spot popover');
           var spot;
@@ -56,6 +59,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
           return "Add Spots";
         }
       });
+
+*/
+
+      
+    
       return this;
     },
 
@@ -76,9 +84,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
     },
 
     addSpots: function(event) {
-      alert('yoolo');
       // validate the input here
-      console.log('add spot');
       var inputNumSpots = this.$el.find('[name="input-num-spots"]');
       var inputPrice = this.$el.find('[name="input-price"]');
       var inputStartDate = this.$el.find('[name="input-start-date"]');

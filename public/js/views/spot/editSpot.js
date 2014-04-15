@@ -41,9 +41,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/editSpot.html',
     },
 
     addSpots: function(event) {
-      alert('yoolo');
       // validate the input here
-
       var inputNumSpots = this.$el.find('[name="input-num-spots"]');
       var inputPrice = this.$el.find('[name="input-price"]');
       var inputStartDate = this.$el.find('[name="input-start-date"]');
