@@ -75,7 +75,13 @@
   z-index: -2;
   position: relative;
   background-image:url('theedge2.png');
-  background-color: rgb(122, 86, 173);
+  background-color: rgba(50,25,25,.45);
+
+
+  margin-top: -1px;
+  margin-right: -2px;
+  margin-left: -1px;
+
 }
 
 #lot-list-container {
@@ -265,6 +271,14 @@
   margin-top: 20px;
   margin-bottom: 10px;
 }
+/*
+img > .lot-page-main-image{
+ margin-top: -1px;
+ margin-right: -2px;
+ margin-left: -1px;
+}
+*/
+
 /*need to chage the width if we are bringing up the edit spot view for the first time
 */
 #create-first-spot {
