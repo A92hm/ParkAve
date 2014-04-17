@@ -1,7 +1,7 @@
 
 define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
-        'text!templates/spot/editSpot.html', 'views/spot/spotListItem', 'views/spot/spot'],
-  function($, _, Backbone, Template, EditSpotTemplate, SpotListItemView, SpotView) {
+        'views/spot/spotListItem', 'views/spot/spot'],
+  function($, _, Backbone, Template, SpotListItemView, SpotView) {
 
   var SpotListView = Backbone.View.extend({
     tagName: 'div',
@@ -19,7 +19,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
     },
 
     render: function() {
-      var editSpotTemplate = _.template( EditSpotTemplate );
       this.$el.html( this.template() );
       this.$spots = this.$el.find('#spot-list-view-table-body');
       this.addAll();
@@ -62,8 +61,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
 
 */
 
-      
-    
       return this;
     },
 

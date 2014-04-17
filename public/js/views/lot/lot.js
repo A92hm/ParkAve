@@ -79,7 +79,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
         isParent = true;
       }
       this.renderEditSpotView(element, undefined, this.model, this.user, isParent);
-      
       this.listenTo(this.editSpotView, 'spots:save', this.saveNewSpot);
       this.listenTo(this.editSpotView, 'spots:cancel', this.cancelEditSpot);
       return false;

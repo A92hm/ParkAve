@@ -50,16 +50,17 @@ app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
-// app.use(require('less-middleware')(path.join(__dirname, 'public')));
+app.use(require('less-middleware')(path.join(__dirname, 'public')));
 // routes.init(app);
 
-if (process.env.NODE_ENV === 'production') {
-  console.log('production');
-  // For deployment
-  routes.init(app);
-  module.exports = app;
+// if (process.env.NODE_ENV === 'production') {
+//   console.log('production');
+//   // For deployment
+//   routes.init(app);
+//   module.exports = app;
 
-} else {
+// } else {
+  
   app.set('port', process.env.PORT || 3000);
   var server = http.createServer(app);
   server.listen(app.get('port'), function () {
@@ -77,16 +78,8 @@ if (process.env.NODE_ENV === 'production') {
     }); 
   });
   routes.init(app, io.sockets);
-  /*
-  io.sockets.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-      console.log(data);
-    });
-  });
 
-*/
-}
+// }
 
 
 
