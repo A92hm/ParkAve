@@ -72,14 +72,15 @@
 .lot-page-main-image {
   height: 300px;
   width: 100%;
-  z-index: -2;
+  z-index: 0;
   position: relative;
   background-image:url('theedge2.png');
   background-color: rgba(50,25,25,.45);
 
+  box-shadow: -20px -10px 20px rgba(50,50,50,.5);
 
   margin-top: -1px;
-  margin-right: -2px;
+  margin-right: -1px;
   margin-left: -1px;
 
 }
@@ -90,6 +91,8 @@
   padding: 0px;
   bottom: 0px;
   z-index: 1;
+
+
 }
 
 .lot-list {
@@ -249,12 +252,10 @@
   text-align: left;
 }
 
-.spot-list-item-view:hover {
-  background-color: black;
-}
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: grey;
 }
+
 #edit-spot-options {
   width: 190%;
   color:white;
