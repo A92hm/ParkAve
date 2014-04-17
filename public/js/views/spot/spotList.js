@@ -21,6 +21,8 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
     render: function() {
       this.$el.html( this.template() );
       this.$spots = this.$el.find('#spot-list-view-table-body');
+            this.$spots.children(':last-child').addClass('spot-list-last');
+
       this.addAll();
       /*
       this.newSpotPopover = this.$el.find('#spot-list-add-spot-button').popover(

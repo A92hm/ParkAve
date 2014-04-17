@@ -48,7 +48,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
     renderEditSpotView: function(element, model, lot, user, isParent){
       this.editSpotView = new EditSpotView( {model: model, lot: lot, user: user} );
       if(isParent){
-        element.append( this.editSpotView.render().el );
+        var editEl = this.editSpotView.render().$el;
+        editEl.find('#edit-spot-options').attr('id','create-first-spot');
+        console.log(editEl);
+
+        element.append( editEl );
       } else{
         element.after( this.editSpotView.render().el );
       }
@@ -73,6 +77,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
         return;
       }
       var element = this.$el.find('.spot-list-last');
+      //var element = this.$el.find('#edit-spot-container');
       var isParent = false;
       if(element.length == 0){
         element = this.$el.find('#spot-list-view-table-body');
