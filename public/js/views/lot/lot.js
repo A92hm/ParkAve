@@ -28,7 +28,13 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
     render: function() {
       if(this.model){
         //set the image
-        var attr = "http://maps.googleapis.com/maps/api/streetview?size=850x300&location="+this.model.get('lat')+","+this.model.get('lon')+"&sensor=false";
+        var theLat = this.model.get('lat');
+        var theLon = this.model.get('lon');
+        console.log(theLat);
+        theLat = theLat.toFixed(5);
+        theLon = theLon.toFixed(5);
+        console.log(theLat);
+        var attr = "http://maps.googleapis.com/maps/api/streetview?size=850x300&location="+theLat+","+theLon+"&sensor=false";
         this.$el.html( this.template( this.model.toJSON() ) );
         this.$el.find('.lot-page-main-image').attr('src',attr);
         console.log(this.$el);
