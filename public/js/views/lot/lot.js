@@ -31,10 +31,10 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
         var theLat = this.model.get('lat');
         var theLon = this.model.get('lon');
         console.log(theLat);
-        theLat = theLat.toFixed(5);
-        theLon = theLon.toFixed(5);
+        theLat = theLat.toFixed(3);
+        theLon = theLon.toFixed(3);
         console.log(theLat);
-        var attr = "http://maps.googleapis.com/maps/api/streetview?size=850x300&location="+theLat+","+theLon+"&sensor=false";
+        var attr = "http://maps.googleapis.com/maps/api/streetview?size=850x300&location="+theLat+","+theLon+"&fov=90&heading=235&pitch=10&sensor=false";
         this.$el.html( this.template( this.model.toJSON() ) );
         this.$el.find('.lot-page-main-image').attr('src',attr);
         console.log(this.$el);
