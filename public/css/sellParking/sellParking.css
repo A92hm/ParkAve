@@ -72,8 +72,21 @@
 .lot-page-main-image {
   height: 300px;
   width: 100%;
-  z-index: -2;
+  z-index: 0;
   position: relative;
+  background-image:url('theedge2.png');
+  background-color: rgba(50,25,25,.45);
+
+
+
+  box-shadow: -20px -10px 20px rgba(50,50,50,.5);
+
+
+
+  margin-top: -1px;
+  margin-right: -1px;
+  margin-left: -1px;
+
 }
 
 #lot-list-container {
@@ -82,6 +95,8 @@
   padding: 0px;
   bottom: 0px;
   z-index: 1;
+
+
 }
 
 .lot-list {
@@ -214,7 +229,7 @@
   background-color: rgb(65, 65, 65);
   box-shadow: 0px 0px 32px 20px rgb(65, 65, 65);
   bottom: 0px;
-  padding-bottom: 22.5%;
+  padding-bottom: 30%;
 }
 
 #spot-list-add-spot-button {
@@ -241,12 +256,12 @@
   text-align: left;
 }
 
-.spot-list-item-view:hover {
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: grey;
 }
 
 #edit-spot-options {
-  width: 200%;
+  width: 190%;
   color:white;
   border-top-style: solid;
   border-top-width: 2px;
@@ -261,5 +276,23 @@
   margin-top: 20px;
   margin-bottom: 10px;
 }
+/*
+img > .lot-page-main-image{
+ margin-top: -1px;
+ margin-right: -2px;
+ margin-left: -1px;
+}
+*/
 
+/*need to chage the width if we are bringing up the edit spot view for the first time
+*/
+#create-first-spot {
+ width: 145%;
+  color:white;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  padding-top: 10px;
+}
 
