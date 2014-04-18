@@ -27,7 +27,11 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/lot/lot.html', 'text
 
     render: function() {
       if(this.model){
+        //set the image
+        var attr = "http://maps.googleapis.com/maps/api/streetview?size=850x300&location="+this.model.get('lat')+","+this.model.get('lon')+"&sensor=false";
         this.$el.html( this.template( this.model.toJSON() ) );
+        this.$el.find('.lot-page-main-image').attr('src',attr);
+        console.log(this.$el);
         this.renderSpots();
       } else {
         this.$el.html( LotViewEmptyTemplate );
