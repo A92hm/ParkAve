@@ -13,8 +13,8 @@
 
 #main-navbar-logo {
   margin: 20px 10px;
-  height: 20px;
-  width: 90px;
+  height: 60px;
+  width: 120px;
   /*background-size: 100% 100%;*/
 }
 
@@ -35,7 +35,7 @@
 @media (min-width: 768px) {
 
   #main-navbar-logo {
-    margin-top: 20px;
+    margin-top: 0px;
     /*width: 173px;
     height: 60px;
     cursor: pointer;*/
@@ -114,7 +114,7 @@
 }
 
 .main-navbar .nav > li:hover {
-  background-color: rgb(241, 90, 92);
+  background-color: #268C0A;
   color: #ffffff;
 }
 
@@ -130,7 +130,7 @@
 }
 
 .main-navbar-dropdown {
-  background-color: rgba(255, 255, 255, 0.0);
+  background-color: #268C0A;
 }
 
 .main-navbar-dropdown > li {
@@ -147,12 +147,12 @@
 }
 
 .main-navbar-dropdown > li:hover, .main-navbar-dropdown > li:focus, .main-navbar-dropdown > li:active {
-  background-color: rgb(241, 90, 92);
+  background-color: #268C0A;
 }
 
 .main-navbar-dropdown > li > a:hover, .main-navbar-dropdown > li > a:focus, .main-navbar-dropdown > li > a:active {
   cursor: default;
-  background-color: rgba(255, 255, 255, 0.0);
+  background-color: #268C0A;
   color: #FFF;
 }
 
@@ -164,7 +164,7 @@
 
 /* the filter bar on the feedback page */
 #filter-bar {
-  background-color: rgba(255, 255, 254, 0.0);
+  background-color: #268C0A;
   border-radius: 10px;
   border: none;
   z-index: 0.5;
@@ -175,20 +175,20 @@
 }
 
 .feedback-page-sort-navbar .nav > li:hover {
-  background-color: rgb(241, 90, 92);
+  background-color: #268C0A;
   color: #FFF;
 }
 
 .feedback-page-sort-dropdown:hover {
-  background-color: rgb(241, 90, 92);
+  background-color: #268C0A;
 }
 
 .feedback-page-sort-navbar .nav > li > a:hover, .feedback-page-sort-navbar .nav > li > a:active, .feedback-page-sort-navbar .nav > li > a:focus, .feedback-page-sort-navbar .nav .open > a, .feedback-page-sort-navbar .nav .open > a:hover, .feedback-page-sort-navbar .nav .open > a:focus{
-  background-color: rgba(255, 255, 255, 0.0);
+  background-color: #268C0A;
 }
 
 .feedback-page-sort-navbar-dropdown, .feedback-page-sort-navbar-dropdown > li {
-  background-color: rgba(255, 255, 254, 0.0);
+  background-color: #268C0A;
   margin: 0px;
   padding: 0px;
   border: none;
@@ -212,12 +212,12 @@
 }
 
 .feedback-page-sort-navbar-dropdown > li:hover, .feedback-page-sort-navbar-dropdown > li:focus, .feedback-page-sort-navbar-dropdown > li:active {
-  background-color: rgb(241, 90, 92);
+  background-color: #268C0A;
 }
 
 .feedback-page-sort-navbar-dropdown > li > a:hover, .feedback-page-sort-navbar-dropdown > li > a:focus, .feedback-page-sort-navbar-dropdown > li > a:active {
   cursor: default;
-  background-color: rgba(255, 255, 255, 0.0);
+  background-color: #268C0A;
 }
 
 

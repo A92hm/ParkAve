@@ -90,7 +90,7 @@
 
 #lot-list-container {
   height: 100%;
-  background-color: rgb(122, 86, 173);
+  background-color: #0C0C84;
   padding: 0px;
   bottom: 0px;
   z-index: 1;
@@ -182,9 +182,11 @@
 
 .lot-list-item {
   height: 60px;
-  background-color: rgb(122, 86, 173);
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.4);
-  border-top: 2px dashed rgba(255, 255, 255, 0.4);
+  
+  background-color: rgb(38, 100, 20) ;
+  border: none;
+  /*border-bottom: 2px dashed rgba(255, 255, 255, 0.4);*/
+  /*border-top: 2px dashed rgba(255, 255, 255, 0.4);*/
   border-left: 0;
   border-right: 0;
   color: white !important;
@@ -196,8 +198,8 @@
 }
 
 .lot-list-item.active {
-  background-color: rgb(188, 172, 214) !important;
-  border-color: rgb(188, 172, 214) !important;
+  background-color: #268C0A !important;
+  /*border-color: rgb(188, 172, 214) !important;*/
   /*border-bottom: 0;
   border-top: 0 !important;*/
 }
@@ -237,7 +239,7 @@
 }
 
 #spot-list-add-spot-button:hover {
-  color: #00EE00;
+  color: rgb(38, 100, 20);
 }
 
 .spot-list-view-table-body {
