@@ -219,26 +219,24 @@ module.exports = {
       if(err){
         res.status(500).json({err: 'internal error'});
       }else if(user){
-        bcrypt.compare(req.body.password, user.password, function(err1, resp) {
-          if(err1){
-            res.status(500).json({err: 'internal error'});
-          }
-          if (resp){
+        // bcrypt.compare(req.body.password, user.password, function(err1, resp) {
+        //   if(err1){
+        //     res.status(500).json({err: 'internal error'});
+        //   }
+          // if (resp){
             //!!!!!!TODO!!!!!!
             //get the average rating
             req.session.user = user;
-            user.reservedSpots = 'undefined'
-            user.spotHistory = 'undefined'
             // hide for later
             // if (!user.creditCard){
             //   user.creditCard = 'XXX';
             // }
             // user.password = 'undefined';
             res.json(user);
-          } else {
-            res.status(421).json({err: 'not match'});
-          }
-        });
+          // } else {
+            // res.status(421).json({err: 'not match'});
+        //   }
+        // });
       }else{
         res.status(407).json({err: 'not found'});
       }
