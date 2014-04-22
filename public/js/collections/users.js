@@ -6,7 +6,7 @@ define(['underscore','backbone', 'models/user', 'socket.io'], function(_, Backbo
 
     initialize: function() {
   	  var self = this;
-      var socket = io.connect('http://localhost');
+      var socket = io.connect('http://dev.getparkave.com');
       socket.on('userUpdated', function(model){
         console.log('woooo updated a user');
         console.log(model);
