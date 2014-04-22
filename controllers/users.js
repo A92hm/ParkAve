@@ -227,6 +227,8 @@ module.exports = {
             //!!!!!!TODO!!!!!!
             //get the average rating
             req.session.user = user;
+            user.reservedSpots = []
+            user.spotHistory = []
             // hide for later
             // if (!user.creditCard){
             //   user.creditCard = 'XXX';
