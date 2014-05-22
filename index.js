@@ -3,7 +3,7 @@ var express = require('express'),
     http = require('http'),
     mongoose = require('mongoose'),
     cons = require('consolidate'),
-    routes = require('./routes/routes.js'),
+    routes = require('./routes/routes.js');
     // io = require('socket.io');
 
 
