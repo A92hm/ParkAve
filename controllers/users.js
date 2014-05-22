@@ -161,7 +161,7 @@ module.exports = {
       }
     });
   },
-  update: function(req, res, socket) {
+  update: function(req, res) {
     console.log('users update', req.params, req.body);
     var newUser = {};
     _.each(req.body, function(value, key){
@@ -178,7 +178,7 @@ module.exports = {
             res.status(500).json({err: 'internal error'});
           } else {
             newUser._id = req.params.uid;
-            socket.emit('updatedUser', newUser);
+            // socket.emit('updatedUser', newUser);
             res.json({msg:'success'});
           }
         });
@@ -189,7 +189,7 @@ module.exports = {
           res.status(500).json({err: 'internal error'});
         } else { 
           newUser._id = req.params.uid;
-          socket.emit('updatedUser', newUser);
+          // socket.emit('updatedUser', newUser);
           res.json({msg:'success'});
         }
       });
