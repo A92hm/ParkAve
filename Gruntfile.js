@@ -34,6 +34,19 @@ module.exports = function (grunt) {
         ],
         tasks: ['develop', 'delayed-livereload']
       },
+      client: {
+        files: [
+          'assets/js/**/*.js'
+        ],
+        tasks: ['uglify'],
+      },
+
+      // imgs: {
+      //   files: [
+      //     'assets/imgs/'
+      //   ]
+      // }
+
       jade: {
         files: ['app/views/**/*.jade'],
         options: { livereload: reloadPort }
@@ -55,6 +68,16 @@ module.exports = function (grunt) {
       ]
     },
 
+    uglify: {
+    my_target: {
+        files: [{
+            expand: true,
+            cwd: 'assets/js',
+            src: '**/*.js',
+            dest: 'public/js'
+        }]
+      }
+    }
     // Sass Config
     sass: {
       options: {
