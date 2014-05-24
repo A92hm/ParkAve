@@ -23,7 +23,7 @@
 *.tar
 *.zip
 node_modules
-bower_components
+public
 db
 
 # Logs and databases #
