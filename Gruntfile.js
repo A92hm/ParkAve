@@ -7,6 +7,7 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
   var reloadPort = 35729, files;
 
@@ -24,7 +25,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: ['assets/styles/**/*.sass'],
-        tasks: ['sass:dev']
+        tasks: ['sass']
       },
       js: {
         files: [
@@ -40,12 +41,6 @@ module.exports = function (grunt) {
         ],
         tasks: ['uglify'],
       },
-
-      // imgs: {
-      //   files: [
-      //     'assets/imgs/'
-      //   ]
-      // }
 
       jade: {
         files: ['app/views/**/*.jade'],
@@ -77,19 +72,19 @@ module.exports = function (grunt) {
             dest: 'public/js'
         }]
       }
-    }
+    },
     // Sass Config
   sass: {
     dist: {
       files: [{
         expand: true,
         cwd: 'assets/styles',
-        src: ['*.sass'],
+        src: ['**/*.sass'],
         dest: 'public/styles',
         ext: '.css'
       }]
     }
-  }
+  },
 
     // Imagemin Config
     imagemin: {
@@ -144,7 +139,7 @@ module.exports = function (grunt) {
     }, 500);
   });
 
-  grunt.registerTask('default', ['develop', 'watch','open:site']);
-  grunt.registerTask('build', []);
+  grunt.registerTask('default', ['develop','uglify', 'sass', 'imagemin','open:site','watch']);
+  grunt.registerTask('build', ['uglify', 'sass', 'imagemin']);
 
 };
