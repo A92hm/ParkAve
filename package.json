@@ -1,29 +1,38 @@
 {
-  "name": "express-server",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "parkave",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "app.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "~3.4.8",
-    "underscore": "~1.5.2",
-    "mongoose": "~3.8.6",
-    "bcrypt": "~0.7.7",
-    "consolidate": "~0.10.0",
-    "mustache": "~0.8.1",
-    "connect-memcached": "0.0.6",
-    "nconf": "~0.6.9",
-    "paypal-rest-sdk": "~0.6.4",
-    "hjs": "*",
-    "less-middleware": "*",
-    "node-uuid": "*",
-    "crypto": "*",
-    "mime": "*",
-    "moment": "*",
-    "socket.io": "0.9.x"
+    "express": "~3.3.4",
+    "jade": "~0.34.0",
+    "mongoose": "~3.6.14"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-develop": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-compass": "~0.6.0",
+    "request": "~2.27.0",
+    "time-grunt": "~0.1.1",
+    "load-grunt-tasks": "~0.2.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-sass": "~0.7.3",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-imagemin": "~0.2.0",
+    "grunt-open": "~0.2.2",
+    "grunt-rev": "~0.1.0",
+    "grunt-usemin": "~0.1.10",
+    "grunt-svgmin": "~0.2.0",
+    "grunt-concurrent": "~0.3.0",
+    "load-grunt-tasks": "~0.1.0",
+    "time-grunt": "~0.1.1",
+    "grunt-reload": "~0.2.0"
   }
 }
