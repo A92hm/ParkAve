@@ -79,23 +79,17 @@ module.exports = function (grunt) {
       }
     }
     // Sass Config
-    sass: {
-      options: {
-        cacheLocation: '.tmp/.sass-cache'
-      },
-      dev: {
-        options: {
-          style: 'expanded',
-          lineComments: true
-        },
-        files: [{
-          expand: true,
-          cwd: 'assets/styles/sass',
-          dest: 'public/styles',
-          ext: '.css'
-        }]
-      }
-    },
+  sass: {
+    dist: {
+      files: [{
+        expand: true,
+        cwd: 'assets/styles',
+        src: ['*.sass'],
+        dest: 'public/styles',
+        ext: '.css'
+      }]
+    }
+  }
 
     // Imagemin Config
     imagemin: {
@@ -150,7 +144,7 @@ module.exports = function (grunt) {
     }, 500);
   });
 
-  grunt.registerTask('default', ['develop', 'watch','open:site','jshint', 'sass:dev']);
+  grunt.registerTask('default', ['develop', 'watch','open:site']);
   grunt.registerTask('build', []);
 
 };
