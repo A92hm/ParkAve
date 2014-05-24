@@ -22,6 +22,7 @@
 *.rar
 *.tar
 *.zip
+.sass-cache
 node_modules
 public
 db
