@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
         'models/user', 'models/session', 'collections/users',
-        'collections/sessions', 'routing/router', 'socket.io'],
-  function($, _, Backbone, Template, User, Session, UsersCollection, SessionsCollection, Router, io) {
+        'collections/sessions', 'routing/router'],
+  function($, _, Backbone, Template, User, Session, UsersCollection, SessionsCollection, Router) {
 
   var UserSettingsView = Backbone.View.extend({
     tagName: 'div',
@@ -19,21 +19,21 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/user/settings.html',
       var fullurl = document.URL;
       var endIndex = fullurl.indexOf('/', 7);
       var url = fullurl.substr(0, endIndex);
-      this.socket = io.connect(url);
-      var self = this;
-      this.socket.on('connect', function(){
-        console.log('connected');
-      });
-      this.socket.on('updatedUser', function(model){
-        console.log('woooo updated a user');
-        console.log(self.user);
-        console.log(model);
-        if(model._id == self.user.get('_id')){
-          console.log('updated a user');
-          //the user has been updated
-          self.user.fetch();
-        }
-      });
+      // this.socket = io.connect(url);
+      // var self = this;
+      // this.socket.on('connect', function(){
+      //   console.log('connected');
+      // });
+      // this.socket.on('updatedUser', function(model){
+      //   console.log('woooo updated a user');
+      //   console.log(self.user);
+      //   console.log(model);
+      //   if(model._id == self.user.get('_id')){
+      //     console.log('updated a user');
+      //     //the user has been updated
+      //     self.user.fetch();
+      //   }
+      // });
 
       this.listenTo(this.user, 'change', this.render);
       this.listenTo(this.user, 'destroy', this.remove);

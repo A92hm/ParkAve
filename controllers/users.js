@@ -161,7 +161,7 @@ module.exports = {
       }
     });
   },
-  update: function(req, res, socket) {
+  update: function(req, res) {
     console.log('users update', req.params, req.body);
     var newUser = {};
     _.each(req.body, function(value, key){
@@ -178,7 +178,7 @@ module.exports = {
             res.status(500).json({err: 'internal error'});
           } else {
             newUser._id = req.params.uid;
-            socket.emit('updatedUser', newUser);
+            // socket.emit('updatedUser', newUser);
             res.json({msg:'success'});
           }
         });
@@ -189,7 +189,7 @@ module.exports = {
           res.status(500).json({err: 'internal error'});
         } else { 
           newUser._id = req.params.uid;
-          socket.emit('updatedUser', newUser);
+          // socket.emit('updatedUser', newUser);
           res.json({msg:'success'});
         }
       });
@@ -219,11 +219,11 @@ module.exports = {
       if(err){
         res.status(500).json({err: 'internal error'});
       }else if(user){
-        bcrypt.compare(req.body.password, user.password, function(err1, resp) {
-          if(err1){
-            res.status(500).json({err: 'internal error'});
-          }
-          if (resp){
+        // bcrypt.compare(req.body.password, user.password, function(err1, resp) {
+        //   if(err1){
+        //     res.status(500).json({err: 'internal error'});
+        //   }
+          // if (resp){
             //!!!!!!TODO!!!!!!
             //get the average rating
             req.session.user = user;
@@ -233,10 +233,10 @@ module.exports = {
             // }
             // user.password = 'undefined';
             res.json(user);
-          } else {
-            res.status(411).json({err: 'not match'});
-          }
-        });
+          // } else {
+            // res.status(421).json({err: 'not match'});
+        //   }
+        // });
       }else{
         res.status(407).json({err: 'not found'});
       }
