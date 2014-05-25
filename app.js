@@ -34,4 +34,4 @@ require('./config/routes')(app, io);
 
 
 server.listen(config.port);
-console.log('Express server is listening on port %s on %s environment.', config.port, config.env);
+console.log('Express server is listening on port %s on %s environment.', config.port, app.settings.env);
