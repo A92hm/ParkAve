@@ -12,6 +12,7 @@ module.exports = function(app, config) {
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    app.use( express.cookieParser() );
     app.use(express.session({ secret: 'CHANGE THIS SECRET! USE NODE.EVN' })); 
     // Remember Me middle-ware
     app.use( function (req, res, next) {
