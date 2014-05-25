@@ -3,6 +3,7 @@ var express = require('express'),
   socketIO = require('socket.io'),
   https = require('https'),
   fs = require('fs'),
+  pass = require('./config/pass'),
   config = require('./config/config');
 
 mongoose.connect(config.db);
@@ -17,6 +18,9 @@ fs.readdirSync(modelsPath).forEach(function (file) {
     require(modelsPath + '/' + file);
   }
 });
+
+
+
 
 var app = express(),
 	server = https.createServer(config.cred, app),
