@@ -22,6 +22,7 @@ var app = express(),
 	server = https.createServer(config.cred, app),
 	io = socketIO.listen(server);
 
+io.set('log level', 1);
 require('./config/express')(app, config);
 require('./config/routes')(app, io);
 
