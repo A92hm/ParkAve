@@ -1,4 +1,5 @@
-var express = require('express');
+var express = require('express')
+  , passport = require('passport');
 
 module.exports = function(app, config) {
   app.configure(function () {
@@ -11,9 +12,24 @@ module.exports = function(app, config) {
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    app.use(express.session({ secret: 'CHANGE THIS SECRET! USE NODE.EVN' })); 
+    // Remember Me middle-ware
+    app.use( function (req, res, next) {
+        if ( req.method == 'POST' && req.url == '/login' ) {
+            if ( req.body.rememberme ) {
+                req.session.cookie.maxAge = 2592000000; // Remember me for 30 days
+            } else {
+                req.session.cookie.expires = false;
+                }
+            }
+        next();
+    });
+    app.use(passport.initialize());
+    app.use(passport.session());
     app.use(app.router);
     app.use(function(req, res) {
       res.status(404).render('404', { title: '404' });
     });
   });
 };
+
