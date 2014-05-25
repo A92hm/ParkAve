@@ -1,5 +1,7 @@
 var express = require('express'),
   mongoose = require('mongoose'),
+  socketIO = require('socket.io'),
+  https = require('https'),
   fs = require('fs'),
   config = require('./config/config');
 
@@ -16,9 +18,12 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   }
 });
 
-var app = express();
+var app = express(),
+	server = https.createServer(config.cred, app),
+	io = socketIO.listen(server);
 
 require('./config/express')(app, config);
-require('./config/routes')(app);
+require('./config/routes')(app, io);
 
-app.listen(config.port);
+server.listen(config.port);
+
