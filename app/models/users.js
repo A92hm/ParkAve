@@ -13,40 +13,35 @@ var userSchema = mongoose.Schema({
   password: { type: String, required: true}
 });
 
-
-// Bcrypt middleware
+/*
+* Bcrypt middle-ware 
+* Hashes the password before save the user object if the password is changed. 
+*/
 userSchema.pre('save', function(next) {
-	var user = this;
+  var user = this;
 
-	if(!user.isModified('password')) return next();
+  if(!user.isModified('password')) return next();
 
-	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-		if(err) return next(err);
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    if(err) return next(err);
 
-		bcrypt.hash(user.password, salt, function(err, hash) {
-			if(err) return next(err);
-			user.password = hash;
-			next();
-		});
-	});
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      if(err) return next(err);
+      user.password = hash;
+      next();
+    });
+  });
 });
 
 // Password verification
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
-	bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-		if(err) return cb(err);
-		cb(null, isMatch);
-	});
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    if(err) return cb(err);
+    cb(null, isMatch);
+  });
 };
 
+
 // Export user model
-// var userModel = mongoose.model('User', userSchema);
-// exports.userModel = userModel;
-// var usr = new userModel({ username: 'bob', email: 'bob@example.com', password: 'secret' });
-// usr.save(function(err) {
-//   if(err) {
-//     console.log(err);
-//   } else {
-//     console.log('user: ' + usr.username + " saved.");
-//   }
-// });
+var userModel = mongoose.model('User', userSchema);
+exports.userModel = userModel;
