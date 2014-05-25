@@ -1,6 +1,26 @@
+// global variable
+$minimum-width: 900px
+$page-margin-left: 200px
+$page-margin-right: 200px
+
+// functions
+
 =border-radius($radius)
   -webkit-border-radius: $radius
   -moz-border-radius:    $radius
   -ms-border-radius:     $radius
   border-radius:         $radius
-  
+
+@import global/navbar
+
+body
+  margin: 0
+
+.content
+  min-width: $minimum-width - $page-margin-left - $page-margin-right
+  margin-left: $page-margin-left
+  margin-right: $page-margin-right
+
+
+
+
