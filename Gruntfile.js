@@ -113,7 +113,7 @@ module.exports = function (grunt) {
     // Open Config
     open: {
       site: {
-        path: 'http://localhost:3000',
+        path: 'https://localhost:3000',
         app: 'Google Chrome'
       }
     }
