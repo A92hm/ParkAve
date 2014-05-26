@@ -1,13 +1,20 @@
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
-  , db = require('../models/users');
+  , db = require('../models/users')
+  , express = require("express")
+  , csrf = require('csurf');
 
 
 // POST /login
 //   This is an alternative implementation that uses a custom callback to
 //   acheive the same functionality.
-exports.postlogin = function(req, res, next) {
-  console.log(req.body);
+exports.login = function(req, res, next) {
+	if ( req.body.rememberme ) {
+		req.session.cookie.maxAge = 2592000000; // Remember me for 30 days
+	} else {
+		req.session.cookie.expires = false;
+	}
+
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err) }
     if (!user) {
@@ -24,6 +31,15 @@ exports.postlogin = function(req, res, next) {
 exports.logout = function(req, res) {
   req.logout();
   res.redirect('/');
+};
+
+
+exports.validateRequest = function (req, res, next) {
+    if ( req.url == '/API/*' ) {
+    	return next();   //Some other way of validation
+    } else {
+    	csrf()(req,res,next);
+    }
 };
 
 passport.serializeUser(function(user, done) {
@@ -57,13 +73,3 @@ exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
   res.redirect('/login')
 }
 
-
-// Check for admin middleware, this is unrelated to passport.js
-// You can delete this if you use different method to check for admins or don't need admins
-exports.ensureAdmin = function ensureAdmin(req, res, next) {
-  console.log(req.user);
-  if(req.user && req.user.admin === true)
-      next();
-  else
-      res.send(403);
-}

@@ -3,16 +3,9 @@ var mongoose = require('mongoose'),
  
 
 
-module.exports = function(io){
 
-
-	dic = {
-		test : function(req, res) {
-		console.log(io);
-		}
-	};
-
-	return dic;
+exports.test = function(io) {
+  return function(req, res){
+ 	res.json(200, {message: "Message received!"});    
+  }
 };
-
-
