@@ -12,13 +12,20 @@ block content
     form(role='form', action='/sellparking/signup')
       table
         tr
-          td.title-column Available Spots
+          td.title-column Spots Available
           td.input-column
             input(type='number', name='spots', min='1', value='1')
         tr
-          td.title-column Address
+          td.title-column Dates Available
+          td.input-column TODO
+        tr
+          td.title-column Street
           td.input-column
-            input(type='text', name='address')
+            input(type='text', name='street')
+        tr
+          td.title-column Zip Code
+          td.input-column
+            input(type='text', name='zipcode')
         tr
           td.title-column Email
           td.input-column
