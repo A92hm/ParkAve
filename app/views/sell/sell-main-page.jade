@@ -6,4 +6,32 @@ block js
   script(type='text/javascript', src='/js/sell/sell-main-page.js')
 
 block content
-  h1 sell-main-page
+  h1 List your space
+  br
+  div.signup-box
+    form(role='form', action='/sellparking/signup')
+      table
+        tr
+          td.title-column Available Spots
+          td.input-column
+            input(type='number', name='spots', min='1', value='1')
+        tr
+          td.title-column Address
+          td.input-column
+            input(type='text', name='address')
+        tr
+          td.title-column Email
+          td.input-column
+            input(type='text', name='spots')
+        tr
+          td.title-column Password
+          td.input-column
+            input(type='password', name='password')
+        tr
+          td.title-column Confirm Password
+          td.input-column
+            input(type='password', name='confirm-password')
+  div.info-box
+
+
+

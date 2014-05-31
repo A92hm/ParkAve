@@ -1,6 +1,9 @@
 // global variable
 $container-width: 1020px
-$primary-text-color: #000
+$primary-color: rgb(12, 12, 132)
+$secondary-color: rgb(38, 140, 10)
+$primary-text-color: white
+$secondary-text-color: $secondary-color
 
 // functions
 
@@ -11,14 +14,23 @@ $primary-text-color: #000
   border-radius:         $radius
 
 @import global/navbar
+@import global/footer
+@import global/testimonial
+@import global/day-checkboxes
 
 body
   margin: 0
 
-.pa-container
+.pa-container  // centers the page
   width: $container-width
   padding: 0 10px
   margin: auto
+
+.content-wrapper  // gives the main content of pages proper margins
+  margin-top: 40px
+
+.primary-button
+
 
 
 
