@@ -1,22 +1,32 @@
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
-  , db = require('../models/users');
+  , db = require('../models/users')
+  , express = require("express")
+  , csrf = require('csurf');
 
 
 // POST /login
 //   This is an alternative implementation that uses a custom callback to
-//   acheive the same functionality.
-exports.postlogin = function(req, res, next) {
-  console.log(req.body);
+//   achieve the same functionality.
+exports.login = function(req, res, next) {
+	console.log(req.body);
+	if ( req.body.rememberme ) {
+		req.session.cookie.maxAge = 2592000000; // Remember me for 30 days
+	} else {
+		req.session.cookie.expires = false;
+	}
+
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err) }
     if (!user) {
       req.session.messages =  [info.message];
-      return res.redirect('/login')
+      console.log('Failed login');
+      return res.status(400).json({status:'Failed', message:info.message});
     }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/');
+      console.log('Login Success');
+      return res.status(202).json({status:'Success'});
     });
   })(req, res, next);
 };
@@ -24,6 +34,15 @@ exports.postlogin = function(req, res, next) {
 exports.logout = function(req, res) {
   req.logout();
   res.redirect('/');
+};
+
+
+exports.validateRequest = function (req, res, next) {
+    if ( req.url == '/API/*') {
+    	return next();   //Some other way of validation
+    } else {
+    	csrf()(req,res,next);
+    }
 };
 
 passport.serializeUser(function(user, done) {
@@ -36,10 +55,10 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-passport.use(new LocalStrategy(function(username, password, done) {
-  db.userModel.findOne({ username: username }, function(err, user) {
+passport.use(new LocalStrategy({usernameField: 'email'}, function(email, password, done) {
+  db.userModel.findOne({ email: email }, function(err, user) {
     if (err) { return done(err); }
-    if (!user) { return done(null, false, { message: 'Unknown user ' + username }); }
+    if (!user) { return done(null, false, { message: 'Unknown user ' + email }); }
     user.comparePassword(password, function(err, isMatch) {
       if (err) return done(err);
       if(isMatch) {
@@ -57,13 +76,3 @@ exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
   res.redirect('/login')
 }
 
-
-// Check for admin middleware, this is unrelated to passport.js
-// You can delete this if you use different method to check for admins or don't need admins
-exports.ensureAdmin = function ensureAdmin(req, res, next) {
-  console.log(req.user);
-  if(req.user && req.user.admin === true)
-      next();
-  else
-      res.send(403);
-}

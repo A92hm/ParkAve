@@ -1,5 +1,6 @@
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
+  , csrf = require('express').csrf
   , _ = require('underscore')
   , buy_main_page = require('../app/controllers/buy/buy-main-page')
   , sell_main_page = require('../app/controllers/sell/sell-main-page')
@@ -11,11 +12,14 @@ var URLToStaticFileMap = {
   '/': 'home/home'
 };
 
+
 var renderStaticPage = function(req, res){
   res.render(URLToStaticFileMap[req.route.path], {
-      title: 'Park Ave'
+      title: 'Park Ave',
+      csrfToken: req.csrfToken()
   });
 };
+
 
 module.exports = function(app, io){
 /* API Routes */
@@ -23,12 +27,16 @@ module.exports = function(app, io){
 /* User Routes */
   // Static Pages
   _.each(URLToStaticFileMap, function(value, key){
-    app.get(key, renderStaticPage);
+    app.get(key ,renderStaticPage);
   });
+
+
 
   // Other Routes
   app.get( '/buyparking', buy_main_page.index);
   app.get( '/sellparking', sell_main_page.index);
-  app.post('/login', session.postlogin);
+
+  /* Login Routes */
+  app.post('/login' , session.login);
   app.get( '/logout', session.logout);
 };
