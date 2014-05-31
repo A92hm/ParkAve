@@ -11,11 +11,6 @@ var config = {
       name: 'parkave'
     },
     port: 3000,
-    cred: {
-        // Dummy certificates for development
-        key: fs.readFileSync(__dirname +'/cert/dummy.key'),
-        cert: fs.readFileSync(__dirname +'/cert/dummy.crt'),
-    },
     db: 'mongodb://localhost/parkave-development'
   },
 
@@ -25,11 +20,6 @@ var config = {
       name: 'parkave'
     },
     port: 3000,
-    cred: {
-        // Dummy certificates for testing
-        key: fs.readFileSync(__dirname +'/cert/dummy.key'),
-        cert: fs.readFileSync(__dirname +'/cert/dummy.crt'),
-    },
     db: 'mongodb://localhost/parkave-test'
   },
 

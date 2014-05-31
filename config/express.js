@@ -11,7 +11,7 @@ module.exports = function(app, config) {
     app.set('views', config.root + '/app/views');
     //Using jade templating
     app.set('view engine', 'jade'); 
-    app.use(express.favicon(config.root + '/public/img/favicon.ico'));
+    app.use(express.favicon(config.root + '/public/imgs/favicon.ico'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());

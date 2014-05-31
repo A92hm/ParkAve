@@ -2,6 +2,7 @@ var config = require('./config/config')
   , express = require('express')
   , mongoose = require('mongoose')
   , socketIO = require('socket.io')
+  , http = require('http')
   , https = require('https')
   , fs = require('fs');
   
@@ -22,10 +23,17 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   }
 });
 
-// Creating the app, https server and socket server
-var app = express()
-  , server = https.createServer(config.cred, app)
-	, io = socketIO.listen(server);
+// Creating the app, https server and socket server. HTTPS only runs for production
+if (process.env.NODE_ENV == 'production') {
+  var app = express()
+    , server = https.createServer(config.cred, app)
+  	, io = socketIO.listen(server);
+} else {
+  var app = express()
+    , server = http.createServer(app)
+    , io = socketIO.listen(server);
+}
+
 
 // Configuring sockets, app and routes
 require('./config/socket')(io);

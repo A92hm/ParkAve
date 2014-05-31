@@ -30,7 +30,6 @@ module.exports = function(app, io){
     app.get(key ,renderStaticPage);
   });
 
-  app.get('/test' ,user.test(io));
 
 
   // Other Routes
