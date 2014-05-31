@@ -1,0 +1,14 @@
+- var results = [{price: '1', description: 'Park here and I promise I won\'t melt your car. I might eat it.'}, {price: '1.25', description: 'I have a thing about dogs. Don\'t park your dogs in my driveway and we\'ll get along great.'}]
+
+each result in results
+  div.list-item.well
+    table
+      tr
+        td.description= result.description
+        td.price
+          |$
+          = result.price
+          br
+          |&nbspper&nbspday
+
+

@@ -1,0 +1,6 @@
+- var testimonials = [{quote: 'I made $5.34 billion with Park Ave!', source: 'Shelby', location: 'Norman, OK'}, {quote: 'I made so much cash money flow with Park Ave I had to start eating it!', source: 'Ali', location: 'Norman, OK'}, {quote: 'Park Ave changed my life!', source: 'Meghan', location: 'Norman, OK'}, {quote: 'Park Ave has been such a great influence on my children!', source: 'Nathan', location: 'Norman, OK'}, {quote: 'I would definitely bang Park Ave!', source: 'Jeffrey', location: 'Norman, OK'}]
+each testimonial in testimonials
+  div.testimonial
+    div.quote= '"' + testimonial.quote + '"'
+    div.source= '- ' + testimonial.source + ' (' + testimonial.location + ')'
+

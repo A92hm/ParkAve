@@ -2,7 +2,7 @@ $navbar-height: 40px
 
 .navbar-box
   height: $navbar-height
-  background-color: #DDD
+  background-color: $primary-color
   .nav-btn
     position: relative
     padding: 0px 15px
@@ -10,11 +10,12 @@ $navbar-height: 40px
     line-height: $navbar-height
     background-color: rgba(255, 255, 255, 0)
     cursor: pointer
+    color: white
     &:hover
       background-color: rgba(0, 0, 0, 0.2)
     a
+      color: white
       text-decoration: none
-      color: $primary-text-color
       span.filler
         position: absolute
         width: 100%

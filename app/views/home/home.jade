@@ -7,15 +7,57 @@ block js
   script(type='text/javascript', src='/js/home/home.js')
 
 block content
-  h1 home
-  form(action='/login',method='post')
-    label(for='email') email
-      input(id='email',type='text',value='',placeholder='@',name='email')
-    label(for='password') password
-      input(id='password',type='password',value='',placeholder='',name='password')
-    label(for='rememberme') Remember me
-    input(id='rememberme', type='checkbox', name='rememberme')
-    input(type='submit',value='Sign Up',data-transition='fade', data-theme='c')
+  div.buy-content.well
+    div.header.
+      Find parking
+    br
+    div.description.panel.
+      Save up to 25% on parking
+    div.description.panel.
+      Know where your spot is ahead of time
+    br
+    form(action='/buyparking')
+      div.header Which days do you need parking?
+      br
+      div.input
+        include ../global/day-checkboxes
+      br
+      button.primary-button.btn.btn-default(type='submit')
+        i.fa.fa-search
+        |&nbspSearch
+  div.sell-content.well
+    div.header.
+      List your space
+    br
+    div.description.panel.
+      Make up to $150 per spot every year
+    div.description.panel.
+      Solve world hunger
+    br
+    form(action='/sellparking')
+      div.header When are your spaces available?
+      br
+      div.input
+        include ../global/day-checkboxes
+      br
+      button.primary-button.btn.btn-default(type='submit')
+        i.fa.fa-usd
+        |&nbspCalculate my earnings
+  div.testimonials.panel.panel-default
+    br
+    div.header Testimonials
+    br
+    include ../global/testimonial
+
+  //- h1 home
+  //- form(action='/login',method='post')
+  //-   label(for='email') email
+  //-     input(id='email',type='text',value='',placeholder='@',name='email')
+  //-   label(for='password') password
+  //-     input(id='password',type='password',value='',placeholder='',name='password')
+  //-   label(for='rememberme') Remember me
+  //-   input(id='rememberme', type='checkbox', name='rememberme')
+  //-   input(type='submit',value='Sign Up',data-transition='fade', data-theme='c')
 
  //- div
  //-  form(action='/signup',method='post')

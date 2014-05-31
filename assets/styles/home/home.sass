@@ -1,0 +1,38 @@
+@import ../global
+
+$content-padding: 60px
+
+.content-area
+  width: ($container-width - $content-padding) / 2
+  padding: 25px 15px
+  margin-bottom: 40px
+  +border-radius(3px)
+  div
+    text-align: center
+  div.header
+    font-size: 60px
+  div.header-small
+    font-size: 40px
+  div.description
+    font-size: 24px
+    +border-radius(3px)
+  form
+    div.header
+      font-size: 28px
+      margin: auto
+    button.primary-button
+      margin: auto
+      display: block
+
+.buy-content
+  @extend .content-area
+  float: left
+.sell-content
+  @extend .content-area
+  float: right
+
+.testimonials
+  clear: both
+  div.header
+    text-align: center
+    font-size: 60px
