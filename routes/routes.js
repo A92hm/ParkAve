@@ -5,8 +5,7 @@ var path = require('path'),
     reviewsController = require('./../controllers/reviews.js'),
     carsController = require('./../controllers/cars.js'),
     paymentController = require('./../controllers/payments.js'),
-    feedbackController = require('./../controllers/feedbacks.js'),
-    s3backend = require('./../s3/s3backend.js');
+    feedbackController = require('./../controllers/feedbacks.js');
 
 module.exports = {
   init: function(app) {
@@ -14,9 +13,6 @@ module.exports = {
       res.send("it's alive! it's alive!!")
     });
     
-    
-
-    //console.log('init of routes');
     // API Routes go here
     app.get(  '/api', function(req, res){ res.send("working"); });  
     app.get(  '/api/users',     usersController.index);     // get all users
@@ -78,13 +74,6 @@ module.exports = {
     // API for payment
     app.post( '/api/addpaymentmethod', paymentController.addCreditCard);
     app.post( '/api/purchase', paymentController.purchaseSpot);
-
-     //api for AWS S3 credentials
-    //app.get('/api/s3/signed',s3.signed);
-    app.get('/api/sign_s3', s3backend.signed);
-
-    // Non-API routes
-
 
     app.get(  '*', function(req, res) {
       res.sendfile(path.join(__dirname, '..', 'public', 'index.html'));
