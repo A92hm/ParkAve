@@ -1,12 +1,8 @@
 {
-  "name": "lesson-8-template",
+  "name": "ParkAve",
   "main": "index.js",
   "version": "0.0.1",
-  "authors": [
-    "Philip Dow <phil@phildow.net>"
-  ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",

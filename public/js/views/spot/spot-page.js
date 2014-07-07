@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/reviews/feedback-page.html',
-        'routing/router', 'views/spot/spotList', 'views/navigation/navigation','collections/sessions', 'socket.io'],
-  function($, _, Backbone, Template, Router, ReviewList, NavBar, SessionsCollection, io) {
+        'routing/router', 'views/spot/spotList', 'views/navigation/navigation','collections/sessions'],
+  function($, _, Backbone, Template, Router, ReviewList, NavBar, SessionsCollection) {
 
   	var UserSpotView = Backbone.View.extend({
 	  tagName: 'div',

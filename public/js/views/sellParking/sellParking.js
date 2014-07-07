@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/sellParking/sellParking.html',
-        'views/lot/lot', 'views/lot/lotList', 'routing/router', '/socket.io/socket.io'],
-  function($, _, Backbone, Template, LotView, LotListView, Router, IO) {
+        'views/lot/lot', 'views/lot/lotList', 'routing/router'],
+  function($, _, Backbone, Template, LotView, LotListView, Router) {
 
     var SellParkingView = Backbone.View.extend({
       tagName: 'div',

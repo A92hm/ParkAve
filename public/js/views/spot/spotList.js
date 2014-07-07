@@ -125,7 +125,6 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotList.html',
         description: inputDescription.val() || ''
       };
       this.trigger('spots:save');
-      //this.socket.emit('updatingSpot', this.model);
     }
   });
 
