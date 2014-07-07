@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spot.html',
-  'routing/router', 'collections/spots'],
-  function($, _, Backbone, Template, Router, SpotsCollection) {
+  'routing/router', 'collections/spots', 'socket.io'],
+  function($, _, Backbone, Template, Router, SpotsCollection, io) {
 
 
   var SpotView = Backbone.View.extend({
@@ -15,7 +15,7 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spot.html',
 
     initialize: function() {
       //set up socket
-      // this.socket = io.connect('http://localhost');
+      this.socket = io.connect('http://localhost');
       
       
       this.listenTo(this.model, 'change', this.render);

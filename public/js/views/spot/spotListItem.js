@@ -1,7 +1,7 @@
 
 define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotListItem.html',
-  'routing/router'],
-  function($, _, Backbone, Template, Router) {
+  'routing/router', 'socket.io'],
+  function($, _, Backbone, Template, Router, io) {
 
   var SpotListItemView = Backbone.View.extend({
     tagName: 'tr',
@@ -17,18 +17,18 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/spot/spotListItem.ht
       var fullurl = document.URL;
       var endIndex = fullurl.indexOf('/', 7);
       var url = fullurl.substr(0, endIndex);
-      // this.socket = io.connect(url);
+      this.socket = io.connect(url);
       var self = this;
-      // this.socket.on('connect', function(){
-      //   console.log('socket connected');
-      // });
-      // this.socket.on('updatedSpot', function(model){
-      //   console.log('a spot was updated');
-      //   console.log(model);
-      //   if(model._id == self.model.get('_id')){
-      //     self.model.fetch();
-      //   }
-      // });
+      this.socket.on('connect', function(){
+        console.log('socket connected');
+      });
+      this.socket.on('updatedSpot', function(model){
+        console.log('a spot was updated');
+        console.log(model);
+        if(model._id == self.model.get('_id')){
+          self.model.fetch();
+        }
+      });
 
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);

@@ -54,10 +54,7 @@ module.exports = {
       });
     });
   },
-
-
-
-    purchaseSpot: function (req, res) {
+  purchaseSpot: function (req, res, sockets) {
     var content = req.body;
     console.log('buying spot', content.spot_id);
 
@@ -82,8 +79,46 @@ module.exports = {
           });
           return;
         }
+        if (!user.creditCard) {
+          res.status(500).json({
+            err: 'no credit card'
+          });
+          return;
+        }
 
+        var create_payment_json = {
+          "intent": "sale",
+          "payer": {
+            "payment_method": "credit_card",
+            "funding_instruments": [{
+              "credit_card_token": {
+                "credit_card_id": user.creditCard,
+                "payer_id": user._id
+              }
+            }]
+          },
+          "transactions": [{
+            "amount": {
+              "total": spot.price,
+              "currency": "USD",
+              "details": {
+                "subtotal": spot.price
+              }
+            },
+            "description": "This is the payment transaction description."
+          }]
+        };
+        PaypalAPI.payment.create(create_payment_json, config_opts, function (err, response) {
+          if (err) {
+            console.log(err);
+            res.status(500).json({
+              err: 'error making payment'
+            });
+          }
+
+          if (response) {
             console.log("Create Payment Response");
+            console.log(response);
             Spot.findByIdAndUpdate(content.spot_id, {
                 $addToSet: {
                   buyer_list: content.user_id
@@ -111,129 +146,15 @@ module.exports = {
                           content: err
                         });
                       } else {
-                        // sockets.emit('updatedSpot', spot);
-                        res.status(200).json({
-                          response: "Success"
-                        });
+                        sockets.emit('updatedSpot', spot);
+                        res.status(200).json({ response: "Success"});
                       }
                     });
                 }
               });
-           //
-        //});
+          }
+        });
       });
     });
   }
-
-
-
-
-
-
-
-
-
-  // purchaseSpot: function (req, res, sockets) {
-  //   var content = req.body;
-  //   console.log('buying spot', content.spot_id);
-
-  //   Spot.findById(content.spot_id, function (err, spot) {
-  //     if (err) {
-  //       res.status(500).json({
-  //         err: 'spot not found'
-  //       });
-  //       return;
-  //     }
-  //     if (spot.numSpots <= spot.buyer_list.length) {
-  //       res.status(500).json({
-  //         err: 'spot not available'
-  //       });
-  //       return;
-  //     }
-
-  //     User.findById(content.user_id, function (err1, user) {
-  //       if (err1) {
-  //         res.status(500).json({
-  //           err: 'user not found'
-  //         });
-  //         return;
-  //       }
-  //       if (!user.creditCard) {
-  //         res.status(500).json({
-  //           err: 'no credit card'
-  //         });
-  //         return;
-  //       }
-
-  //       var create_payment_json = {
-  //         "intent": "sale",
-  //         "payer": {
-  //           "payment_method": "credit_card",
-  //           "funding_instruments": [{
-  //             "credit_card_token": {
-  //               "credit_card_id": user.creditCard,
-  //               "payer_id": user._id
-  //             }
-  //           }]
-  //         },
-  //         "transactions": [{
-  //           "amount": {
-  //             "total": spot.price,
-  //             "currency": "USD",
-  //             "details": {
-  //               "subtotal": spot.price
-  //             }
-  //           },
-  //           "description": "This is the payment transaction description."
-  //         }]
-  //       };
-  //       PaypalAPI.payment.create(create_payment_json, config_opts, function (err, response) {
-  //         if (err) {
-  //           console.log(err);
-  //           res.status(500).json({
-  //             err: 'error making payment'
-  //           });
-  //         }
-
-  //         if (response) {
-  //           console.log("Create Payment Response");
-  //           console.log(response);
-  //           Spot.findByIdAndUpdate(content.spot_id, {
-  //               $addToSet: {
-  //                 buyer_list: content.user_id
-  //               }
-  //             },
-  //             function (err, spot) {
-  //               if (err) {
-  //                 console.log("spot update error", err);
-  //                 res.status(500).json({
-  //                   err: 'internal error',
-  //                   content: err
-  //                 });
-  //               } else {
-  //                 User.findByIdAndUpdate(content.user_id, {
-  //                     $addToSet: {
-  //                       reservedSpots: content.spot_id,
-  //                       spotHistory: content.spot_id
-  //                     }
-  //                   },
-  //                   function (err, spot) {
-  //                     if (err) {
-  //                       console.log("user update error", err);
-  //                       res.status(500).json({
-  //                         err: 'internal error',
-  //                         content: err
-  //                       });
-  //                     } else {
-  //                       sockets.emit('updatedSpot', spot);
-  //                       res.status(200).json({ response: "Success"});
-  //                     }
-  //                   });
-  //               }
-  //             });
-  //         }
-  //       });
-  //     });
-  //   });
-  // }
 };
