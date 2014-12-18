@@ -36,7 +36,7 @@ NODE_ENV='production' [optional port] [other environmental variables] node serve
 	├── node_modules						- Contains bower modules
 	├── README.md
 	├── client							- Contains client files (mostly static)
-	│	├── bower_components				- Contains bower modules (created by running bower install)
+	│	├── bower_components				  - Contains bower modules (created by running bower install)
 	│	├── images
 	│	├── css							  - Global css files
 	│	├── index.html
