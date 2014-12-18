@@ -38,12 +38,12 @@ NODE_ENV='production' [optional port] [other environmental variables] node serve
 	├── client							- Contains client files (mostly static)
 	│	├── bower_components				- Contains bower modules (created by running bower install)
 	│	├── images
-	│	├── css							- Global css files
+	│	├── css							 - Global css files
 	│	├── index.html
 	│	├── fonts
-	│	├── styles						- Contains css for different pages/views
+	│	├── styles						 - Contains css for different pages/views
 	│	│	└── [page-name]
-	│	└── js							- Contains javascript for different pages/views
+	│	└── js							 - Contains javascript for different pages/views
 	│		└── [page-name]
 	└── server							- Contains the server side scripts
 		├── app.js						- Node/Express application 
