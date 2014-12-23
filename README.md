@@ -1,5 +1,5 @@
 #Park Ave Web application
-
+This the web application for Park Ave. Users are able to list their private parking on this website and the users of iOS application can reserve and pay for parking spot using their iPhone.
 
 ##Usage
 ###Install
@@ -37,47 +37,25 @@ NODE_ENV='production' [optional port] [other environmental variables] node serve
 	├── README.md
 	├── client							- Contains client files (mostly static)
 	│	├── bower_components				  - Contains bower modules (created by running bower install)
-	│	├── assets
-	│	│	└── images
+	│	├── images
 	│	├── css						  - Global css files
 	│	├── index.html
-	│	├── robots.txt					  - Instruction for crawlers [About](www.robotstxt.org/)
-	│	├── components					  - Contains angular modules for different services
-	│	└── app
-	│		├── app.js					  - Angular application
-	│		└── [views]					  - Different angular views
-	└── server							- Contains the static files
-		├── .jshintrc						- JSHint configuration
+	│	├── fonts
+	│	├── styles					  - Contains css for different pages/views
+	│	│	└── [page-name]
+	│	└── js						- Contains javascript for different pages/views
+	│		└── [page-name]					  - Different angular views
+	└── server							- Contains the server side scripts
 		├── app.js						- Node/Express application 
-		├── views							- Server side view templates 
-		├── config						- Contains confi files for express, sockets
-		│	├── express.js
-		│	├── local.env.samples.js		  - Contains environmental variables ONLY FOR DEVELOPMENT
-		│	├── seed.js					  - Populated the database
-		│	├── socketio.js
-		│	└── environment				  - Contains environmental settings
-		│		├── index.js
-		│		├── development.js
-		│		├── production.js
-		│		└── test.js
-		├── components					- Contains different components such as error handling
-		├── auth						  	- Contains authentication methods
-		│	├── index.js
-		│	├── auth.services.js
-		│	└── local						  - PassportJS methods
-		│		├── index.js
-		│		└── passport.js
-		└── api							- Contains the objects and apis
+		├── routes.js						- API routes
+		├── model							- Object Models
+		│	└── [name]
+		└── controller							- Controllers and logic
 			└── [name]
-				├── index.js				- Defines the routes (urls) for this api
-				├── [name].controller.js	- Contains the logic and methods
-				├── [name].model.js		- Mongoose model for the api
-				├── [name].socket.js		- Contains the logic for sockets
-				└── [name].spec.js		- Test file definition
 
 
 ##Potential Bugs:
-* Not known.
+* Not known (bugs do exits)
 
 
 ##To do
