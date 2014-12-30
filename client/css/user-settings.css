@@ -1,0 +1,32 @@
+.user-settings-div > div.container {
+  margin-top: 0px;
+}
+
+.user-settings-main-input {
+  height: 40px;
+}
+
+button.user-settings-main-input {
+  background-color: rgba(84, 169, 103, 1);
+}
+
+button.user-settings-main-input:hover, button.user-settings-main-input:focus, button.user-settings-main-input:active {
+  background-color: rgba(84, 169, 103, 0.82);
+}
+
+.user-settings-input-panel {
+  border: none;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  background-color: rgba(18, 83, 164, 0.68);
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.user-settings-input-panel > div.panel-body > div.row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#user-settings-container{
+  margin-top: 35px;
+}

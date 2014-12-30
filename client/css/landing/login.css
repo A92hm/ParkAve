@@ -1,0 +1,93 @@
+.login-div{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	background: #2c3338;
+	color: #606468;
+	font: 87.5%/1.5em 'Helvetica',Helvetica, sans-serif;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.login-div a {
+	color: #eee;
+	text-decoration: none;
+}
+
+.login-div a:hover {
+	text-decoration: underline;
+}
+
+.singin-logo {
+	margin: 0 auto;
+	margin-top: 90px;
+}
+
+.login-input {
+	border: none;
+	font-size: 14px;
+	line-height: 1.5em;
+	padding: 0;
+	-webkit-appearance: none;
+}
+
+.login-div p {
+	line-height: 1.5em;
+}
+
+
+.login {
+	margin: 0 auto;
+	margin-top: 110px;
+}
+
+.login .login-form span {
+	background-color: #363b41;
+	border-radius: 3px 0px 0px 3px;
+	color: #FFF;
+	display: block;
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	width: 50px;
+}
+
+.login .login-form .login-input {
+	height: 50px;
+}
+
+.login .login-form .login-input[type="text"], .login-input[type="password"] {
+	background-color: #3b4148;
+	border-radius: 0px 3px 3px 0px;
+	color: #FFF;
+	margin-bottom: 1em;
+	padding: 0 16px;
+	width: 198px;
+}
+
+.login .login-form .login-input[type="submit"] {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background-color: #6341CE;
+	color: #eee;
+	font-weight: bold;
+	margin-bottom: 2em;
+	text-transform: uppercase;
+	width: 248px;
+}
+
+.login .login-form .login-input[type="submit"]:hover {
+	background-color: #4F32A8;
+}
+
+.login > p {
+	/*text-align: center;*/
+}
+
+.login > p span {
+	/*padding-left: 5px;*/
+}
