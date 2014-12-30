@@ -1,7 +1,7 @@
 {
   "name": "ParkAve",
-  "main": "index.js",
-  "version": "0.0.1",
+  "main": "server/app.js",
+  "version": "2.0.1",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -20,7 +20,7 @@
     "respond": "~1.4.2",
     "requirejs": "~2.1.10",
     "requirejs-text": "~2.0.10",
-    "font-awesome": "~4.0.3",
+    "font-awesome": "~4.2.0",
     "jquery.stellar": "~0.6.2"
   }
 }

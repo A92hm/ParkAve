@@ -1,1 +1,0 @@
-$(function(){$("#login-form").submit(function(){return $form=$("#login-form"),$.ajax({type:$form.attr("method"),url:$form.attr("action"),data:$form.serialize(),success:function(a){alert(a.status)},error:function(a){alert(a.responseText)}}),!1})});
