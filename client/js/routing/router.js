@@ -3,7 +3,7 @@ define(['underscore', 'require', 'backbone'],
 
   var Router = Backbone.Router.extend({
     routes: {
-      'landing': 'landing',
+      'landing': 'login',
 
       'feedback': 'feedback', 
 
@@ -20,7 +20,7 @@ define(['underscore', 'require', 'backbone'],
       'users/settings': 'userSettings',
       'users/settings/credit-card': 'addCard',
 
-      '': 'main',
+      '': 'login',
 
       'image' : 'imageUploader'
     },
