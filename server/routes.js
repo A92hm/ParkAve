@@ -78,7 +78,7 @@ module.exports = {
 
     // All other routes should redirect to the index.html
     app.get(  '*', function(req, res) {
-      res.sendfile(path.join(__dirname, '..', 'client', 'index.html'));
+      res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
     });
   }
 };

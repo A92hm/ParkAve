@@ -19,7 +19,6 @@ var config_opts = {
 
 module.exports = {
   index: function(req, res) {
-    console.log('spots index');
     Spot.find({lot_id: req.params.lid}, function(err, spots) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -29,7 +28,6 @@ module.exports = {
     });
   },
   show: function(req, res) {
-    console.log('spots show');
     Spot.findById(req.params.sid, function(err, spot) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -39,7 +37,6 @@ module.exports = {
     });
   },
   create: function(req, res) {
-    console.log('spots create');
     Spot.create(req.body, function(err, spot) {
       if (err) {
         res.status(500).json({err: 'internal error', content: err});
@@ -51,7 +48,6 @@ module.exports = {
     });
   },
   update: function(req, res) {
-    console.log('spots update');
     var newSpot = {};
     _.each(req.body, function(value, key){
       if(key != "__v" && key != "_id"){
@@ -68,8 +64,6 @@ module.exports = {
     });   
   },
   destroy: function(req, res) {
-    console.log('spots destroy');
-
     //destroy spot
     Spot.remove( {_id: req.params.sid}, function(err) {
       if (err) {

@@ -2,7 +2,6 @@ var Car = require('../models/car').Car;
 
 module.exports = {
   index: function(req, res) {
-    console.log('cars index');
     Car.find({user_id: req.params.uid}, function(err, cars) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -12,7 +11,6 @@ module.exports = {
     });
   },
   show: function(req, res) {
-    console.log('cars show');
     Car.findById(req.params.cid, function(err, car) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -22,7 +20,6 @@ module.exports = {
     });
   },
   create: function(req, res) {
-    console.log('cars create');
     Car.create(req.body, function(err, car) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -32,8 +29,6 @@ module.exports = {
     });
   },
   update: function(req, res) {
-    console.log('cars update');
-
     var newCar = {};
     _.each(req.body, function(value, key){
       if(key != "__v" && key != "_id"){
@@ -50,7 +45,6 @@ module.exports = {
     });
   },
   destroy: function(req, res) {
-    console.log('cars destroy');
     Car.remove( {_id: req.params.cid}, function(err) {
       if (err) {
         res.status(500).json({err: 'internal error'});

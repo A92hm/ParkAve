@@ -2,7 +2,6 @@ var Feedback = require('../models/feedback').Feedback;
 
 module.exports = {
   index: function(req, res) {
-    console.log('feedback index');
     Feedback.find({user_id: req.params.uid}, function(err, feedbacks) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -12,7 +11,6 @@ module.exports = {
     });
   },
   show: function(req, res) {
-    console.log('feedback show');
     Feedback.findById(req.params.cid, function(err, feedback) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -22,7 +20,6 @@ module.exports = {
     });
   },
   create: function(req, res) {
-    console.log('feedback create');
     Feedback.create(req.body, function(err, feedback) {
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -32,10 +29,8 @@ module.exports = {
     });
   },
   update: function(req, res) {
-    console.log('feedback update');
   },
   destroy: function(req, res) {
-    console.log('feedback destroy');
     Feedback.remove( {_id: req.params.cid}, function(err) {
       if (err) {
         res.status(500).json({err: 'internal error'});

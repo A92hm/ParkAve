@@ -47,7 +47,6 @@ module.exports = {
           //     });
           //   } else {
           //     res.status(200).json({ response: "Success"});
-          //     console.log('success');
           //   }
           // });
         }
@@ -56,8 +55,6 @@ module.exports = {
   },
   purchaseSpot: function (req, res) {
     var content = req.body;
-    console.log('buying spot', content.spot_id);
-
     Spot.findById(content.spot_id, function (err, spot) {
       if (err) {
         res.status(500).json({
@@ -110,15 +107,12 @@ module.exports = {
         };
         PaypalAPI.payment.create(create_payment_json, config_opts, function (err, response) {
           if (err) {
-            console.log(err);
             res.status(500).json({
               err: 'error making payment'
             });
           }
 
           if (response) {
-            console.log("Create Payment Response");
-            console.log(response);
             Spot.findByIdAndUpdate(content.spot_id, {
                 $addToSet: {
                   buyer_list: content.user_id
@@ -126,7 +120,6 @@ module.exports = {
               },
               function (err, spot) {
                 if (err) {
-                  console.log("spot update error", err);
                   res.status(500).json({
                     err: 'internal error',
                     content: err
@@ -140,7 +133,6 @@ module.exports = {
                     },
                     function (err, spot) {
                       if (err) {
-                        console.log("user update error", err);
                         res.status(500).json({
                           err: 'internal error',
                           content: err

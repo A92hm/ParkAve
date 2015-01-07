@@ -54,7 +54,6 @@ function getAverages(lotID, userID, callback, res){
             var tick = 0;
             var totalSpots = spots.length;
             var currentMin = -1;
-            console.log('totalspots: '+totalSpots);
             if(totalSpots != 0){
               _.each(spots, function(spot){
                 if(currentMin == -1 || spot.price < currentMin){
@@ -62,7 +61,6 @@ function getAverages(lotID, userID, callback, res){
                 }
                 tick++;
                 count++;
-                console.log('tick: '+tick);
                 //need to put this in here or else it will skip the lots
                 if(tick == totalSpots){
                   //now find the average rating
@@ -75,7 +73,6 @@ function getAverages(lotID, userID, callback, res){
                         total = total + review.stars;
                         count = count + 1;
                       });
-                      console.log('average'+(total/count));
                       //callback from here to avoid the ratings now being included
                       if(count > 0){
                         lot.minimumPrice = currentMin;
@@ -143,7 +140,6 @@ function getNearbyLots(req, res, cb) {
 
 module.exports = {
   index: function(req, res) {
-    console.log('lots index');
 
     getAverages("",req.params.uid,function(newLots){
       res.json(newLots);
@@ -161,7 +157,6 @@ module.exports = {
   // req.params.json should contain
   // lat+lng+dist
   nearbyLots: function(req, res) {
-    console.log('near lots');
     getNearbyLots(req, res, function(err, lots){
       if (err) {
         res.status(500).json({err: 'internal error'});
@@ -189,7 +184,6 @@ module.exports = {
     });
   },
   show: function(req, res) {
-    console.log('lots show');
     getAverages(req.params.lid, '', function(lot){
       res.json(lot);
     }, res);
@@ -208,7 +202,6 @@ module.exports = {
 */
   },
   showAllLots: function(req,res) {
-    console.log('show all of the lots');
     getAverages("","",function(lots){
 
       res.json(lots);
@@ -224,9 +217,7 @@ module.exports = {
 */
   },
   create: function(req, res) {
-    console.log('lots create');
     Lot.create(req.body, function(err, lot) {
-      console.log('err', err);
       if (err) {
         res.status(500).json({err: 'internal error'});
       } else {
@@ -235,8 +226,6 @@ module.exports = {
     });
   },
   update: function(req, res) {
-    console.log('lots update');
-
     var newLot = {};
     _.each(req.body, function(value, key){
       if(key != "__v" && key != "_id"){
@@ -256,7 +245,6 @@ module.exports = {
     Spot.find({lot_id: req.params.lid}, function(err, spots){
       _.each(spots, function(spot){
         Spot.remove({_id: spot._id}, function(err){
-          console.log('err', err);
         });
       });
       Lot.remove({_id: req.params.lid}, function(err) {

@@ -3,7 +3,6 @@ var express = require('express')
   , routes = require('./routes.js')
   , logger = require('morgan')
   , path = require('path')
-  , favicon = require('serve-favicon')
   , bodyParser = require('body-parser')
   , cookieParser = require('cookie-parser')
   , session = require('express-session')
@@ -15,12 +14,14 @@ db.on('error', function () {
   throw new Error('unable to connect to database at ' + config.db);
 });
 
-app.use(favicon(path.join(__dirname,'..','client','images','favicon.ico')));
-app.use(logger('dev'));
+app.use(logger('tiny'));
 app.use(bodyParser.json());
-app.use(session({secret: 'SHOULD USE NODE_ENV_SECRET', 
-               saveUninitialized: true,
-               resave: true}));
+app.use(session({
+  secret: 'SHOULD USE NODE_ENV_SECRET',
+  cookie: { maxAge: 60000 },
+  resave: false,
+  saveUninitialized: true
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..' ,'client')));
 routes.init(app);
