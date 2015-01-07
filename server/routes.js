@@ -75,7 +75,6 @@ module.exports = {
     app.post( '/api/addpaymentmethod', paymentController.addCreditCard);
     app.post( '/api/purchase', paymentController.purchaseSpot);
 
-
     // All other routes should redirect to the index.html
     app.get(  '*', function(req, res) {
       res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
