@@ -1,4 +1,5 @@
-#Park Ave Web application [![Build Status](https://travis-ci.org/parkave/parkave-webapp.svg)](https://travis-ci.org/parkave/parkave-webapp) [![Dependency Status](https://david-dm.org//parkave/parkave-webapp.svg)](https://david-dm.org/parkave/parkave-webapp) [![devDependency Status](https://david-dm.org/parkave/parkave-webapp/dev-status.svg)](https://david-dm.org//parkave/parkave-webapp#info=devDependencies)
+#Park Ave Web application 
+[![Build Status](https://travis-ci.org/parkave/parkave-webapp.svg)](https://travis-ci.org/parkave/parkave-webapp) [![Dependency Status](https://david-dm.org//parkave/parkave-webapp.svg)](https://david-dm.org/parkave/parkave-webapp) [![devDependency Status](https://david-dm.org/parkave/parkave-webapp/dev-status.svg)](https://david-dm.org//parkave/parkave-webapp#info=devDependencies)
 This the web application for Park Ave. Users are able to list their private parking on this website and the users of iOS application can reserve and pay for parking spot using their iPhone.
 
 ##Usage

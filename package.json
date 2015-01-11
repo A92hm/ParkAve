@@ -5,7 +5,6 @@
   "main": "server/app.js",
   "author": "Ali Hajimirza, Jeff Terry, Jeremy Little, Egawati Panjei, Matt Stangl",
     "scripts": {
-    "test": "grunt test"
   },
   "repository": {
     "type": "git",
