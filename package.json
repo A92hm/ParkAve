@@ -1,6 +1,6 @@
 {
   "name": "ParkAve",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "This the web application for Park Ave. Users are able to list their private parking on this website and the users of iOS application can reserve and pay for parking spot using their iPhone.",
   "main": "server/app.js",
   "author": "Ali Hajimirza, Jeff Terry, Jeremy Little, Egawati Panjei, Matt Stangl",
