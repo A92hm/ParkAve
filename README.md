@@ -1,15 +1,15 @@
-#Park Ave Web application [![Build Status](https://travis-ci.org/parkave/parkave-webapp.svg)](https://travis-ci.org/parkave/parkave-webapp)
+# Park Ave Web application [![Build Status](https://travis-ci.org/parkave/parkave-webapp.svg)](https://travis-ci.org/parkave/parkave-webapp)
 This the web application for Park Ave. Users are able to list their private parking on this website and the users of iOS application can reserve and pay for parking spot using their iPhone.
 
-##Usage
-###Install
+## Usage
+### Install
 To use this script clone this repository on your remote server.
 ```bash
 git clone https://github.com/parkave/parkave-webapp.git && cd parkave-webapp
 npm install
 bower install
 ```
-###Execution
+### Execution
 You need to have MongoDB running on your machine or change the mongo's URL to a remote machine.
 To develop:
 ```bash
@@ -20,14 +20,14 @@ To serve final product:
 NODE_ENV='production' [optional port] [other environmental variables] node server/app.js
 ```
 
-##Dependencies
+## Dependencies
 * [MongoDB](http://www.mongodb.org/downloads)
 * [node](http://nodejs.org)
 * [npm](https://www.npmjs.com)
 * [bower](https://github.com/bower/bower)
 
 
-##Structure
+## Structure
     parkave-webapp
     .
     ├── .gitignore
@@ -54,9 +54,9 @@ NODE_ENV='production' [optional port] [other environmental variables] node serve
             └── [name]
 
 
-##[Potential Bugs](https://github.com/parkave/parkave-webapp/issues)
+## [Potential Bugs](https://github.com/parkave/parkave-webapp/issues)
 
-##To do
+## To do
 
-##License
+## License
 [MIT license](http://opensource.org/licenses/MIT)
